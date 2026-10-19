@@ -36,12 +36,22 @@ export interface ChatActionButton {
   icon: string;
 }
 
+export interface DoctorProfileCardData {
+  name: string;
+  role: string;
+  medicalCouncilCode: string;
+  image: string;
+  experience: string;
+  bio: string;
+}
+
 export interface ChatMessageItem {
   id: string;
   role: 'user' | 'assistant';
   content: string;
   timestamp: string;
   cases?: PortfolioCaseCardData[];
+  doctorCard?: DoctorProfileCardData | null;
   actions?: ChatActionButton[];
   followUpSuggestions?: string[];
   isError?: boolean;
@@ -488,6 +498,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
         content: data.reply,
         timestamp: new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' }),
         cases: Array.isArray(data.cases) && data.cases.length > 0 ? data.cases : undefined,
+        doctorCard: data.doctorCard || undefined,
         actions: Array.isArray(data.actions) && data.actions.length > 0 ? data.actions : undefined,
         followUpSuggestions:
           Array.isArray(data.followUpSuggestions) && data.followUpSuggestions.length > 0
@@ -785,6 +796,28 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
                             <span>{item.label}</span>
                           </button>
                         ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Read-only Doctor Profile Card when user asks for Doctor's photo or bio */}
+                  {!isUser && msg.doctorCard && (
+                    <div className="w-full mt-3 bg-white rounded-2xl border border-[#c3c6d7]/60 overflow-hidden shadow-xs flex flex-col sm:flex-row items-center gap-3.5 p-3.5 text-right">
+                      <img
+                        src={msg.doctorCard.image}
+                        alt={msg.doctorCard.name}
+                        className="w-24 h-28 sm:w-24 sm:h-28 rounded-xl object-cover border border-[#dbe1ff] shrink-0 shadow-xs"
+                      />
+                      <div className="flex-1 min-w-0 space-y-1">
+                        <div className="flex items-center justify-between gap-2 flex-wrap">
+                          <h4 className="text-xs font-extrabold text-[#191c1e]">{msg.doctorCard.name}</h4>
+                          <span className="px-2 py-0.5 rounded-full bg-[#dbe1ff]/60 text-[#004ac6] text-[10px] font-bold">
+                            نظام پزشکی: {msg.doctorCard.medicalCouncilCode}
+                          </span>
+                        </div>
+                        <p className="text-[11px] font-bold text-[#004ac6]">{msg.doctorCard.role}</p>
+                        <p className="text-[10px] font-semibold text-emerald-700">{msg.doctorCard.experience}</p>
+                        <p className="text-[11px] text-[#565e74] leading-relaxed line-clamp-3">{msg.doctorCard.bio}</p>
                       </div>
                     </div>
                   )}

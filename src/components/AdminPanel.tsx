@@ -68,6 +68,7 @@ import { IconLibraryModal } from './IconLibraryModal.tsx';
 import { AppIcon } from './AppIcon.tsx';
 import { ALL_INITIAL_CASES } from '../data/clinicalCases.ts';
 import { isVideoUrl, MediaPreview } from '../utils/mediaUtils.tsx';
+import { AdminAiCopilot } from './AdminAiCopilot.tsx';
 
 interface Toast {
   id: string;
@@ -207,8 +208,9 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onNavigateHome }) => {
     };
   }, [isAdminMenuOpen]);
 
-  // --- Active Tab ---
+  // --- Active Tab & Full-Screen Admin AI Popup ---
   const [activeTab, setActiveTab] = useState<ActiveTab>(getInitialAdminTab);
+  const [isAdminAiOpen, setIsAdminAiOpen] = useState(false);
 
   // --- CMS Data State ---
   const [loading, setLoading] = useState(false);
@@ -2567,6 +2569,47 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onNavigateHome }) => {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
+            {/* Exact Same Animated AI Assistant Icon as Main Website Header */}
+            <div className="relative group">
+              <button
+                type="button"
+                onClick={() => setIsAdminAiOpen(true)}
+                aria-label="دستیار هوشمند مدیر سایت - از من بپرس"
+                aria-expanded={isAdminAiOpen}
+                className="relative flex items-center gap-1.5 h-10 px-3.5 rounded-full bg-gradient-to-tr from-[#004ac6] via-[#2563eb] to-[#38bdf8] hover:from-[#003ea8] hover:to-[#2563eb] text-white shadow-xs hover:shadow-md transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer overflow-hidden ai-header-btn-glow"
+              >
+                {/* Animated Shimmer Sweep */}
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/35 to-transparent ai-shimmer-bar"
+                />
+                {/* Subtle Smart Sparkle Star */}
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 16 16"
+                  className="w-3.5 h-3.5 text-sky-200 animate-dental-sparkle shrink-0"
+                  fill="currentColor"
+                >
+                  <path d="M8 0C8.3 4.2 11.8 7.7 16 8C11.8 8.3 8.3 11.8 8 16C7.7 11.8 4.2 8.3 0 8C4.2 7.7 7.7 4.2 8 0Z" />
+                </svg>
+                <span className="relative z-10 text-xs font-black tracking-wider font-display leading-none">
+                  AI
+                </span>
+                <span className="relative z-10 max-w-0 overflow-hidden group-hover:max-w-[90px] transition-all duration-300 ease-out text-[11px] font-bold whitespace-nowrap">
+                  دستیار هوشمند
+                </span>
+              </button>
+
+              {/* Hover Tooltip Pill */}
+              <div
+                role="tooltip"
+                className="pointer-events-none absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#191c1e] text-white text-[11px] font-bold whitespace-nowrap opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 shadow-lg z-50"
+              >
+                دستیار هوشمند مدیر • از من بپرس
+                <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#191c1e] rotate-45" />
+              </div>
+            </div>
+
             <button
               onClick={onNavigateHome}
               className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors"
@@ -17661,6 +17704,18 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onNavigateHome }) => {
             </>
           )}
         </main>
+
+        {/* Full-Screen Admin AI Assistant Popup */}
+        <AdminAiCopilot
+          isOpen={isAdminAiOpen}
+          onClose={() => setIsAdminAiOpen(false)}
+          token={token}
+          onCmsUpdated={() => {
+            notifyCmsUpdated();
+            fetchCmsData();
+          }}
+          addToast={addToast}
+        />
       </div>
 
       {/* ========================================================================= */}

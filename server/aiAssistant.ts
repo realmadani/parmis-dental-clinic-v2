@@ -21,6 +21,15 @@ export interface StructuredPortfolioCase {
   badge?: string;
 }
 
+export interface DoctorProfileCardData {
+  name: string;
+  role: string;
+  medicalCouncilCode: string;
+  image: string;
+  experience: string;
+  bio: string;
+}
+
 export interface ChatActionItem {
   id: string;
   type:
@@ -47,13 +56,14 @@ export interface ChatHistoryMessage {
 export interface AiChatResponsePayload {
   reply: string;
   cases: StructuredPortfolioCase[];
+  doctorCard?: DoctorProfileCardData | null;
   actions: ChatActionItem[];
   followUpSuggestions: string[];
   mode: 'gemini' | 'knowledge_engine';
 }
 
 /**
- * Consolidates all real, verified portfolio cases from both clinicalCases.ts and CMS db.json
+ * Consolidates all real, verified portfolio cases from both clinicalCases.ts and CMS db.json (READ-ONLY)
  */
 export function getVerifiedPortfolioCases(): StructuredPortfolioCase[] {
   const db = readDb();
@@ -131,6 +141,31 @@ export function getVerifiedPortfolioCases(): StructuredPortfolioCase[] {
   }
 
   return Array.from(casesMap.values());
+}
+
+/**
+ * Returns read-only Doctor Profile Card data using verified public clinic image
+ */
+export function getPublicDoctorProfileCard(): DoctorProfileCardData {
+  const db = readDb();
+  const info = { ...CLINIC_INFO, ...(db.clinicInfo || {}) };
+  const doctorImg =
+    db.aboutPageSettings?.hero?.doctorImage ||
+    db.homePageSettings?.doctor?.imageUrl ||
+    db.doctor?.image ||
+    info.doctorImage ||
+    '/images/dr-shamspoor.jpg';
+
+  return {
+    name: info.doctorName || 'دکتر انوشیروان شمس‌پور',
+    role: info.doctorRole || 'جراح و دندان‌پزشک • زیبایی و ایمپلنت',
+    medicalCouncilCode: info.medicalCouncilCode || '۱۴۷۸۹۳',
+    image: doctorImg,
+    experience: 'بیش از ۱۲ سال سابقه بالینی و بیش از ۵,۰۰۰ درمان موفق',
+    bio:
+      db.doctor?.bio ||
+      'فارغ‌التحصیل دکترای حرفه‌ای دندان‌پزشکی، دارای بورد تخصصی زیبایی و ایمپلنت‌های دیجیتال با تمرکز بر درمان‌های کم‌تهاجمی و بدون درد در کلینیک پارمیس پاکدشت.',
+  };
 }
 
 /**
@@ -286,7 +321,7 @@ export function buildClinicActions(types: Array<ChatActionItem['type']>): ChatAc
 }
 
 /**
- * Builds the rich, conversational system prompt grounded in real verified clinic data
+ * Builds the rich, conversational system prompt grounded in real verified clinic data (STRICTLY READ-ONLY)
  */
 function buildSystemInstruction(portfolioContextNote?: string): string {
   const db = readDb();
@@ -317,9 +352,13 @@ function buildSystemInstruction(portfolioContextNote?: string): string {
 
   return `تو «دستیار هوشمند دکتر انوشیروان شمس‌پور» در «کلینیک دندان‌پزشکی پارمیس» هستی.
 شخصیت و لحن تو:
-- یک مشاور و منشی هوشمند، صمیمی، همدل، محترمانه و حرفه‌ای هستی که به زبان فارسی طبیعی، روان و انسانی (نه قالبی و خشک و ربات‌گونه) با مراجعین گفتگو می‌کنی.
+- یک مشاور و منشی هوشمند، صمیمی، همدل، محترمانه و حرفه‌ای هستی که به زبان فارسی طبیعی، روان و انسانی با مراجعین گفتگو می‌کنی.
 - دقیقاً به سؤال خاص کاربر پاسخ بده، با او تعامل طبیعی داشته باش و اگر سؤالش محاوره‌ای است، با لحنی گرم و صمیمی و در عین حال علمی راهنمایی‌اش کن.
 - پاسخ‌هایت خوش‌خوان، مرتب و در حد ۱ تا ۳ پاراگراف کوتاه یا بولت‌پوینت‌های مفید باشد.
+
+محدودیت امنیتی بسیار مهم (عدم دسترسی به بک‌اند):
+- تو صرفاً دستیار عمومی راهنمای بیماران و مراجعین هستی و **هیچ‌گونه دسترسی به بک‌اند سایت، دیتابیس، پنل مدیریت یا ویرایش عکس‌ها، متون و تنظیمات سایت نداری**.
+- اگر کاربری از تو خواست چیزی را در سایت تغییر دهی، درست کنی، ویرایش کنی یا حذف/اضافه کنی، محترمانه توضیح بده که تو دستیار راهنمای مراجعین هستی و به بک‌اند یا پنل مدیریت سایت دسترسی نداری (مدیریت سایت فقط از طریق پنل ادمین توسط مدیر سایت امکان‌پذیر است).
 
 اطلاعات واقعی کلینیک (فقط به این داده‌ها استناد کن):
 - نام پزشک: ${info.doctorName} (${info.doctorRole})
@@ -338,7 +377,7 @@ ${pricingSummary}
 پرسش‌های متداول کلینیک:
 ${faqSummary}
 
-${portfolioContextNote ? `نکته درباره نمایش نمونه‌کار در این پیام: ${portfolioContextNote}` : ''}
+${portfolioContextNote ? `نکته درباره کارت تصویری پیوست‌شده در این پیام: ${portfolioContextNote}` : ''}
 
 اصول ایمنی پزشکی:
 ۱. اطلاعات جعلی درباره مدرک، جایزه، قیمت یا شماره تماس نساز.
@@ -347,31 +386,59 @@ ${portfolioContextNote ? `نکته درباره نمایش نمونه‌کار �
 }
 
 /**
- * Enriches the response with real portfolio cards and action buttons based on conversation intent
+ * Enriches the response with read-only public cards (doctor photo or portfolio cases) and action buttons
  */
 function analyzeIntentAndEnrich(userMessage: string): {
   cases: StructuredPortfolioCase[];
+  doctorCard: DoctorProfileCardData | null;
   actions: ChatActionItem[];
   followUpSuggestions: string[];
   portfolioNote?: string;
 } {
   const msg = userMessage.trim().toLowerCase();
   let cases: StructuredPortfolioCase[] = [];
+  let doctorCard: DoctorProfileCardData | null = null;
   const actionTypes = new Set<ChatActionItem['type']>();
   let followUpSuggestions: string[] = [];
   let portfolioNote: string | undefined;
 
+  // Check if user is asking for Doctor's photo or Doctor's introduction
+  const isDoctorPhotoOrIntroRequest =
+    (msg.includes('دکتر') || msg.includes('شمس')) &&
+    (msg.includes('عکس') ||
+      msg.includes('تصویر') ||
+      msg.includes('چهره') ||
+      msg.includes('معرفی') ||
+      msg.includes('کیست') ||
+      msg.includes('بیوگرافی') ||
+      msg.includes('ببینم') ||
+      msg.includes('نشون'));
+
+  if (isDoctorPhotoOrIntroRequest) {
+    doctorCard = getPublicDoctorProfileCard();
+    actionTypes.add('open_booking');
+    actionTypes.add('call_clinic');
+    portfolioNote =
+      'کارت رسمی معرفی و تصویر پروفایل دکتر انوشیروان شمس‌پور در زیر پیام تو به کاربر نمایش داده می‌شود؛ در پاسخ خودت با احترام به معرفی ایشان اشاره کن.';
+    followUpSuggestions = [
+      'مشاهده خدمات دندانپزشکی',
+      'دیدن نمونه‌کارها',
+      'آدرس مطب و راه‌های تماس',
+    ];
+  }
+
   const isPortfolioRequest =
-    msg.includes('نمونه') ||
-    msg.includes('نمونه‌کار') ||
-    msg.includes('نمونه کار') ||
-    msg.includes('قبل و بعد') ||
-    msg.includes('عکس') ||
-    msg.includes('تصویر') ||
-    msg.includes('تصاویر') ||
-    msg.includes('گالری') ||
-    msg === 'سفید کردن دندان‌ها (بلیچینگ)' ||
-    (msg.includes('طراحی لبخند') && !msg.includes('مراقبت') && !msg.includes('هزینه'));
+    !isDoctorPhotoOrIntroRequest &&
+    (msg.includes('نمونه') ||
+      msg.includes('نمونه‌کار') ||
+      msg.includes('نمونه کار') ||
+      msg.includes('قبل و بعد') ||
+      msg.includes('عکس') ||
+      msg.includes('تصویر') ||
+      msg.includes('تصاویر') ||
+      msg.includes('گالری') ||
+      msg === 'سفید کردن دندان‌ها (بلیچینگ)' ||
+      (msg.includes('طراحی لبخند') && !msg.includes('مراقبت') && !msg.includes('هزینه')));
 
   if (isPortfolioRequest) {
     const result = searchPortfolioCases(msg);
@@ -473,6 +540,7 @@ function analyzeIntentAndEnrich(userMessage: string): {
 
   return {
     cases,
+    doctorCard,
     actions: buildClinicActions(Array.from(actionTypes)),
     followUpSuggestions,
     portfolioNote,
@@ -507,7 +575,6 @@ async function generateNaturalGeminiReply(
     },
   });
 
-  // Prioritized fast & natural Gemini 3 Flash models
   const candidateConfigs: Array<{ model: string; thinkingLevel: ThinkingLevel }> = [
     { model: 'gemini-3-flash-preview', thinkingLevel: ThinkingLevel.MINIMAL },
     { model: 'gemini-3.1-flash-lite-preview', thinkingLevel: ThinkingLevel.MINIMAL },
@@ -533,7 +600,6 @@ async function generateNaturalGeminiReply(
         return text;
       }
     } catch (err) {
-      // Continue to next model in cascade on 429/503/400
       continue;
     }
   }
@@ -542,7 +608,7 @@ async function generateNaturalGeminiReply(
 }
 
 /**
- * Main handler for AI Assistant chat requests
+ * Main handler for Public AI Assistant chat requests (Strictly Read-Only, No Backend Write Access)
  */
 export async function handleAiAssistantChat(
   message: string,
@@ -553,9 +619,10 @@ export async function handleAiAssistantChat(
     throw new Error('پیام ارسالی نمی‌تواند خالی باشد.');
   }
 
-  // 1. Enrich with real portfolio cases and action buttons if relevant to the user's message
+  // 1. Enrich with read-only public cards (doctor photo or portfolio cases) and action buttons
   const enrichment = analyzeIntentAndEnrich(cleanMessage);
   const cases = [...enrichment.cases];
+  const doctorCard = enrichment.doctorCard;
   const actions = [...enrichment.actions];
   const followUpSuggestions = enrichment.followUpSuggestions;
 
@@ -564,6 +631,7 @@ export async function handleAiAssistantChat(
     return {
       reply: buildEmergencyFallbackResponse(cleanMessage),
       cases,
+      doctorCard,
       actions,
       followUpSuggestions,
       mode: 'knowledge_engine',
@@ -591,6 +659,7 @@ export async function handleAiAssistantChat(
     return {
       reply: aiReply,
       cases,
+      doctorCard,
       actions,
       followUpSuggestions,
       mode: 'gemini',
@@ -600,6 +669,7 @@ export async function handleAiAssistantChat(
   return {
     reply: buildEmergencyFallbackResponse(cleanMessage),
     cases,
+    doctorCard,
     actions,
     followUpSuggestions,
     mode: 'knowledge_engine',

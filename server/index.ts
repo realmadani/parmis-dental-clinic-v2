@@ -8,6 +8,16 @@ import multer from 'multer';
 import { fileURLToPath } from 'url';
 import { readDb, writeDb, AppointmentRecord, MediaRecord } from './db';
 import { handleAiAssistantChat, getVerifiedPortfolioCases } from './aiAssistant';
+import {
+  getAdminAiDashboardData,
+  runSiteAndSeoAudit,
+  executeAdminProposal,
+  rejectAdminProposal,
+  updateSchedulerConfig,
+  triggerScheduledOrImmediateArticle,
+  handleAdminAiCopilotChat,
+  initAdminAiSchedulerDaemon,
+} from './adminAiManager';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -93,10 +103,14 @@ const upload = multer({
   storage,
   limits: { fileSize: 100 * 1024 * 1024 }, // 100MB max file size for videos and images
   fileFilter: (_req, file, cb) => {
-    if (file.mimetype.startsWith('image/') || file.mimetype.startsWith('video/')) {
+    if (
+      file.mimetype.startsWith('image/') ||
+      file.mimetype.startsWith('video/') ||
+      file.mimetype.startsWith('audio/')
+    ) {
       cb(null, true);
     } else {
-      cb(new Error('تنها بارگذاری فایل‌های تصویری و ویدیویی مجاز است.'));
+      cb(new Error('تنها بارگذاری فایل‌های تصویری، صوتی و ویدیویی مجاز است.'));
     }
   },
 });
@@ -1185,6 +1199,89 @@ app.post('/api/ai/chat', async (req: Request, res: Response) => {
       success: false,
       error: error?.message || 'متأسفانه در ارتباط با دستیار هوشمند خطایی رخ داد. لطفاً دوباره تلاش کنید.',
     });
+  }
+});
+
+// ==========================================
+// 9. ADMIN AI COPILOT & AUTONOMOUS SEO MANAGER (Protected by requireAuth)
+// ==========================================
+
+initAdminAiSchedulerDaemon();
+
+app.get('/api/admin/ai/dashboard', requireAuth, (_req: Request, res: Response) => {
+  try {
+    const data = getAdminAiDashboardData();
+    res.json({ success: true, ...data });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error?.message || 'خطا در دریافت اطلاعات هوش مصنوعی مدیریت' });
+  }
+});
+
+app.post('/api/admin/ai/audit', requireAuth, (_req: Request, res: Response) => {
+  try {
+    const result = runSiteAndSeoAudit(true);
+    res.json({ success: true, ...result });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error?.message || 'خطا در تحلیل و ممیزی سایت' });
+  }
+});
+
+app.post('/api/admin/ai/proposals/:id/approve', requireAuth, async (req: Request, res: Response) => {
+  try {
+    const result = await executeAdminProposal(req.params.id);
+    const dashboard = getAdminAiDashboardData();
+    res.json({ ...result, ...dashboard });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error?.message || 'خطا در اجرای پیشنهاد' });
+  }
+});
+
+app.post('/api/admin/ai/proposals/:id/reject', requireAuth, (req: Request, res: Response) => {
+  try {
+    const proposals = rejectAdminProposal(req.params.id);
+    res.json({ success: true, proposals });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error?.message || 'خطا در رد پیشنهاد' });
+  }
+});
+
+app.put('/api/admin/ai/scheduler', requireAuth, (req: Request, res: Response) => {
+  try {
+    const scheduler = updateSchedulerConfig(req.body || {});
+    res.json({ success: true, scheduler });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error?.message || 'خطا در ذخیره تنظیمات زمان‌بندی' });
+  }
+});
+
+app.post('/api/admin/ai/generate-article', requireAuth, async (req: Request, res: Response) => {
+  try {
+    const { topic } = req.body || {};
+    const result = await triggerScheduledOrImmediateArticle(topic, 'manual');
+    const dashboard = getAdminAiDashboardData();
+    res.json({ success: true, ...result, ...dashboard });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error?.message || 'خطا در تولید مقاله خودکار' });
+  }
+});
+
+app.post('/api/admin/ai/chat', requireAuth, async (req: Request, res: Response) => {
+  try {
+    const { message, history, attachments } = req.body || {};
+    const result = await handleAdminAiCopilotChat(
+      message,
+      Array.isArray(history) ? history : [],
+      Array.isArray(attachments) ? attachments : []
+    );
+    const dashboard = getAdminAiDashboardData();
+    res.json({
+      success: true,
+      ...result,
+      proposals: dashboard.proposals,
+      activityLogs: dashboard.activityLogs,
+    });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error?.message || 'خطا در ارتباط با هوش مصنوعی مدیر' });
   }
 });
 
