@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import path from 'path';
@@ -6,6 +7,7 @@ import crypto from 'crypto';
 import multer from 'multer';
 import { fileURLToPath } from 'url';
 import { readDb, writeDb, AppointmentRecord, MediaRecord } from './db';
+import { handleAiAssistantChat, getVerifiedPortfolioCases } from './aiAssistant';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -1144,6 +1146,46 @@ app.get('/api/health', (_req: Request, res: Response) => {
     timestamp: new Date().toISOString(),
     service: 'Parmis Dental Clinic CMS API',
   });
+});
+
+// ==========================================
+// 8. AI SMART ASSISTANT ROUTES
+// ==========================================
+
+app.get('/api/ai/portfolio', (_req: Request, res: Response) => {
+  try {
+    const cases = getVerifiedPortfolioCases();
+    res.json({ success: true, cases });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      error: error?.message || 'خطا در دریافت لیست نمونه‌کارها',
+    });
+  }
+});
+
+app.post('/api/ai/chat', async (req: Request, res: Response) => {
+  try {
+    const { message, history } = req.body || {};
+    if (!message || typeof message !== 'string' || !message.trim()) {
+      return res.status(400).json({
+        success: false,
+        error: 'لطفاً متن پیام یا پرسش خود را وارد نمایید.',
+      });
+    }
+
+    const result = await handleAiAssistantChat(message, Array.isArray(history) ? history : []);
+    return res.json({
+      success: true,
+      ...result,
+    });
+  } catch (error: any) {
+    console.error('AI Chat Error:', error);
+    return res.status(500).json({
+      success: false,
+      error: error?.message || 'متأسفانه در ارتباط با دستیار هوشمند خطایی رخ داد. لطفاً دوباره تلاش کنید.',
+    });
+  }
 });
 
 // Start Server (Vite middleware in development, static dist in production)

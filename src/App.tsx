@@ -12,6 +12,7 @@ import { FaqAndContact } from './components/FaqAndContact.tsx';
 import { CtaBanner } from './components/CtaBanner.tsx';
 import { Footer } from './components/Footer.tsx';
 import { AppointmentModal } from './components/AppointmentModal.tsx';
+import { AiAssistantModal } from './components/AiAssistantModal.tsx';
 import { DentalMotionGuide, DentalEyeGuideDivider } from './components/DentalMotionGuide.tsx';
 import { useCMS } from './context/CMSContext.tsx';
 import { CLINIC_INFO } from './data/clinicData.ts';
@@ -105,6 +106,7 @@ export default function App() {
   const [isCostModalOpen, setIsCostModalOpen] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [bookingServiceId, setBookingServiceId] = useState<string | undefined>();
+  const [isAiAssistantOpen, setIsAiAssistantOpen] = useState(false);
 
   // Centralized Navigation with Browser History (PushState)
   const navigateTo = (page: ActivePage, articleId?: string, isReplace = false) => {
@@ -228,6 +230,8 @@ export default function App() {
         onSelectPage={(page) => navigateTo(page)}
         onOpenBooking={() => handleOpenBooking()}
         onOpenCostCalculator={() => setIsCostModalOpen(true)}
+        onOpenAiAssistant={() => setIsAiAssistantOpen(true)}
+        isAiAssistantOpen={isAiAssistantOpen}
       />
 
       {/* Dynamic Subpages (Lazy Loaded with Suspense for Maximum Performance & Instant LCP) */}
@@ -407,6 +411,15 @@ export default function App() {
         isOpen={isBookingModalOpen}
         onClose={() => setIsBookingModalOpen(false)}
         preselectedServiceId={bookingServiceId}
+      />
+
+      {/* Smart AI Dental Assistant Modal */}
+      <AiAssistantModal
+        isOpen={isAiAssistantOpen}
+        onClose={() => setIsAiAssistantOpen(false)}
+        onNavigatePage={(page) => navigateTo(page)}
+        onOpenBooking={(sId) => handleOpenBooking(sId)}
+        onOpenCostCalculator={() => setIsCostModalOpen(true)}
       />
     </div>
   );
