@@ -1,0 +1,3603 @@
+{
+  "admin": {
+    "username": "admindent",
+    "password": "admindent"
+  },
+  "siteSettings": {
+    "title": "کلینیک دندان‌پزشکی پارمیس | دکتر انوشیروان شمس پور",
+    "tagline": "خدمات تخصصی دندان‌پزشکی و ایمپلنت در پاکدشت",
+    "metaDescription": "کلینیک دندان‌پزشکی پارمیس در پاکدشت با مدیریت دکتر انوشیروان شمس پور؛ ارائه دهنده خدمات تخصصی ایمپلنت، کامپوزیت، لمینت، عصب‌کشی و دندان‌پزشکی اطفال.",
+    "phone": "02136048581",
+    "address": "پاکدشت، بلوار شهدای قمی، میدان علی ابن ابیطالب، ابتدای بلوار علی ابن ابیطالب، مجتمع پزشکی راستین، طبقه دوم، کلینیک دندان‌پزشکی پارمیس"
+  },
+  "editorPick": {
+    "badgeText": "مقاله منتخب سردبیر . توصیه دکتر شمس پور",
+    "doctorName": "دکتر انوشیروان شمس پور",
+    "doctorRole": "جراح و دندانپزشک • سرپرست کلینیک پارمیس",
+    "avatarUrl": "/uploads/photo_2026-10-18_21-28-58-1792346391612-941489.jpg"
+  },
+  "siteImages": {
+    "headerLogo": {
+      "url": "/uploads/photo_2026-10-18_21-28-58-1792346353797-398508.jpg",
+      "alt": "لوگوی کلینیک دندان‌پزشکی پارمیس - دکتر انوشیروان شمس پور",
+      "title": "تصویر لوگو و آواتار پزشک در هدر"
+    },
+    "heroMainImage": {
+      "url": "/uploads/photo_2026-10-18_21-28-58-1792346391612-941489.jpg",
+      "alt": "محیط مدرن و یونیت کلینیک دندان‌پزشکی پارمیس در پاکدشت",
+      "title": "تصویر اصلی بنر صفحه نخست (Hero)"
+    },
+    "clinicEquipmentImage": {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuA4eZSRbpCc4iM2eEyXnmCwHDyzkzPhf6Fcza35-sdb83oUdkmJMgN4NzlqVQ6e1qwz4Mdd3c4AsgTXLUJz2ET_L2fbW30BNHsMV0iyDeXqTVMt_4Q6DNfkdPl4_-GeQbwZXGbg5EeBVu1tQf5gkz2EUpxl73fBAJSeH2zz-QcLn2i6cSpkg4URN9JI3uh8QsXTcMqviHoPqXlMSXP12zfUBPevfAx3ye8krZ8r9hwI5yd9Dm7JNIxf",
+      "alt": "تجهیزات دندان‌پزشکی و یونیت جراحی کلینیک پارمیس",
+      "title": "تصویر اتاق درمان و تجهیزات تخصصی"
+    },
+    "doctorProfileImage": {
+      "url": "/uploads/photo_2026-10-18_21-28-58-1792346391612-941489.jpg",
+      "alt": "دکتر انوشیروان شمس پور",
+      "title": "پرتره رسمی دکتر انوشیروان شمس پور"
+    },
+    "mapPreviewImage": {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuC8R3q-m6biXlpO7DVycxHmqcNT_QFcBsrU1786ZHCW0VGFIct0xTksc6ThpNzl4UE1edGk6rNhHOH7WE238hsY2i07aeGlHxsu8Psnpqp36L5kXTdJMbITMta3l6la2zCfbtWFFAq5Rtzmopfb3YkLXviWvA1-wgcxITowC_Qlf1KXV2u7TiWNR1ilYLK5ePobi9LrNt70eeC5wsXdymV2_-wGXA65t86B8OlEsYkYyoh92a9E3NHP",
+      "alt": "موقعیت مکانی کلینیک پارمیس پاکدشت روی نقشه",
+      "title": "پیش‌نمایش نقشه کلینیک"
+    },
+    "waitingRoomImage": {
+      "url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "alt": "سالن انتظار آرام و مدرن کلینیک پارمیس پاکدشت",
+      "title": "سالن انتظار مراجعین"
+    },
+    "sterilizationImage": {
+      "url": "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80",
+      "alt": "دستگاه اتوکلاو کلاس B و تجهیزات استریلیزاسیون کلینیک پارمیس",
+      "title": "اتاق استریلیزاسیون بیمارستانی (CSR)"
+    },
+    "servicesBannerImage": {
+      "url": "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=80",
+      "alt": "خدمات تخصصی دندانپزشکی کلینیک پارمیس پاکدشت",
+      "title": "بنر صفحه خدمات تخصصی"
+    },
+    "editorPickDoctorAvatar": {
+      "url": "/uploads/photo_2026-10-18_21-28-58-1792346391612-941489.jpg",
+      "alt": "دکتر انوشیروان شمس پور - مقاله منتخب سردبیر",
+      "title": "تصویر آواتار پزشک در مقاله منتخب سردبیر"
+    }
+  },
+  "clinicInfo": {
+    "name": "دندان‌پزشکی پارمیس",
+    "fullName": "کلینیک دندان‌پزشکی پارمیس",
+    "doctorTitleBrand": "دکتر انوشیروان شمس پور",
+    "doctorName": "دکتر انوشیروان شمس پور",
+    "doctorRole": "مسئول فنی و سرپرست درمان کلینیک پارمیس",
+    "phone": "02136048581",
+    "phone2": "02136048582",
+    "phoneLine1": "۰۲۱۳۶۰۴۸۵۸۱",
+    "phoneLine2": "۰۲۱۳۶۰۴۸۵۸۲",
+    "phoneDisplay": "۰۲۱۳۶۰۴۸۵۸۱",
+    "phoneDisplay2": "۰۲۱۳۶۰۴۸۵۸۲",
+    "phoneCompact": "۰۲۱۳۶۰۴۸۵۸۱",
+    "phoneCompact2": "۰۲۱۳۶۰۴۸۵۸۲",
+    "address": "پاکدشت، بلوار شهدای قمی، میدان علی ابن ابیطالب، ابتدای بلوار علی ابن ابیطالب، مجتمع پزشکی راستین، طبقه دوم، کلینیک دندان‌پزشکی پارمیس",
+    "shortAddress": "پاکدشت، بلوار شهدای قمی، میدان علی ابن ابیطالب، ابتدای بلوار علی ابن ابیطالب، مجتمع پزشکی راستین، طبقه دوم",
+    "workingHours": "شنبه تا پنج‌شنبه (با هماهنگی و تعیین وقت قبلی)",
+    "mobileWorkingHours": "۹ الی ۲۱ (همه‌روزه)",
+    "googleMapsUrl": "https://maps.app.goo.gl/mW3LBkEkswiF6HBZ8?g_st=ac",
+    "neshanUrl": "https://nshn.ir/fcsbQMQhQxn5EY",
+    "baladUrl": "https://balad.ir/location?latitude=35.483203&longitude=51.680118&zoom=16.500000",
+    "heroImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuCPFaA_datw-F1_DHr1TUtJBECQSwTHSr9-64n9RfKP82zD_STvCU_gm9KEbvVzsBkAjDTVR-Ih7KjWJV8AAjmdigBg_QEEmCwIEv6T1VKv-N5kydIMDGZiXjHdIvUrWF6-uPWBkIF9Yzcqa0QdTljTmYHWcOpoe0zdoADgFkuL7rrs8wffQEuRpAUFtsJvt3pc_qNty70FZofnDU1F2ERSvbfZUobOYGPcFX_T8Nyclpzi20d6sp22",
+    "operatoryImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuA4eZSRbpCc4iM2eEyXnmCwHDyzkzPhf6Fcza35-sdb83oUdkmJMgN4NzlqVQ6e1qwz4Mdd3c4AsgTXLUJz2ET_L2fbW30BNHsMV0iyDeXqTVMt_4Q6DNfkdPl4_-GeQbwZXGbg5EeBVu1tQf5gkz2EUpxl73fBAJSeH2zz-QcLn2i6cSpkg4URN9JI3uh8QsXTcMqviHoPqXlMSXP12zfUBPevfAx3ye8krZ8r9hwI5yd9Dm7JNIxf",
+    "doctorImage": "/uploads/photo_2026-10-18_21-28-58-1792346391612-941489.jpg",
+    "mapImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuC8R3q-m6biXlpO7DVycxHmqcNT_QFcBsrU1786ZHCW0VGFIct0xTksc6ThpNzl4UE1edGk6rNhHOH7WE238hsY2i07aeGlHxsu8Psnpqp36L5kXTdJMbITMta3l6la2zCfbtWFFAq5Rtzmopfb3YkLXviWvA1-wgcxITowC_Qlf1KXV2u7TiWNR1ilYLK5ePobi9LrNt70eeC5wsXdymV2_-wGXA65t86B8OlEsYkYyoh92a9E3NHP",
+    "mobileDrawerAvatar": "/uploads/photo_2026-10-18_21-28-58-1792346391612-941489.jpg",
+    "mobileHeroImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuATTsF5oShaNlaLNdC1EqldPfzCdUAW0NANawm2FttWoHzb2RjKAyr3QHiqbqv7dteWztzP2DnPntZuuKPE6oQHYNf8IkMLHzHnE7wNXdlmY9qxlwsRDxEOL8_zHYMi4HPmJFRujM4ytoizD956PQeV7uUXK1yfrqhEqhRK5j3UCFb0jLmTKq5tUOjF3Qnjh7eonzQUAUZ_7LPNp0KafEPwAJvEqNjQy0PBlcJhTemkrvNuOeycnLBd",
+    "mobileOperatoryImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuA8M6a5U0aeHjNzujN0Y477If9OsockvCQZIlAUwIdkmkCWfE4emoZvfaaSMLpMycdzUsW9Zpg9M30wwKOsFtl9tFD5P65cZmbP20fkOvo41JnqErK9O2fNftCxQlMMbZxmXbId5B8STyQ2TnkgqlEHW9DVvf4YshLfus7_Fjz3d3jNYARtUKRkkqZRw4rm9WdrU0VR8T5Hr1tRYR8nJKX_FsKbzGifrNt_euewkSG0_kLy0dUmEVmZ",
+    "mobileDoctorAvatar": "/uploads/photo_2026-10-18_21-28-58-1792346391612-941489.jpg",
+    "mobileMapImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuAHvqpw0t-E40vgbMyKuCGaJGAWKzBCiV5b891YytZux_z6_eM9nFdH91YoDCXt0x_w14XvggfHsBN_OKsr4qi92Ya7hfsZeqBisZvBYTS3jk2Fok2s6tF656aB22nZi5e4BWrXWroMDXCgJqUssxemFBSqoExDEDD27Ie47_Rn8AnbBhcIIDSVi9lbFaXwu0N2CJglPDBHeV51VzwC0B6_bZW2gUTjLHEFLObv82ZyY-63k-ZzdWN3",
+    "medicalCouncilCode": "0",
+    "medicalLicenseLink": "https://membersearch.irimc.org/"
+  },
+  "valuePropositions": [
+    {
+      "icon": "sentiment_very_satisfied",
+      "mobileIcon": "favorite",
+      "title": "اولویت راحتی بیمار",
+      "desc": "تجربه‌ای آرام و بدون استرس در محیطی صمیمی",
+      "mobileDesc": "محیطی آرام‌بخش و درمان بدون استرس و اضطراب پزشکی."
+    },
+    {
+      "icon": "medical_services",
+      "mobileIcon": "psychology",
+      "title": "کادر مجرب و حرفه‌ای",
+      "mobileTitle": "مهارت و تخصص بالا",
+      "desc": "بهره‌مندی از تجارب ارزشمند و مهارت بالا",
+      "mobileDesc": "تجربه گسترده دکتر شمس پور در جراحی‌های پیچیده و ایمپلنت."
+    },
+    {
+      "icon": "devices",
+      "mobileIcon": "devices",
+      "title": "تجهیزات به‌روز",
+      "desc": "تصویربرداری و ابزارهای تشخیصی پیشرفته",
+      "mobileDesc": "تصویربرداری و ابزارهای تشخیصی پیشرفته دیجیتال."
+    },
+    {
+      "icon": "payments",
+      "mobileIcon": "payments",
+      "title": "هزینه‌های منصفانه",
+      "mobileTitle": "شفافیت کامل هزینه‌ها",
+      "desc": "شفافیت کامل در برآورد هزینه‌ها و درمان",
+      "mobileDesc": "تعرفه منصفانه و ارائه فاکتور رسمی معتبر بیمه‌های تکمیلی."
+    },
+    {
+      "icon": "location_on",
+      "mobileIcon": "pin_drop",
+      "title": "دسترسی عالی در پاکدشت",
+      "mobileTitle": "موقعیت عالی در پاکدشت",
+      "desc": "مجتمع پزشکی راستین با امکانات رفاهی",
+      "mobileDesc": "دسترسی آسان در مجتمع پزشکی راستین با جای پارک مناسب."
+    }
+  ],
+  "services": [
+    {
+      "id": "root-canal",
+      "title": "درمان ریشه (عصب‌کشی)",
+      "mobileTitle": "عصب‌کشی تخصصی (اندو)",
+      "shortDesc": "نجات دندان‌های طبیعی با دستگاه روتاری دیجیتال و کاهش چشمگیر درد حین و پس از درمان با متدهای نوین بی‌حسی.",
+      "mobileDesc": "درمان ریشه با دستگاه روتاری دیجیتال بدون حس درد یا ناراحتی.",
+      "iconName": "dentistry",
+      "mobileIconName": "vital_signs",
+      "mobileCtaText": "نوبت اورژانسی",
+      "category": "درمان تخصصی ریشه",
+      "details": {
+        "overview": "عصب‌کشی یا درمان اندودنتیک زمانی لازم است که پالپ داخلی دندان در اثر پوسیدگی عمیق یا ضربه ملتهب یا عفونی شود. با استفاده از فایل‌های روتاری نیکل-تیتانیوم، درمان در کمترین زمان و بدون درد انجام می‌شود.",
+        "steps": [
+          "معاینه رادیوگرافی دیجیتال و ارزیابی عمق ریشه",
+          "بی‌حسی کامل و ایزولاسیون با رابردم",
+          "پاکسازی کانال‌ها و فرم‌دهی با فایل روتاری",
+          "تسکین و پرکردن متراکم سه بعدی کانال‌ها (گوتاپرکا)",
+          "پانسمان و آماده‌سازی برای ترمیم نهایی یا روکش"
+        ],
+        "duration": "معمولاً یک جلسه ۴۵ تا ۶۰ دقیقه‌ای",
+        "painControl": "بی‌حسی موضعی با کارتریج‌های استاندارد و تزریق بدون احساس سوزش",
+        "aftercare": [
+          "پرهیز از جویدن غذاهای سفت با دندان تحت درمان تا زمان ترمیم نهایی",
+          "مصرف مسکن‌های تجویز شده در ۲۴ ساعت اول",
+          "رعایت بهداشت و مسواک زدن آرام ناحیه درمان شده"
+        ]
+      }
+    },
+    {
+      "id": "cosmetic-composite",
+      "title": "دندان‌پزشکی زیبایی و لمینت",
+      "mobileTitle": "زیبایی، لمینت و کامپوزیت",
+      "shortDesc": "اصلاح فواصل دندانی، بدشکلی و تغییر رنگ دندان‌ها با کامپوزیت‌های نانوسرامیک و لمینت‌های مقاوم و باظرافت.",
+      "mobileDesc": "بستن فاصله دندانی و اصلاح بدفرمی با متد لایه‌ای طبیعی.",
+      "iconName": "palette",
+      "mobileIconName": "arrow_back_ios_new",
+      "mobileCtaText": "مشاوره لبخند",
+      "category": "دندان‌پزشکی زیبایی",
+      "details": {
+        "overview": "طراحی لبخند هالیوودی با در نظر گرفتن تناسبات طلایی چهره، خط لبخند و فرم لب‌ها. بهره‌گیری از برترین برندهای کامپوزیت ژاپنی (Tokuyama، Gradia) و سوئیسی.",
+        "steps": [
+          "آنالیز عکاسی و فوتوگرافی چهره و دندان‌ها",
+          "انتخاب رنگ متناسب با سلیقه بیمار و تن پوست",
+          "لیرینگ لایه به لایه کامپوزیت برای بازسازی ترانسلوسنسی طبیعی مینا",
+          "پالیش چند مرحله‌ای با دیسک‌های الماسه جهت درخشش ماندگار"
+        ],
+        "duration": "هر فک معمولاً در یک جلسه ۳ تا ۴ ساعته تکمیل می‌شود",
+        "painControl": "بدون نیاز به تراش یا با حداقل تراش و کاملاً بدون درد",
+        "aftercare": [
+          "عدم مصرف مواد رنگی شدید (قهوه غلیظ، نوشابه، چای پررنگ) در ۴۸ ساعت اول",
+          "پرهیز از شکستن اجسام سخت با دندان‌های جلو",
+          "مراجعه برای پولیش دوره‌ای هر ۶ ماه یکبار"
+        ]
+      }
+    },
+    {
+      "id": "dental-implant",
+      "title": "ایمپلنت و کاشت تخصصی دندان",
+      "mobileTitle": "ایمپلنت و کاشت دندان",
+      "shortDesc": "جایگزینی دندان‌های از دست رفته با فیکسچرهای معتبر بین‌المللی با ماندگاری بالا و قابلیت هماهنگی ایده‌آل با لثه.",
+      "mobileDesc": "جایگزینی دائمی دندان از دست رفته با فیکسچرهای معتبر جهانی.",
+      "iconName": "health_and_safety",
+      "mobileIconName": "dentistry",
+      "mobileCtaText": "استعلام هزینه",
+      "category": "جراحی و کاشت",
+      "details": {
+        "overview": "ایمپلنت دندانی از جنس تیتانیوم سازگار با بدن است که جایگزین ریشه دندان طبیعی می‌شود و پایه‌ای محکم برای روکش‌های دائمی سرامیکی فراهم می‌سازد.",
+        "steps": [
+          "بررسی سی‌تی‌اسکن فک (CBCT) و سنجش تراکم استخوان",
+          "کاشت پایه فیکسچر با تکنیک جراحی میکروسکوپی کم‌تهاجمی",
+          "دوره پیوند استخوان با ایمپلنت (استئواینتگریشن)",
+          "قالب‌گیری دقیق دیجیتال برای روکش نهایی تمام‌سرامیک زیرکونیا"
+        ],
+        "duration": "جلسه جراحی حدود ۳۰ الی ۴۵ دقیقه برای هر پایه",
+        "painControl": "بی‌حسی عمیق موضعی، بدون کوچکترین درد در حین پروسه",
+        "aftercare": [
+          "استفاده از کمپرس سرد در ۲۴ ساعت اول برای کاهش تورم احتمالی",
+          "استفاده از دهانشویه کلرهگزیدین طبق دستور پزشک",
+          "استفاده از غذاهای نرم و خنک در روزهای اولیه"
+        ]
+      }
+    },
+    {
+      "id": "pediatric",
+      "title": "دندان‌پزشکی اطفال و پیشگیری",
+      "mobileTitle": "دندان‌پزشکی کودکان",
+      "shortDesc": "فلورایدتراپی، شیاربندی (فیشورسیلانت) و ترمیم دندان‌های شیری با رفتاری صبورانه و بدون ترس برای کودکان عزیز.",
+      "mobileDesc": "فلورایدتراپی، شیاربندی و پیشگیری از پوسیدگی در محیطی دوستانه.",
+      "iconName": "child_care",
+      "mobileIconName": "child_care",
+      "mobileCtaText": "نوبت کودکان",
+      "category": "کودکان و نوجوانان",
+      "details": {
+        "overview": "حفظ دندان‌های شیری پایه سلامت دندان‌های دائمی است. محیط کودک‌دوست کلینیک پارمیس اضطراب کودک را کاملاً برطرف می‌کند.",
+        "steps": [
+          "آشناسازی کودک با محیط و ابزارها به شکل بازی و داستان",
+          "بررسی پوسیدگی‌ها و وضعیت رویش دندان‌های دائمی",
+          "فلورایدتراپی موضعی جهت تقویت مینای دندان",
+          "شیاربندی دندان‌های آسیاب شماره ۶ جهت پیشگیری مادام‌العمر از پوسیدگی"
+        ],
+        "duration": "جلسات کوتاه ۲۰ الی ۳۰ دقیقه‌ای متناسب با حوصله کودک",
+        "painControl": "استفاده از ژل‌های بی‌حسی با طعم میوه و رویکرد روانشناختی مثبت",
+        "aftercare": [
+          "پرهیز از خوردن و آشامیدن تا نیم ساعت پس از فلورایدتراپی",
+          "تشویق کودک به مسواک زدن منظم دو نوبت در روز"
+        ]
+      }
+    },
+    {
+      "id": "oral-surgery",
+      "title": "جراحی لثه و دندان‌های عقل",
+      "mobileTitle": "جراحی لثه و دندان عقل",
+      "shortDesc": "خارج‌سازی دقیق دندان‌های عقل نهفته و نیمه‌نهفته با حداقل تهاجم بافتی و بهبود سریع دوره نقاهت بیمار.",
+      "mobileDesc": "خروج دندان‌های نهفته و جراحی‌های ظریف بافت نرم با ترمیم سریع.",
+      "iconName": "medical_information",
+      "mobileIconName": "vaccines",
+      "mobileCtaText": "مشاوره جراحی",
+      "category": "جراحی دهان و فک",
+      "details": {
+        "overview": "دندان‌های عقل نهفته می‌توانند به ریشه دندان‌های مجاور آسیب بزنند یا موجب تشکیل کیست و بهم‌ریختگی قوس دندانی شوند. جراحی با ظرافت و حداقل دستکاری بافتی انجام می‌گردد.",
+        "steps": [
+          "بررسی موقعیت عصب فک تحتانی با رادیوگرافی پانورامیک (OPG)",
+          "بی‌حسی اختصاصی با دوام بالا",
+          "برش بافت و خارج کردن آرام دندان به صورت بخش‌بندی شده (Sectioning)",
+          "بخیه جذبی یا نایلونی ضدعفونی شده"
+        ],
+        "duration": "حدود ۲۰ الی ۴۰ دقیقه",
+        "painControl": "بی‌حسی عمیق با بازگشت آرام حس بدون شوک درد",
+        "aftercare": [
+          "نگه داشتن گاز استریل روی محل جراحی به مدت یک ساعت با فشار ملایم",
+          "عدم شستشوی شدید دهان و تف کردن در روز اول",
+          "مصرف به موقع آنتی‌بیوتیک و مسکن‌های تجویزی"
+        ]
+      }
+    },
+    {
+      "id": "scaling",
+      "title": "جرم‌گیری و بروساژ تخصصی",
+      "mobileTitle": "جرم‌گیری و بروساژ",
+      "shortDesc": "پاکسازی رسوبات و لکه‌های ناشی از مصرف چای و دخانیات همراه با آموزش کامل بهداشت دهان و دندان به مراجعین.",
+      "mobileDesc": "رفع کامل پلاک میکروبی و بوی بد دهان با روش اولتراسونیک ملایم.",
+      "iconName": "cleaning_services",
+      "mobileIconName": "water_drop",
+      "mobileCtaText": "رزرو نوبت",
+      "category": "سلامت لثه و پیشگیری",
+      "details": {
+        "overview": "جرم‌های دندانی عامل اصلی التهاب لثه (ژنژیویت) و بوی بد دهان هستند. جرم‌گیری اولتراسونیک بدون آسیب به مینای دندان، لثه‌ها را احیا و تازه می‌سازد.",
+        "steps": [
+          "بررسی عمق پاکت‌های لثه‌ای و ارزیابی میزان رسوبات",
+          "جرم‌گیری با قلم‌های اولتراسونیک دقیق پیزوالکتریک",
+          "بروساژ سطحی با خمیر پولیش حاوی فلوراید برای رفع لکه‌های زرد و قهوه‌ای",
+          "آموزش روش صحیح استفاده از نخ دندان و مسواک بین‌دندانی"
+        ],
+        "duration": "حدود ۳۰ تا ۴۵ دقیقه",
+        "painControl": "بدون نیاز به بی‌حسی در اکثر موارد؛ همراه با اسپری بی‌حسی در لثه‌های حساس",
+        "aftercare": [
+          "حساسیت موقت به سرما و گرما در ۲ الی ۳ روز اول طبیعی است",
+          "استفاده از خمیردندان ضدحساسیت به مدت یک هفته"
+        ]
+      }
+    }
+  ],
+  "transformations": [
+    {
+      "id": "case-composite-diastema",
+      "caseNumber": "کیس #۲۱۴",
+      "category": "composite",
+      "categoryLabel": "کامپوزیت نانو سرامیک",
+      "icon": "auto_fix_high",
+      "accentColor": "#004ac6",
+      "title": "بستن دیاستم فک بالا و لایه‌بندی نانو در ۱ جلسه",
+      "patientInfo": "خانم ۲۷ ساله • پاکدشت",
+      "duration": "تک‌جلسه (۲ ساعت و نیم)",
+      "description": "بستن فاصله بین دندان‌های پیشین با تکنیک لایه‌بندی چندرنگ Tokuyama ژاپن بدون هیچ‌گونه تراش بافت سالم مینا.",
+      "guaranteeText": "بدون بی‌حسی و بدون درد",
+      "afterBadge": "بعد از ۱ جلسه",
+      "beforeImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuBXeHC0SAZprmuRhdCiYr54eWhHF_mki8Zb7YUh6MjeFg-cxRPIRcNoq9F18SOx7gM1XK7NwLi4rkke1UoAktdiI8uj8zYXQINfqgf8l39LNWe8i0Pq91TkmMMukqtCOdXycIrfSGFuOhJRJrVVBNAtaB2HazziEu6th9VRmCt2s-bSFDimg9USXZOn5s0dG1XIUUd5BrH2XtM-TfDU5lc6PL4baIcLGJEWNYChm_Ht6RvpoBIE0IRO",
+      "afterImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuAmYMn9_xpu996h3jWqIBaCBzlD-0adrq2CB44mP18Fz3UcIMqT0UGXXNFgm55d-0MWGzTjdQ8YdxPmblckF0aOJS3MKvDOSsRJqQ73jbEixJ1eH1QjEVSKp0bKgpGjW84TjTVJcI6UAd-v8bO7rgjA0y_9_YngT3VhWt5A1kRpzQNrmf3qvlzxW6Oa2sk6mqwpejTMHdbUaHhKz2rsaRuxLBQVd558J4WdwIUw7HLC-KF6msVy_8bE",
+      "serviceBookingId": "cosmetic-composite",
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBXeHC0SAZprmuRhdCiYr54eWhHF_mki8Zb7YUh6MjeFg-cxRPIRcNoq9F18SOx7gM1XK7NwLi4rkke1UoAktdiI8uj8zYXQINfqgf8l39LNWe8i0Pq91TkmMMukqtCOdXycIrfSGFuOhJRJrVVBNAtaB2HazziEu6th9VRmCt2s-bSFDimg9USXZOn5s0dG1XIUUd5BrH2XtM-TfDU5lc6PL4baIcLGJEWNYChm_Ht6RvpoBIE0IRO",
+      "mobileImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuAmYMn9_xpu996h3jWqIBaCBzlD-0adrq2CB44mP18Fz3UcIMqT0UGXXNFgm55d-0MWGzTjdQ8YdxPmblckF0aOJS3MKvDOSsRJqQ73jbEixJ1eH1QjEVSKp0bKgpGjW84TjTVJcI6UAd-v8bO7rgjA0y_9_YngT3VhWt5A1kRpzQNrmf3qvlzxW6Oa2sk6mqwpejTMHdbUaHhKz2rsaRuxLBQVd558J4WdwIUw7HLC-KF6msVy_8bE",
+      "subtitle": "خانم ۲۷ ساله • پاکدشت",
+      "beforeLabel": "قبل از درمان",
+      "afterLabel": "بعد از ۱ جلسه",
+      "iconName": "auto_fix_high"
+    },
+    {
+      "id": "case-laminate-emax",
+      "caseNumber": "کیس #۳۰۸",
+      "category": "laminate",
+      "categoryLabel": "پرسلن لمینت E-Max",
+      "icon": "diamond",
+      "accentColor": "#004ac6",
+      "title": "اصلاح بدرنگی تتراسایکلین و فرم دندان‌ها",
+      "patientInfo": "آقای ۳۴ ساله • پاکدشت",
+      "duration": "۸ واحد قدامی (۲ جلسه)",
+      "description": "طراحی لبخند متناسب با میمیک چهره با لمینت سرامیکی شیشه‌ای ایماکس سوئیس و اصلاح خط لبخند متقارن با حداقل تراش.",
+      "guaranteeText": "ضمانت کتبی ۱۰ ساله",
+      "afterBadge": "بعد از لمینت سرامیکی",
+      "beforeImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuAoM0lnD2KgyH9xirf2MUV1NDYbaxrKUYqKgKJZ6QHZNJjtZUyXu5buX7q4WDJITId0NmOGHnMrJcF6jBpmD-V7wHCW5Mg4HExQVsoD87DcDEqd56-HqAKFV1PItVPJbUrK1Q9gAIpuc7BKRS5tsxodK9vhSFOXSCeJvCYxwEC9Ryp_Y-01uXghJwk5LaYUBAEw99Tm9LkkeNSvVpwhdH3kJg0xwskrNI7SZYXlm9bt2nOhT6jLnZ_C",
+      "afterImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuBzxW9EZdYXhDHL5IULw_ATMDiWeFPlECj3Ui3RKW5xiD3VWwE7XgyE8R_YnZa-q9DYNstSqS_881-H_X-e7YjsAqmacdAvnOawjlMvT_4ZUHqYvsjgJBTijOGKq4r39jM0wmX8WV2jX5l7qj52FJzqHeBuJ69cOzsvVlcX6cFeu6pG8hrq39H_r7NjZsqASksaPR0IUSvKQi463OUTA6Mk5D3NQflwTmsjWof-xrfB_EnEkDBMiP_P",
+      "serviceBookingId": "cosmetic-composite",
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAoM0lnD2KgyH9xirf2MUV1NDYbaxrKUYqKgKJZ6QHZNJjtZUyXu5buX7q4WDJITId0NmOGHnMrJcF6jBpmD-V7wHCW5Mg4HExQVsoD87DcDEqd56-HqAKFV1PItVPJbUrK1Q9gAIpuc7BKRS5tsxodK9vhSFOXSCeJvCYxwEC9Ryp_Y-01uXghJwk5LaYUBAEw99Tm9LkkeNSvVpwhdH3kJg0xwskrNI7SZYXlm9bt2nOhT6jLnZ_C",
+      "mobileImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuBzxW9EZdYXhDHL5IULw_ATMDiWeFPlECj3Ui3RKW5xiD3VWwE7XgyE8R_YnZa-q9DYNstSqS_881-H_X-e7YjsAqmacdAvnOawjlMvT_4ZUHqYvsjgJBTijOGKq4r39jM0wmX8WV2jX5l7qj52FJzqHeBuJ69cOzsvVlcX6cFeu6pG8hrq39H_r7NjZsqASksaPR0IUSvKQi463OUTA6Mk5D3NQflwTmsjWof-xrfB_EnEkDBMiP_P",
+      "subtitle": "آقای ۳۴ ساله • پاکدشت",
+      "beforeLabel": "قبل از درمان",
+      "afterLabel": "بعد از لمینت سرامیکی",
+      "iconName": "diamond"
+    },
+    {
+      "id": "case-digital-implant",
+      "caseNumber": "کیس #۴۵۵",
+      "category": "implant",
+      "categoryLabel": "ایمپلنت دیجیتال",
+      "icon": "dentistry",
+      "accentColor": "#00569c",
+      "title": "کاشت فوری ایمپلنت و روکش زیرکونیا",
+      "patientInfo": "آقای ۴۸ ساله • قیام‌دشت",
+      "duration": "جراحی بدون بخیه (Flapless)",
+      "description": "استفاده از سرجیکال گاید اختصاصی سه‌بعدی، پایه تیتانیومی اشترومن سوئیس و تحویل روکش تمام‌سرامیک بدون تورم و بدون درد.",
+      "guaranteeText": "پایه اشترومن با ضمانت مادام‌العمر",
+      "afterBadge": "بعد از کاشت و روکش",
+      "beforeImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuByP-3e29b5Zayma0foQQ9FWc804xowE7cSwcPMVHH7mh0GPAFD45dHhI75CZs8eH5TviDI0wYdHMY_WbccEPqRmBeX9piiSXsUVubUTNg_WWE1DeweAUDSi481VNIzwy6d6FhoudOejk1QVOFYGITgGmoaocI-L6TLd8Gy8KbOtDnXKdIIQQKGJX_UODUl-aRgk2ZXrFCmWDpGSABzMumi_mAy2B59AbBZHwHM-rill-kke8Nkiqou",
+      "afterImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuCMsO07WVVr0Yy8aIvr-0ozAm_TdGXXhwNh_fadtN7K7VjNlTVW7DPWTyamnlELdwcLXpSwXLQlb3DDNnX33_lbDaUIK3xn-bbQSgL368NynL9-kEzOxLqcL2njHV2kTnFu3Hl1LtNxqHqSCNaN-wFrWBhs3pfrS_CmC94k7vSmCl3vjbf3WOsS5JMkAfS8wJCksiTrcgsSm_dPrgzbAt2QBPXTHRVPxLa-Wmeq6_XwZez9pdA08VOW",
+      "serviceBookingId": "dental-implants",
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuByP-3e29b5Zayma0foQQ9FWc804xowE7cSwcPMVHH7mh0GPAFD45dHhI75CZs8eH5TviDI0wYdHMY_WbccEPqRmBeX9piiSXsUVubUTNg_WWE1DeweAUDSi481VNIzwy6d6FhoudOejk1QVOFYGITgGmoaocI-L6TLd8Gy8KbOtDnXKdIIQQKGJX_UODUl-aRgk2ZXrFCmWDpGSABzMumi_mAy2B59AbBZHwHM-rill-kke8Nkiqou",
+      "mobileImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuCMsO07WVVr0Yy8aIvr-0ozAm_TdGXXhwNh_fadtN7K7VjNlTVW7DPWTyamnlELdwcLXpSwXLQlb3DDNnX33_lbDaUIK3xn-bbQSgL368NynL9-kEzOxLqcL2njHV2kTnFu3Hl1LtNxqHqSCNaN-wFrWBhs3pfrS_CmC94k7vSmCl3vjbf3WOsS5JMkAfS8wJCksiTrcgsSm_dPrgzbAt2QBPXTHRVPxLa-Wmeq6_XwZez9pdA08VOW",
+      "subtitle": "آقای ۴۸ ساله • قیام‌دشت",
+      "beforeLabel": "قبل از درمان",
+      "afterLabel": "بعد از کاشت و روکش",
+      "iconName": "dentistry"
+    },
+    {
+      "id": "case-gummy-smile",
+      "caseNumber": "کیس #۱۹۲",
+      "category": "gummy",
+      "categoryLabel": "اصلاح لبخند لثه‌ای",
+      "icon": "flare",
+      "accentColor": "#004ac6",
+      "title": "جراحی ژنژیوکتومی و تعادل ارتفاع تاج دندان",
+      "patientInfo": "خانم ۲۳ ساله • پاکدشت",
+      "duration": "لیزر دیود + ۶ واحد ونیر",
+      "description": "کاهش نمایش اضافه لثه هنگام خندیدن با لیزر بدون خونریزی و نصب ۶ واحد ونیر سرامیکی فوق‌نازک جهت کشیده‌تر شدن دندان‌ها.",
+      "guaranteeText": "بهبودی بلافاصله پس از جراحی",
+      "afterBadge": "بعد از لیفت و ونیر",
+      "beforeImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuBWVWMdAm0nvK0lblD53JphFFc-AtERBD1BA8ZP9AJPCo9-gQBZQRRlUutA3COxXEaYiC_gyPknYo3URKG8_FsQuZEZnV1Muxx60JP9ZRVgRQsSNk5ZPIHovfdw4sNLyX_2ov4d_64rLALyhNa_hTCUcSFd0ZEFMyE5MNwW15ZDzP7gtduFL-BvS3VMNVIiSDCpFCuFnHZBYl7I-_vGgMS6aXqypjigoA0kNoLw0mUPD9wJQnnTH2Jd",
+      "afterImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuC03F-CCzZ-RT0wJ52ZNXhoyuHW6j6Xgf8f9A2M9zMchf_0cZx99NRkrvDs1PJuIzVxb2RM9Nb-XuyoIFA-V-xj8sk4_yuJC2UvohS2yzoc2bbRNdJhYNTLo-X514Q9OvCh-ayAWaSNFcyKWj6NWo0FGGiy0TzKtuTVVTUo6V6bClEFgzZWJQApzqBkmdGdGb_4T1CHzzw9Ktqq9yJCUf6v4aQMcmuWQ2UvdbZfwwiilbCEuJ1SR18r",
+      "serviceBookingId": "cosmetic-composite",
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBWVWMdAm0nvK0lblD53JphFFc-AtERBD1BA8ZP9AJPCo9-gQBZQRRlUutA3COxXEaYiC_gyPknYo3URKG8_FsQuZEZnV1Muxx60JP9ZRVgRQsSNk5ZPIHovfdw4sNLyX_2ov4d_64rLALyhNa_hTCUcSFd0ZEFMyE5MNwW15ZDzP7gtduFL-BvS3VMNVIiSDCpFCuFnHZBYl7I-_vGgMS6aXqypjigoA0kNoLw0mUPD9wJQnnTH2Jd",
+      "mobileImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuC03F-CCzZ-RT0wJ52ZNXhoyuHW6j6Xgf8f9A2M9zMchf_0cZx99NRkrvDs1PJuIzVxb2RM9Nb-XuyoIFA-V-xj8sk4_yuJC2UvohS2yzoc2bbRNdJhYNTLo-X514Q9OvCh-ayAWaSNFcyKWj6NWo0FGGiy0TzKtuTVVTUo6V6bClEFgzZWJQApzqBkmdGdGb_4T1CHzzw9Ktqq9yJCUf6v4aQMcmuWQ2UvdbZfwwiilbCEuJ1SR18r",
+      "subtitle": "خانم ۲۳ ساله • پاکدشت",
+      "beforeLabel": "قبل از درمان",
+      "afterLabel": "بعد از لیفت و ونیر",
+      "iconName": "flare"
+    },
+    {
+      "id": "case-bleaching-office",
+      "caseNumber": "کیس #۱۱۷",
+      "category": "bleaching",
+      "categoryLabel": "بلیچینگ تخصصی مطب",
+      "icon": "light_mode",
+      "accentColor": "#004ac6",
+      "title": "روشن‌سازی ۴ درجه‌ای مینای دندان",
+      "patientInfo": "خانم ۲۹ ساله • ورامین",
+      "duration": "آفیس + هوم در ۴۵ دقیقه",
+      "description": "انجام بلیچینگ هوم و آفیس توأم با ژل اولترادنت آمریکا همراه با محافظ ژل لثه، بدون کمترین حساسیت حرارتی یا درد پس از درمان.",
+      "guaranteeText": "نتیجه پایدار با تری اختصاصی شبانه",
+      "afterBadge": "بعد از سفیدسازی",
+      "beforeImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuDxt1-43rKkC2yNX8MzHuwKVW29APrmZ-hWmu8iS8-atQkr1caYTC5rTuiSbcSC_zEV8l2i72s7eDhlXKZX4Yita8mUxzbMsCpK75JSHOL9dN4vTpocIjt4myP_PZkgduIp4hQ3FD01s2nSlNJbpFv2tnkaxSd8ETXLpUZWuzx6EHXU3Ydd1MkA2fce-0YILYWfURxg0HEetXNXK_2o4SLSGiyZgBL-Li7Y8W46ZBzEal6yVjfXrsDz",
+      "afterImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuCPHB-CjF_xDVQO_gN5Bt-HJmaMHC883jkF0mvD_q7imuy56lzYzQqLt_rdTUSX-FTTkyz9b3ecWMipbjEDMgzYYESgygWVSP6XFxyE4nLEWXWbUaJhz2HWVsPBB4jruzOI0os6CzW_D030nDmfDnRjRA-bF_sxD6BTTQsuQpOieevWqrs4ZZYO77BAjlvV9VPnX5h8NMuzpgg1vnulj9ixOPhsd_yCm9Vi-FLL9pgNznXx4WRCAucw",
+      "serviceBookingId": "teeth-whitening",
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDxt1-43rKkC2yNX8MzHuwKVW29APrmZ-hWmu8iS8-atQkr1caYTC5rTuiSbcSC_zEV8l2i72s7eDhlXKZX4Yita8mUxzbMsCpK75JSHOL9dN4vTpocIjt4myP_PZkgduIp4hQ3FD01s2nSlNJbpFv2tnkaxSd8ETXLpUZWuzx6EHXU3Ydd1MkA2fce-0YILYWfURxg0HEetXNXK_2o4SLSGiyZgBL-Li7Y8W46ZBzEal6yVjfXrsDz",
+      "mobileImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuCPHB-CjF_xDVQO_gN5Bt-HJmaMHC883jkF0mvD_q7imuy56lzYzQqLt_rdTUSX-FTTkyz9b3ecWMipbjEDMgzYYESgygWVSP6XFxyE4nLEWXWbUaJhz2HWVsPBB4jruzOI0os6CzW_D030nDmfDnRjRA-bF_sxD6BTTQsuQpOieevWqrs4ZZYO77BAjlvV9VPnX5h8NMuzpgg1vnulj9ixOPhsd_yCm9Vi-FLL9pgNznXx4WRCAucw",
+      "subtitle": "خانم ۲۹ ساله • ورامین",
+      "beforeLabel": "قبل از درمان",
+      "afterLabel": "بعد از سفیدسازی",
+      "iconName": "light_mode"
+    },
+    {
+      "id": "case-full-arch",
+      "caseNumber": "کیس #۵۶۰",
+      "category": "rehabilitation",
+      "categoryLabel": "بازسازی کامل فک بالا",
+      "icon": "health_and_safety",
+      "accentColor": "#00569c",
+      "title": "بریج تمام سرامیک زیرکونیوم و بازسازی فانکشنال",
+      "patientInfo": "آقای ۵۹ ساله • پاکدشت",
+      "duration": "بریج زیرکونیا و ایمپلنت",
+      "description": "بازیابی ارتفاع عمودی صورت، اکلوژن صحیح و جویدن آسان با استفاده از زیرکونیای یکپارچه تراش‌خورده با میلینگ دیجیتال CAD/CAM.",
+      "guaranteeText": "استحکام فوق‌العاده ۱۲۰۰ مگاپاسکال",
+      "afterBadge": "بعد از بازسازی فک با زیرکونیا",
+      "beforeImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuAp0FFidKRPxAMCNJ4LgxTHNYIZsbSSYpIbDZ2bGKG8x3WpogTVLq9AlFLNBooxoguzN8DThbUZWnjN0BVonxy4uBCdHxLk71PUOXXzOUhnFTTjXmj_MVb1VR6Hb-fz1gXjWqbLhgkQjGphIEvbXzwMKaBAh5HI9M7xyCvEs1ATCfqAycg0iG7WYxNwX4vO9JVb-vCgWajcdv5AQZ0HE3mWtc7OfQBC8hntqzTk8oC0F53W_Vatw1nA",
+      "afterImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuBkn0QlSAerPw6f7Tfk28ykl6V7T-feKrwfJpOClfsQdetSwGH4gFJ1v3Lrn-cTKdviPVxs149FeRUZDbx804zZOLVXcDOLSCQIWRokkn2MjVH-v3denQOQJ_Ahz-zS7IUg2ruTwo9iUBCnLBhQqky3tyP8I4bzUpELI_76TzWEoPFiEQsuyEOIPx0oZSAZ8cS_7IRBoH3qYBswM5k-QV9vg534hZK2OWm1DkyxZyyzweZh0I63k1Wu",
+      "serviceBookingId": "dental-implants",
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAp0FFidKRPxAMCNJ4LgxTHNYIZsbSSYpIbDZ2bGKG8x3WpogTVLq9AlFLNBooxoguzN8DThbUZWnjN0BVonxy4uBCdHxLk71PUOXXzOUhnFTTjXmj_MVb1VR6Hb-fz1gXjWqbLhgkQjGphIEvbXzwMKaBAh5HI9M7xyCvEs1ATCfqAycg0iG7WYxNwX4vO9JVb-vCgWajcdv5AQZ0HE3mWtc7OfQBC8hntqzTk8oC0F53W_Vatw1nA",
+      "mobileImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuBkn0QlSAerPw6f7Tfk28ykl6V7T-feKrwfJpOClfsQdetSwGH4gFJ1v3Lrn-cTKdviPVxs149FeRUZDbx804zZOLVXcDOLSCQIWRokkn2MjVH-v3denQOQJ_Ahz-zS7IUg2ruTwo9iUBCnLBhQqky3tyP8I4bzUpELI_76TzWEoPFiEQsuyEOIPx0oZSAZ8cS_7IRBoH3qYBswM5k-QV9vg534hZK2OWm1DkyxZyyzweZh0I63k1Wu",
+      "subtitle": "آقای ۵۹ ساله • پاکدشت",
+      "beforeLabel": "قبل از درمان",
+      "afterLabel": "بعد از بازسازی فک با زیرکونیا",
+      "iconName": "health_and_safety"
+    },
+    {
+      "id": "case-extra-1",
+      "caseNumber": "کیس #۶۱۰۴",
+      "category": "composite",
+      "categoryLabel": "کامپوزیت نانو سرامیک",
+      "icon": "auto_fix_high",
+      "accentColor": "#004ac6",
+      "title": "اصلاح عدم تقارن لبه‌های قدامی و خط لبخند",
+      "patientInfo": "خانم ۳۱ ساله • پاکدشت",
+      "duration": "۶ واحد فک بالا • ۲ ساعت",
+      "description": "ترمیم کامپوزیتی بدون تراش با رنگ سوپر بلیچ طبیعی و انعکاس شفاف لبه‌های اینسیزال.",
+      "guaranteeText": "پولیش دوره‌ای رایگان",
+      "afterBadge": "پایان درمان",
+      "beforeImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuDLq7K0WycCfDfTZOLw5guJ_QEib142TaLSMSgp-NW3EzX6nduY24vAT7kYK_rcaBt0vAU0e-3b0hZa5VrfWG69b4gOHdkCqUVcEqYVJZokYZ2MdtZTEABY9quE6uFzRvs3WxbgbGKQr6eimwChL8cR-UUIK6zYfd6t-Ku0_Uc6bldhtm3Wa6UlNkMW14IQaxrGtTuUzlKdU4idFyjdk8y2HAjHgxFModnf0EmQg4rHoTgpt__57tUB",
+      "afterImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuCiG0rD46U7aSt7daTtv1UeC6DE-Gw7SOCPqBEhmK0kiM116JIZsVZUkpgoLo5M2mgRKdoYriPRetmYWp-Q73VQsvLWd_EBhT50mfGYwbTvEWAobVRFMtj-mSbfLJVO03RDJ_qN7x2mvJzUgS2kTYMSM0K6YfjeSuOnoSAj9zGMFBtJykCWF9GzDMTvg_Sh_OsyjO3Q_wbkrFr8AL3HY6DaHRRIXuyQRyASnm8PArgxCb6XSf0L3tyI",
+      "serviceBookingId": "cosmetic-composite",
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDLq7K0WycCfDfTZOLw5guJ_QEib142TaLSMSgp-NW3EzX6nduY24vAT7kYK_rcaBt0vAU0e-3b0hZa5VrfWG69b4gOHdkCqUVcEqYVJZokYZ2MdtZTEABY9quE6uFzRvs3WxbgbGKQr6eimwChL8cR-UUIK6zYfd6t-Ku0_Uc6bldhtm3Wa6UlNkMW14IQaxrGtTuUzlKdU4idFyjdk8y2HAjHgxFModnf0EmQg4rHoTgpt__57tUB",
+      "mobileImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuCiG0rD46U7aSt7daTtv1UeC6DE-Gw7SOCPqBEhmK0kiM116JIZsVZUkpgoLo5M2mgRKdoYriPRetmYWp-Q73VQsvLWd_EBhT50mfGYwbTvEWAobVRFMtj-mSbfLJVO03RDJ_qN7x2mvJzUgS2kTYMSM0K6YfjeSuOnoSAj9zGMFBtJykCWF9GzDMTvg_Sh_OsyjO3Q_wbkrFr8AL3HY6DaHRRIXuyQRyASnm8PArgxCb6XSf0L3tyI",
+      "subtitle": "خانم ۳۱ ساله • پاکدشت",
+      "beforeLabel": "قبل از درمان",
+      "afterLabel": "پایان درمان",
+      "iconName": "auto_fix_high"
+    },
+    {
+      "id": "case-extra-2",
+      "caseNumber": "کیس #۷۱۸۹",
+      "category": "laminate",
+      "categoryLabel": "لمینت پرسلن E-Max",
+      "icon": "diamond",
+      "accentColor": "#004ac6",
+      "title": "بازسازی لبخند با ۱۰ واحد لمینت کادکام آلمانی",
+      "patientInfo": "آقای ۴۱ ساله • پاکدشت",
+      "duration": "۲ جلسه کاری در ۹ روز",
+      "description": "تراش میکرومتری ۰.۳ میلیمتر با تطابق کامل انحنای لب‌ها و ضمانت‌نامه مکتوب ۱۰ ساله.",
+      "guaranteeText": "ضمانت کتبی ۱۰ ساله",
+      "afterBadge": "پایان درمان",
+      "beforeImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuDkjoWRsrzBSWd0x5bRnu6e_YeSScVVukFac7m5naWA7V7gN3EebgTRPBJ6cQizmKyJaTfKsEVv0i9RaN0Bv9xo7Cspk21ZKQPSoVku1by0P7ockBIPSvDTBMJz85bhqJXNmkop-F1YvdEwRGvDlXdfVTYvA918cIloW0QAMQw-81Cg9EmOeFcb7k7QVtoqY6HUN6fzgpO6Vzaae1VbOTuExE4VheywQZnd7VntfAlat4-Es8_ag73b",
+      "afterImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuBFfYE4agYQDUohoK5hV8sh6AtT01cnZaVzDGBtmMHldPnBJW7a2No9wwezoPL3CwDs902WLbYSiys9FKMTzFmIavB2uJjbhPvyFM6hBLDgnlyBfENRklyAYzY_aVKyJbqoyzlWpohu1b2o1SSFJ4bcztpZBHx4cY53aOKqE1ybjFRfYGA2AvkKWkbaWg8udPP60JkyUO2LhJ8BBqfqbKnmtv0f9qPzSp0R-FtEn0uLmfd8CmP0hztZ",
+      "serviceBookingId": "cosmetic-composite",
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDkjoWRsrzBSWd0x5bRnu6e_YeSScVVukFac7m5naWA7V7gN3EebgTRPBJ6cQizmKyJaTfKsEVv0i9RaN0Bv9xo7Cspk21ZKQPSoVku1by0P7ockBIPSvDTBMJz85bhqJXNmkop-F1YvdEwRGvDlXdfVTYvA918cIloW0QAMQw-81Cg9EmOeFcb7k7QVtoqY6HUN6fzgpO6Vzaae1VbOTuExE4VheywQZnd7VntfAlat4-Es8_ag73b",
+      "mobileImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuBFfYE4agYQDUohoK5hV8sh6AtT01cnZaVzDGBtmMHldPnBJW7a2No9wwezoPL3CwDs902WLbYSiys9FKMTzFmIavB2uJjbhPvyFM6hBLDgnlyBfENRklyAYzY_aVKyJbqoyzlWpohu1b2o1SSFJ4bcztpZBHx4cY53aOKqE1ybjFRfYGA2AvkKWkbaWg8udPP60JkyUO2LhJ8BBqfqbKnmtv0f9qPzSp0R-FtEn0uLmfd8CmP0hztZ",
+      "subtitle": "آقای ۴۱ ساله • پاکدشت",
+      "beforeLabel": "قبل از درمان",
+      "afterLabel": "پایان درمان",
+      "iconName": "diamond"
+    }
+  ],
+  "articles": [
+    {
+      "id": "featured-composite-vs-laminate",
+      "slug": "composite-vs-laminate",
+      "title": "راهنمای جامع تفاوت ونیر کامپوزیت و لمینت سرامیکی؛ کدام یک برای اصلاح طرح لبخند شما مناسب‌تر است؟",
+      "mobileTitle": "تفاوت کامپوزیت و لمینت سرامیکی؛ مقایسه جامع",
+      "category": "زیبایی (کامپوزیت و لمینت)",
+      "categorySlug": "cosmetic",
+      "mobileCategory": "زیبایی و طراحی لبخند",
+      "summary": "اصلاح طرح لبخند یکی از حساس‌ترین درمان‌های دندان‌پزشکی است. در این ارزیابی بالینی، تفاوت‌های ساختاری، میزان تراش دندان، استحکام، طول عمر، هزینه و ماندگاری کامپوزیت‌های سرامیکی در برابر لمینت‌های کاد-کم به دقت بررسی شده است.",
+      "mobileSummary": "بررسی بالینی میزان تراش مینا، ماندگاری، ضدلک بودن و هزینه کامپوزیت در برابر لمینت.",
+      "image": "/uploads/cbf60823bb1c5cd7146d80dcf91bc82155062880-144p-1792411654828-924547.mp4",
+      "mobileImage": "/uploads/cbf60823bb1c5cd7146d80dcf91bc82155062880-144p-1792411654828-924547.mp4",
+      "readTime": "۷ دقیقه مطالعه",
+      "date": "۱۴۰۵/۷/۲۷",
+      "author": "دکتر انوشیروان شمس پور",
+      "authorRole": "جراح و دندان‌پزشک • سرپرست درمان کلینیک پارمیس",
+      "tags": [
+        "کامپوزیت_ونیر",
+        "لمینت_سرامیکی",
+        "اصلاح_طرح_لبخند",
+        "تراش_مینا"
+      ],
+      "isFeatured": true,
+      "metaTitle": "تفاوت کامپوزیت و لمینت سرامیکی دندان | کلینیک پارمیس پاکدشت",
+      "metaDescription": "بررسی جامع و تخصصی تفاوت‌های کامپوزیت ونیر و لمینت پرسلن، مقایسه تراش دندان، طول عمر و هزینه در کلینیک دندانپزشکی پارمیس پاکدشت.",
+      "introduction": "اصلاح طرح لبخند امروزه فراتر از یک درمان صرفاً تزئینی است؛ داشتن دندان‌هایی منظم، درخشان و هماهنگ با خط لبخند، اعتمادبه‌نفس فردی و اجتماعی را دگرگون می‌سازد. در این میان، متداول‌ترین سوالی که مراجعین از ما می‌پرسند این است: «آیا برای دندان‌های من ونیر کامپوزیت بهتر است یا لمینت سرامیکی؟» پاسخ به این سوال برای همه یکسان نیست؛ هر تکنیک دارای ساختار مادی، روش پیاده‌سازی و میزان دستکاری بافت مینای دندان متفاوتی است که باید با معاینه دقیق مشخص گردد.",
+      "executiveSummary": [
+        {
+          "title": "میزان تراش مینای دندان",
+          "desc": "در کامپوزیت تراش دندان معمولاً صفر یا در حد میکرونی است؛ در لمینت حدود ۰.۳ تا ۰.۷ میلی‌متر از مینا تراش می‌خورد.",
+          "icon": "check_circle"
+        },
+        {
+          "title": "طول عمر و استحکام",
+          "desc": "لمینت‌های پرسلن و ای‌مکس بین ۱۰ تا ۱۵ سال ماندگاری دارند، در حالی که کامپوزیت میانگین ۴ تا ۷ سال عمر مفید دارد.",
+          "icon": "verified"
+        },
+        {
+          "title": "مقاومت به لکه و زردی",
+          "desc": "سرامیک کاملاً صیقلی و نفوذناپذیر در برابر چای و قهوه است؛ کامپوزیت نیازمند پولیش دوره‌ای سالانه است.",
+          "icon": "water_drop"
+        },
+        {
+          "title": "مدت زمان و هزینه",
+          "desc": "کامپوزیت در یک جلسه توسط دندان‌پزشک اجرا شده و اقتصادی‌تر است؛ لمینت دو مرحله‌ای و وابسته به کار دقیق لابراتوار است.",
+          "icon": "alarm"
+        }
+      ],
+      "content": [
+        "اصلاح طرح لبخند یکی از حساس‌ترین و هنرمندانه‌ترین درمان‌های دندان‌پزشکی مدرن است. مراجعین همواره این دغدغه را دارند که کامپوزیت ونیر برای شرایط فک و دندان آن‌ها مناسب‌تر است یا لمینت‌های سرامیکی.",
+        "کامپوزیت ونیر به عنوان درمانی کم‌تهاجمی، در ۹۰ درصد موارد بدون نیاز به تراش یا با حداقل آماده‌سازی میکرونی مینای دندان در یک جلسه انجام می‌شود. از مزایای بارز آن، قابلیت پالیش مجدد و ترمیم سریع در مطب در صورت لب‌پریدگی احتمالی است.",
+        "در نقطه مقابل، لمینت‌های سرامیکی (پرسلن لیرینگ یا کاد-کم) در لابراتوار دندان‌پزشکی ساخته شده و از استحکام مکانیکی فوق‌العاده و مقاومت بی‌نظیر در برابر تغییر رنگ ناشی از چای و قهوه بهره می‌برند. طول عمر مفید لمینت سرامیکی با رعایت بهداشت تا بیش از ۱۵ الی ۲۰ سال برآورد می‌گردد.",
+        "توصیه بالینی ما این است که افراد جوان با دندان‌های سالم ترجیحاً درمان‌های محافظه‌کارانه‌تر را انتخاب کنند تا مینای دندان حفظ شود."
+      ],
+      "tips": [
+        "افرادی که دچار دندان‌قروچه شدید هستند حتماً باید قبل از انتخاب نوع درمان با پزشک مشورت نمایند.",
+        "استفاده از خمیردندان‌های بدون مواد ساینده زبر و نخ دندان مرتب، طول عمر کامپوزیت و لمینت را دوچندان می‌کند.",
+        "ویزیت چکاپ دوره‌ای هر ۶ ماه یکبار برای بررسی سلامت لثه در محل پیوند ونیر ضروری است."
+      ],
+      "doctorQuote": {
+        "quote": "هدف ما در کلینیک پارمیس پاکدشت، حفظ حداکثری ساختار بیولوژیک دندان بیمار است. اگر فردی دندان‌های سالم با نامرتبی بسیار جزئی داشته باشد، هرگز تراش لمینت را در اولویت قرار نمی‌دهیم و کامپوزیت لایه‌ای محافظه‌کارانه‌ترین راهکار است.",
+        "doctorName": "دکتر انوشیروان شمس پور",
+        "doctorRole": "جراح و دندان‌پزشک • شماره نظام پزشکی: ۱۲۸۹۴۰"
+      },
+      "comparisonTable": {
+        "title": "جدول مقایسه جامع: ونیر کامپوزیت در برابر لمینت سرامیکی",
+        "subtitle": "ارزیابی فنی تمامی پارامترهای زیبایی، طول عمر و اقتصادی",
+        "badge": "معیارهای بالینی ۱۴۰۳",
+        "col1Header": "ونیر کامپوزیت مستقیم (Composite)",
+        "col2Header": "لمینت سرامیکی پرسلن (Porcelain Veneer)",
+        "rows": [
+          {
+            "criterion": "میزان تراش دندان",
+            "col1": "بسیار جزئی یا بدون هیچ‌گونه تراش مینا (Non-Prep)",
+            "col2": "تراش کنترل‌شده مینا به میزان ۰.۳ تا ۰.۷ میلی‌متر"
+          },
+          {
+            "criterion": "طول عمر مفید میانگین",
+            "col1": "۴ الی ۷ سال (نیازمند مراقبت مداوم)",
+            "col2": "۱۰ الی ۱۵ سال (دوام فوق‌العاده بالا)"
+          },
+          {
+            "criterion": "تغییر رنگ و لکه‌پذیری",
+            "col1": "امکان زرد شدن تدریجی در اثر قهوه و چای",
+            "col2": "کاملاً مقاوم در برابر رنگ‌پذیری و زردی"
+          },
+          {
+            "criterion": "شفافیت و ظاهر طبیعی",
+            "col1": "طبیعی، اما کمی مات‌تر از سرامیک خالص",
+            "col2": "فوق‌العاده طبیعی با انعکاس نور مشابه مینای زنده"
+          },
+          {
+            "criterion": "قابلیت ترمیم در صورت لب‌پریدگی",
+            "col1": "بسیار آسان و سریع در مطب در ۱۰ دقیقه",
+            "col2": "امکان ترمیم ندارد و باید قطعه تعویض شود"
+          },
+          {
+            "criterion": "تعداد جلسات درمان",
+            "col1": "تنها ۱ جلسه (درمان فوری یک‌روزه)",
+            "col2": "۲ الی ۳ جلسه (شامل قالب‌گیری دیجیتال و لابراتوار)"
+          },
+          {
+            "criterion": "هزینه و بودجه لازم",
+            "col1": "بسیار اقتصادی‌تر (حدود یک‌سوم لمینت)",
+            "col2": "سرمایه‌گذاری با ارزش ماندگار و کار لابراتواری"
+          }
+        ]
+      },
+      "candidacy": {
+        "option1": {
+          "title": "ونیر کامپوزیت برای شما ایده‌آل است اگر:",
+          "items": [
+            "سن شما زیر ۲۰ سال است و نمی‌خواهید به هیچ عنوان مینای دندان دست بخورد.",
+            "به‌دنبال اصلاح فوری طرح لبخند در یک جلسه برای یک رویداد خاص هستید.",
+            "نقص‌های دندانی شما در حد شکستگی‌های جزئی، لب‌پریدگی یا بستن فاصله‌های اندک است.",
+            "بودجه اقتصادی‌تری را در مقایسه با هزینه‌های پرسلن مدنظر دارید."
+          ]
+        },
+        "option2": {
+          "title": "لمینت سرامیکی برای شما ایده‌آل است اگر:",
+          "items": [
+            "تغییر رنگ‌های خاکستری تیره یا زرد عمیق دارید که با بلیچینگ برطرف نمی‌شود.",
+            "قهوه و چای فراوان مصرف می‌کنید و ثبات مادام‌العمر درخشندگی برایتان اولویت دارد.",
+            "به‌دنبال ماندگاری بالا (بیش از ۱۰ سال) هستید و مایلید درمان دائمی‌تری دریافت کنید.",
+            "سایش و نامتقارنی‌های وسیع در لبه دندان‌ها نیازمند طراحی قوس لبخند است."
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "آیا تراش دندان برای لمینت سرامیکی باعث پوسیدگی بعدی دندان می‌شود؟",
+          "answer": "خیر؛ در روش‌های مدرن دندان‌پزشکی دیجیتال که در کلینیک پارمیس استفاده می‌شود، میزان تراش تنها در لایه خارجی مینای دندان (حدود نیم میلی‌متر) است و به عاج دندان آسیبی نمی‌رسد. همچنین اتصال لمینت با چسب‌های بسیار مقاوم رزینی انجام می‌شود که دندان را کاملاً مهروموم کرده و از نفوذ باکتری‌ها ممانعت می‌نماید."
+        },
+        {
+          "question": "آیا انجام ونیر کامپوزیت یا لمینت درد دارد و نیاز به تزریق بی‌حسی هست؟",
+          "answer": "درمان ونیر کامپوزیت در اکثر موارد بدون نیاز به بی‌حسی و کاملاً بدون درد صورت می‌گیرد. برای لمینت سرامیکی نیز به جهت راحتی مطلق بیمار در جلسه آماده‌سازی مینا، بی‌حسی موضعی سبک تزریق می‌گردد تا کوچک‌ترین حس ناخوشایندی ایجاد نشود."
+        },
+        {
+          "question": "اگر کامپوزیت دچار لب‌پریدگی شود چاره چیست؟",
+          "answer": "یکی از بزرگترین مزایای کامپوزیت قابلیت ترمیم سریع آن است؛ در صورت بروز هرگونه لب‌پریدگی یا ترک، دندان‌پزشک در یک جلسه کوتاه ۱۵ دقیقه‌ای در مطب همان نقطه را بدون دستکاری بقیه دندان ترمیم و پولیش می‌کند."
+        }
+      ],
+      "views": 2,
+      "tipsTitle": "توصیه‌های طلایی و مراقبت‌های بالینی پزشک"
+    },
+    {
+      "id": "implant-post-op-24h",
+      "slug": "implant-post-operative-care",
+      "title": "مراقبت‌های حیاتی ۲۴ ساعت اول پس از کاشت ایمپلنت دندان",
+      "mobileTitle": "مراقبت‌های حیاتی ۲۴ ساعت اول پس از کاشت ایمپلنت",
+      "category": "ایمپلنت و جراحی فک",
+      "categorySlug": "implant",
+      "mobileCategory": "جراحی و ایمپلنت",
+      "summary": "دستورالعمل‌های حیاتی کنترل خونریزی، پرهیز از شستشوی شدید دهان، رژیم غذایی نرم و نحوه صحیح مصرف داروها و آنتی‌بیوتیک‌ها برای پیشگیری از پس‌زدگی فیکسچر ایمپلنت.",
+      "mobileSummary": "دستورالعمل‌های طلایی کنترل خونریزی، استراحت و مصرف صحیح داروها پس از ایمپلنت.",
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuC4EQaLK1OPeycL6-FDbyEj3bLdHa5wCzMNLuZPrGXbaB_i7qI1Zm5jFaCIUxyHRqP6K909z4oIYei6bS_eygar9lxajyB1yInwfwkWcf2ImrHuCGWUd6sm0Rg3HMRKMqhQVVFdxdLOrOrIw3kcDQfZhi2WuJgqhKvRixJl6_1O3e7Tow8gAK6EQOJywJVBhizpq2ohAcple78poLnYo1csaj7cLgWn3PEbLeF7oHVpNSLdA59G3LgW",
+      "mobileImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuD6g-KCHzA0ozV3Jo2XFnwRhQoI2dFT4tiDvzbSBlTVsMUOPoffVZsD6MeYCGNtnlDnhISuEyA--JTQFiwH8av4iWVc3vJ-JVXWWHv3HZ4ke55JQQfkv_rmyFjWR-OcPdMefmEJuna0nq3LE90YuEgh9E5tOLyH7AMN6JjRTqcGIXvAqfe4x5-KqMp7AsvcxMmLEweC8f8kjFezLv-Tm2YsLrj-bsQuTH6Q21A6uNR-3ZFckpb5Gd3g",
+      "readTime": "۴ دقیقه مطالعه",
+      "date": "۱۴۰۵/۷/۲۷",
+      "author": "دکتر انوشیروان شمس پور",
+      "authorRole": "جراح - دندان‌پزشک • سرپرست درمان کلینیک پارمیس",
+      "tags": [
+        "ایمپلنت_دندان",
+        "مراقبت_جراحی",
+        "جایگزینی_دندان",
+        "کنترل_خونریزی"
+      ],
+      "isFeatured": true,
+      "metaTitle": "مراقبت‌های بعد از ایمپلنت دندان در ۲۴ ساعت اول | کلینیک پارمیس",
+      "metaDescription": "راهنمای کامل مراقبت‌های پس از جراحی کاشت ایمپلنت، کنترل خونریزی، رژیم غذایی و مصرف مسکن و آنتی‌بیوتیک توسط دکتر انوشیروان شمس پور.",
+      "introduction": "موفقیت درمان ایمپلنت دندان تا حد بسیار زیادی به رعایت مراقبت‌های ۲۴ ساعت نخست پس از جراحی بستگی دارد. در این ساعات طلایی، لخته خونی محافظ روی ناحیه جراحی تشکیل شده و نخستین پیوندهای سلول‌های استخوان‌ساز با سطح تیتانیومی فیکسچر آغاز می‌شود. هرگونه اشتباه کوچک مانند تف کردن مکرر، مکش با نی یا شستشوی شدید می‌تواند این لخته حیاتی را از جا کنده و خطر خونریزی مجدد یا عفونت را افزایش دهد.",
+      "executiveSummary": [
+        {
+          "title": "کنترل خونریزی و لخته پایدار",
+          "desc": "گاز استریل را تا ۱ ساعت با فشار ملایم فک نگه دارید؛ هرگز آب دهان را بیرون نریزید و آرام ببلعید.",
+          "icon": "healing"
+        },
+        {
+          "title": "رژیم غذایی نرم و خنک",
+          "desc": "مصرف سوپ خنک، پوره و بستنی؛ از غذاهای داغ، تند و سفت و استفاده از نی اکیداً بپرهیزید.",
+          "icon": "restaurant"
+        },
+        {
+          "title": "کمپرس سرد برای کنترل تورم",
+          "desc": "کیسه یخ را متناوباً (۱۰ دقیقه روی گونه، ۱۰ دقیقه استراحت) در ساعات اولیه استفاده کنید.",
+          "icon": "ac_unit"
+        },
+        {
+          "title": "مصرف منظم آنتی‌بیوتیک و مسکن",
+          "desc": "داروهای تجویزشده توسط پزشک را دقیقاً سر ساعت مصرف کنید تا التیام بدون درد و عفونت طی شود.",
+          "icon": "medication"
+        }
+      ],
+      "content": [
+        "پس از پایان جراحی کاشت ایمپلنت، یک گاز استریل در محل قرار داده می‌شود. این گاز را با فشار ملایم فک به مدت حداقل ۶۰ دقیقه نگه دارید و از تعویض مداوم آن بپرهیزید.",
+        "خروج مقداری بزاق صورتی‌رنگ یا طعم خون در دهان طی ۲۴ تا ۴۸ ساعت اول کاملاً طبیعی است. مهم‌ترین نکته این است که به هیچ وجه آب دهان خود را تف نکنید؛ تف کردن فشار منفی در دهان ایجاد کرده و لخته را جدا می‌کند.",
+        "در ۲۴ ساعت نخست، از مسواک زدن مستقیم روی ناحیه جراحی خودداری کنید. شستشوی آرام با سرم نمکی ولرم یا دهان‌شویه کلرهگزیدین تنها پس از گذشت ۲۴ ساعت اول و با تایید پزشک توصیه می‌شود.",
+        "استعمال سیگار و قلیان به دلیل نیکوتین و کاهش اکسیژن‌رسانی به بافت لثه، مهم‌ترین عامل پس‌زدگی ایمپلنت است؛ حداقل تا ۴۸ ساعت بعد از جراحی از دود پرهیز نمایید."
+      ],
+      "tips": [
+        "هنگام خوابیدن در شب اول، از دو بالش زیر سر استفاده کنید تا سر بالاتر از بدن قرار گرفته و فشار خون در ناحیه سر و صورت کاهش یابد.",
+        "از انجام ورزش‌های سنگین، دویدن و بلند کردن اجسام سنگین تا حداقل ۳ روز پس از جراحی اجتناب فرمایید.",
+        "در صورت بروز درد، قبل از اینکه اثر بی‌حسی کاملاً از بین برود اولین دوز مسکن تجویزشده را مصرف کنید."
+      ],
+      "doctorQuote": {
+        "quote": "میزان موفقیت ایمپلنت در کلینیک پارمیس بالای ۹۸ درصد است. تنها وظیفه بیمار در این مسیر، صبوری و محافظت از لخته خونی در ۲۴ ساعت اول با پرهیز از مکش و تف کردن است.",
+        "doctorName": "دکتر انوشیروان شمس پور",
+        "doctorRole": "جراح - دندان‌پزشک • سرپرست درمان کلینیک پارمیس"
+      },
+      "comparisonTable": {
+        "title": "جدول راهنمای بایدها و نبایدهای ۲۴ ساعت اول پس از جراحی ایمپلنت",
+        "subtitle": "چک‌لیست ضروری برای بهبودی سریع و بدون عارضه",
+        "badge": "پروتکل بالینی کلینیک پارمیس",
+        "col1Header": "اقدامات مجاز و الزامی (بایدها)",
+        "col2Header": "اقدامات ممنوع و پرخطر (نبایدها)",
+        "rows": [
+          {
+            "criterion": "کنترل بزاق و خونریزی",
+            "col1": "فشار یکنواخت گاز استریل و بلعیدن آرام بزاق",
+            "col2": "تف کردن مکرر، دستکاری با زبان یا انگشت"
+          },
+          {
+            "criterion": "تغذیه و نوشیدنی",
+            "col1": "مایعات و غذاهای نرم و پوره‌ای با دمای خنک یا ولرم",
+            "col2": "غذاهای داغ، دانه‌دار (کنجد و برنج) و نوشیدن با نی"
+          },
+          {
+            "criterion": "کنترل تورم فک و صورت",
+            "col1": "کمپرس یخ متناوب بر روی گونه سمت جراحی",
+            "col2": "استفاده از کمپرس گرم در ۲۴ ساعت نخست"
+          },
+          {
+            "criterion": "بهداشت دهان و دندان",
+            "col1": "مسواک زدن ملایم سایر دندان‌ها دور از محل جراحی",
+            "col2": "شستشوی پرفشار دهان و تف کردن کف خمیردندان"
+          },
+          {
+            "criterion": "مصرف دخانیات",
+            "col1": "استراحت کامل در محیط عاری از دود",
+            "col2": "مصرف سیگار و قلیان (عامل اصلی شکست ایمپلنت)"
+          }
+        ]
+      },
+      "candidacy": {
+        "option1": {
+          "title": "نشانه‌های طبیعی و بی‌خطر پس از جراحی:",
+          "items": [
+            "ترشح بزاق صورتی یا رگه‌های خون تا ۴۸ ساعت اول",
+            "تورم تدریجی فک و گونه که در روز دوم به اوج می‌رسد",
+            "درد خفیف تا متوسط که با مسکن‌های استاندارد تسکین می‌یابد",
+            "سختی ملایم در باز کردن کامل دهان در روزهای نخست"
+          ]
+        },
+        "option2": {
+          "title": "علائم هشداردهنده که نیازمند تماس فوری با کلینیک است:",
+          "items": [
+            "خونریزی جهنده و فعال که با فشار گاز بند نمی‌آید",
+            "تب بالا یا احساس لرز و بی‌حالی عمومی",
+            "درد شدید و ضربان‌دار که به هیچ مسکنی پاسخ نمی‌دهد",
+            "بی‌حسی ادامه‌دار لب یا چانه پس از گذشت ۲۴ ساعت از جراحی"
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "اگر خونریزی پس از تعویض گاز استریل بند نیامد چه کار کنیم؟",
+          "answer": "یک چای کیسه‌ای (تی‌بگ) مرطوب و خنک را در محل جراحی قرار داده و با فشار فک به مدت ۳۰ دقیقه نگه دارید. اسید تانیک موجود در چای اثر قابض قوی داشته و سریعاً خونریزی مویرگی را مهار می‌سازد."
+        },
+        {
+          "question": "چه زمانی می‌توانم به محل کار یا فعالیت‌های روزمره بازگردم؟",
+          "answer": "اکثر مراجعین روز بعد از جراحی می‌توانند به محل کار و فعالیت‌های عادی سبک خود بازگردند، اما از کارهای بدنی سنگین و ورزش پرفشار تا ۳ الی ۵ روز باید پرهیز شود."
+        },
+        {
+          "question": "چند ماه پس از جراحی فیکسچر، روکش نهایی ایمپلنت متصل می‌شود؟",
+          "answer": "بسته به تراکم استخوان فک، معمولاً برای فک پایین حدود ۲ الی ۳ ماه و برای فک بالا حدود ۳ الی ۴ ماه زمان جهت استخوان‌سازی کامل لازم است تا قالب‌گیری دیجیتال و نصب روکش سرامیکی انجام شود."
+        }
+      ],
+      "views": 1,
+      "tipsTitle": "توصیه‌های طلایی و مراقبت‌های بالینی پزشک"
+    },
+    {
+      "id": "painless-rotary-root-canal",
+      "slug": "painless-rotary-root-canal",
+      "title": "آیا عصب‌کشی واقعاً درد دارد؟ فناوری نوین روتاری و بی‌حسی دیجیتال در مطب پارمیس",
+      "mobileTitle": "آیا عصب‌کشی واقعاً درد دارد؟ فناوری نوین روتاری و بی حسی دیجیتال",
+      "category": "درمان ریشه و ترمیمی",
+      "categorySlug": "endodontics",
+      "mobileCategory": "درمان ریشه و عصب‌کشی",
+      "summary": "تکنولوژی‌های مدرن پاکسازی کانال ریشه و سیستم‌های کنترل درد چگونه تجربه ترسناک عصب‌کشی را به درمانی بدون استرس و آرامش‌بخش تبدیل کرده‌اند؟",
+      "mobileSummary": "تکنولوژی‌های مدرن درمان ریشه بدون درد در کلینیک پارمیس پاکدشت.",
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuB1GR01M4_nS65vqjMR6eBOdOmMrgCc_3y37-nlxprK-pa81qKKPJgj1q1D3k7_5__8-PGjuE3Ndcz7GCRopg9IQQLXlUDTjrtwJq2vFfwRw0mCaeDdfeCCqwhpJYgzxX9QjWrn0BvE2_70I1_LL0Wz9CWNHhTUX_pZRJUEjhlxZNJh476Q4XaukUg5Xzh0DVg6SDXroV01o0spJtdv_DhdnnVPBJIFyf46txduWnYkSKJ1o3bH2pxs",
+      "mobileImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuBOIr1S4GQ7RJsDRV0zgF-TvPw90tbErPa4nH6izsbSjhu5wDv79iklW5IYQ758tTddjoTDNvgnYiyAX_DWof9HgE7y3aT6teezFndRrHZd3fBGEhA7NbOLfDQ3haVXnJ5NyirniuNIPCsg8KbjaevxsFO4JtgDz8IxHMXvlgJGV23XXKTuVP0yRvxf9UD_Ws9Fsn_eCrs6bUBGcmzIi7D1f45ketI5aZtZUsLYTr28xDOKT_l0D0uO",
+      "readTime": "۵ دقیقه مطالعه",
+      "date": "۲۸ فروردین ۱۴۰۳",
+      "author": "دکتر انوشیروان شمس پور",
+      "authorRole": "جراح - دندان‌پزشک • مسئول فنی کلینیک پارمیس",
+      "tags": [
+        "عصب‌کشی_بدون_درد",
+        "روتاری_دیجیتال",
+        "درمان_ریشه",
+        "اپکس_فایندر"
+      ],
+      "isFeatured": true,
+      "metaTitle": "عصب‌کشی بدون درد با روتاری دیجیتال در پاکدشت | کلینیک پارمیس",
+      "metaDescription": "بررسی تکنولوژی روتاری، اپکس فایندر دیجیتال و بی‌حسی‌های عمیق در درمان ریشه بدون درد در کلینیک دندان‌پزشکی پارمیس پاکدشت.",
+      "introduction": "تصور دردناک بودن عصب‌کشی مربوط به دهه‌های گذشته است. در گذشته به دلیل کمبود تجهیزات و فایل‌های دستی سخت، درمان طولانی و گاه آزاردهنده بود. اما امروزه با ابداع داروهای بی‌حسی مدرن با ضریب نفوذ فوق‌العاده و سیستم‌های فایلینگ روتاری نیکل-تیتانیوم، عصب‌کشی نه تنها دردناک نیست، بلکه بیمار در طول درمان احساس آسودگی کامل دارد و همان روز از دردهای شبانه رها می‌شود.",
+      "executiveSummary": [
+        {
+          "title": "بی‌حسی موضعی با نفوذ عمیق",
+          "desc": "استفاده از فرمولاسیون‌های آرتیکائین با اثرگذاری فوری که حتی در دندان‌های عفونی بافت را بی‌حس می‌کند.",
+          "icon": "vaccines"
+        },
+        {
+          "title": "دستگاه روتاری دیجیتال",
+          "desc": "پاکسازی سریع، بی‌صدا و بدون فشار کانال‌های ریشه با فایل‌های انعطاف‌پذیر چرخشی.",
+          "icon": "settings_suggest"
+        },
+        {
+          "title": "اپکس فایندر الکترونیکی",
+          "desc": "تعیین انتهای دقیق ریشه با دقت دهم میلی‌متر و کاهش نیاز به عکس‌های مکرر رادیوگرافی.",
+          "icon": "radar"
+        },
+        {
+          "title": "کاهش جلسات درمان به ۱ جلسه",
+          "desc": "انجام کامل عصب‌کشی و پرکردگی در بیش از ۸۵ درصد موارد در یک جلسه ۴۵ دقیقه‌ای.",
+          "icon": "schedule"
+        }
+      ],
+      "content": [
+        "هنگامی که پوسیدگی از مینا و عاج عبور کرده و به پالپ (عصب و عروق دندان) می‌رسد، دندان دچار التهاب غیرقابل برگشت و دردهای ضربان‌دار شبانه می‌شود. عصب‌کشی در واقع درمانی برای از بین بردن درد و نجات دندان از کشیده شدن است.",
+        "در کلینیک پارمیس از دستگاه‌های اندوموتور هوشمند روتاری استفاده می‌شود. این موتورها دارای سیستم اتوریورس (چرخش معکوس خودکار) هستند که احتمال شکستن فایل در کانال را به صفر می‌رسانند و انحناهای پیچیده ریشه را به راحتی طی می‌کنند.",
+        "همچنین با کمک اپکس فایندرهای فرکانسی، طول کانال با دقت بالا اندازه‌گیری می‌شود تا مواد پرکننده بیوسرامیک (گوتاپرکا) دقیقاً تا انتهای ریشه مهروموم شوند و هیچ فضایی برای رشد باکتری باقی نماند.",
+        "پس از پایان عصب‌کشی، دندان دیگر به محرک‌های سرما و گرما حساسیتی ندارد، اما بافت‌های نگه‌دارنده دور ریشه دندان برای چند روز ممکن است هنگام جویدن کمی حساس باشند که کاملاً گذراست."
+      ],
+      "tips": [
+        "تا زمانی که بی‌حسی دندان برطرف نشده است (حدود ۲ تا ۳ ساعت)، از جویدن غذاهای سفت خودداری کنید تا ناخواسته گونه یا زبان خود را گاز نگیرید.",
+        "در روزهای اول با سمتی که دندان عصب‌کشی شده غذاهای بسیار سفت نجوید تا پرکردگی پانسمان یا ترمیم نهایی تثبیت شود.",
+        "در صورتی که بخش عمده تاج دندان به دلیل پوسیدگی از بین رفته است، حتماً روکش دندان (Crown) انجام دهید تا دندان در اثر فشارهای جویدن دچار شکستگی طولی نشود."
+      ],
+      "doctorQuote": {
+        "quote": "حفظ دندان طبیعی بیمار با یک عصب‌کشی دقیق و اصولی، همیشه بر کشیدن دندان و جایگزینی آن با ایمپلنت ارجحیت دارد؛ هیچ درمانی جایگزین کامل حس طبیعی گیرنده‌های ریشه دندان خود شما نخواهد شد.",
+        "doctorName": "دکتر انوشیروان شمس پور",
+        "doctorRole": "جراح - دندان‌پزشک • مسئول فنی کلینیک پارمیس"
+      },
+      "comparisonTable": {
+        "title": "مقایسه عصب‌کشی سنتی با دست در برابر عصب‌کشی نوین روتاری دیجیتال",
+        "subtitle": "چرا تجهیزات نوین درمان ریشه در کلینیک پارمیس تفاوت ایجاد می‌کنند؟",
+        "badge": "فناوری روتاری در پاکدشت",
+        "col1Header": "عصب‌کشی دستی و سنتی (قدیمی)",
+        "col2Header": "عصب‌کشی روتاری دیجیتال (مدرن پارمیس)",
+        "rows": [
+          {
+            "criterion": "میزان درد و استرس بیمار",
+            "col1": "احساس فشار، سایش دستی و خستگی فک",
+            "col2": "کاملاً بدون درد با چرخش نرم و بدون فشار"
+          },
+          {
+            "criterion": "مدت زمان درمان",
+            "col1": "معمولاً ۲ الی ۳ جلسه طولانی و خسته‌کننده",
+            "col2": "اغلب در یک جلسه ۴۰ الی ۵۰ دقیقه‌ای"
+          },
+          {
+            "criterion": "دقت پاکسازی کانال‌های منحنی",
+            "col1": "احتمال پله‌دار شدن یا عدم دسترسی به انتهای ریشه",
+            "col2": "انعطاف‌پذیری فوق‌العاده فایل نیکل-تیتانیوم در کانال"
+          },
+          {
+            "criterion": "احتمال شکستگی فایل",
+            "col1": "بالاتر به علت خستگی دستی آلیاژهای قدیمی استیل",
+            "col2": "حداقل به دلیل کنترل گشتاور و چرخش هوشمند موتور"
+          },
+          {
+            "criterion": "ماندگاری و پیش‌آگهی درمان",
+            "col1": "احتمال باقی ماندن باکتری در ریزکانال‌ها",
+            "col2": "سیل کامل و شستشوی اولتراسونیک با موفقیت بالای ۹۵٪"
+          }
+        ]
+      },
+      "candidacy": {
+        "option1": {
+          "title": "علائمی که نشان می‌دهد دندان شما نیاز فوری به عصب‌کشی دارد:",
+          "items": [
+            "دردهای شدید، ضربان‌دار و مداوم به خصوص در حالت درازکشیده در شب",
+            "حساسیت طولانی‌مدت به سرما یا گرما که حتی بعد از برداشتن محرک تا چند دقیقه ادامه دارد",
+            "درد شدید هنگام جویدن یا ضربه زدن با انگشت به دندان",
+            "تغییر رنگ تیره دندان پس از ضربه یا تروماهای قبلی"
+          ]
+        },
+        "option2": {
+          "title": "چه زمانی دندان دیگر قابل عصب‌کشی نیست و باید کشیده شود؟",
+          "items": [
+            "شکستگی عمودی ریشه دندان که تا زیر استخوان فک امتداد یافته باشد",
+            "پوسیدگی‌های بسیار عمیق که ساختار تاجی کافی برای نگهداری ترمیم باقی نگذاشته‌اند",
+            "تحلیل شدید استخوان پریودنتال و لق شدن درجه ۳ دندان"
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "چرا بعد از تمام شدن جلسه عصب‌کشی دندان تا چند روز تیر می‌کشد؟",
+          "answer": "این حساسیت کاملاً طبیعی و ناشی از التهاب بافت دور ریشه (لیگامان پریودنتال) به دلیل پاکسازی و دستکاری درمان است. این حالت معمولاً ظرف ۳ الی ۵ روز با مصرف مسکن‌های ضدالتهاب مانند ایبوپروفن کاملاً برطرف می‌شود."
+        },
+        {
+          "question": "آیا دندان عصب‌کشی شده حتماً باید روکش شود؟",
+          "answer": "اگر دندان دارای پوسیدگی وسیع باشد یا دیواره‌های جانبی آن نازک شده باشند، بله؛ زیرا دندان بدون عصب رطوبت خود را از دست داده و شکننده‌تر می‌شود. روکش مانند یک کلاهک فلزی-سرامیکی یا زیرکونیا مانع از شکستن دندان هنگام جویدن غذا می‌شود."
+        },
+        {
+          "question": "آیا دندانی که قبلاً عصب‌کشی شده ولی مجدداً عفونت کرده قابل درمان است؟",
+          "answer": "بله؛ با انجام درمان مجدد ریشه (Re-Endo)، مواد پرکردگی قبلی تخلیه شده، کانال‌ها مجدداً ضدعفونی گشته و با مواد بیوسرامیک نوین مهروموم می‌شوند."
+        }
+      ],
+      "views": 2
+    },
+    {
+      "id": "composite-stain-prevention",
+      "slug": "composite-stain-prevention",
+      "title": "علل تغییر رنگ کامپوزیت و راه‌های حفظ سفیدی و درخشندگی ونیرها",
+      "mobileTitle": "علل تغییر رنگ کامپوزیت و راهکارهای حفظ درخشندگی",
+      "category": "زیبایی (کامپوزیت و لمینت)",
+      "categorySlug": "cosmetic",
+      "mobileCategory": "مراقبت‌های کامپوزیت ونیر",
+      "summary": "چرا کامپوزیت‌ها پس از مدتی جلای اولیه خود را از دست می‌دهند؟ اصول رژیم غذایی، روش مسواک زدن و فواصل پولیش دوره‌ای برای داشتن لبخندی همیشه سفید.",
+      "mobileSummary": "راهکارهای علمی جلوگیری از زرد شدن ونیر کامپوزیت و حفظ شفافیت دندان‌ها.",
+      "image": "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=80",
+      "mobileImage": "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=80",
+      "readTime": "۴ دقیقه مطالعه",
+      "date": "۲۰ فروردین ۱۴۰۳",
+      "author": "دکتر انوشیروان شمس پور",
+      "authorRole": "جراح و دندان‌پزشک • کلینیک پارمیس",
+      "tags": [
+        "کامپوزیت_ونیر",
+        "پولیش_دندان",
+        "سفیدی_دندان",
+        "بهداشت_دهان"
+      ],
+      "isFeatured": false,
+      "metaTitle": "جلوگیری از تغییر رنگ کامپوزیت دندان | کلینیک دندانپزشکی پارمیس",
+      "metaDescription": "بررسی دلایل زرد شدن کامپوزیت ونیر، تاثیر چای و قهوه، اهمیت پولیش سالانه و انتخاب خمیردندان مناسب توسط دکتر شمس پور.",
+      "introduction": "ونیر کامپوزیت یکی از پرطرفدارترین روش‌های اصلاح طرح لبخند است که در یک جلسه زیبایی چشمگیری خلق می‌کند. اما رزین‌های کامپوزیتی برخلاف ساختار شیشه‌ای سرامیک‌ها، دارای تخلخل‌های بسیار ریزی هستند که در صورت عدم مراقبت صحیح می‌توانند رنگدانه‌های مواد غذایی را جذب کرده و کدر شوند. خوشبختانه با رعایت چند اصل ساده می‌توان درخشندگی کامپوزیت را برای سال‌ها حفظ کرد.",
+      "executiveSummary": [
+        {
+          "title": "رژیم غذایی و رنگدانه‌ها",
+          "desc": "چای پررنگ، قهوه، سس سویا، زعفران و نوشابه‌های رنگی بیشترین سهم را در زرد شدن سطحی کامپوزیت دارند.",
+          "icon": "coffee"
+        },
+        {
+          "title": "پولیش دوره‌ای سالانه",
+          "desc": "مراجعه هر ۶ تا ۱۲ ماه برای برداشتن لکه‌های میکرونی و بازگرداندن جلای براق مانند روز اول.",
+          "icon": "auto_fix_high"
+        },
+        {
+          "title": "خمیردندان مناسب (بدون سایش)",
+          "desc": "استفاده از خمیردندان‌های ژله‌ای ملایم و پرهیز از خمیردندان‌های زغالی و ساینده که سطح کامپوزیت را زبر می‌کنند.",
+          "icon": "cleaning_services"
+        },
+        {
+          "title": "تاثیر مخرب دخانیات",
+          "desc": "نیکوتین و قطران سیگار و قلیان به لبه‌های لثه نفوذ کرده و خطوط قهوه‌ای ایجاد می‌کنند.",
+          "icon": "smoke_free"
+        }
+      ],
+      "content": [
+        "تغییر رنگ کامپوزیت به دو دسته بیرونی (Extrinsic) و درونی (Intrinsic) تقسیم می‌شود. بیش از ۹۰ درصد تغییر رنگ‌ها ناشی از عوامل بیرونی و تماس مداوم سطح دندان با مواد خوراکی دارای کروموژن (رنگدانه غلیظ) است.",
+        "در کلینیک پارمیس منحصراً از نانوکامپوزیت‌های سرامیکی توکویاما ژاپن و کاریزما آلمان استفاده می‌شود که دارای ذرات فیلر فوق‌العاده ریز بوده و مقاومت سایشی و درخشندگی به مراتب بالاتری نسبت به کامپوزیت‌های معمولی دارند.",
+        "پولیش مجدد کامپوزیت یک درمان بدون درد و بسیار سریع است. دندان‌پزشک با دیسک‌های پولیش الماسه و خمیرهای ویژه اکسید آلومینیوم، سطح دندان را مجدداً لایه‌برداری میکروسکوپی کرده و براق می‌سازد.",
+        "شستشوی دهان با آب بلافاصله پس از نوشیدن چای، قهوه یا کشیدن سیگار به شسته شدن سریع رنگدانه‌ها قبل از نفوذ به رزین کمک شایانی می‌کند."
+      ],
+      "tips": [
+        "از مسواک با موهای نرم (Soft) استفاده کنید؛ مسواک‌های زبر سطح صیقلی کامپوزیت را خش انداخته و آن را مستعد جذب رنگ می‌کنند.",
+        "استفاده از دهان‌شویه‌های حاوی کلرهگزیدین بیش از یک هفته ممنوع است زیرا به شدت باعث ایجاد لکه‌های قهوه‌ای روی کامپوزیت می‌شود.",
+        "نخ دندان روزانه نه تنها سلامت لثه را تضمین می‌کند بلکه از زرد شدن فواصل بین دندان‌ها جلوگیری به عمل می‌آورد."
+      ],
+      "doctorQuote": {
+        "quote": "کامپوزیت ونیر مانند اتومبیل لوکس نیاز به سرویس دوره‌ای دارد؛ یک جلسه پولیش ۱۰ دقیقه‌ای در سال، درخشندگی لبخند شما را دقیقاً به روز اول برمی‌گرداند.",
+        "doctorName": "دکتر انوشیروان شمس پور",
+        "doctorRole": "جراح و دندان‌پزشک • کلینیک پارمیس پاکدشت"
+      },
+      "comparisonTable": {
+        "title": "جدول تاثیر خوراکی‌ها بر تغییر رنگ کامپوزیت و راهکارهای پیشگیری",
+        "subtitle": "راهنمای مراقبت روزانه برای حفظ سفیدی ونیرهای دندانی",
+        "badge": "راهنمای مراقبتی پارمیس",
+        "col1Header": "میزان ریسک لکه‌پذیری",
+        "col2Header": "راهکار محافظتی پیشنهادی",
+        "rows": [
+          {
+            "criterion": "قهوه اسپرسو و نسکافه غلیظ",
+            "col1": "بسیار بالا (به دلیل تانن و اسیدیته)",
+            "col2": "نوشیدن آب بلافاصله پس از مصرف یا استفاده از نی"
+          },
+          {
+            "criterion": "چای سیاه پررنگ و چای سبز",
+            "col1": "بالا (رسوب پیگمان‌های زرد و قهوه‌ای)",
+            "col2": "کاهش غلظت چای و مسواک زدن نیم ساعت بعد از مصرف"
+          },
+          {
+            "criterion": "زعفران، رب گوجه و زردچوبه",
+            "col1": "متوسط تا بالا (به خصوص در ۴۸ ساعت اول)",
+            "col2": "شستشوی سریع دهان با آب ولرم پس از صرف غذا"
+          },
+          {
+            "criterion": "دخانیات (سیگار، قلیان و ویپ)",
+            "col1": "بسیار شدید و ماندگار در خط لثه",
+            "col2": "پرهیز کامل از دخانیات یا جرم‌گیری و پولیش دوره‌ای"
+          }
+        ]
+      },
+      "candidacy": {
+        "option1": {
+          "title": "عوامل تسریع‌کننده زردی کامپوزیت:",
+          "items": [
+            "مصرف خمیردندان‌های زغالی و سفیدکننده قوی با ذرات ساینده زبر",
+            "دندان‌قروچه شبانه بدون استفاده از نایت‌گارد محافظ",
+            "استفاده مکرر از ادویه‌های رنگی بدون شستشوی دهان",
+            "فاصله انداختن بیش از یک سال بین جلسات پولیش مطب"
+          ]
+        },
+        "option2": {
+          "title": "عوامل افزایش‌دهنده طول عمر سفیدی کامپوزیت:",
+          "items": [
+            "استفاده از خمیردندان‌های ژلی ضدحساسیت با RDA استاندارد زیر ۷۰",
+            "رعایت رژیم غذایی سفید در ۴۸ ساعت ابتدایی پس از نصب کامپوزیت",
+            "استفاده منظم از نخ دندان و واترپیک (واترفلاسر)",
+            "پولیش سالانه در کلینیک پارمیس"
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "آیا می‌توان کامپوزیت تغییر رنگ داده را با بلیچینگ سفید کرد؟",
+          "answer": "خیر؛ ژل‌های بلیچینگ تنها روی ساختار دندان طبیعی اثر می‌گذارند و نمی‌توانند ساختار رزین کامپوزیت را روشن‌تر کنند. برای کامپوزیت، تنها راه بازگرداندن سفیدی، پولیش مطب یا تعویض لایه سطحی کامپوزیت است."
+        },
+        {
+          "question": "هزینه و زمان پولیش مجدد کامپوزیت چقدر است؟",
+          "answer": "پولیش مجدد درمانی بسیار سریع (حدود ۲۰ دقیقه) و با هزینه‌ای بسیار اندک در مقایسه با نصب کامپوزیت است که در کلینیک پارمیس انجام می‌شود."
+        },
+        {
+          "question": "چرا لبه‌های کامپوزیت نزدیک لثه تیره می‌شوند؟",
+          "answer": "این اتفاق معمولاً ناشی از التهاب لثه و خونریزی میکرونی یا نفوذ رنگدانه‌ها به درز اتصال است. با رعایت دقیق نخ دندان و جرم‌گیری ملایم لثه، این لبه‌ها مجدداً تمیز و براق می‌شوند."
+        }
+      ],
+      "views": 1
+    },
+    {
+      "id": "pediatric-orthodontics-timing",
+      "slug": "pediatric-orthodontics-timing",
+      "title": "سن مناسب ارتودنسی و درمان ناهنجاری‌های فک در کودکان؛ پیشگیری زودهنگام",
+      "mobileTitle": "سن مناسب ارتودنسی و درمان ناهنجاری فک در کودکان",
+      "category": "دندان‌پزشکی کودکان",
+      "categorySlug": "pediatric",
+      "mobileCategory": "ارتودنسی پیشگیرانه اطفال",
+      "summary": "سن طلایی اولین ارزیابی ارتودنسی چه زمانی است؟ مزایای درمان‌های مرحله اول با پلاک‌های متحرک و هدایت رشد فک برای پیشگیری از جراحی‌های سنگین بزرگسالی.",
+      "mobileSummary": "راهنمای والدین برای سن طلایی ارتودنسی، هدایت رشد فک و رفع نامرتبی دندان کودک.",
+      "image": "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=80",
+      "mobileImage": "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=80",
+      "readTime": "۵ دقیقه مطالعه",
+      "date": "۱۵ فروردین ۱۴۰۳",
+      "author": "دکتر انوشیروان شمس پور",
+      "authorRole": "جراح و دندان‌پزشک • مسئول فنی کلینیک پارمیس",
+      "tags": [
+        "ارتودنسی_کودکان",
+        "دندان‌پزشکی_اطفال",
+        "ناهنجاری_فک",
+        "پلاک_متحرک"
+      ],
+      "isFeatured": false,
+      "metaTitle": "بهترین سن ارتودنسی کودکان در پاکدشت | کلینیک دندانپزشکی پارمیس",
+      "metaDescription": "راهنمای جامع سن مناسب ارتودنسی، پیشگیری از ناهنجاری‌های فک و پلاک‌های متحرک کودکان در کلینیک دندانپزشکی پارمیس پاکدشت.",
+      "introduction": "بسیاری از والدین بر این باورند که تا زمان افتادن کامل دندان‌های شیری و رویش دندان‌های دائمی (حدود ۱۲ سالگی) نیازی به مراجعه به متخصص ارتودنسی نیست. این یک باور غلط و زیان‌بار است! انجمن ارتودنتیست‌های آمریکا (AAO) توصیه می‌کند همه کودکان در سن ۷ سالگی تحت ارزیابی بالینی ارتودنسی قرار گیرند؛ زیرا مشکلات اسکلتی استخوان فک در سنین رشد به سادگی و بدون جراحی قابل اصلاح هستند.",
+      "executiveSummary": [
+        {
+          "title": "سن طلایی اولین ارزیابی (۷ سالگی)",
+          "desc": "رویش اولین دندان‌های آسیاب بزرگ دائمی و دندان‌های پیشین، رابطه اسکلتی فکین را آشکار می‌سازد.",
+          "icon": "child_care"
+        },
+        {
+          "title": "ارتودنسی پیشگیرانه مرحله ۱",
+          "desc": "استفاده از پلاک‌های متحرک ساده برای تصحیح تنگی فک، مکیدن انگشت و انحراف فک در سنین رشد.",
+          "icon": "auto_awesome"
+        },
+        {
+          "title": "پیشگیری از جراحی فک در بزرگسالی",
+          "desc": "هدایت رشد استخوان در کودکی، نیاز به جراحی‌های ارتوگناتیک سنگین و پرهزینه در ۱۸ سالگی را از بین می‌برد.",
+          "icon": "verified"
+        },
+        {
+          "title": "حفظ فضای دندان‌های دائمی",
+          "desc": "استفاده از فضانگهدارنده در صورت کشیدن زودهنگام دندان شیری جهت پیشگیری از نهفتگی دندان‌ها.",
+          "icon": "space_dashboard"
+        }
+      ],
+      "content": [
+        "در سن ۷ سالگی، دندان‌های آسیاب دائمی در انتهای فک رویش می‌یابند و نحوه جفت شدن دندان‌ها (اکلوژن) شکل می‌گیرد. در این سن پزشک می‌تواند عقب‌بودن فک پایین، جلوبودن فک بالا یا انحرافات عرضی را به موقع تشخیص دهد.",
+        "ارتودنسی کودکان به دو فاز اصلی تقسیم می‌شود: فاز اول (ارتودنسی فانکشنال و پیشگیرانه در سنین ۷ تا ۱۰ سالگی) که متمرکز بر اصلاح استخوان فک است؛ و فاز دوم (ارتودنسی ثابت با براکت در سنین ۱۱ تا ۱۴ سالگی) که برای ردیف کردن دندان‌ها صورت می‌گیرد.",
+        "عادت‌هایی مانند مکیدن طولانی‌مدت انگشت شست، پستانک بعد از ۳ سالگی یا تنفس دهانی مداوم باعث تنگی سقف دهان و شیب پیدا کردن دندان‌های قدامی به بیرون می‌شوند که با ابزارهای ساده متحرک برطرف می‌شوند.",
+        "دندان‌های شیری راهنمای رویش دندان‌های دائمی هستند؛ اگر دندان شیری در اثر پوسیدگی زودتر از موعد از دست برود، دندان‌های مجاور حرکت کرده و فضای دندان دائمی زیرین را مسدود می‌کنند."
+      ],
+      "tips": [
+        "اگر کودک شما هنگام خواب خروپف می‌کند یا با دهان باز نفس می‌کشد، حتماً رابطه فک و مجرای تنفسی او را بررسی کنید.",
+        "در صورت لق شدن یا افتادن زودهنگام دندان شیری آسیاب، ظرف حداکثر ۲ هفته جهت ساخت فضانگهدارنده به کلینیک مراجعه نمایید.",
+        "به کودکان بیاموزید که پلاک متحرک را هنگام غذا خوردن و ورزش داخل جعبه مخصوص بگذارند تا آسیب نبیند."
+      ],
+      "doctorQuote": {
+        "quote": "در سنین ۷ تا ۱۰ سالگی، استخوان فک کودک مانند موم شکل‌پذیر است. با یک پلاک متحرک ساده در این بازه، می‌توان از جراحی پیچیده فک در سن ۱۸ سالگی پیشگیری کرد.",
+        "doctorName": "دکتر انوشیروان شمس پور",
+        "doctorRole": "جراح و دندان‌پزشک • کلینیک پارمیس پاکدشت"
+      },
+      "comparisonTable": {
+        "title": "مقایسه ارتودنسی پیشگیرانه کودکان (فاز ۱) در برابر ارتودنسی ثابت بزرگسالان (فاز ۲)",
+        "subtitle": "چرا زمان‌بندی مناسب، کلید درمانی آسان‌تر و کم‌هزینه‌تر است؟",
+        "badge": "راهنمای والدین پاکدشت",
+        "col1Header": "ارتودنسی پیشگیرانه کودکان (۷ تا ۱۰ سال)",
+        "col2Header": "ارتودنسی جامع بزرگسالان (بالای ۱۲ سال)",
+        "rows": [
+          {
+            "criterion": "هدف اصلی درمان",
+            "col1": "اصلاح الگوی رشد استخوان فک و عادات دهانی",
+            "col2": "ردیف و منظم کردن تاج دندان‌های دائمی"
+          },
+          {
+            "criterion": "نوع ابزار و دستگاه",
+            "col1": "پلاک‌های متحرک، فضانگهدارنده و هدگیر",
+            "col2": "براکت‌های ثابت سرامیکی/فلزی یا الاینر شفاف"
+          },
+          {
+            "criterion": "نیاز به کشیدن دندان دائمی",
+            "col1": "تقریباً صفر (با توسعه و عریض کردن قوس فک)",
+            "col2": "احتمال نیاز در صورت کمبود شدید فضا"
+          },
+          {
+            "criterion": "نیاز به جراحی فک (ارتوگناتیک)",
+            "col1": "کاملاً منتفی می‌شود با هدایت زودهنگام رشد",
+            "col2": "در ناهنجاری‌های اسکلتی شدید گاهی اجتناب‌ناپذیر است"
+          },
+          {
+            "criterion": "طول دوره درمان",
+            "col1": "معمولاً ۶ الی ۱۲ ماه سبک",
+            "col2": "میانگین ۱.۵ تا ۲.۵ سال مستمر"
+          }
+        ]
+      },
+      "candidacy": {
+        "option1": {
+          "title": "علائمی که نشان می‌دهد کودک شما به معاینه ارتودنسی نیاز دارد:",
+          "items": [
+            "جفت نشدن دندان‌های جلو هنگام بستن دهان (Open Bite)",
+            "قرار گرفتن دندان‌های فک پایین جلوتر از دندان‌های بالا (Crossbite/Underbite)",
+            "مشکل در جویدن غذا یا گاز گرفتن مداوم لپ و گونه",
+            "تنفس دهانی مزمن، خرخر شبانه یا مکیدن شست"
+          ]
+        },
+        "option2": {
+          "title": "مزایای مداخله زودهنگام در کلینیک پارمیس:",
+          "items": [
+            "بهبود تناسب نیمرخ و زیبایی چهره در سنین رشد و مدرسه",
+            "کاهش خطر آسیب و ضربه به دندان‌های بیرون‌زده قدامی",
+            "تسهیل بهداشت دهان و کاهش پوسیدگی‌های شدید دندانی",
+            "بهبود تکلم و تلفظ صحیح حروف در کودکان"
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "آیا پلاک متحرک ارتودنسی برای صحبت کردن کودک مشکل ایجاد می‌کند؟",
+          "answer": "تنها در ۳ تا ۵ روز ابتدایی ممکن است تکلم کودک اندکی تغییر کند و ترشح بزاق افزایش یابد. با خواندن با صدای بلند و تمرین مداوم، زبان سریعاً با پلاک هماهنگ شده و گفتار به حالت عادی برمی‌گردد."
+        },
+        {
+          "question": "فضانگهدارنده دندان چیست و چرا نباید جای دندان شیری خالی بماند؟",
+          "answer": "فضانگهدارنده قطعه کوچک فلزی ثابتی است که روی دندان مجاور تکیه می‌کند تا از جابجا شدن آن جلوگیری کند. اگر این فضا بسته شود، دندان دائمی زیرین نهفته می‌ماند و در آینده نیاز به جراحی خارج کردن پیدا می‌کند."
+        },
+        {
+          "question": "آیا ارتودنسی کودکان درد دارد؟",
+          "answer": "خیر؛ پلاک‌های پیشگیرانه نیروی بسیار ملایمی وارد می‌کنند و فقط در ۲ روز اول بعد از تحویل یا فعال‌سازی پلاک، احساس فشار خفیفی در دندان‌ها وجود دارد که به هیچ وجه نیازی به داروی قوی ندارد."
+        }
+      ],
+      "views": 0
+    },
+    {
+      "id": "office-vs-home-bleaching",
+      "slug": "office-vs-home-bleaching",
+      "title": "بلیچینگ در مطب (آفیس) یا هوم بلیچینگ خانگی؟ بررسی اثربخشی و ماندگاری",
+      "mobileTitle": "بلیچینگ در مطب یا هوم بلیچینگ خانگی؟ مقایسه اثربخشی",
+      "category": "زیبایی (کامپوزیت و لمینت)",
+      "categorySlug": "cosmetic",
+      "mobileCategory": "سفید کردن و بلیچینگ دندان",
+      "summary": "مقایسه جامع سرعت، هزینه، ماندگاری و میزان حساسیت دندان در آفیس بلیچینگ مطب و تری‌های هوم بلیچینگ شبانه؛ کدام گزینه برای دندان‌های شما بهتر است؟",
+      "mobileSummary": "بررسی تفاوت‌های بلیچینگ مطب و بلیچینگ خانگی از نظر حساسیت، سرعت و دوام.",
+      "image": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "mobileImage": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "readTime": "۴ دقیقه مطالعه",
+      "date": "۱۰ فروردین ۱۴۰۳",
+      "author": "تیم بالینی کلینیک پارمیس",
+      "authorRole": "بخش دندان‌پزشکی زیبایی • پاکدشت",
+      "tags": [
+        "بلیچینگ_دندان",
+        "سفید_کردن",
+        "آفیس_بلیچینگ",
+        "طرح_لبخند"
+      ],
+      "isFeatured": false,
+      "metaTitle": "تفاوت بلیچینگ مطب و هوم بلیچینگ خانگی | کلینیک دندانپزشکی پارمیس",
+      "metaDescription": "بررسی بالینی اثربخشی، ماندگاری و مزایای ترکیب آفیس بلیچینگ با هوم بلیچینگ خانگی در کلینیک دندانپزشکی پارمیس پاکدشت.",
+      "introduction": "داشتن لبخندی سفید و درخشان بدون نیاز به تراش دندان، آرزوی هر فردی است. بلیچینگ موثرترین درمان محافظه‌کارانه دندان‌پزشکی است که رنگدانه‌های نفوذکرده در منافذ مینا و عاج دندان را از طریق فرآیند اکسیداسیون بی‌رنگ می‌سازد. مراجعین معمولاً میان دو گزینه مردد هستند: درمان سریع ۴۵ دقیقه‌ای روی یونیت مطب (Office Bleaching) یا قالب‌های اختصاصی شبانه در منزل (Home Bleaching)؟ در این مقاله تفاوت‌های بالینی این دو روش را بررسی می‌کنیم.",
+      "executiveSummary": [
+        {
+          "title": "آفیس بلیچینگ (مطب)",
+          "desc": "سفید شدن سریع تا ۳ الی ۴ پرده در یک جلسه ۴۵ دقیقه‌ای با ژل غلیظ هیدروژن پراکسید و نور سرد LED.",
+          "icon": "flash_on"
+        },
+        {
+          "title": "هوم بلیچینگ (خانه)",
+          "desc": "نفوذ عمیق و تدریجی با قالب‌های شفاف اختصاصی و ژل ملایم کاربامید پراکسید طی ۲ هفته.",
+          "icon": "home"
+        },
+        {
+          "title": "فرمول طلایی ماندگاری (ترکیبی)",
+          "desc": "انجام آفیس در مطب جهت شوک اولیه رنگ به همراه هوم بلیچینگ جهت تثبیت چندساله نتایج.",
+          "icon": "stars"
+        },
+        {
+          "title": "عدم تراش مینای دندان",
+          "desc": "هر دو روش کاملاً غیرتهاجمی بوده و هیچ آسیبی به ساختار مستحکم مینای دندان نمی‌زنند.",
+          "icon": "verified"
+        }
+      ],
+      "content": [
+        "در آفیس بلیچینگ، دندان‌پزشک ابتدا لثه‌ها را با ژل محافظ (بarier) کاملاً می‌پوشاند تا از سوزش لثه جلوگیری شود. سپس ژل هیدروژن پراکسید با خلوص بالا روی دندان‌ها قرار گرفته و با تابش نور آبی مخصوص فعال می‌گردد.",
+        "در نقطه مقابل، هوم بلیچینگ نیازمند قالب‌گیری دقیق از فک بیمار در مطب و ساخت تری‌های سیلیکونی نازک و منعطف است. بیمار شب‌ها ژل کاربامید پراکسید را درون این تری ریخته و برای چند ساعت روی دندان قرار می‌دهد.",
+        "مزیت بزرگ آفیس بلیچینگ، سرعت شگفت‌انگیز آن است؛ مناسب افرادی که برای مهمانی، عروسی یا جلسه مهم زمان کوتاهی دارند. در عوض، هوم بلیچینگ ماندگاری بالاتری در برابر بازگشت رنگ دارد.",
+        "بهترین پروتکل جهانی که در کلینیک پارمیس توصیه می‌شود، پروتکل ترکیبی (Dual Bleaching) است که بالاترین درجه روشنی و بیشترین ثبات رنگی را ایجاد می‌کند."
+      ],
+      "tips": [
+        "در ۴۸ ساعت ابتدایی پس از بلیچینگ، رژیم غذایی سفید را رعایت کنید (پرهیز از چای، قهوه، سس گوجه، شکلات و دخانیات).",
+        "استفاده از خمیردندان‌های ضدحساسیت از یک هفته قبل از درمان، حساسیت‌های حین و بعد از کار را به صفر می‌رساند.",
+        "قالب‌های هوم بلیچینگ خود را به خوبی نگهداری کنید؛ شما می‌توانید هر سال با تهیه یک سرنگ ژل، رنگ دندان‌ها را رفرش کنید."
+      ],
+      "doctorQuote": {
+        "quote": "بلیچینگ خالص‌ترین شکل درمان زیبایی است؛ زیرا بدون کوچک‌ترین دستکاری یا تراشیدن مینا، زیبایی خدادادی و درخشان دندان‌های فرد احیا می‌شود.",
+        "doctorName": "دکتر انوشیروان شمس پور",
+        "doctorRole": "سرپرست درمان کلینیک دندان‌پزشکی پارمیس"
+      },
+      "comparisonTable": {
+        "title": "جدول مقایسه دقیق بلیچینگ در مطب (آفیس) در برابر هوم بلیچینگ خانگی",
+        "subtitle": "ارزیابی فاکتورهای سرعت، حساسیت، کنترل و دوام",
+        "badge": "استاندارد زیبایی پارمیس",
+        "col1Header": "بلیچینگ مطب (In-Office)",
+        "col2Header": "هوم بلیچینگ خانگی (Take-Home)",
+        "rows": [
+          {
+            "criterion": "مدت زمان رسیدن به نتیجه",
+            "col1": "تنها ۱ جلسه ۴۵ تا ۶۰ دقیقه‌ای در مطب",
+            "col2": "۱۰ الی ۱۴ روز استفاده شبانه در منزل"
+          },
+          {
+            "criterion": "ماده فعال و غلظت ژل",
+            "col1": "هیدروژن پراکسید غلیظ (۳۰ الی ۴۰ درصد)",
+            "col2": "کاربامید پراکسید ملایم (۱۰ الی ۲۲ درصد)"
+          },
+          {
+            "criterion": "نظارت مستقیم دندان‌پزشک",
+            "col1": "کامل با محافظت ایزوله از بافت لثه و لب",
+            "col2": "توسط خود بیمار طبق دستورالعمل پزشک"
+          },
+          {
+            "criterion": "میزان حساسیت موقت به سرما",
+            "col1": "ممکن است تا ۲۴ ساعت اول حس شود",
+            "col2": "بسیار ملایم‌تر و تدریجی"
+          },
+          {
+            "criterion": "ماندگاری در برابر بازگشت رنگ",
+            "col1": "خوب (نیازمند رژیم غذایی مناسب)",
+            "col2": "بسیار ماندگار به دلیل نفوذ عمقی‌تر به عاج"
+          },
+          {
+            "criterion": "قابلیت تمدید در سال‌های آینده",
+            "col1": "نیازمند جلسه مجدد در مطب",
+            "col2": "فقط با خرید سرنگ ژل ارزان بدون قالب‌گیری مجدد"
+          }
+        ]
+      },
+      "candidacy": {
+        "option1": {
+          "title": "آفیس بلیچینگ برای شما مناسب است اگر:",
+          "items": [
+            "عجله دارید و ظرف چند روز آینده مراسم یا سفر مهمی در پیش دارید.",
+            "حوصله یا دقت کافی برای استفاده هر شب از قالب‌های ژل در منزل را ندارید.",
+            "تمایل دارید کل درمان تحت کنترل مستقیم دندان‌پزشک و با حداکثر ایمنی لثه باشد."
+          ]
+        },
+        "option2": {
+          "title": "هوم بلیچینگ برای شما مناسب است اگر:",
+          "items": [
+            "دندان‌های حساسی دارید و روش‌های تدریجی و ملایم‌تر را ترجیح می‌دهید.",
+            "به‌دنبال باثبات‌ترین و ماندگارترین نتیجه ممکن در طول سالیان هستید.",
+            "مایلید در آینده بتوانید به راحتی با همان قالب‌ها سفیدی دندان را تمدید کنید."
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "آیا بلیچینگ روی کامپوزیت، روکش یا پرکردگی‌های قدیمی اثر می‌گذارد؟",
+          "answer": "خیر؛ مواد بلیچینگ تنها روی مینا و عاج دندان طبیعی اثر می‌گذارند. در صورتی که دندان‌های قدامی شما دارای پرکردگی یا روکش هستند، پس از اتمام بلیچینگ باید رنگ آن ترمیم‌ها متناسب با رنگ دندان‌های سفیدشده جدید تعویض گردند."
+        },
+        {
+          "question": "سفیدی ناشی از بلیچینگ تا چه مدت ماندگاری دارد؟",
+          "answer": "معمولاً بین ۱ تا ۳ سال. ماندگاری سفیدی دندان کاملاً به عادات غذایی شما بستگی دارد؛ افرادی که سیگار نمی‌کشند و چای یا قهوه کمتری مصرف می‌کنند ماندگاری بسیار طولانی‌تری را تجربه خواهند کرد."
+        },
+        {
+          "question": "آیا بلیچینگ باعث نازک شدن یا پوسیدگی مینای دندان می‌شود؟",
+          "answer": "خیر؛ تحقیقات متعدد دانشگاهی ثابت کرده است که بلیچینگ اصولی هیچ‌گونه تغییر ساختاری یا فرسایشی در مینای دندان ایجاد نمی‌کند و دندان مستعد پوسیدگی نخواهد شد."
+        }
+      ],
+      "views": 0
+    },
+    {
+      "id": "halitosis-treatment",
+      "slug": "halitosis-treatment-causes",
+      "title": "بوی بد دهان (هالیتوزیس)؛ دلایل، راه‌های تشخیص و درمان قطعی در کلینیک",
+      "mobileTitle": "بوی بد دهان (هالیتوزیس)؛ دلایل، تشخیص و درمان قطعی",
+      "category": "بهداشت و پیشگیری",
+      "categorySlug": "hygiene",
+      "mobileCategory": "بهداشت و سلامت عمومی دهان",
+      "summary": "آیا بوی بد دهان منشا گوارشی دارد یا ناشی از جرم دندانی و عفونت لثه است؟ روش‌های قطعی جرم‌گیری التراسونیک، پاکسازی پاکت‌های لثه و درمان ریشه‌ای در کلینیک پارمیس.",
+      "mobileSummary": "بررسی ریشه‌ای علل بوی دهان، تمیز کردن زبان و درمان با جرم‌گیری اصولی در پاکدشت.",
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQYMqz5vgdRmGOHxw6-Ug6ODgNgxVbRfKYOZBMVDaCn9JLMNF6BB59T5GkhVlJdRnwrv289gYUNEK38TFh-8CbqBKpu7DG4GpeywMQG6xjjw01c6RoHg4BqEtPEwUwRJWtPWdnlC0HhlPUjPlirXJuntBpXxQYjunHjEpeTQva2T4dEIk09kgXYRVvt4f5K5NlJmn4ceb2uVlzXQmGSmXdUziBkJ-bP2Eq5CEUbgrN4xyvxeqyLIzo",
+      "mobileImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuBzm476byTv2gQzRhKrjVm4uC9_nd-nzXSeDCd3RSocJevwTap24Bc5JpHmcz7MVMTC2yOVqFW6jBM4J8Qqyvqmi0nYGRsdo5aN_7Wh3gPr2V4r4QFxGtXmcncRzD-6zZshxTMviOBoLWiq1_ETAFYcBQP7SjB4opGVONZohGzEomewLrrf81fDv9Os3sliQ2Dz6Gu7918447Z3OeYlbl9CXqrjMHhvYwuLF_cC2gkHNn_mvXkbHQ9g",
+      "readTime": "۵ دقیقه مطالعه",
+      "date": "۲۵ اسفند ۱۴۰۲",
+      "author": "دکتر انوشیروان شمس پور",
+      "authorRole": "جراح - دندان‌پزشک • کلینیک پارمیس پاکدشت",
+      "tags": [
+        "جرم‌گیری",
+        "بوی_بد_دهان",
+        "عفونت_لثه",
+        "بهداشت_زبان"
+      ],
+      "isFeatured": false,
+      "metaTitle": "درمان بوی بد دهان (هالیتوزیس) در پاکدشت | کلینیک پارمیس",
+      "metaDescription": "دلایل اصلی بوی بد دهان، رد باورهای غلط درباره معده، نقش جرم دندانی و درمان با جرم‌گیری اولتراسونیک توسط دکتر شمس پور در پاکدشت.",
+      "introduction": "بوی بد دهان (هالیتوزیس) یکی از آزاردهنده‌ترین مشکلاتی است که به شدت روابط بین‌فردی و اعتمادبه‌نفس افراد را مخدوش می‌سازد. بر خلاف یک باور عامیانه رایج در جامعه که بوی دهان را همیشه به مشکلات گوارشی و معده نسبت می‌دهند، تحقیقات علمی نشان می‌دهد بیش از ۸۵ تا ۹۰ درصد موارد هالیتوزیس منشأ داخل دهانی دارد و به دلیل تکثیر باکتری‌های بی‌هوازی مولد ترکیبات فرار گوگردی (VSCs) ایجاد می‌شود.",
+      "executiveSummary": [
+        {
+          "title": "منشأ دهانی نه گوارشی!",
+          "desc": "بیش از ۹۰٪ بوی دهان ناشی از باکتری‌های بی‌هوازی شیار لثه، پرزهای زبان و دندان‌های پوسیده است.",
+          "icon": "sentiment_very_dissatisfied"
+        },
+        {
+          "title": "جرم‌های سخت‌شده زیرلثه‌ای",
+          "desc": "جرم دندان پناهگاهی مستحکم برای باکتری‌هاست که مسواک زدن به آن دسترسی ندارد و نیازمند جرم‌گیری است.",
+          "icon": "cleaning_services"
+        },
+        {
+          "title": "نقش تمیز کردن زبان",
+          "desc": "سطح ناهموار زبان به خصوص انتهای آن محل اصلی تجمع پلاک‌های باکتریایی است و باید روزانه تمیز شود.",
+          "icon": "tongue"
+        },
+        {
+          "title": "درمان قطعی در کلینیک",
+          "desc": "با یک جلسه جرم‌گیری التراسونیک، بروساژ و ترمیم پوسیدگی‌ها، بوی نامطبوع برای همیشه محو می‌شود.",
+          "icon": "verified"
+        }
+      ],
+      "content": [
+        "باکتری‌های بی‌هوازی دهان از پروتئین‌های موجود در بزاق و ذرات ریز باقیمانده غذا تغذیه کرده و گازهای بدبویی مثل سولفید هیدروژن و متیل مرکاپتان تولید می‌کنند. این گازها همان عامل بوی زننده دهان هستند.",
+        "یکی از متهمان اصلی، پاکت‌های لثه‌ای (فضای بین دندان و لثه) هستند. هنگامی که پلاک میکروبی به جرم سخت تبدیل می‌شود، لثه ملتهب و پرخون شده و به پناهگاه باکتری‌ها بدل می‌گردد.",
+        "دندان‌های عقل نیمه‌نهفته نیز به دلیل گیر غذایی و عدم دسترسی مسواک، یکی از کانون‌های خاموش ایجاد بوی بد دهان و طعم ناخوشایند در انتهای دهان به شمار می‌آیند.",
+        "در کلینیک پارمیس با استفاده از دستگاه‌های پیزوالکتریک اولتراسونیک، بدون کمترین آسیب به مینا، تمامی جرم‌های بالا و زیر لثه برداشته شده و با خمیر پولیش سطوح دندان صیقلی می‌گردند."
+      ],
+      "tips": [
+        "همیشه هنگام مسواک زدن، با یک زبان‌پاک‌کن یا موهای مسواک، سطح زبان را از عقب به جلو به آرامی پاک کنید.",
+        "نخ دندان روزانه حیاتی است؛ مسواک تنها ۶۰ درصد سطوح دندان را تمیز می‌کند و ۴۰ درصد فضای بین‌دندانی نیازمند نخ است.",
+        "خشکی دهان بوی بد را تشدید می‌کند؛ نوشیدن آب کافی در طول روز باعث جریان مداوم بزاق و شسته شدن باکتری‌ها می‌شود."
+      ],
+      "doctorQuote": {
+        "quote": "بسیاری از مراجعین سال‌ها به متخصص گوارش مراجعه کرده و داروهای اسید معده مصرف کرده‌اند؛ اما پس از یک جرم‌گیری دقیق التراسونیک و آموزش بهداشت زبان، بوی بد دهان به طور کامل ریشه‌کن شده است.",
+        "doctorName": "دکتر انوشیروان شمس پور",
+        "doctorRole": "جراح - دندان‌پزشک • کلینیک پارمیس پاکدشت"
+      },
+      "comparisonTable": {
+        "title": "جدول مقایسه علل دهانی در برابر علل غیردهانی (سیستمیک) بوی بد دهان",
+        "subtitle": "چگونه منشأ اصلی بوی نامطبوع را به درستی تشخیص دهیم؟",
+        "badge": "تشخیص بالینی پارمیس",
+        "col1Header": "علل دهانی (بیش از ۹۰٪ موارد)",
+        "col2Header": "علل غیردهانی و عمومی (کمتر از ۱۰٪)",
+        "rows": [
+          {
+            "criterion": "محل کانون باکتری",
+            "col1": "شیار لثه، پاکت‌های عفونی، پرزهای زبان و پوسیدگی دندان",
+            "col2": "سینوزیت مزمن، عفونت لوزه‌ها (سنگ لوزه)، ریه یا معده"
+          },
+          {
+            "criterion": "روش درمان موثر",
+            "col1": "جرم‌گیری اولتراسونیک، درمان لثه و ترمیم دندان‌های پوسیده",
+            "col2": "مراجعه به متخصص گوش و حلق و بینی یا گوارش"
+          },
+          {
+            "criterion": "تاثیر مسواک و نخ دندان",
+            "col1": "کاهش چشمگیر و فوری در صورت رعایت بهداشت صحیح",
+            "col2": "بدون تغییر یا با اثر موقت بسیار اندک"
+          },
+          {
+            "criterion": "علائم همراه در دهان",
+            "col1": "خونریزی لثه هنگام مسواک، جرم زرد/قهوه‌ای، طعم فلزی بزاق",
+            "col2": "ترشح پشت حلق، ترش کردن مکرر معده یا بوی استونی دهان"
+          }
+        ]
+      },
+      "candidacy": {
+        "option1": {
+          "title": "چه زمانی بوی بد دهان نیازمند مراجعه به دندان‌پزشک است؟",
+          "items": [
+            "بوی نامطبوع حتی بلافاصله پس از مسواک زدن و مصرف آدامس باقی می‌ماند",
+            "هنگام مسواک زدن یا گاز زدن سیب دچار خونریزی لثه می‌شوید",
+            "احساس طعم تلخ، ترش یا بوی عفونت مداوم در دهان دارید",
+            "بیش از یک سال است که جرم‌گیری دندان انجام نداده‌اید"
+          ]
+        },
+        "option2": {
+          "title": "باورهای نادرست و ردشده درباره بوی دهان:",
+          "items": [
+            "«جرم‌گیری دندان را نازک و لق می‌کند» (کاملاً غلط، جرم عامل لق شدن است نه جرم‌گیری)",
+            "«بوی دهان همیشه از معده و روده است» (در ۹۰ درصد موارد علت صرفاً در دهان است)",
+            "«دهان‌شویه به تنهایی جایگزین مسواک و نخ دندان می‌شود» (پلاک سخت با دهان‌شویه جدا نمی‌شود)"
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "آیا جرم‌گیری التراسونیک به مینای دندان آسیب می‌زند؟",
+          "answer": "به هیچ وجه؛ قلم‌های اولتراسونیک با لرزش صوتی میکرومتری و اسپری آب کار می‌کنند و هیچ لایه‌برداری یا تراشی از مینا انجام نمی‌دهند. تنها رسوبات سخت باکتریایی از سطح دندان جدا می‌شوند."
+        },
+        {
+          "question": "چرا صبح‌ها بوی دهان شدیدتر است؟",
+          "answer": "در طول خواب ترشح بزاق دهان به شدت کاهش می‌یابد. کاهش بزاق به باکتری‌های بی‌هوازی فرصت می‌دهد تا پروتئین‌ها را تجزیه کرده و گازهای بدبو تولید کنند. مسواک زدن قبل از خواب این مشکل را تا حد زیادی برطرف می‌سازد."
+        },
+        {
+          "question": "آیا سنگ لوزه (Tonsil Stones) هم می‌تواند عامل بوی دهان باشد؟",
+          "answer": "بله؛ ذرات غذا و باکتری‌هایی که در شکاف‌های لوزه گیر می‌افتند تبدیل به رسوبات پنیری سفید و بسیار بدبویی می‌شوند که با قرقره آب‌نمک یا معاینه پزشک قابل تشخیص و تخلیه هستند."
+        }
+      ],
+      "views": 1
+    },
+    {
+      "id": "supplementary-insurance-guide",
+      "slug": "supplementary-insurance-dental-guide",
+      "title": "راهنمای جامع پوشش‌های بیمه تکمیلی و تعرفه‌های دندان‌پزشکی در پاکدشت",
+      "mobileTitle": "راهنمای جامع پوشش‌های بیمه تکمیلی دندان‌پزشکی در پاکدشت",
+      "category": "مراقبت‌های پس از درمان",
+      "categorySlug": "care",
+      "mobileCategory": "بیمه، تعرفه و هزینه‌های درمان",
+      "summary": "چگونه از سقف تعهدات بیمه دانا، ایران، البرز، آسیا، آتیه‌سازان و بانک‌ها در کلینیک پارمیس استفاده کنیم و مدارک لازم برای دریافت حداکثری هزینه درمان چیست؟",
+      "mobileSummary": "مدارک و نحوه دریافت هزینه دندان‌پزشکی از بیمه‌های تکمیلی در پاکدشت.",
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBXwn8cDQYlkepS57KoU6_HRKkuYqrxhvGu1QxGTaa5srrto5lweISJxkriAggQ-Y9_c1VNa5ehiEZnZ3rUXC6x03_eqOEfGx1T0dhniTYsE-z_YheCg0FLUPciq_hChMDpIsk-Jkvpp5zJPpNrFezsO0c9I1ovhCCZDMAIy3mQmTUqjErpPeLm6PXBDZnKtKZNMvCmTkbJNeJrBezOLyRrY_VQA49uCnru-O8AmexznUdZvwmxVWpf",
+      "mobileImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuAjV-YlqJDURCATaJrS79TYIDbspjIaINosRHy5nKs6fT99BWSrYSvL-se0dEMsZ2a0eVXOdf5NykITYqCQ7zcBQoT1CLyuQ5PKPSw-yoj5cpuLqZSf4KVRCNgD_8HwkPyxSd-rDuqT5oO5mdgwjnpH4uy9NZlRBbjdHG5IxqnGqeUZ8zWRKS-D4UjVjD9zGxj2c_ZKAzOVXv1DwnkIIOW4G5PkEQaGNUtE4vsrQK7Zd2PX2xqvv41Z",
+      "readTime": "۳ دقیقه مطالعه",
+      "date": "۱۸ اسفند ۱۴۰۲",
+      "author": "واحد پذیرش و مالی",
+      "authorRole": "کلینیک دندان‌پزشکی پارمیس پاکدشت",
+      "tags": [
+        "بیمه_تکمیلی_پاکدشت",
+        "هزینه_درمان",
+        "فاکتور_معتبر",
+        "تعرفه_نظام_پزشکی"
+      ],
+      "isFeatured": false,
+      "metaTitle": "پوشش بیمه تکمیلی دندان‌پزشکی در پاکدشت | کلینیک پارمیس",
+      "metaDescription": "نحوه دریافت هزینه‌های دندانپزشکی از بیمه دانا، ایران، آسیا، البرز و سامان با فاکتور رسمی نظام پزشکی در کلینیک پارمیس پاکدشت.",
+      "introduction": "هزینه‌های دندان‌پزشکی همواره یکی از دغدغه‌های اصلی خانواده‌هاست. خوشبختانه بسیاری از شرکت‌ها، ارگان‌ها و سازمان‌ها با ارائه بیمه درمان تکمیلی بخش زیادی از این مخارج را پوشش می‌دهند. کلینیک دندان‌پزشکی پارمیس در پاکدشت برای تمامی خدمات درمانی ارائه‌شده، فاکتور رسمی معتبر ممهور به مهر نظام پزشکی و گواهی شرح درمان صادر می‌نماید تا مراجعین گرامی بتوانند سقف تعهدات بیمه خود را به طور کامل دریافت دارند.",
+      "executiveSummary": [
+        {
+          "title": "گواهی رسمی نظام پزشکی",
+          "desc": "صدور صورتحساب تفکیک‌شده و استاندارد با مهر رسمی پزشک مورد تایید تمامی شرکت‌های بیمه.",
+          "icon": "receipt_long"
+        },
+        {
+          "title": "تحویل فایل رادیوگرافی (RVG)",
+          "desc": "چاپ و ارسال تصاویر دیجیتال قبل و بعد از درمان که شرط الزامی تایید پرونده توسط کارشناس بیمه است.",
+          "icon": "badge"
+        },
+        {
+          "title": "پوشش خدمات درمانی گسترده",
+          "desc": "عصب‌کشی، ترمیم، جراحی دندان عقل، پروتز و دندان‌پزشکی کودکان تحت پوشش مستقیم اکثر بیمه‌ها.",
+          "icon": "health_and_safety"
+        },
+        {
+          "title": "طرح‌های پرداخت اقساطی",
+          "desc": "امکان تسویه مرحله‌ای در طول درمان برای جراحی ایمپلنت و ارتودنسی در کلینیک پارمیس.",
+          "icon": "payments"
+        }
+      ],
+      "content": [
+        "اکثر شرکت‌های بیمه تکمیلی (مانند بیمه ایران، دانا، آسیا، البرز، آتیه‌سازان حافظ، کارآفرین، معلم، سامان و بانک‌ها) قراردادهای متفاوتی با سقف‌های ریالی گوناگون با کارفرما منعقد می‌کنند. بنابراین اولین گام بررسی سقف سالانه قرارداد بیمه شماست.",
+        "برای تایید درمان‌های عصب‌کشی (Endo) و ترمیم دندان، ارائه عکس رادیوگرافی قبل از شروع کار و رادیوگرافی پایانی الزامی است. در کلینیک پارمیس سنسورهای دیجیتال RVG در همان لحظه عکس‌های لازم را ثبت و در پرونده ذخیره می‌سازند.",
+        "خدماتی که جنبه صرفاً درمانی دارند (مانند جراحی دندان‌های عقل نهفته، عصب‌کشی و پرکردگی همرنگ دندان) تحت پوشش تعهدات پایه اکثر بیمه‌ها هستند. درمان‌های ایمپلنت و ارتودنسی نیز در قراردادهای ارتقایافته پوشش داده می‌شوند.",
+        "واحد پذیرش کلینیک پارمیس پاکدشت مدارک درمانی را به صورت پکیج کامل آماده و تحویل شما می‌نماید تا نیازی به مراجعات مکرر نباشد."
+      ],
+      "tips": [
+        "همیشه رادیوگرافی‌های قبل از شروع کار را تا زمان دریافت کامل وجه از شعبه بیمه نزد خود نگه دارید.",
+        "قبل از شروع درمان‌های سنگین، میزان باقیمانده سقف ریالی بیمه تکمیلی خود را در سال جاری استعلام نمایید.",
+        "مهلت تحویل مدارک به اکثر شرکت‌های بیمه حداکثر ۶ ماه از تاریخ انجام خدمت درمانی است."
+      ],
+      "doctorQuote": {
+        "quote": "سلامت دهان یک سرمایه‌گذاری برای تمام طول عمر است. وظیفه ما در کلینیک پارمیس، ارائه بالاترین استاندارد کیفی در کنار شفافیت کامل مالی و ارائه مدارک دقیق بیمه‌ای برای آرامش خاطر مراجعین است.",
+        "doctorName": "دکتر انوشیروان شمس پور",
+        "doctorRole": "مسئول فنی و جراح دندان‌پزشک کلینیک پارمیس"
+      },
+      "comparisonTable": {
+        "title": "جدول پوشش خدمات مختلف دندان‌پزشکی در قراردادهای بیمه تکمیلی",
+        "subtitle": "مدارک و شرایط مورد نیاز شرکت‌های بیمه‌گر برای بازپرداخت هزینه‌ها",
+        "badge": "راهنمای بیمه‌ای مراجعین",
+        "col1Header": "پوشش عمومی در اکثر بیمه‌ها",
+        "col2Header": "مدارک بالینی الزامی جهت تایید",
+        "rows": [
+          {
+            "criterion": "عصب‌کشی (درمان ریشه دندان)",
+            "col1": "پوشش کامل تا سقف قرارداد (معمولاً ۱۰۰٪)",
+            "col2": "گواهی پزشک + عکس رادیوگرافی قبل و بعد کار"
+          },
+          {
+            "criterion": "ترمیم و پرکردن دندان (کامپوزیت/آمالگام)",
+            "col1": "پوشش کامل در تمامی طرح‌های بیمه‌ای",
+            "col2": "فاکتور نظام پزشکی با ذکر شماره دندان"
+          },
+          {
+            "criterion": "جراحی دندان عقل نهفته و نسج نرم",
+            "col1": "پوشش تحت سقف جراحی‌های سرپایی",
+            "col2": "عکس OPG پانورامیک کامل و گزارش جراحی"
+          },
+          {
+            "criterion": "جرم‌گیری و بروساژ هر دو فک",
+            "col1": "یک یا دو بار در سال طبق مفاد قرارداد",
+            "col2": "گواهی درمان ممهور به مهر دندان‌پزشک"
+          },
+          {
+            "criterion": "کاشت ایمپلنت و پروتز دندانی",
+            "col1": "بسته به قراردادهای سازمانی خاص",
+            "col2": "عکس قبل و بعد فیکسچر + فاکتور رسمی"
+          }
+        ]
+      },
+      "candidacy": {
+        "option1": {
+          "title": "چک‌لیست مدارک تحویلی از کلینیک پارمیس به بیماران:",
+          "items": [
+            "فاکتور رسمی با ذکر نام کامل بیمار، کدملی و تاریخ دقیق",
+            "شرح درمان به تفکیک شماره دندان‌های تحت معالجه",
+            "مهر نظام پزشکی و امضای رسمی دکتر انوشیروان شمس پور",
+            "فایل چاپی یا دیجیتال رادیوگرافی‌های قبل، حین و بعد درمان"
+          ]
+        },
+        "option2": {
+          "title": "تسهیلات مالی ویژه مراجعین کلینیک پارمیس پاکدشت:",
+          "items": [
+            "امکان پرداخت اقساطی متناسب با پیشرفت مراحل ایمپلنت و ارتودنسی",
+            "مشاوره و ویزیت اولیه رایگان برای ارزیابی طرح درمان",
+            "پیش‌فاکتور دقیق و شفاف قبل از شروع هرگونه اقدام درمانی"
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "آیا بیمه تکمیلی هزینه‌های کامپوزیت زیبایی یا لمینت را پرداخت می‌کند؟",
+          "answer": "به طور کلی بیمه‌های تکمیلی خدمات صرفاً زیبایی (Cosmetic) مانند ونیر کامپوزیت ۸ دندان قدامی یا لمینت را پوشش نمی‌دهند؛ اما اگر کامپوزیت برای پر کردن دندان پوسیده یا بازسازی دندان شکسته باشد، هزینه آن تحت عنوان ترمیم دندان پرداخت می‌شود."
+        },
+        {
+          "question": "چقدر طول می‌کشد تا هزینه پس از تحویل مدارک به حساب واریز شود؟",
+          "answer": "بسته به سرعت رسیدگی شرکت بیمه‌گر، معمولاً بین ۱۰ الی ۲۰ روز کاری پس از تحویل مدارک به شعبه بیمه، وجه به شماره شبای ثبت‌شده بیمار واریز می‌گردد."
+        },
+        {
+          "question": "آیا امکان دریافت معرفی‌نامه آنلاین مستقیم از کلینیک وجود دارد؟",
+          "answer": "در حال حاضر کلینیک پارمیس با صدور فوری صورتحساب‌های استاندارد نظام پزشکی، مدارک را آماده می‌سازد تا مراجعین بدون واسطه از سقف تعهدات نقدی بیمه‌گر خود بهره‌مند شوند."
+        }
+      ],
+      "views": 0
+    },
+    {
+      "id": "gum-recession-prevention",
+      "slug": "gum-recession-prevention-treatment",
+      "title": "چگونه از تحلیل لثه جلوگیری کنیم؟ نکات پیشگیری، علائم هشدار و درمان جراحی",
+      "mobileTitle": "چگونه از تحلیل لثه جلوگیری کنیم؟ نکات پیشگیری و درمان",
+      "category": "درمان ریشه و ترمیمی",
+      "categorySlug": "endodontics",
+      "mobileCategory": "پریودنتولوژی و سلامت لثه",
+      "summary": "حساسیت به آب سرد و نمایان شدن طوق ریشه دندان نشانه تحلیل استخوان و بافت لثه است. روش‌های پیوند بافت همبند، تکنیک صحیح مسواک زدن و درمان قطعی در پاکدشت.",
+      "mobileSummary": "راهکارهای علمی جلوگیری از تحلیل لثه و درمان حساسیت ریشه دندان در کلینیک پارمیس.",
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCSDNnDoIdcXacKU9urKTPb13pJ-URr3n2Q3VxvtLWc8MIERtOpPj2OQ9gym09aDvAmthcHcuU73TVmC-mzAoxIis6Sg7gFL2f7q1h0RgnW2o8MTGwAVtucYN5htDx_DYfgaJ_wju16CEm7p7NRAJyS3wj6DKlyNnoJrkWHRavU33NwHNXTPgXiEpcLXt_Ud9sqcuhBABiBUhvOXbSUdNwbIK0rfjQQghrkPuEOO61khXC1jkSMiv9p",
+      "mobileImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuBzm476byTv2gQzRhKrjVm4uC9_nd-nzXSeDCd3RSocJevwTap24Bc5JpHmcz7MVMTC2yOVqFW6jBM4J8Qqyvqmi0nYGRsdo5aN_7Wh3gPr2V4r4QFxGtXmcncRzD-6zZshxTMviOBoLWiq1_ETAFYcBQP7SjB4opGVONZohGzEomewLrrf81fDv9Os3sliQ2Dz6Gu7918447Z3OeYlbl9CXqrjMHhvYwuLF_cC2gkHNn_mvXkbHQ9g",
+      "readTime": "۶ دقیقه مطالعه",
+      "date": "۵ اسفند ۱۴۰۲",
+      "author": "دکتر انوشیروان شمس پور",
+      "authorRole": "جراح - دندان‌پزشک • کلینیک پارمیس پاکدشت",
+      "tags": [
+        "تحلیل_لثه",
+        "جراحی_پریودنتال",
+        "پیوند_لثه",
+        "حساسیت_دندان"
+      ],
+      "isFeatured": false,
+      "metaTitle": "علت و درمان تحلیل لثه در پاکدشت | کلینیک دندانپزشکی پارمیس",
+      "metaDescription": "بررسی علل تحلیل لثه، روش صحیح مسواک زدن، جراحی پیوند بافت لثه و پیشگیری از حساسیت طوق دندان توسط دکتر انوشیروان شمس پور.",
+      "introduction": "عقب‌نشینی لثه و بیرون افتادن طوق زرد رنگ ریشه دندان پدیده‌ای شایع است که علاوه بر ایجاد ظاهری نامطلوب (بلند به نظر رسیدن دندان‌ها)، باعث حساسیت شدید دندان به آب سرد، بستنی یا حتی هوای خنک زمستان می‌شود. بافت لثه مانند سپری محافظ از استخوان زیرین و ریشه دندان محافظت می‌کند؛ در صورت پیشرفت تحلیل لثه، استخوان فک نیز عقب‌نشینی کرده و در نهایت دندان سالم دچار لقی و از دست رفتن خواهد شد.",
+      "executiveSummary": [
+        {
+          "title": "مسواک زدن خشن و افقی",
+          "desc": "شایع‌ترین علت مکانیکی تحلیل لثه در افراد جوان، استفاده از مسواک‌های زبر و کشیدن افقی مسواک روی دندان‌هاست.",
+          "icon": "warning"
+        },
+        {
+          "title": "عفونت باکتریایی و جرم لثه",
+          "desc": "تجمع جرم‌های زیرلثه‌ای باعث تخریب التهابی بافت پریودنتال و استخوان نگهدارنده دندان می‌شود.",
+          "icon": "healing"
+        },
+        {
+          "title": "تکنیک صحیح مسواک (Bass)",
+          "desc": "حرکت جارویی دورانی با زاویه ۴۵ درجه از سمت لثه به سوی لبه تاج دندان بدون وارد کردن فشار خشن.",
+          "icon": "check_circle"
+        },
+        {
+          "title": "درمان‌های نوین پیوند لثه",
+          "desc": "پوشاندن مجدد ریشه‌های بیرون‌افتاده با تکنیک‌های میکروسرجری پیوند بافت همبند (CTG).",
+          "icon": "medical_services"
+        }
+      ],
+      "content": [
+        "ریشه دندان برخلاف تاج فاقد پوشش سخت مینا است و توسط لایه بسیار نازکی به نام سمان پوشیده شده است. وقتی لثه پس‌روی می‌کند، توبول‌های میکروسکوپی عاج دندان در معرض محیط دهان قرار گرفته و با کوچک‌ترین تغییر دما سیگنال درد را به عصب مخابره می‌کنند.",
+        "یکی از اشتباهات رایج بیماران این است که تصور می‌کنند مسواک زبرتر دندان را تمیزتر می‌کند! مسواک‌های Hard مانند سنباده بافت ظریف لثه چسبنده را ساییده و شیارهای عمیقی (V-shaped defects) در طوق دندان پدید می‌آورند.",
+        "در مراحل ابتدایی، با تصحیح روش مسواک زدن، استفاده از خمیردندان‌های ضدحساسیت و پرکردن شیارهای طوق دندان با گلاس‌آینومر یا نانوکامپوزیت، حساسیت کاملاً مهار می‌شود.",
+        "در موارد پیشرفته‌تر که ریشه به میزان زیادی نمایان شده است، با جراحی‌های کم‌تهاجمی پیوند لثه می‌توان بافت لثه را بازسازی کرد و دندان را از خطر لق شدن نجات داد."
+      ],
+      "tips": [
+        "همیشه از مسواک‌های با موی بسیار نرم (Soft یا Extra Soft) استفاده کنید و هر ۳ ماه یک‌بار مسواک خود را تعویض نمایید.",
+        "حرکت مسواک باید به صورت جارویی از سمت لثه به سمت تاج دندان باشد (نه اره‌کشی افقی روی طوق دندان‌ها).",
+        "دندان‌قروچه شبانه نیروی نامتعادلی به طوق دندان وارد می‌کند؛ در صورت ساییدن دندان‌ها در خواب از محافظ شبانه (نایت‌گارد) استفاده فرمایید."
+      ],
+      "doctorQuote": {
+        "quote": "لثه مانند پی یک ساختمان است؛ حتی اگر زیباترین تاج دندان را داشته باشید، بدون لثه سالم و استخوان مستحکم، دندان دوام نخواهد آورد. به محض احساس بلندی دندان یا حساسیت به آب سرد، برای چکاپ مراجعه فرمایید.",
+        "doctorName": "دکتر انوشیروان شمس پور",
+        "doctorRole": "جراح و دندان‌پزشک • کلینیک پارمیس پاکدشت"
+      },
+      "comparisonTable": {
+        "title": "جدول مراحل پیشرفت تحلیل لثه و روش‌های درمان متناسب با هر مرحله",
+        "subtitle": "ارزیابی شدت عقب‌نشینی بافت لثه و اقدامات کلینیکی لازم",
+        "badge": "پروتکل پریودنتال پارمیس",
+        "col1Header": "علائم بالینی در دهان",
+        "col2Header": "اقدام درمانی در کلینیک پارمیس",
+        "rows": [
+          {
+            "criterion": "مرحله ۱: تحلیل خفیف اولیه (کمتر از ۱ میلی‌متر)",
+            "col1": "حساسیت ملایم و گاه‌به‌گاه به آب سرد، بدون لقی",
+            "col2": "اصلاح روش مسواک، خمیردندان ضدحساسیت و وارنیش فلوراید"
+          },
+          {
+            "criterion": "مرحله ۲: تحلیل متوسط (۱ تا ۳ میلی‌متر)",
+            "col1": "نمایان شدن رنگ زرد ریشه و گیر کردن غذا در طوق دندان",
+            "col2": "جرم‌گیری زیرلثه‌ای و ترمیم شیارهای طوق با بیومتریال همرنگ"
+          },
+          {
+            "criterion": "مرحله ۳: تحلیل شدید و پیشرفته (بیش از ۳ میلی‌متر)",
+            "col1": "تحلیل استخوان، باز شدن فاصله بین دندان‌ها و شروع لقی",
+            "col2": "جراحی پیوند بافت همبند لثه (Connective Tissue Graft)"
+          },
+          {
+            "criterion": "مرحله ۴: تحلیل حاد همراه با عفونت عمیق",
+            "col1": "خروج چرک از لثه، لقی شدید دندان و بوی نامطبوع",
+            "col2": "جراحی فلپ پریودنتال، بازسازی با پودر استخوان یا جایگزینی با ایمپلنت"
+          }
+        ]
+      },
+      "candidacy": {
+        "option1": {
+          "title": "عوامل مستعدکننده تحلیل لثه در افراد:",
+          "items": [
+            "نازک بودن ژنتیکی تیپ بافتی لثه (Gingival Biotype)",
+            "نامرتبی شدید دندان‌ها و بیرون‌زدگی ریشه از قوس فک",
+            "استعمال دخانیات و قلیان که جریان خون مویرگی لثه را مسدود می‌کند",
+            "پیرسینگ لب و زبان که مدام به بافت لثه سایش مکانیکی وارد می‌سازد"
+          ]
+        },
+        "option2": {
+          "title": "نتایج حاصل از درمان موفق در کلینیک پارمیس:",
+          "items": [
+            "قطع کامل تیر کشیدن و حساسیت دندان به سرما و گرما",
+            "بازگشت هماهنگی خط لبخند صورتی (Pink Esthetics)",
+            "تثبیت استخوان فک و ممانعت قطعی از لق شدن دندان در آینده",
+            "تسهیل تمیز کردن دندان‌ها با مسواک و نخ دندان"
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "آیا لثه‌ای که عقب‌نشینی کرده می‌تواند خودبه‌خود دوباره رشد کند؟",
+          "answer": "خیر؛ متاسفانه بافت لثه چسبنده و استخوان از دست‌رفته به خودی خود رشد مجدد ندارند. با اصلاح مسواک می‌توان جلوی پیشرفت آن را گرفت، اما برای پوشاندن مجدد ریشه تنها راهکار جراحی پیوند بافت لثه است."
+        },
+        {
+          "question": "جراحی پیوند لثه چگونه انجام می‌شود و دوره نقاهت آن چقدر است؟",
+          "answer": "در این عمل که تحت بی‌حسی کامل انجام می‌شود، لایه بسیار ظریفی از بافت سقف دهان برداشته شده و در محل تحلیل‌رفته پیوند زده می‌شود. ترمیم اولیه ظرف ۷ الی ۱۰ روز رخ می‌دهد و بهبودی کامل حدود چند هفته زمان می‌برد."
+        },
+        {
+          "question": "چه خمیردندانی برای برطرف شدن حساسیت طوق دندان موثر است؟",
+          "answer": "خمیردندان‌های حاوی نیترات پتاسیم یا استرانسیوم کلراید با مسدود کردن منافذ عاجی دندان، انتقال سیگنال درد به عصب را مهار می‌کنند. مصرف این خمیردندان‌ها باید حداقل به مدت ۲ تا ۳ هفته مداوم ادامه یابد."
+        }
+      ],
+      "views": 0
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq-1",
+      "question": "نحوه دریافت نوبت در دندان‌پزشکی پارمیس چگونه است؟",
+      "answer": "جهت برقراری هماهنگی و رزرو نوبت ویزیت یا درمان، کافی است در ساعات کاری با شماره‌های مستقیم مطب ۰۲۱۳۶۰۴۸۵۸۱ و ۰۲۱۳۶۰۴۸۵۸۲ تماس حاصل فرمایید تا کارشناسان پذیرش مناسب‌ترین زمان را برای شما هماهنگ کنند.",
+      "icon": "help_outline"
+    },
+    {
+      "id": "faq-2",
+      "question": "آیا درمان‌های دندان‌پزشکی همراه با درد انجام می‌شوند؟",
+      "answer": "خیر، با بهره‌گیری از داروهای بی‌حسی موضعی باکیفیت و متدهای تزریق تدریجی و آرام توسط دکتر انوشیروان شمس پور، درمان‌ها به شیوه‌ای کاملاً کنترل‌شده و با حداقل احساس ناخوشایند انجام خواهند شد."
+    },
+    {
+      "id": "faq-3",
+      "question": "درمان‌های کامپوزیت و زیبایی چند جلسه زمان می‌برند؟",
+      "answer": "بیشتر درمان‌های کامپوزیت ونیر معمولاً در یک یا دو جلسه پس از معاینه اولیه و بررسی سلامت لثه‌ها تکمیل می‌گردند. لمینت‌های سرامیکی نیازمند مرحله قالب‌گیری و ساخت لابراتواری بوده و طی ۲ الی ۳ جلسه تحویل داده می‌شوند."
+    },
+    {
+      "id": "faq-4",
+      "question": "وضعیت صدور فاکتور برای بیمه‌های تکمیلی چگونه است؟",
+      "answer": "پس از انجام درمان، گواهی معتبر با مهر نظام پزشکی دکتر انوشیروان شمس پور به همراه شرح دقیق خدمات جهت دریافت هزینه از کلیه شرکت‌های بیمه تکمیلی به مراجعین ارائه می‌گردد."
+    }
+  ],
+  "mobileFaqs": [
+    {
+      "id": "faq-1",
+      "question": "نحوه دریافت نوبت در دندان‌پزشکی پارمیس چگونه است؟",
+      "answer": "جهت برقراری هماهنگی و رزرو نوبت ویزیت یا درمان، کافی است در ساعات کاری با شماره‌های مستقیم مطب ۰۲۱۳۶۰۴۸۵۸۱ و ۰۲۱۳۶۰۴۸۵۸۲ تماس حاصل فرمایید تا کارشناسان پذیرش مناسب‌ترین زمان را برای شما هماهنگ کنند.",
+      "icon": "help_outline"
+    },
+    {
+      "id": "faq-2",
+      "question": "آیا درمان‌های دندان‌پزشکی همراه با درد انجام می‌شوند؟",
+      "answer": "خیر، با بهره‌گیری از داروهای بی‌حسی موضعی باکیفیت و متدهای تزریق تدریجی و آرام توسط دکتر انوشیروان شمس پور، درمان‌ها به شیوه‌ای کاملاً کنترل‌شده و با حداقل احساس ناخوشایند انجام خواهند شد."
+    },
+    {
+      "id": "faq-3",
+      "question": "درمان‌های کامپوزیت و زیبایی چند جلسه زمان می‌برند؟",
+      "answer": "بیشتر درمان‌های کامپوزیت ونیر معمولاً در یک یا دو جلسه پس از معاینه اولیه و بررسی سلامت لثه‌ها تکمیل می‌گردند. لمینت‌های سرامیکی نیازمند مرحله قالب‌گیری و ساخت لابراتواری بوده و طی ۲ الی ۳ جلسه تحویل داده می‌شوند."
+    },
+    {
+      "id": "faq-4",
+      "question": "وضعیت صدور فاکتور برای بیمه‌های تکمیلی چگونه است؟",
+      "answer": "پس از انجام درمان، گواهی معتبر با مهر نظام پزشکی دکتر انوشیروان شمس پور به همراه شرح دقیق خدمات جهت دریافت هزینه از کلیه شرکت‌های بیمه تکمیلی به مراجعین ارائه می‌گردد."
+    }
+  ],
+  "blogCategories": [
+    {
+      "id": "all",
+      "label": "همه مقالات",
+      "icon": "grid_view"
+    },
+    {
+      "id": "cosmetic",
+      "label": "زیبایی (کامپوزیت و لمینت)",
+      "icon": "auto_awesome"
+    },
+    {
+      "id": "implant",
+      "label": "ایمپلنت و جراحی فک",
+      "icon": "healing"
+    },
+    {
+      "id": "endodontics",
+      "label": "درمان ریشه و ترمیمی",
+      "icon": "medical_services"
+    },
+    {
+      "id": "hygiene",
+      "label": "بهداشت و پیشگیری",
+      "icon": "clean_hands"
+    },
+    {
+      "id": "care",
+      "label": "مراقبت‌های پس از درمان",
+      "icon": "assignment_turned_in"
+    },
+    {
+      "id": "pediatric",
+      "label": "دندان‌پزشکی کودکان",
+      "icon": "child_care"
+    }
+  ],
+  "trendingTags": [
+    "#ایمپلنت_دندان",
+    "#لمینت_سرامیکی",
+    "#کامپوزیت_ونیر",
+    "#عصب‌کشی_بدون_درد",
+    "#دندان‌پزشکی_کودکان",
+    "#مراقبت‌های_جراحی",
+    "#بلیچینگ_دندان",
+    "#بیمه_تکمیلی_پاکدشت"
+  ],
+  "quickHealthTips": [
+    {
+      "id": "tip-emergency",
+      "title": "چه زمانی درد دندان اورژانسی است؟",
+      "description": "درد ضربان‌دار مداوم شبانه، تورم فک یا گونه و تب از نشانه‌های انتشار عفونت است و باید سریعاً به کلینیک مراجعه نمایید. از گذاشتن قرص آسپرین روی لثه خودداری کنید.",
+      "badge": "نیاز به مداخله ۲۴ ساعته",
+      "badgeType": "error",
+      "icon": "emergency"
+    },
+    {
+      "id": "tip-electric-brush",
+      "title": "مسواک برقی یا دستی؛ کدام بهتر است؟",
+      "description": "تحقیقات نشان می‌دهند مسواک‌های برقی با لرزش صوتی پلاک‌های میکروبی را ۲۱٪ بیشتر حذف می‌کنند و برای افراد دارای ارتودنسی، ایمپلنت و افراد کم‌توان بهترین بازدهی را دارند.",
+      "badge": "توصیه انجمن دندان‌پزشکان",
+      "badgeType": "primary",
+      "icon": "electric_bolt"
+    },
+    {
+      "id": "tip-composite-brands",
+      "title": "بهترین برندهای کامپوزیت کدامند؟",
+      "description": "در کلینیک پارمیس پاکدشت منحصراً از برندهای برتر توکویاما (Tokuyama ژاپن)، ایوکلار (Ivoclar آلمان/سوئیس) و گرادیای ژاپن به دلیل درخشندگی بالا و مقاومت سایشی عالی استفاده می‌شود.",
+      "badge": "ضمانت متریال اورجینال",
+      "badgeType": "tertiary",
+      "icon": "verified_user"
+    }
+  ],
+  "treatments": [
+    {
+      "id": "composite-veneer",
+      "name": "کامپوزیت ونیر نانوسرامیک",
+      "category": "cosmetic",
+      "unit": "دندان",
+      "basePricePerUnitTomans": 2200000,
+      "minUnits": 1,
+      "maxUnits": 16,
+      "defaultUnits": 8,
+      "sessionsEstimate": 1,
+      "durationMinutesPerSession": 180,
+      "description": "اصلاح طرح لبخند و فرم‌دهی دندان‌ها با متریال باکیفیت ژاپنی و آلمانی"
+    },
+    {
+      "id": "ceramic-laminate",
+      "name": "لمینت سرامیکی (E-max)",
+      "category": "cosmetic",
+      "unit": "دندان",
+      "basePricePerUnitTomans": 5500000,
+      "minUnits": 1,
+      "maxUnits": 16,
+      "defaultUnits": 8,
+      "sessionsEstimate": 2,
+      "durationMinutesPerSession": 90,
+      "description": "لمینت مقاوم و شفاف با ظاهری طبیعی و ماندگاری بالای ۱۰ سال"
+    },
+    {
+      "id": "dental-implant",
+      "name": "ایمپلنت و کاشت تخصصی",
+      "category": "implant",
+      "unit": "واحد",
+      "basePricePerUnitTomans": 11000000,
+      "minUnits": 1,
+      "maxUnits": 12,
+      "defaultUnits": 1,
+      "sessionsEstimate": 3,
+      "durationMinutesPerSession": 60,
+      "description": "فیکسچر سوئیسی/کره‌ای به همراه روکش تمام‌سرامیک زیرکونیا"
+    },
+    {
+      "id": "root-canal-molar",
+      "name": "درمان ریشه (عصب‌کشی دندان آسیاب)",
+      "category": "endodontics",
+      "unit": "دندان",
+      "basePricePerUnitTomans": 2800000,
+      "minUnits": 1,
+      "maxUnits": 4,
+      "defaultUnits": 1,
+      "sessionsEstimate": 1,
+      "durationMinutesPerSession": 60,
+      "description": "درمان با دستگاه روتاری دیجیتال و پاکسازی کامل کانال‌های عفونی"
+    },
+    {
+      "id": "bleaching-office",
+      "name": "بلیچینگ مطب (هر دو فک)",
+      "category": "cosmetic",
+      "unit": "پکیج",
+      "basePricePerUnitTomans": 3500000,
+      "minUnits": 1,
+      "maxUnits": 1,
+      "defaultUnits": 1,
+      "sessionsEstimate": 1,
+      "durationMinutesPerSession": 60,
+      "description": "سفیدکردن فوری با ژل فعال شونده تحت نور تخصصی بدون آسیب به مینا"
+    },
+    {
+      "id": "scaling-polishing",
+      "name": "جرم‌گیری اولتراسونیک و بروساژ",
+      "category": "general",
+      "unit": "هر دو فک",
+      "basePricePerUnitTomans": 900000,
+      "minUnits": 1,
+      "maxUnits": 1,
+      "defaultUnits": 1,
+      "sessionsEstimate": 1,
+      "durationMinutesPerSession": 40,
+      "description": "حذف کامل پلاک و جرم‌های میکروبی و صیقلی‌سازی سطوح دندان"
+    },
+    {
+      "id": "pediatric-fluoride",
+      "name": "فلورایدتراپی و فیشورسیلانت اطفال",
+      "category": "pediatric",
+      "unit": "دندان",
+      "basePricePerUnitTomans": 650000,
+      "minUnits": 1,
+      "maxUnits": 8,
+      "defaultUnits": 4,
+      "sessionsEstimate": 1,
+      "durationMinutesPerSession": 30,
+      "description": "شیاربندی و پوشش محافظتی جهت پیشگیری قطعی از پوسیدگی دندان کودکان"
+    }
+  ],
+  "doctor": {
+    "name": "دکتر انوشیروان شمس پور",
+    "title": "دکتر انوشیروان شمس پور",
+    "role": "مسئول فنی و سرپرست درمان کلینیک پارمیس",
+    "specialty": "جراح - دندان‌پزشک | شماره نظام پزشکی معتبر",
+    "city": "پاکدشت",
+    "experienceYears": "+۱۰ سال",
+    "successfulTreatments": "+۵,۰۰۰",
+    "image": "/uploads/photo_2026-10-18_21-28-58-1792346391612-941489.jpg",
+    "bio": "دکتر انوشیروان شمس پور با سال‌ها تجربه بالینی درخشان و بهره‌گیری از پروتکل‌های درمانی مدرن، اصل کاری خود را بر پایه «صداقت در تشخیص و اولویت حفظ حداکثری دندان طبیعی بیمار» بنا نهاده است. کلیه مراحل درمانی در محیطی کاملاً استریل، آرام و مجهز به جدیدترین فناوری‌های تشخیصی روز انجام می‌شود.",
+    "highlights": [
+      {
+        "title": "سابقه بالینی مستمر",
+        "desc": "بیش از ۱۰ سال تجربه درمان‌های تخصصی جراحی و زیبایی"
+      },
+      {
+        "title": "درمان‌های موفق",
+        "desc": "ثبت بیش از ۵ هزار پرونده درمانی رضایت‌بخش در پاکدشت"
+      },
+      {
+        "title": "استریلیزاسیون پیشرفته",
+        "desc": "بهره‌گیری از اتوکلاو کلاس B بیمارستانی و پک‌های استریل یک‌بارمصرف"
+      },
+      {
+        "title": "رادیوگرافی دیجیتال کم‌پرتو",
+        "desc": "سنسور RVG با بالاترین وضوح و حداقل میزان تابش اشعه"
+      }
+    ],
+    "medicalCouncilCode": "0",
+    "medicalLicenseLink": "https://membersearch.irimc.org/",
+    "imageUrl": "/uploads/photo_2026-10-18_21-28-58-1792346391612-941489.jpg",
+    "bioFull": "",
+    "quote": "اولویت اول در کلینیک پارمیس همواره نجات و حفظ دندان طبیعی بیمار با حداقل تهاجم و بدون درد است.",
+    "phone": "02136048581"
+  },
+  "about": {
+    "heading": "تعهد به سلامت دهان و آفرینش لبخند طبیعی در پاکدشت",
+    "description": "با بیش از یک دهه سابقه بالینی درخشان در ارائه خدمات تخصصی دهان و دندان، رویکرد ما در کلینیک پارمیس متکی بر دندان‌پزشکی کم‌تهاجمی (بیومیمتیک)، حفظ حداکثری بافت طبیعی دندان، بهره‌گیری از معتبرترین متریال‌های استاندارد اروپا و به صفر رساندن استرس و درد در طول درمان است.",
+    "metrics": [
+      {
+        "label": "تجربه بالینی مستمر",
+        "value": "+۱۰ سال"
+      },
+      {
+        "label": "مراجع راضی در پاکدشت",
+        "value": "+۵۰۰۰"
+      },
+      {
+        "label": "استریلیزاسیون بیمارستانی",
+        "value": "کلاس B"
+      },
+      {
+        "label": "حداقل تابش اشعه X",
+        "value": "RVG دیجیتال"
+      }
+    ],
+    "principles": [
+      {
+        "title": "حفظ دندان طبیعی",
+        "desc": "اولویت اول در کلینیک پارمیس همواره نجات و حفظ دندان طبیعی بیمار است و کشیدن دندان آخرین گزینه خواهد بود."
+      },
+      {
+        "title": "درمان بدون استرس و درد",
+        "desc": "با استفاده از بی‌حسی‌های موضعی مدرن و تکنیک‌های آرام‌بخش، ترس از دندانپزشکی را برطرف می‌کنیم."
+      },
+      {
+        "title": "متریال استاندارد اروپایی",
+        "desc": "استفاده انحصاری از برندهای دارای تاییدیه CE اروپا و FDA آمریکا در ایمپلنت و مواد زیبایی."
+      },
+      {
+        "title": "شفافیت مالی و طرح درمان",
+        "desc": "ارائه طرح درمان مکتوب همراه با پیش‌فاکتور دقیق و صدور فاکتور رسمی بیمه تکمیلی قبل از شروع هر درمان."
+      }
+    ]
+  },
+  "hero": {
+    "badge": "کلینیک دندان‌پزشکی پارمیس • پاکدشت",
+    "title": "لبخندی زیبا، سالم و ماندگار با مدرن‌ترین استانداردهای دندان‌پزشکی",
+    "description": "درمان‌های تخصصی و زیبایی دندان با پیشرفته‌ترین تکنولوژی‌های روز، بدون درد و با اولویت حفظ حداکثری دندان طبیعی تحت نظر دکتر انوشیروان شمس پور.",
+    "ctaPrimary": "درخواست و رزرو نوبت ویزیت",
+    "ctaSecondary": "مشاهده خدمات تخصصی",
+    "metrics": [
+      {
+        "label": "رضایت بیماران",
+        "value": "۹۹.۴٪"
+      },
+      {
+        "label": "درمان موفق در پاکدشت",
+        "value": "+۵,۰۰۰"
+      },
+      {
+        "label": "سابقه درخشان بالینی",
+        "value": "+۱۰ سال"
+      }
+    ]
+  },
+  "contact": {
+    "address": "پاکدشت، بلوار شهدای قمی، میدان علی ابن ابیطالب، ابتدای بلوار علی ابن ابیطالب، مجتمع پزشکی راستین، طبقه دوم، کلینیک دندان‌پزشکی پارمیس",
+    "shortAddress": "پاکدشت، بلوار شهدای قمی، میدان علی ابن ابیطالب، ابتدای بلوار علی ابن ابیطالب، مجتمع پزشکی راستین، طبقه دوم",
+    "phone1": "02136048581",
+    "phone2": "02136048582",
+    "workingHours": "شنبه تا پنج‌شنبه (با هماهنگی و تعیین وقت قبلی)",
+    "workingHoursDetail": "شنبه تا چهارشنبه: ۹:۰۰ الی ۲۰:۳۰ | پنج‌شنبه‌ها: ۹:۰۰ الی ۱۶:۰۰",
+    "googleMapsUrl": "https://maps.app.goo.gl/mW3LBkEkswiF6HBZ8?g_st=ac",
+    "neshanUrl": "https://nshn.ir/fcsbQMQhQxn5EY",
+    "baladUrl": "https://balad.ir/location?latitude=35.483203&longitude=51.680118&zoom=16.500000",
+    "transitGuide": {
+      "metro": "نزدیک‌ترین ایستگاه مترو: ایستگاه مترو فرهنگسرا یا پیروزی (سپس تاکسی‌های خطی پاکدشت / میدان قدس)",
+      "bus": "پایانه مسافربری پاکدشت و ایستگاه اتوبوس‌های بین‌شهری خاوران - پاکدشت، پیاده‌روی ۵ دقیقه‌ای تا میدان علی ابن ابیطالب",
+      "car": "دسترسی سریع از بزرگراه امام رضا (ع) به بلوار شهدای قمی و میدان علی ابن ابیطالب با پارکینگ اختصاصی در مجتمع پزشکی راستین"
+    }
+  },
+  "appointments": [],
+  "media": [
+    {
+      "id": "med-1792411695724",
+      "filename": "photo_2026-10-18_21-28-58-1792411695715-29730.jpg",
+      "originalName": "photo_2026-10-18_21-28-58.jpg",
+      "url": "/uploads/photo_2026-10-18_21-28-58-1792411695715-29730.jpg",
+      "alt": "photo_2026-10-18_21-28-58.jpg",
+      "title": "تصویر testimonial",
+      "mimeType": "image/jpeg",
+      "size": 252162,
+      "createdAt": "2026-10-19T12:08:15.724Z",
+      "category": "gallery"
+    },
+    {
+      "id": "med-1792411654839",
+      "filename": "cbf60823bb1c5cd7146d80dcf91bc82155062880-144p-1792411654828-924547.mp4",
+      "originalName": "cbf60823bb1c5cd7146d80dcf91bc82155062880-144p.mp4",
+      "url": "/uploads/cbf60823bb1c5cd7146d80dcf91bc82155062880-144p-1792411654828-924547.mp4",
+      "alt": "cbf60823bb1c5cd7146d80dcf91bc82155062880-144p.mp4",
+      "title": "cbf60823bb1c5cd7146d80dcf91bc82155062880-144p.mp4",
+      "mimeType": "video/mp4",
+      "size": 74725,
+      "createdAt": "2026-10-19T12:07:34.839Z",
+      "category": "upload"
+    },
+    {
+      "id": "site-headerLogo",
+      "filename": "photo_2026-10-18_21-28-58-1792346353797-398508.jpg",
+      "originalName": "تصویر لوگو و آواتار پزشک در هدر",
+      "url": "/uploads/photo_2026-10-18_21-28-58-1792346353797-398508.jpg",
+      "alt": "لوگوی کلینیک دندان‌پزشکی پارمیس - دکتر انوشیروان شمس پور",
+      "title": "تصویر لوگو و آواتار پزشک در هدر",
+      "mimeType": "image/jpeg",
+      "size": 252162,
+      "createdAt": "2026-10-18T17:45:45.669Z",
+      "category": "site",
+      "targetKey": "headerLogo"
+    },
+    {
+      "id": "site-heroMainImage",
+      "filename": "AB6AXuCPFaA_datw-F1_DHr1TUtJBECQSwTHSr9-64n9RfKP82zD_STvCU_gm9KEbvVzsBkAjDTVR-Ih7KjWJV8AAjmdigBg_QEEmCwIEv6T1VKv-N5kydIMDGZiXjHdIvUrWF6-uPWBkIF9Yzcqa0QdTljTmYHWcOpoe0zdoADgFkuL7rrs8wffQEuRpAUFtsJvt3pc_qNty70FZofnDU1F2ERSvbfZUobOYGPcFX_T8Nyclpzi20d6sp22",
+      "originalName": "تصویر اصلی بنر صفحه نخست (Hero)",
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuCPFaA_datw-F1_DHr1TUtJBECQSwTHSr9-64n9RfKP82zD_STvCU_gm9KEbvVzsBkAjDTVR-Ih7KjWJV8AAjmdigBg_QEEmCwIEv6T1VKv-N5kydIMDGZiXjHdIvUrWF6-uPWBkIF9Yzcqa0QdTljTmYHWcOpoe0zdoADgFkuL7rrs8wffQEuRpAUFtsJvt3pc_qNty70FZofnDU1F2ERSvbfZUobOYGPcFX_T8Nyclpzi20d6sp22",
+      "alt": "محیط مدرن و یونیت کلینیک دندان‌پزشکی پارمیس در پاکدشت",
+      "title": "تصویر اصلی بنر صفحه نخست (Hero)",
+      "mimeType": "image/jpeg",
+      "size": 100000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "site",
+      "targetKey": "heroMainImage"
+    },
+    {
+      "id": "site-clinicEquipmentImage",
+      "filename": "AB6AXuA4eZSRbpCc4iM2eEyXnmCwHDyzkzPhf6Fcza35-sdb83oUdkmJMgN4NzlqVQ6e1qwz4Mdd3c4AsgTXLUJz2ET_L2fbW30BNHsMV0iyDeXqTVMt_4Q6DNfkdPl4_-GeQbwZXGbg5EeBVu1tQf5gkz2EUpxl73fBAJSeH2zz-QcLn2i6cSpkg4URN9JI3uh8QsXTcMqviHoPqXlMSXP12zfUBPevfAx3ye8krZ8r9hwI5yd9Dm7JNIxf",
+      "originalName": "تصویر اتاق درمان و تجهیزات تخصصی",
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuA4eZSRbpCc4iM2eEyXnmCwHDyzkzPhf6Fcza35-sdb83oUdkmJMgN4NzlqVQ6e1qwz4Mdd3c4AsgTXLUJz2ET_L2fbW30BNHsMV0iyDeXqTVMt_4Q6DNfkdPl4_-GeQbwZXGbg5EeBVu1tQf5gkz2EUpxl73fBAJSeH2zz-QcLn2i6cSpkg4URN9JI3uh8QsXTcMqviHoPqXlMSXP12zfUBPevfAx3ye8krZ8r9hwI5yd9Dm7JNIxf",
+      "alt": "تجهیزات دندان‌پزشکی و یونیت جراحی کلینیک پارمیس",
+      "title": "تصویر اتاق درمان و تجهیزات تخصصی",
+      "mimeType": "image/jpeg",
+      "size": 100000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "site",
+      "targetKey": "clinicEquipmentImage"
+    },
+    {
+      "id": "site-doctorProfileImage",
+      "filename": "photo_2026-10-18_21-28-58-1792346391612-941489.jpg",
+      "originalName": "پرتره رسمی دکتر انوشیروان شمس پور",
+      "url": "/uploads/photo_2026-10-18_21-28-58-1792346391612-941489.jpg",
+      "alt": "دکتر انوشیروان شمس پور جراح و دندانپزشک در پاکدشت",
+      "title": "پرتره رسمی دکتر انوشیروان شمس پور",
+      "mimeType": "image/jpeg",
+      "size": 252162,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "site",
+      "targetKey": "doctorProfileImage"
+    },
+    {
+      "id": "site-mapPreviewImage",
+      "filename": "AB6AXuC8R3q-m6biXlpO7DVycxHmqcNT_QFcBsrU1786ZHCW0VGFIct0xTksc6ThpNzl4UE1edGk6rNhHOH7WE238hsY2i07aeGlHxsu8Psnpqp36L5kXTdJMbITMta3l6la2zCfbtWFFAq5Rtzmopfb3YkLXviWvA1-wgcxITowC_Qlf1KXV2u7TiWNR1ilYLK5ePobi9LrNt70eeC5wsXdymV2_-wGXA65t86B8OlEsYkYyoh92a9E3NHP",
+      "originalName": "پیش‌نمایش نقشه کلینیک",
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuC8R3q-m6biXlpO7DVycxHmqcNT_QFcBsrU1786ZHCW0VGFIct0xTksc6ThpNzl4UE1edGk6rNhHOH7WE238hsY2i07aeGlHxsu8Psnpqp36L5kXTdJMbITMta3l6la2zCfbtWFFAq5Rtzmopfb3YkLXviWvA1-wgcxITowC_Qlf1KXV2u7TiWNR1ilYLK5ePobi9LrNt70eeC5wsXdymV2_-wGXA65t86B8OlEsYkYyoh92a9E3NHP",
+      "alt": "موقعیت مکانی کلینیک پارمیس پاکدشت روی نقشه",
+      "title": "پیش‌نمایش نقشه کلینیک",
+      "mimeType": "image/jpeg",
+      "size": 100000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "site",
+      "targetKey": "mapPreviewImage"
+    },
+    {
+      "id": "site-waitingRoomImage",
+      "filename": "photo-1519494026892-80bbd2d6fd0d",
+      "originalName": "سالن انتظار مراجعین",
+      "url": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "alt": "سالن انتظار آرام و مدرن کلینیک پارمیس پاکدشت",
+      "title": "سالن انتظار مراجعین",
+      "mimeType": "image/jpeg",
+      "size": 100000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "site",
+      "targetKey": "waitingRoomImage"
+    },
+    {
+      "id": "site-sterilizationImage",
+      "filename": "photo-1584515979956-d9f6e5d09982",
+      "originalName": "اتاق استریلیزاسیون بیمارستانی (CSR)",
+      "url": "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80",
+      "alt": "دستگاه اتوکلاو کلاس B و تجهیزات استریلیزاسیون کلینیک پارمیس",
+      "title": "اتاق استریلیزاسیون بیمارستانی (CSR)",
+      "mimeType": "image/jpeg",
+      "size": 100000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "site",
+      "targetKey": "sterilizationImage"
+    },
+    {
+      "id": "site-servicesBannerImage",
+      "filename": "photo-1606811841689-23dfddce3e95",
+      "originalName": "بنر صفحه خدمات تخصصی",
+      "url": "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=80",
+      "alt": "خدمات تخصصی دندانپزشکی کلینیک پارمیس پاکدشت",
+      "title": "بنر صفحه خدمات تخصصی",
+      "mimeType": "image/jpeg",
+      "size": 100000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "site",
+      "targetKey": "servicesBannerImage"
+    },
+    {
+      "id": "site-editorPickDoctorAvatar",
+      "filename": "photo_2026-10-18_21-28-58-1792346391612-941489.jpg",
+      "originalName": "تصویر آواتار پزشک در مقاله منتخب سردبیر",
+      "url": "/uploads/photo_2026-10-18_21-28-58-1792346391612-941489.jpg",
+      "alt": "دکتر انوشیروان شمس پور - مقاله منتخب سردبیر",
+      "title": "تصویر آواتار پزشک در مقاله منتخب سردبیر",
+      "mimeType": "image/jpeg",
+      "size": 252162,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "site",
+      "targetKey": "editorPickDoctorAvatar"
+    },
+    {
+      "id": "gal-bleaching-image",
+      "filename": "before-bleaching.jpg",
+      "originalName": "تصویر درمان: بلیچینگ و سفیدکردن دندان",
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAgvab7UgT4Y1Ai2FOYC7LIWG8_NPSojhfA3vA0lvRM20w3B0LVQqVOFANpMpKE93sC2ZSUcNVAFvQjnyT-x-cy0xndAKcvd_lcnbvefkCj99TkULspfJgqxlteZ4BkvN7jURVwLxZdXxL439vq02W2hxuo2o4XW8nY6vh-9jqXaIt54ay31ZygfsFs0Hd5yq97RwC7XZnff2AWts1gFuegS5tO-isoP6Z4g8E6D1BmQR4v0Bw1H3aw",
+      "alt": "نمونه درمان - بلیچینگ و سفیدکردن دندان (قبل از درمان)",
+      "title": "تصویر اصلی: بلیچینگ و سفیدکردن دندان",
+      "mimeType": "image/jpeg",
+      "size": 95000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "gallery",
+      "targetId": "bleaching",
+      "targetField": "image"
+    },
+    {
+      "id": "gal-bleaching-mobileImage",
+      "filename": "after-bleaching.jpg",
+      "originalName": "تصویر نتیجه: بلیچینگ و سفیدکردن دندان",
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAorbQVoj3UcKzLzSRqSk5Qo8Rrxiy68DZtIa1ad5cH_9h0VS2mtpgq8l660-gAaNMaen-oyvroBzUweCX1Xy5VieFNG9949I9ghTucb7dXdgJqjajbbwuc2NzRUG7IJZwX8d0i66-Y0bPnphby7MMaEonvzLw_wY77cpNZMaWbfrkuIrGb9vF_XkrVV-i74R-3ep665kRL9hqaWEe-VTpYnupX5pFo0dpf0hX6P95icWtHD7hjowbF",
+      "alt": "نتیجه درمان - بلیچینگ و سفیدکردن دندان (بعد از درمان)",
+      "title": "تصویر نتیجه: بلیچینگ و سفیدکردن دندان",
+      "mimeType": "image/jpeg",
+      "size": 98000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "gallery",
+      "targetId": "bleaching",
+      "targetField": "mobileImage"
+    },
+    {
+      "id": "gal-implant-image",
+      "filename": "before-implant.jpg",
+      "originalName": "تصویر درمان: ایمپلنت و کاشت دندان",
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuB2WutJ1Xenz3N-v1E6ywEJ5MT5_fhDQBAnmbdpJGoNwFVJmnDEjTjO18yp54uBETGITl3SjQItDrQVtlNj_rfFY7otylZsxMRrGJ_fptvoLKenb-JHGF9umxm-6n8OKVF8vOJjm3sVLrI2Zf1X4bchcfgL2XZeWY_jKFI_QpAyamfRhOLp6qp_ZDWAOb6KVWxAMtWYuFnDoeUyox11SR7Z3IeZIQMxLsuJVdbTXJychrzaXj35yG_Y",
+      "alt": "نمونه درمان - ایمپلنت و کاشت دندان (قبل از درمان)",
+      "title": "تصویر اصلی: ایمپلنت و کاشت دندان",
+      "mimeType": "image/jpeg",
+      "size": 95000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "gallery",
+      "targetId": "implant",
+      "targetField": "image"
+    },
+    {
+      "id": "gal-implant-mobileImage",
+      "filename": "after-implant.jpg",
+      "originalName": "تصویر نتیجه: ایمپلنت و کاشت دندان",
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuCsf6XPsv-27kjwmM-MNaTExUjHcVRGypuXsyavcbN2O50SiDviPM03hYDMRdIoeU2Xb76N56bc0KtwFTUxJS18uUD6Zi_g2hn8Z2L-dZFV-KGOv3GM7-OttYb6kDjsOpSavRelCAmPaVVbcR-VQTsKK9a3YDQmw-ubBbJpB9133rnXahcxT2fIQ0BQNdfYs4B8a61JzVsXE9jtYCUzkLeXPd-kU4uVDXzTUygCCI7ZFzdVfTPMw19V",
+      "alt": "نتیجه درمان - ایمپلنت و کاشت دندان (بعد از درمان)",
+      "title": "تصویر نتیجه: ایمپلنت و کاشت دندان",
+      "mimeType": "image/jpeg",
+      "size": 98000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "gallery",
+      "targetId": "implant",
+      "targetField": "mobileImage"
+    },
+    {
+      "id": "gal-composite-smile-image",
+      "filename": "before-composite-smile.jpg",
+      "originalName": "تصویر درمان: کامپوزیت و اصلاح طرح لبخند",
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuBzKy3ALLpuz6hr2Px8u5QsUvXikbG24bQXi24wYPsurV_UPHBGq6HCDxKq5qYX4KxNgbyVqoDy7YiJPs4ikXZawSlkSFIt56bXmYJEueciG3Q0IUcRaeBboLKnDHHhcOr7xALQk_Dz6xZqUJtm-IWP7slhPQXfZbxj1KFKHYiH0gDuGFGJBMDTf5uyYuLuHbH4ATYK9poXnaSe8opDhfRSL0-rlIANdHvqpHXbgBo_7F_QQ1VGc86t",
+      "alt": "نمونه درمان - کامپوزیت و اصلاح طرح لبخند (قبل از درمان)",
+      "title": "تصویر اصلی: کامپوزیت و اصلاح طرح لبخند",
+      "mimeType": "image/jpeg",
+      "size": 95000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "gallery",
+      "targetId": "composite-smile",
+      "targetField": "image"
+    },
+    {
+      "id": "gal-composite-smile-mobileImage",
+      "filename": "after-composite-smile.jpg",
+      "originalName": "تصویر نتیجه: کامپوزیت و اصلاح طرح لبخند",
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuBibvAg_V5m9qV6lk3wFPr17yMdSLgMSyII6E2I3pSDjcJrxk21DSqqQXOtNZo2BV_LS0lDh9B0Iv4YsU7oZSjwtrjAiZ8ojjR_x-dS5c9r5pxQqPsUBnOeXNlgCv4lKBX45jjA2tiQkWNyhH-8hgNRzxTCHn3TX4StSkrbu0dGzWyXkxZgB-RNMKw9QnS_-DbBLzNdSBSv2A7_L1DCy87ws22Mq4T3t5zL5aJenG4FG_xrZyHIUyul",
+      "alt": "نتیجه درمان - کامپوزیت و اصلاح طرح لبخند (بعد از درمان)",
+      "title": "تصویر نتیجه: کامپوزیت و اصلاح طرح لبخند",
+      "mimeType": "image/jpeg",
+      "size": 98000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "gallery",
+      "targetId": "composite-smile",
+      "targetField": "mobileImage"
+    },
+    {
+      "id": "art-featured-composite-vs-laminate",
+      "filename": "featured-composite-vs-laminate.jpg",
+      "originalName": "تصویر شاخص مقاله: راهنمای جامع تفاوت ونیر کامپوزیت و لمینت سرامیکی؛ کدام یک برای اصلاح طرح لبخند شما مناسب‌تر است؟",
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAMsq7ZJ9hYCX0cUIRYsuZ6lYxD4NCEB_EXeo9Zq7ZCVFjqZ-1w9uO0aa55twFck6vI52exqPieMEmuRJjYS_5HWsiIghJbMCIYv9Q8BTchsi2Sqjht-P7NdZZ2bBu3Kdx6PczIXGH9a9yco5azOdO8pq823Bidc4qQr2VXycIxfb_hQBw2XG0rW44_ZspLfon1DawRTsm7rCDZOg0AqCnpq3RF22fAN-g53ZQBc86FGFv4JBMzv5L0",
+      "alt": "راهنمای جامع تفاوت ونیر کامپوزیت و لمینت سرامیکی؛ کدام یک برای اصلاح طرح لبخند شما مناسب‌تر است؟",
+      "title": "تصویر مقاله: راهنمای جامع تفاوت ونیر کامپوزیت و لمینت سرامیکی؛ کدام یک برای اصلاح طرح لبخند شما مناسب‌تر است؟",
+      "mimeType": "image/jpeg",
+      "size": 110000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "article",
+      "targetId": "featured-composite-vs-laminate",
+      "targetField": "image"
+    },
+    {
+      "id": "art-implant-post-op-24h",
+      "filename": "implant-post-op-24h.jpg",
+      "originalName": "تصویر شاخص مقاله: مراقبت‌های حیاتی ۲۴ ساعت اول پس از کاشت ایمپلنت دندان",
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuC4EQaLK1OPeycL6-FDbyEj3bLdHa5wCzMNLuZPrGXbaB_i7qI1Zm5jFaCIUxyHRqP6K909z4oIYei6bS_eygar9lxajyB1yInwfwkWcf2ImrHuCGWUd6sm0Rg3HMRKMqhQVVFdxdLOrOrIw3kcDQfZhi2WuJgqhKvRixJl6_1O3e7Tow8gAK6EQOJywJVBhizpq2ohAcple78poLnYo1csaj7cLgWn3PEbLeF7oHVpNSLdA59G3LgW",
+      "alt": "مراقبت‌های حیاتی ۲۴ ساعت اول پس از کاشت ایمپلنت دندان",
+      "title": "تصویر مقاله: مراقبت‌های حیاتی ۲۴ ساعت اول پس از کاشت ایمپلنت دندان",
+      "mimeType": "image/jpeg",
+      "size": 110000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "article",
+      "targetId": "implant-post-op-24h",
+      "targetField": "image"
+    },
+    {
+      "id": "art-painless-rotary-root-canal",
+      "filename": "painless-rotary-root-canal.jpg",
+      "originalName": "تصویر شاخص مقاله: آیا عصب‌کشی واقعاً درد دارد؟ فناوری نوین روتاری و بی‌حسی دیجیتال در مطب پارمیس",
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuB1GR01M4_nS65vqjMR6eBOdOmMrgCc_3y37-nlxprK-pa81qKKPJgj1q1D3k7_5__8-PGjuE3Ndcz7GCRopg9IQQLXlUDTjrtwJq2vFfwRw0mCaeDdfeCCqwhpJYgzxX9QjWrn0BvE2_70I1_LL0Wz9CWNHhTUX_pZRJUEjhlxZNJh476Q4XaukUg5Xzh0DVg6SDXroV01o0spJtdv_DhdnnVPBJIFyf46txduWnYkSKJ1o3bH2pxs",
+      "alt": "آیا عصب‌کشی واقعاً درد دارد؟ فناوری نوین روتاری و بی‌حسی دیجیتال در مطب پارمیس",
+      "title": "تصویر مقاله: آیا عصب‌کشی واقعاً درد دارد؟ فناوری نوین روتاری و بی‌حسی دیجیتال در مطب پارمیس",
+      "mimeType": "image/jpeg",
+      "size": 110000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "article",
+      "targetId": "painless-rotary-root-canal",
+      "targetField": "image"
+    },
+    {
+      "id": "art-composite-stain-prevention",
+      "filename": "composite-stain-prevention.jpg",
+      "originalName": "تصویر شاخص مقاله: علل تغییر رنگ کامپوزیت و راه‌های حفظ سفیدی و درخشش دندان‌ها",
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAlFcRNrbAzFqWQ0gERJKD6Le9AH8rGzCetRqSr9BBjOi_gSu2xsc0IUAYiKsEPXRZn8nEZentD_6wT7OEhWzk3VRcsOXn-quwlmPN8Dgbp7m0OdvvLVLno0Ce90-1aWHDPjuDLnoTZV5J3_YEXMxnU5bGzCxXcoqyYkfIliFaHxgmGKwAAp2Q9Rgs37ps6gQJoyDlSpRv7hZSabu_OnGSUgxnCbkDRZ41KP4kLIkXP7DSwHuUtcfjr",
+      "alt": "علل تغییر رنگ کامپوزیت و راه‌های حفظ سفیدی و درخشش دندان‌ها",
+      "title": "تصویر مقاله: علل تغییر رنگ کامپوزیت و راه‌های حفظ سفیدی و درخشش دندان‌ها",
+      "mimeType": "image/jpeg",
+      "size": 110000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "article",
+      "targetId": "composite-stain-prevention",
+      "targetField": "image"
+    },
+    {
+      "id": "art-pediatric-orthodontics-timing",
+      "filename": "pediatric-orthodontics-timing.jpg",
+      "originalName": "تصویر شاخص مقاله: سن مناسب ارتودنسی و درمان ناهنجاری‌های فک در کودکان و نوجوانان",
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuDRJ7vrqBmNwRqMsheVygxHef1KeledD11vFGyXMdDJoqQygsM4b5PsC2FIHrn3J8AJ5-LeXTcVcMB1N_Gy91rKtQhcKSkW-8Uk4s52R2p7E3TnteEGLYx87DSpfGrG-XO4d3g1yTtJRxqa-rlOrM_W9eK1R0nD6H35IIDI-yLJUwykqfsVU2xUxoSn-W_T6p5tdP3OEuxEAxwrE4xfdaRAK9qOAHf_cNGFBCKFAExLSnjUsX3OYHQ_",
+      "alt": "سن مناسب ارتودنسی و درمان ناهنجاری‌های فک در کودکان و نوجوانان",
+      "title": "تصویر مقاله: سن مناسب ارتودنسی و درمان ناهنجاری‌های فک در کودکان و نوجوانان",
+      "mimeType": "image/jpeg",
+      "size": 110000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "article",
+      "targetId": "pediatric-orthodontics-timing",
+      "targetField": "image"
+    },
+    {
+      "id": "art-office-vs-home-bleaching",
+      "filename": "office-vs-home-bleaching.jpg",
+      "originalName": "تصویر شاخص مقاله: بلیچینگ در مطب (آفیس) یا هوم بلیچینگ خانگی؟ بررسی مزایا و ماندگاری",
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuBwfU_HUiOaeVAssegsAj8OyP9-3C45jQv6lfLuHreRwSGI465ADgk1_n3KDutdYcKsPICAZQs25wQpDXOoxYpejqEL_-Ut5H-VnuUUGohfaDMhoMKakcjJA_cFVgJohBk1si8q_x20iE9DZbxmwwezbDQsfVsSq96Q5kHaGMW_1SMB2bSJurygpsNWO7JWBSU21RnKIsccDiYp8usgl33ANqeP3lfYCTy_QEhlXSnBmP6irRF2ZBUn",
+      "alt": "بلیچینگ در مطب (آفیس) یا هوم بلیچینگ خانگی؟ بررسی مزایا و ماندگاری",
+      "title": "تصویر مقاله: بلیچینگ در مطب (آفیس) یا هوم بلیچینگ خانگی؟ بررسی مزایا و ماندگاری",
+      "mimeType": "image/jpeg",
+      "size": 110000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "article",
+      "targetId": "office-vs-home-bleaching",
+      "targetField": "image"
+    },
+    {
+      "id": "art-halitosis-treatment",
+      "filename": "halitosis-treatment.jpg",
+      "originalName": "تصویر شاخص مقاله: بوی بد دهان (هالیتوزیس)؛ دلایل، راه‌های تشخیص و درمان قطعی در کلینیک",
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQYMqz5vgdRmGOHxw6-Ug6ODgNgxVbRfKYOZBMVDaCn9JLMNF6BB59T5GkhVlJdRnwrv289gYUNEK38TFh-8CbqBKpu7DG4GpeywMQG6xjjw01c6RoHg4BqEtPEwUwRJWtPWdnlC0HhlPUjPlirXJuntBpXxQYjunHjEpeTQva2T4dEIk09kgXYRVvt4f5K5NlJmn4ceb2uVlzXQmGSmXdUziBkJ-bP2Eq5CEUbgrN4xyvxeqyLIzo",
+      "alt": "بوی بد دهان (هالیتوزیس)؛ دلایل، راه‌های تشخیص و درمان قطعی در کلینیک",
+      "title": "تصویر مقاله: بوی بد دهان (هالیتوزیس)؛ دلایل، راه‌های تشخیص و درمان قطعی در کلینیک",
+      "mimeType": "image/jpeg",
+      "size": 110000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "article",
+      "targetId": "halitosis-treatment",
+      "targetField": "image"
+    },
+    {
+      "id": "art-supplementary-insurance-guide",
+      "filename": "supplementary-insurance-guide.jpg",
+      "originalName": "تصویر شاخص مقاله: راهنمای جامع پوشش‌های بیمه تکمیلی و تعرفه‌های دندان‌پزشکی در پاکدشت",
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuBXwn8cDQYlkepS57KoU6_HRKkuYqrxhvGu1QxGTaa5srrto5lweISJxkriAggQ-Y9_c1VNa5ehiEZnZ3rUXC6x03_eqOEfGx1T0dhniTYsE-z_YheCg0FLUPciq_hChMDpIsk-Jkvpp5zJPpNrFezsO0c9I1ovhCCZDMAIy3mQmTUqjErpPeLm6PXBDZnKtKZNMvCmTkbJNeJrBezOLyRrY_VQA49uCnru-O8AmexznUdZvwmxVWpf",
+      "alt": "راهنمای جامع پوشش‌های بیمه تکمیلی و تعرفه‌های دندان‌پزشکی در پاکدشت",
+      "title": "تصویر مقاله: راهنمای جامع پوشش‌های بیمه تکمیلی و تعرفه‌های دندان‌پزشکی در پاکدشت",
+      "mimeType": "image/jpeg",
+      "size": 110000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "article",
+      "targetId": "supplementary-insurance-guide",
+      "targetField": "image"
+    },
+    {
+      "id": "art-gum-recession-prevention",
+      "filename": "gum-recession-prevention.jpg",
+      "originalName": "تصویر شاخص مقاله: چگونه از تحلیل لثه جلوگیری کنیم؟ نکات پیشگیری، علائم هشدار و درمان جراحی",
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuCSDNnDoIdcXacKU9urKTPb13pJ-URr3n2Q3VxvtLWc8MIERtOpPj2OQ9gym09aDvAmthcHcuU73TVmC-mzAoxIis6Sg7gFL2f7q1h0RgnW2o8MTGwAVtucYN5htDx_DYfgaJ_wju16CEm7p7NRAJyS3wj6DKlyNnoJrkWHRavU33NwHNXTPgXiEpcLXt_Ud9sqcuhBABiBUhvOXbSUdNwbIK0rfjQQghrkPuEOO61khXC1jkSMiv9p",
+      "alt": "چگونه از تحلیل لثه جلوگیری کنیم؟ نکات پیشگیری، علائم هشدار و درمان جراحی",
+      "title": "تصویر مقاله: چگونه از تحلیل لثه جلوگیری کنیم؟ نکات پیشگیری، علائم هشدار و درمان جراحی",
+      "mimeType": "image/jpeg",
+      "size": 110000,
+      "createdAt": "2026-10-18T17:45:45.670Z",
+      "category": "article",
+      "targetId": "gum-recession-prevention",
+      "targetField": "image"
+    }
+  ],
+  "comments": [
+    {
+      "id": "comm-1792359224751",
+      "articleId": "implant-post-op-24h",
+      "articleTitle": "مراقبت‌های حیاتی ۲۴ ساعت اول پس از کاشت ایمپلنت دندان",
+      "authorName": "Hossein Madani",
+      "authorPhone": "09906779635",
+      "content": "hello world",
+      "status": "approved",
+      "createdAt": "2026-10-18T21:33:44.751Z",
+      "doctorReply": "hehehe",
+      "repliedAt": "2026-10-18T21:34:11.247Z",
+      "repliedBy": "دکتر انوشیروان شمس پور"
+    },
+    {
+      "id": "comm-1792358720043",
+      "articleId": "featured-composite-vs-laminate",
+      "articleTitle": "راهنمای جامع تفاوت ونیر کامپوزیت و لمینت سرامیکی؛ کدام یک برای اصلاح طرح لبخند شما مناسب‌تر است؟",
+      "authorName": "hossein madani",
+      "authorPhone": "09397700183",
+      "content": "hello world",
+      "status": "approved",
+      "createdAt": "2026-10-18T21:25:20.043Z",
+      "doctorReply": "hellomonalaykom",
+      "repliedAt": "2026-10-18T21:26:38.724Z",
+      "repliedBy": "دکتر انوشیروان شمس پور"
+    }
+  ],
+  "articleDoctorCard": {
+    "avatarUrl": "/uploads/photo_2026-10-18_21-28-58-1792346391612-941489.jpg",
+    "doctorName": "دکتر انوشیروان شمس پور",
+    "doctorRole": "مسئول فنی و سرپرست درمان کلینیک پارمیس",
+    "bio": "دکتر انوشیروان شمس پور با سال‌ها تجربه بالینی درخشان و بهره‌گیری از پروتکل‌های درمانی مدرن، اصل کاری خود را بر پایه «صداقت در تشخیص و اولویت حفظ حداکثری دندان طبیعی بیمار» بنا نهاده است. کلیه مراحل درمانی در محیطی کاملاً استریل، آرام و مجهز به جدیدترین فناوری‌های تشخیصی روز انجام می‌شود.",
+    "experienceText": "+۱۰ سال",
+    "successCountText": "+۵,۰۰۰"
+  },
+  "articleAuthor": {
+    "avatarUrl": "/uploads/photo_2026-10-18_21-28-58-1792346391612-941489.jpg",
+    "name": "دکتر انوشیروان شمس پور",
+    "role": "مسئول فنی و سرپرست درمان کلینیک پارمیس",
+    "image": "/uploads/photo_2026-10-18_21-28-58-1792346391612-941489.jpg"
+  },
+  "homeSettings": {
+    "hero": {
+      "enabled": true,
+      "badge": "کلینیک تخصصی دندان‌پزشکی پارمیس • پاکدشت",
+      "titlePart1": "لبخندی زیبا، سالم و ",
+      "titleHighlight": "ماندگار برای شما",
+      "description": "ارائه پیشرفته‌ترین خدمات ایمپلنت، کامپوزیت زیبایی و درمان‌های تخصصی با بهره‌گیری از تکنولوژی روز دیجیتال تحت نظر مستقیم دکتر انوشیروان شمس پور در پاکدشت.",
+      "primaryButtonText": "نوبت‌دهی سریع تلفنی",
+      "primaryButtonPhone": "02136021234",
+      "secondaryButtonText": "مشاهده نتایج قبل و بعد درمان",
+      "secondaryButtonLink": "#transformations",
+      "statsDoctors": "+۵ متخصص",
+      "statsSatisfaction": "۹۹.۴٪ رضایت",
+      "imageUrl": "/uploads/photo_2026-10-18_21-28-58-1792346391612-941489.jpg"
+    },
+    "valueProps": {
+      "enabled": true,
+      "title": "چرا کلینیک دندان‌پزشکی پارمیس؟",
+      "subtitle": "استاندارد درمانی برتر",
+      "items": [
+        {
+          "icon": "favorite",
+          "title": "اولویت راحتی بیمار",
+          "desc": "محیطی آرام‌بخش و درمان بدون استرس و اضطراب پزشکی."
+        },
+        {
+          "icon": "psychology",
+          "title": "مهارت و تخصص بالا",
+          "desc": "تجربه گسترده دکتر شمس پور در جراحی‌های پیچیده و ایمپلنت."
+        },
+        {
+          "icon": "payments",
+          "title": "شفافیت کامل هزینه‌ها",
+          "desc": "تعرفه منصفانه و ارائه فاکتور رسمی معتبر بیمه‌های تکمیلی."
+        },
+        {
+          "icon": "pin_drop",
+          "title": "موقعیت عالی در پاکدشت",
+          "desc": "دسترسی آسان در مجتمع پزشکی راستین با جای پارک مناسب."
+        },
+        {
+          "icon": "verified",
+          "title": "ضمانت اصالت متریال",
+          "desc": "استفاده انحصاری از برندهای سوئیسی، آلمانی و کره‌ای استاندارد."
+        }
+      ]
+    },
+    "advancedCare": {
+      "enabled": true,
+      "badge": "تجهیزات و فناوری نوین",
+      "title": "دندان‌پزشکی دیجیتال و مدرن در کلینیک پارمیس",
+      "description": "ما در پاکدشت بالاترین سطوح بهداشتی و نوآوری تجهیزاتی را برای بیماران عزیز به کار گرفته‌ایم تا دوره نقاهت به حداقل رسیده و دوام درمان به حداکثر برسد.",
+      "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuA4eZSRbpCc4iM2eEyXnmCwHDyzkzPhf6Fcza35-sdb83oUdkmJMgN4NzlqVQ6e1qwz4Mdd3c4AsgTXLUJz2ET_L2fbW30BNHsMV0iyDeXqTVMt_4Q6DNfkdPl4_-GeQbwZXGbg5EeBVu1tQf5gkz2EUpxl73fBAJSeH2zz-QcLn2i6cSpkg4URN9JI3uh8QsXTcMqviHoPqXlMSXP12zfUBPevfAx3ye8krZ8r9hwI5yd9Dm7JNIxf",
+      "imageBadge": "بروزترین تجهیزات ",
+      "checklist": [
+        "رادیوگرافی دیجیتال با کمترین میزان تابش اشعه",
+        "استفاده اختصاصی از مواد ترمیمی و کامپوزیت‌های برند سوئیسی و آلمانی",
+        "چرخه ضدعفونی مکانیزه و اتوکلاو بیمارستانی کلاس B"
+      ],
+      "buttonText": "مشاوره و ارزیابی تشخیصی دندان‌ها",
+      "buttonPhone": "02136021234",
+      "checkIcon": "check_circle"
+    },
+    "transformations": {
+      "enabled": true,
+      "badge": "نتایج درمانی و تحول لبخند",
+      "title": "نمونه درمان‌های انجام شده",
+      "subtitle": "تغییرات واقعی لبخند مراجعین کلینیک دکتر شمس پور",
+      "showCount": 3,
+      "moreButtonText": "مشاهده گالری کامل نمونه درمان‌ها و لبخند",
+      "moreButtonLink": "gallery",
+      "selectedCaseIds": [
+        "case-composite-diastema",
+        "case-laminate-emax",
+        "case-digital-implant"
+      ]
+    },
+    "services": {
+      "enabled": true,
+      "badge": "طیف کامل خدمات دندان‌پزشکی پارمیس",
+      "title": "خدمات درمانی و زیبایی در پاکدشت",
+      "description": "کلیه درمان‌های ترمیمی، زیبایی و جراحی دهان و دندان با بهترین تجهیزات و با رعایت کامل استانداردهای پزشکی در فضایی آرام انجام می‌پذیرد.",
+      "showCount": 6,
+      "ctaButtonText": "مشاوره و دریافت نوبت",
+      "badgeIcon": "dentistry",
+      "selectedServiceIds": [
+        "root-canal",
+        "cosmetic-composite",
+        "implant",
+        "orthodontics",
+        "scaling-perio",
+        "dental-implant"
+      ]
+    },
+    "doctor": {
+      "enabled": true,
+      "badge": "مسئول فنی و سرپرست درمان",
+      "doctorName": "دکتر انوشیروان شمس پور",
+      "specialty": "جراح - دندان‌پزشک | شماره نظام پزشکی معتبر",
+      "bio": "دکتر انوشیروان شمس پور با سال‌ها تجربه بالینی درخشان و بهره‌گیری از پروتکل‌های درمانی مدرن، اصل کاری خود را بر پایه «صداقت در تشخیص و اولویت حفظ حداکثری دندان طبیعی بیمار» بنا نهاده است. کلیه مراحل درمانی در محیطی کاملاً استریل، آرام و مجهز به جدیدترین فناوری‌های تشخیصی روز انجام می‌شود.",
+      "experienceText": "+۱۰ سال",
+      "experienceLabel": "سابقه درخشان بالینی",
+      "successCountText": "+۵,۰۰۰",
+      "successCountLabel": "رضایت کامل مراجعین",
+      "locationBadge": "مطب فعال: پاکدشت، مجتمع پزشکی راستین، طبقه دوم",
+      "imageUrl": "/uploads/photo_2026-10-18_21-28-58-1792346391612-941489.jpg",
+      "consultationPhone": "02136021234"
+    },
+    "articles": {
+      "enabled": true,
+      "badge": "آموزش و آگاهی • پایگاه مقالات تخصصی",
+      "title": "مجله سلامت دهان و زیبایی لبخند پارمیس",
+      "description": "جدیدترین مقالات علمی و نکات مراقبتی تالیف و بازبینی‌شده توسط دکتر انوشیروان شمس پور",
+      "buttonText": "مشاهده همه مقالات وبلاگ",
+      "count": 6,
+      "showViews": true,
+      "showCommentsCount": true
+    },
+    "faqAndContact": {
+      "faqEnabled": true,
+      "faqBadge": "پاسخ به سوالات پرتکرار",
+      "faqTitle": "پرسش‌های مراجعین محترم",
+      "contactEnabled": true,
+      "contactBadge": "آدرس و مسیر دسترسی",
+      "contactTitle": "کلینیک دندان‌پزشکی در پاکدشت",
+      "contactAddress": "پاکدشت، بلوار شهدای قمی، میدان علی ابن ابیطالب، ابتدای بلوار علی ابن ابیطالب، مجتمع پزشکی راستین، طبقه دوم، کلینیک دندان‌پزشکی پارمیس",
+      "phone1": "02136021234",
+      "phone2": "09123456789",
+      "workingHours": "شنبه تا چهارشنبه ۹ الی ۲۰:۳۰ | پنج‌شنبه‌ها ۹ الی ۱۶",
+      "mapImageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuC8R3q-m6biXlpO7DVycxHmqcNT_QFcBsrU1786ZHCW0VGFIct0xTksc6ThpNzl4UE1edGk6rNhHOH7WE238hsY2i07aeGlHxsu8Psnpqp36L5kXTdJMbITMta3l6la2zCfbtWFFAq5Rtzmopfb3YkLXviWvA1-wgcxITowC_Qlf1KXV2u7TiWNR1ilYLK5ePobi9LrNt70eeC5wsXdymV2_-wGXA65t86B8OlEsYkYyoh92a9E3NHP",
+      "neshanUrl": "https://nshn.ir",
+      "baladUrl": "https://balad.ir",
+      "googleMapsUrl": "https://maps.google.com"
+    },
+    "cta": {
+      "enabled": true,
+      "title": "آماده‌اید لبخند رویایی خود را تجربه کنید؟",
+      "description": "جهت مشاوره و هماهنگی نوبت ویزیت، همین امروز با کلینیک پارمیس تماس بگیرید.",
+      "phoneText": "تماس مستقیم فوری: ۰۹۱۲۳۴۵۶۷۸۹",
+      "phone": "09123456789"
+    },
+    "motionGuides": {
+      "enabled": true
+    }
+  },
+  "servicesPageSettings": {
+    "hero": {
+      "enabled": true,
+      "badge": "مجتمع پزشکی راستین • پاکدشت | تحت نظارت دکتر انوشیروان شمس پور",
+      "badgeIcon": "verified",
+      "title": "خدمات تخصصی درمان و ",
+      "titleHighlight": "اصلاح طرح لبخند",
+      "description": "ارائه پیشرفته‌ترین خدمات دندانپزشکی در پاکدشت توسط دکتر انوشیروان شمس پور با دستگاه‌های مدرن، بدون استرس و درد.",
+      "bannerImage": "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=80",
+      "bannerAlt": "زیبایی طبیعی و لبخندی بااعتمادبه‌نفس",
+      "bannerCaptionTitle": "زیبایی طبیعی و لبخندی بااعتمادبه‌نفس",
+      "bannerCaptionDesc": "تضمین ظرافت، شفافیت مینای طبیعی و سلامت کامل بافت لثه",
+      "bannerTechnologyTag": "تکنولوژی ۲۰۲۴",
+      "floatingBadgeIcon": "health_and_safety",
+      "floatingBadgeTitle": "۱۰۰٪ استریلیزاسیون دیجیتال",
+      "floatingBadgeDesc": "اتوکلاو کلاس B و پکینگ استاندارد",
+      "highlights": [
+        {
+          "id": "hl-1",
+          "icon": "auto_fix_high",
+          "title": "طراحی لبخند DSD",
+          "desc": "مشاهده فرم و نتیجه نهایی لبخند قبل از شروع هرگونه تراش یا کار درمانی، متناسب با هارمونی اجزای چهره شما."
+        },
+        {
+          "id": "hl-2",
+          "icon": "biotech",
+          "title": "متریال‌های درجه‌یک جهانی",
+          "desc": "به‌کارگیری کامپوزیت‌های نانوهیبرید ژاپنی (توکویاما، گرادیو) و پرسلین‌های سرامیکی آلمانی (ایماکس و زیرکونیا)."
+        },
+        {
+          "id": "hl-3",
+          "icon": "sentiment_satisfied",
+          "title": "درمان بدون درد و اضطراب",
+          "desc": "تکنیک‌های نوین بی‌حسی کامپیوتری و محیط روان‌شناختی آرام برای تجربه درمانی کاملاً راحت و لذت‌بخش."
+        }
+      ]
+    },
+    "implant": {
+      "enabled": true,
+      "badge": "کاشت تخصصی و بادوام",
+      "badgeIcon": "stars",
+      "guaranteeBadge": "ضمانت کتبی",
+      "title": "ایمپلنت دندان با سیستم‌های سوئیسی و کره‌ای",
+      "description": "جایگزینی دائمی دندان‌های از دست رفته با روش بارگذاری فوری و بدون درد همراه با بازسازی و پودر استخوان تحت نظر دکتر شمس پور در پاکدشت.",
+      "features": [
+        {
+          "id": "imp-f1",
+          "title": "کاشت فوری یک‌روزه",
+          "subtitle": "تحویل روکش موقت در کوتاه‌ترین زمان",
+          "icon": "check_circle"
+        },
+        {
+          "id": "imp-f2",
+          "title": "سازگاری ۱۰۰٪ با بافت فک",
+          "subtitle": "جراحی با گاید جراحی و زاویه‌گذاری میکرومتری",
+          "icon": "check_circle"
+        },
+        {
+          "id": "imp-f3",
+          "title": "بدون احساس درد و خونریزی",
+          "subtitle": "پیوند پودر استخوان و سینوس‌لیفت بازسازی حجم",
+          "icon": "check_circle"
+        },
+        {
+          "id": "imp-f4",
+          "title": "امکان پرداخت اقساطی",
+          "subtitle": "ضمانت اصالت فیکسچر با شناسنامه و سرتیفیکیت معتبر",
+          "icon": "check_circle"
+        }
+      ],
+      "buttonText": "رزرو ویزیت و اسکن رایگان",
+      "buttonPhone": "02136048581",
+      "paymentNote": "امکان شرایط پرداخت مرحله‌ای برای بیماران گرامی",
+      "surgeryImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuBKrSgjql8rQcv4RpNnfwiyScrKVDXboKzRM8s46NNk6CUSJyMzttK1piNpxJ7LvMiPma4D9S1oI_701T0QOHVjb_7eppM26KWUqIbnMRylAfXytkFHHuT8viiGJvpHpdNswei0yDvY_bjz5g93Z5pieOZfZoXvZrPZqDTPIxD_oA5UEgcGC6WZOA17Yy_Te2zR2aGIRQVLEXR2aTypHuT4jVasZGIrImiqO8pwmx-wFJWBjSiI5K3u",
+      "surgeryImageAlt": "بخش جراحی مجهز کلینیک پارمیس",
+      "surgeryImageTitle": "بخش جراحی مجهز کلینیک پارمیس",
+      "surgeryImageSubtitle": "پاکدشت • مجتمع پزشکی راستین"
+    },
+    "cosmeticCategory": {
+      "enabled": true,
+      "badge": "دندانپزشکی زیبایی",
+      "badgeIcon": "auto_fix_high",
+      "title": "خدمات دندان‌پزشکی زیبایی و طرح لبخند",
+      "description": "اصلاح فرم، رنگ، قرینگی و فواصل دندان‌ها با کمترین تهاجم به بافت طبیعی دندان زیر نظر مستقیم دکتر انوشیروان شمس پور",
+      "consultationText": "دریافت مشاوره تخصصی زیبایی",
+      "cards": [
+        {
+          "id": "cosm-1",
+          "title": "ونیر کامپوزیت لایه‌ای",
+          "badge": "۱ جلسه",
+          "badgeType": "primary",
+          "description": "فرم‌دهی و سفیدی طبیعی دندان با کامپوزیت‌های برند Tokuyama و IPS بدون تراش بافت سالم دندان.",
+          "duration": "۱ الی ۲ جلسه",
+          "lifespan": "۵ تا ۷ سال",
+          "technique": "بدون تراش (Non-Prep)",
+          "icon": "arrow_back_ios_new",
+          "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuB2Cls8ndyoJQ958L6DWc2pyJUw4OQdGOv5_TtKlzg2ClInSC-1FtxuBoDx_Z_czPaOXJ2zY-yreTQzJy8GxkNmMXMDFNCse2iAgAoPScRAxQKKlSQBpB3mW2XsL7lKQxROhiNk3Cvac3NoU8U9ld891GuwnkU2dRQmrTwN77-PDoVmw3wRHIhBAS0RYEu7QEbx67c6lI1R9eT5-v_9-8LYOlXKk1zEZhTMtjnl4gjfKxDjR6BcYGlH",
+          "ctaText": "درخواست مشاوره کامپوزیت"
+        },
+        {
+          "id": "cosm-2",
+          "title": "لمینت سرامیکی (پرسلین E-max)",
+          "badge": "محبوب‌ترین درمان",
+          "badgeType": "secondary",
+          "description": "شفافیت خیره‌کننده، عدم رنگ‌پذیری و مقاومت بالا ساخته شده با فناوری کدکم (CAD/CAM).",
+          "duration": "۲ الی ۳ جلسه",
+          "lifespan": "۱۰ الی ۱۵ سال+",
+          "technique": "۱۰۰٪ دائمی و ضدلکه",
+          "icon": "diamond",
+          "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuAJW3Osvn9zhZ0Xi60RRmGEN-hgHBedOHW5Jkh-hkpBdXjE9NPPgej15Aa_ObQoHpGi34mbkpelvsUaR27yM6SxWIQEpfT-irWc3JP6hWvOiRHkVuocJC9Dvxd2mkYHHQ8AvZfkQeWFNQz3Lsn5vLWw9199tkTvGAusmyI8cwoN0AHbWIRCp_ImnOWd6O_7Y7-W_BcxR__67AtLZ6OeM1ZofgaEIXiiNU59y5zFAGU_g_ASl6osXgYr",
+          "ctaText": "درخواست مشاوره لمینت"
+        },
+        {
+          "id": "cosm-3",
+          "title": "بلیچینگ آفیس (سفید کردن مطب)",
+          "badge": "روشن‌سازی ۳ الی ۵ درجه",
+          "badgeType": "neutral",
+          "description": "سفید کردن تخصصی دندان‌ها با اشعه و ژل‌های ضد حساسیت در کمتر از یک ساعت بدون آسیب مینا.",
+          "duration": "تنها ۴۵ دقیقه",
+          "lifespan": "۱ الی ۲ سال",
+          "technique": "۳ تا ۸ درجه شفاف‌تر",
+          "icon": "light_mode",
+          "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuCQdKsne2FmqtqnadFNoMC2Uawl4pEoCKhy4CGOWNTuZ3ZgokHw-5B36F8AdsvZAjq82U0ZSmt0GizDMaukErEvPHI_aOopV9ydc97KL-VMA7VQ3yOUwnm6-D1upRcVDKpp6wEYWIjVxatsNZIXFdO14xIrjaZPkV_64GnbfDhU1V4aq7Rwp8s5QhCcjOo28e4PCUYpeB_3iIYsO0IoRv34rabS796IF8xJjgjErA4x7ZP8GnPprZLp",
+          "ctaText": "درخواست مشاوره بلیچینگ"
+        },
+        {
+          "id": "cosm-4",
+          "title": "بستن دیاستم و فرم لبه",
+          "badge": "یک جلسه کوتاه",
+          "badgeType": "neutral",
+          "description": "ترمیم لب‌پریدگی‌ها، بستن فواصل بین دندان‌های قدامی و کانتورینگ لثه و دندان برای برقراری توازن متقارن لبخند.",
+          "duration": "یک جلسه کوتاه",
+          "lifespan": "طولانی‌مدت",
+          "technique": "باندینگ زیبایی",
+          "icon": "shape_line",
+          "ctaText": "درخواست مشاوره دیاستم"
+        }
+      ]
+    },
+    "restorativeCategory": {
+      "enabled": true,
+      "badge": "سلامت، عملکرد و نگهداری دندان طبیعی",
+      "badgeIcon": "medical_services",
+      "title": "خدمات درمانی، ترمیمی و اندودانتیکس",
+      "description": "اولویت نخست کلینیک پارمیس در پاکدشت، حفظ ساختار طبیعی دندان با بالاترین استاندارد ارزیابی رادیوگرافی و کنترل عفونت است.",
+      "cards": [
+        {
+          "id": "rest-1",
+          "title": "عصب‌کشی تخصصی (اندو)",
+          "badge": "درمان ریشه ۱ تا ۴ کانال",
+          "badgeType": "primary",
+          "description": "پاکسازی دقیق کانال‌های ریشه با دستگاه اندوروتاری و اپکس‌لوکیتور دیجیتال جهت تعیین اندازه میکرومتری کانال با کمترین احساس درد.",
+          "duration": "۱ تا ۲ جلسه درمانی",
+          "lifespan": "طولانی‌مدت با مراقبت",
+          "technique": "موتور روتاری دیجیتال",
+          "icon": "precision_manufacturing",
+          "ctaText": "اطلاعات بیشتر",
+          "checklist": [
+            "کاهش زمان جلسه درمان و احساس راحتی کامل فک",
+            "مهروموم سه بعدی کانال‌ها برای جلوگیری از عود مجدد"
+          ]
+        },
+        {
+          "id": "rest-2",
+          "title": "ترمیم با مواد همرنگ دندان",
+          "badge": "مواد نانوسرامیک آلمانی",
+          "badgeType": "secondary",
+          "description": "برداشت پوسیدگی‌ها و پر کردن با کامپوزیت‌های نانوهیبرید مستحکم که پیوند میکرومکانیکی با ساختار دندان تشکیل می‌دهند.",
+          "duration": "۱ جلسه",
+          "lifespan": "بسیار مقاوم و همرنگ",
+          "technique": "حذف کامل آمالگام تیره",
+          "icon": "contrast",
+          "ctaText": "اطلاعات بیشتر",
+          "checklist": [
+            "تطابق رنگ کاملاً طبیعی با دندان‌های مجاور",
+            "استحکام مکانیکی بسیار بالا در دندان‌های خلفی آسیا"
+          ]
+        },
+        {
+          "id": "rest-3",
+          "title": "جرم‌گیری و بروساژ عمیق",
+          "badge": "دستگاه التراسونیک بدون لرزش",
+          "badgeType": "neutral",
+          "description": "زدودن پلاک‌های باکتریایی میکروبی زیر و بالای لثه با دستگاه اولتراسونیک پیه‌زو بدون وارد شدن ذره‌ای آسیب به مینا.",
+          "duration": "۳۰ تا ۴۵ دقیقه",
+          "lifespan": "سلامت ۱۰۰٪ لثه",
+          "technique": "اولتراسونیک پیه‌زو",
+          "icon": "clean_hands",
+          "ctaText": "اطلاعات بیشتر",
+          "checklist": [
+            "رفع قطعی بوی نامطبوع دهان و خونریزی لثه هنگام مسواک",
+            "بروساژ با خمیرهای براق‌کننده تخصصی مینا"
+          ]
+        },
+        {
+          "id": "rest-4",
+          "title": "روکش زیرکونیا و سرامیک",
+          "badge": "زیرکونیای چندلایه‌ای High Translucent",
+          "badgeType": "primary",
+          "description": "ساخت پروتزهای دقیق با اسکنرهای سه‌بعدی بدون استفاده از فلز، با عدم ایجاد هاله تیرگی در لبه لثه و بالاترین تطابق با بافت بیولوژیک فک.",
+          "duration": "۲ جلسه",
+          "lifespan": "فوق‌العاده با دوام",
+          "technique": "طراحی با نرم‌افزارهای CAD/CAM",
+          "icon": "shield",
+          "ctaText": "اطلاعات بیشتر",
+          "checklist": [
+            "تحمل فشارهای سنگین جویدن در دندان‌های عقبی",
+            "عدم ایجاد خط سیاه لثه و تطابق کامل با رنگ دندان"
+          ]
+        },
+        {
+          "id": "rest-5",
+          "title": "جراحی دندان عقل نهفته",
+          "badge": "تکنیک محافظت از عصب فک",
+          "badgeType": "secondary",
+          "description": "جراحی کم‌تهاجمی دندان‌های عقل نهفته و نیمه‌نهفته با بررسی فاصله از عصب فک پایین، بدون تورم و درد شدید.",
+          "duration": "۱ جلسه",
+          "lifespan": "ترمیم سریع بافت",
+          "technique": "بررسی رادیوگرافی دقیق",
+          "icon": "medical_information",
+          "ctaText": "اطلاعات بیشتر",
+          "checklist": [
+            "پیشگیری از به هم ریختگی ردیف دندان‌های ارتودنسی‌شده",
+            "بخیه با نخ‌های بهداشتی جاذب یا غیرقابل‌جذب مرغوب"
+          ]
+        }
+      ],
+      "promoCard": {
+        "enabled": true,
+        "badge": "ویزیت و چکاپ دوره‌ای",
+        "badgeIcon": "alarm",
+        "title": "آیا نیاز به معاینه حضوری دارید؟",
+        "description": "جهت ارزیابی اولیه، گرفتن عکس تشخیصی و دریافت برآورد کامل هزینه‌ها، هم‌اکنون با منشی کلینیک پارمیس در پاکدشت تماس بگیرید.",
+        "buttonText": "تماس مستقیم",
+        "phone": "02136048581",
+        "locationText": "پاکدشت، مجتمع پزشکی راستین"
+      }
+    },
+    "journey": {
+      "enabled": true,
+      "badge": "مسیر شفاف درمان",
+      "badgeIcon": "route",
+      "title": "مراحل مراجعه و انجام خدمات در کلینیک پارمیس",
+      "description": "ما فرآیند درمان را از نخستین تماس تا چکاپ‌های سالیانه به شکلی منسجم، شفاف و بدون معطلی طراحی کرده‌ایم.",
+      "steps": [
+        {
+          "id": "step-1",
+          "stepNumber": "",
+          "title": "معاینه و ارزیابی دیجیتال",
+          "desc": "بررسی دقیق بالینی توسط دکتر شمس پور همراه با عکس‌برداری دیجیتال داخل‌دهانی، ثبت تاریخچه دندانی و بررسی سلامت عمومی بافت‌ها.",
+          "icon": "route"
+        },
+        {
+          "id": "step-2",
+          "stepNumber": "۲",
+          "title": "طرح درمان و شفافیت هزینه",
+          "desc": "تنظیم نقشه درمانی گام‌به‌گام با اولویت‌بندی رفع درد و پوسیدگی‌ها، برآورد دقیق تعرفه‌ها و تعیین جلسات بر اساس زمان آزاد بیمار.",
+          "icon": "description"
+        },
+        {
+          "id": "step-3",
+          "stepNumber": "۳",
+          "title": "اجرای درمان بدون درد",
+          "desc": "انجام درمان با جدیدترین متدهای بی‌حسی موضعی در محیطی کاملاً آرام‌بخش و رعایت تمام ضوابط استریلیزاسیون استاندارد بیمارستانی.",
+          "icon": "healing"
+        },
+        {
+          "id": "step-4",
+          "stepNumber": "۴",
+          "title": "پیگیری و چکاپ‌های دوره‌ای",
+          "desc": "پشتیبانی مداوم پس از اتمام کار، ارائه آموزش‌های مراقبت بهداشتی خانگی و یادآوری دوره‌ای جلسات پولیش و چکاپ رایگان.",
+          "icon": "verified"
+        }
+      ]
+    },
+    "faqs": {
+      "enabled": true,
+      "badge": "پاسخ به ابهامات پرتکرار",
+      "badgeIcon": "help",
+      "title": "پرسش‌های متداول درباره خدمات درمان و زیبایی",
+      "description": "اگر پاسخ سوال خود را نیافتید، با شماره کلینیک تماس بگیرید تا کارشناسان ما شما را راهنمایی کنند.",
+      "items": [
+        {
+          "id": "faq-1",
+          "q": "تفاوت اصلی لمینت سرامیکی با ونیر کامپوزیت چیست؟",
+          "a": "لمینت سرامیکی در لابراتوار ساخته می‌شود، ماندگاری بالای ۱۵ سال دارد و به هیچ وجه دچار تغییر رنگ یا لکه نمی‌شود. در مقابل، ونیر کامپوزیت مستقیماً در مطب طی یک جلسه روی دندان کار می‌شود، نیاز به تراش ندارد و هزینه مناسب‌تری دارد اما نیازمند پولیش دوره‌ای سالیانه است."
+        },
+        {
+          "id": "faq-2",
+          "q": "آیا درمان ونیر کامپوزیت باعث تراش دندان می‌شود؟",
+          "a": "خیر، در روش ونیر کامپوزیت مدرن در کلینیک دکتر شمس پور، در ۹۰ درصد موارد هیچ‌گونه تراش یا آسیب به مینای طبیعی دندان وارد نمی‌شود و کار به‌صورت محافظه‌کارانه انجام می‌پذیرد."
+        },
+        {
+          "id": "faq-3",
+          "q": "آیا درمان‌های دندان‌پزشکی در کلینیک پارمیس با درد همراه است؟",
+          "a": "خیر؛ در کلینیک دکتر شمس پور از بی‌حسی‌های مدرن با pH خنثی و سوزن‌های فوق‌العاده نازک استفاده می‌شود تا ورود مایع بی‌حسی نیز احساس نشود. برای بیماران با استرس بالا، تکنیک‌های آرام‌بخشی روانشناختی و بی‌حسی مرحله‌ای انجام می‌گیرد."
+        },
+        {
+          "id": "faq-4",
+          "q": "ماندگاری بلیچینگ (سفیدکردن دندان) چقدر است؟",
+          "a": "ماندگاری بلیچینگ بین ۱ تا ۲ سال است که بسته به میزان مصرف چای، قهوه، دخانیات و رعایت بهداشت دهان و دندان می‌تواند طولانی‌تر باشد."
+        },
+        {
+          "id": "faq-5",
+          "q": "شرایط پرداخت هزینه و تعرفه‌های خدمات در پاکدشت چگونه است؟",
+          "a": "تمامی هزینه‌ها در جلسه اول معاینه به‌صورت مکتوب و شفاف اعلام می‌گردد. برای درمان‌های جامع نظیر ایمپلنت چندواحدی، ارتودنسی یا اصلاح کامل لبخند با کامپوزیت و لمینت، امکان پرداخت مرحله‌ای و اقساطی در طول دوره درمان برای مراجعین محترم پاکدشت فراهم است."
+        },
+        {
+          "id": "faq-6",
+          "q": "چگونه می‌توانم برای مشاوره اولیه یا ویزیت نوبت رزرو کنم؟",
+          "a": "کافی است با شماره‌های مستقیم مطب ۰۲۱۳۶۰۴۸۵۸۱ و ۰۲۱۳۶۰۴۸۵۸۲ تماس حاصل فرمایید. همکاران پذیرش نزدیک‌ترین زمان خالی متناسب با برنامه شما در مجتمع پزشکی راستین پاکدشت را هماهنگ خواهند کرد."
+        }
+      ]
+    },
+    "cta": {
+      "enabled": true,
+      "badge": "پاکدشت، مجتمع پزشکی راستین • طبقه اختصاصی پارمیس",
+      "badgeIcon": "location_on",
+      "title": "لبخندی بی‌نقص، سالم و درخشان را با اطمینان تجربه کنید",
+      "description": "جهت مشاوره تلفنی رایگان با تیم تخصصی دکتر انوشیروان شمس پور و رزرو وقت ویزیت، هم‌اکنون با ما در تماس باشید.",
+      "buttonText": "تماس و رزرو وقت ویزیت",
+      "phone": "02136048582",
+      "phoneDisplay": "۰۲۱۳۶۰۴۸۵۸۲"
+    }
+  },
+  "galleryPageSettings": {
+    "hero": {
+      "enabled": true,
+      "badge": "مستندات واقعی کلینیک پارمیس • مجتمع پزشکی راستین پاکدشت",
+      "title": "گالری مستند و واقعی ",
+      "titleHighlight": "لبخندهای دگرگون‌شده",
+      "description": "هر لبخند یک شاهکار پزشکی منحصربه‌فرد است. تمامی نمونه‌های زیر بدون فیلتر و روتوش فتوشاپ، توسط دکتر انوشیروان شمس پور با پیشرفته‌ترین تکنولوژی‌های اسکن سه‌بعدی و متریال درجه‌یک سوییسی و آلمانی درمان شده‌اند. می‌توانید لغزنده را به چپ و راست بکشید تا نتیجه تغییر را با جزئیات مقایسه کنید.",
+      "primaryButtonText": "مشاهده پرونده‌ها و مقایسه‌ها",
+      "phoneButtonText": "مشاوره ویزیت رایگان",
+      "featuredCardImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuCPFaA_datw-F1_DHr1TUtJBECQSwTHSr9-64n9RfKP82zD_STvCU_gm9KEbvVzsBkAjDTVR-Ih7KjWJV8AAjmdigBg_QEEmCwIEv6T1VKv-N5kydIMDGZiXjHdIvUrWF6-uPWBkIF9Yzcqa0QdTljTmYHWcOpoe0zdoADgFkuL7rrs8wffQEuRpAUFtsJvt3pc_qNty70FZofnDU1F2ERSvbfZUobOYGPcFX_T8Nyclpzi20d6sp22",
+      "featuredCardTitle": "اصلاح جامع ۸ واحد لمینت سرامیکی",
+      "featuredCardSubtitle": "کیس خانم م. رضایی • مراجع از پاکدشت",
+      "featuredCardBadge": "قبل / بعد",
+      "doctorName": "دکتر انوشیروان شمس پور",
+      "doctorSubtitle": "عضو انجمن دندانپزشکان ترمیمی ایران",
+      "metrics": [
+        {
+          "id": "m-1",
+          "value": "+۴,۰۰۰",
+          "label": "طراحی لبخند موفق"
+        },
+        {
+          "id": "m-2",
+          "value": "۹۹.۴٪",
+          "label": "رضایت مراجعین پاکدشت"
+        },
+        {
+          "id": "m-3",
+          "value": "CAD/CAM",
+          "label": "اسکن و تراش دیجیتال"
+        },
+        {
+          "id": "m-4",
+          "value": "۱۰ ساله",
+          "label": "ضمانت اصالت متریال"
+        }
+      ]
+    },
+    "filterChips": {
+      "enabled": true,
+      "categories": [
+        {
+          "id": "all",
+          "label": "همه درمان‌ها",
+          "icon": "auto_awesome",
+          "enabled": true
+        },
+        {
+          "id": "composite",
+          "label": "کامپوزیت ونیر نانوسرامیک",
+          "enabled": true
+        },
+        {
+          "id": "laminate",
+          "label": "لمینت پرسلن E-Max",
+          "enabled": true
+        },
+        {
+          "id": "implant",
+          "label": "ایمپلنت دیجیتال",
+          "enabled": true
+        },
+        {
+          "id": "gummy",
+          "label": "اصلاح لبخند لثه‌ای",
+          "enabled": true
+        },
+        {
+          "id": "bleaching",
+          "label": "بلیچینگ تخصصی",
+          "enabled": true
+        },
+        {
+          "id": "rehabilitation",
+          "label": "روکش زیرکونیا و بازسازی",
+          "enabled": true
+        }
+      ]
+    },
+    "featuredCase": {
+      "enabled": true,
+      "badge": "بررسی موردی تحلیلی (Featured Case)",
+      "title": "مقایسه میکروسکوپی و خطی قبل و بعد درمان",
+      "description": "اسلایدر زیر را به چپ و راست بکشید تا نتیجه مهندسی بیومیمتیک لبخند و تطابق رنگ را به صورت دقیق مشاهده نمایید.",
+      "beforeImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuAzscmxMVvRDumERwuQX9KQ0_FszxLb082SDq_Tu6AlXaMPfjHAh73Uya8SwZFgprEWcYrxbUi8VzG00mgd-MfjwysASpb9of6RKpcr1ktG020DfdylwyGRJYctKzXMt4_CjF9fvTYFvslguYFmCbMF25J9rkty0mFLcnOpl3_5Z8ZSjJ3OObXugVUdZrE7pvbM0-BXx-_ydgDQg37caBnpA-Z0I3B8jdewHLmLQbXUtlTEdMgfCrFR",
+      "afterImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuD5Jd9Qc0GvRp1Jid5KGDm5Qh5Zs4u0Ki8ElujSFK2Q1LHfEXRZBaKN6HEufX2bGIjyemMeqTlr1TwJ2MHA9jm1IY1sF73IC5h0f15yHTE-gdRilaOAPWr073HFfmjGxAPGggqpCTBYPslIJ3psCBEeN6INpQDFYY65yKbldQCmH4BXN9HbB_iyhy13Vo1OpJrOxukMQH9yfC1LjsWyPHKOQqqLicv7Bv_xn1rOvaBLo_M3FetKp6kT",
+      "beforeLabel": "وضعیت اولیه (قبل)",
+      "afterLabel": "بعد از درمان (E-Max)",
+      "caseNumber": "پرونده بالینی شماره #۸۹۲۴",
+      "unitBadge": "۸ واحد فک بالا",
+      "challengeTitle": "چالش اولیه مراجع:",
+      "challengeDesc": "سایش شدید دندانی ناشی از دندان‌قروچه، بدرنگی ژنتیکی مقاوم به بلیچینگ و نامنظمی لبه‌های اینسیزال.",
+      "planTitle": "پلن درمانی دکتر شمس پور:",
+      "planDesc": "طراحی لبخند دیجیتال (DSD)، جراحی افزایش طول تاج ملایم با لیزر دیود و لمینت سرامیکی پرسلن E-Max آلمانی.",
+      "duration": "۲ جلسه در طی ۹ روز در مطب پاکدشت",
+      "prepAmount": "حداقلی (Micro-Prep 0.3mm)",
+      "buttonText": "تماس جهت طرح درمان مشابه",
+      "satisfactionText": "رضایت کامل ثبت‌شده"
+    },
+    "caseGrid": {
+      "enabled": true,
+      "badge": "بانک پرونده‌های تصویری کلینیک پارمیس",
+      "badgeIcon": "collections_bookmark",
+      "title": "منتخب درمان‌های زیبایی و بازسازی دهان",
+      "description": "هر کارت شامل اسلایدر تعاملی قبل و بعد، متریال مصرفی و تکنیک تخصصی اجرا شده در مطب پاکدشت است (لغزنده را جابجا کنید).",
+      "loadMoreText": "مشاهده موارد بیشتر از گالری پاکدشت (موارد بالینی بیشتر)",
+      "collapseText": "بستن موارد تکمیلی"
+    },
+    "testimonials": {
+      "enabled": true,
+      "badge": "تجربه صمیمانه بیماران",
+      "title": "روایت مراجعین از پاکدشت و شرق تهران",
+      "description": "مستندات ویدیویی از لحظه دیدن لبخند در آینه بعد از اتمام درمان در کلینیک پارمیس",
+      "items": [
+        {
+          "id": "review-1",
+          "name": "خانم سمیرا امینی",
+          "location": "از پاکدشت • درمان ونیر کامپوزیت ۶ واحد",
+          "duration": "۰۲:۱۵ دقیقه",
+          "quote": "«اصلاً باورم نمی‌شد توی خود پاکدشت چنین درمان ظریف و بدون نقصی انجام بشه؛ کامپوزیت‌ها اصلاً برآمده نیستند و لبخندم کاملاً طبیعی شده.»",
+          "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCHXVlrWjerzdg9GR5Kxk6SaS90QnME770P9okJcfUGbZUyMJEtzshnF7-qkOBqOuDEharY0TULdtUb-PU_542x-kyN39qNewyLLRJ2tgBqbmS_cj9O6mWXgiNS6bKiqpUwAhs1bCRccwjdjX0lYgr_xc91QfX8rkxObfASrpfM45aHTTP2fyKY3K6Yf5xTJo9040r-fDiyx89dMv_78HI1cxjpFcGBZmHHFCVsM-N7-mV9MxmN9mBS"
+        },
+        {
+          "id": "review-2",
+          "name": "آقای بهرام شریفی",
+          "location": "از قیام‌دشت • کاشت ۳ واحد ایمپلنت اشترومن",
+          "duration": "۰۱:۴۵ دقیقه",
+          "quote": "«بدون درد و خونریزی جراحی شد. حتی یک قرص مسکن هم بعد جراحی نیاز نداشتم. پیگیری‌های بعد از جراحی پرسنل دکتر شمس پور واقعاً ستودنی بود.»",
+          "image": "/uploads/cbf60823bb1c5cd7146d80dcf91bc82155062880-144p-1792411654828-924547.mp4"
+        },
+        {
+          "id": "review-3",
+          "name": "خانم دکتر نادری",
+          "location": "از ورامین • ۸ واحد لمینت سرامیکی فک بالا",
+          "duration": "۰۱:۲۰ دقیقه",
+          "quote": "«دقت میکرومتری در تراش و رنگ کاملاً طبیعی لبه‌ها باعث شد همکارانم متوجه لمینت بودن دندان‌ها نشوند؛ دندان‌ها برجسته نشدند و آناتومی لبه‌ها بی‌نظیره.»",
+          "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBlozcxYiqvvl6FW7fb5u5XwwPwEU2_aSiPhGIGvKdmrFgIM8XKe8qWoLevZi9ZbN-Yj_90iR9A0ymHaG2T_L7jjLaKtk7JdoLgFV0TbEOV1a794eJDrkpKu2Npj9fiwSoI_tLAB_a0iHLvlERO_1TvqQhlnh2MwG1yIRoKVmO-9cfs6HLiPalu56PV9p7xXdNBkJPCCa-hlkoxKkuSPmevbbZ6m6JtkRnGbsgedW_gR6SduGdMBQ_y"
+        },
+        {
+          "name": "sbdv",
+          "location": "xcvzdxbzb",
+          "duration": "dvsdb",
+          "quote": "dbdbdzb",
+          "image": "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80",
+          "id": "rev-1792411814598"
+        }
+      ]
+    },
+    "photographyManifesto": {
+      "enabled": true,
+      "badge": "استاندارد عکاسی کلینیکال و ثبت سند",
+      "badgeIcon": "photo_camera",
+      "title": "تعهد شفافیت: بدون روتوش، بدون خطای دید",
+      "description": "ما باور داریم که اعتماد بیماران ارزشمندترین دارایی ماست. به همین دلیل در ثبت تصاویر نمونه کارهای مطب دکتر شمس پور به ۴ اصل سخت‌گیرانه پایبندیم.",
+      "principles": [
+        {
+          "id": "p-1",
+          "title": "بدون ادیت نرم‌افزاری",
+          "description": "هیچ‌گونه سفیدکردن غیرواقعی، حذف لکه یا دستکاری خط لثه در فتوشاپ انجام نمی‌شود.",
+          "icon": "hide_image"
+        },
+        {
+          "id": "p-2",
+          "title": "نور استاندارد ۵۵۰۰K پزشکی",
+          "description": "عکاسی ماکرو با فلاش رینگی پزشکی کالیبره‌شده برای بازتاب دقیق‌ترین رنگ طبیعی مینا.",
+          "icon": "wb_sunny"
+        },
+        {
+          "id": "p-3",
+          "title": "نمایش بافت طبیعی لبه دندان",
+          "description": "ثبت شفافیت شیشه‌ای لبه دندان‌ها به منظور اثبات ظرافت کار لابراتواری و پالیش نهایی.",
+          "icon": "lens_blur"
+        },
+        {
+          "id": "p-4",
+          "title": "حفظ حریم خصوصی چهره",
+          "description": "تمامی تصاویر و ویدیوها با رضایت‌نامه کتبی مراجعین گرامی منتشر گردیده است.",
+          "icon": "lock"
+        }
+      ]
+    },
+    "journey": {
+      "enabled": true,
+      "badge": "مسیر خلق لبخند اختصاصی",
+      "title": "۴ گام تا داشتن لبخندی درخشان در کلینیک پارمیس",
+      "description": "روند دقیق، علمی و بدون ابهام از اولین جلسه ویزیت تا تحویل نهایی در مطب پاکدشت",
+      "steps": [
+        {
+          "id": "st-1",
+          "stepNumber": "۱",
+          "title": "اسکن ۳بعدی و آنالیز صورت",
+          "description": "بررسی دقیق تناسب دندان‌ها با انحنای لب و زوایای صورت با اینتراورال اسکنر دیجیتال بدون خفگی قالب‌گیری سنتی."
+        },
+        {
+          "id": "st-2",
+          "stepNumber": "۲",
+          "title": "ماک‌آپ موقت و پیش‌نمایش در دهان",
+          "description": "امکان مشاهده و تایید فرم و رنگ نهایی دندان‌ها در دهان پیش از هرگونه اقدام درمانی یا تراش میکرومتری."
+        },
+        {
+          "id": "st-3",
+          "stepNumber": "۳",
+          "title": "اجرای ظریف با متریال اورجینال",
+          "description": "تراش میکروسکوپی مینیمال یا کامپوزیت لایه‌ای با پایش مداوم اکلوژن فکی، ایزولاسیون کامل رابردم و متریال ژاپنی و سوئیسی."
+        },
+        {
+          "id": "st-4",
+          "stepNumber": "۴",
+          "title": "صدور گارانتی کتبی و چکاپ‌ها",
+          "description": "جلسات کنترل دوره‌ای، پولیش سالانه و ارائه کارت ضمانت مکتوب ماندگاری متریال در مجتمع پزشکی راستین پاکدشت."
+        }
+      ]
+    },
+    "faqs": {
+      "enabled": true,
+      "badge": "پاسخ‌های دکتر انوشیروان شمس پور به سوالات شما",
+      "title": "پرسش‌های پرتکرار مراجعین",
+      "items": [
+        {
+          "id": "gfaq-1",
+          "q": "آیا این نمونه‌ها تماماً متعلق به مراجعین مطب پاکدشت است؟",
+          "a": "بله، صد درصد تصاویر و ویدیوهای بارگذاری شده در این وب‌سایت، پرونده‌های بالینی واقعی بیماران تحت درمان دکتر انوشیروان شمس پور در مطب پاکدشت (مجتمع راستین) است و مراجعین محترم در جلسه مشاوره حضوری می‌توانند آلبوم جامع این درمان‌ها را مشاهده فرمایند."
+        },
+        {
+          "id": "gfaq-2",
+          "q": "طول عمر لمینت سرامیکی و کامپوزیت چقدر است؟",
+          "a": "لمینت‌های سرامیکی E-Max آلمانی در صورت رعایت بهداشت فردی و مراجعات دوره‌ای، طول عمری بین ۱۵ الی ۲۰ سال همراه با ضمانت کتبی ۱۰ ساله دارند. ونیرهای کامپوزیت ژاپنی و سویسی نیز بین ۵ الی ۸ سال دوام دارند و سالی یک‌بار نیاز به پالیش سبک خواهند داشت."
+        },
+        {
+          "id": "gfaq-3",
+          "q": "آیا برای نصب لمینت، دندان‌ها تراش زیادی می‌خورند؟",
+          "a": "خیر؛ در متد پیشرفته Micro-Prep که در این مرکز به کار گرفته می‌شود، تراش سطحی در حد ۰.۳ تا ۰.۵ میلی‌متر و صرفاً در لایه مینا انجام می‌پذیرد. همچنین در درمان ونیر کامپوزیت در ۹۰٪ موارد هیچ‌گونه تراشی انجام نمی‌شود."
+        },
+        {
+          "id": "gfaq-4",
+          "q": "چگونه می‌توانم از طرح درمان و هزینه تخمینی کیس خودم مطلع شوم؟",
+          "a": "شما می‌توانید با تماس با شماره‌های ۰۲۱۳۶۰۴۸۵۸۱ یا ۰۲۱۳۶۰۴۸۵۸۲، یک نوبت مشاوره و آنالیز اولیه هماهنگ فرمایید تا پس از معاینه دقیق دندان‌ها، پلان درمان و برآورد شفاف هزینه‌ها در اختیارتان قرار گیرد."
+        }
+      ]
+    },
+    "cta": {
+      "enabled": true,
+      "badge": "مشاوره حضوری و اسکن دیجیتال در پاکدشت",
+      "title": "آماده‌اید لبخند رویایی خود را تجربه کنید؟",
+      "description": "یک جلسه مشاوره و تصویربرداری تشخیصی در کلینیک پارمیس با دکتر انوشیروان شمس پور رزرو کنید و طرح لبخند ایده‌آل خود را قبل از درمان بر روی مانیتور ببینید.",
+      "phoneButtonText": "تماس مستقیم",
+      "whatsappButtonText": "مشاوره و هماهنگی در واتساپ",
+      "whatsappLink": "https://wa.me/989120802253"
+    }
+  },
+  "aboutPageSettings": {
+    "hero": {
+      "enabled": true,
+      "eyebrowChip": "کلینیک تخصصی پارمیس • مجتمع پزشکی راستین پاکدشت",
+      "doctorName": "دکتر انوشیروان شمس پور",
+      "titleHighlight": "تعهد به سلامت دهان و آفرینش لبخند طبیعی در پاکدشت",
+      "description": "سال‌ها تجربه درخشان در ارائه خدمات دندان‌پزشکی با رویکرد بیمارمحور، بهره‌گیری از تجهیزات مدرن دیجیتال و متریال‌های استاندارد جهانی در محیطی صمیمی، آرام و مجهز به سیستم‌های پیشرفته استریلیزاسیون.",
+      "doctorImage": "/uploads/photo_2026-10-18_21-28-58-1792346391612-941489.jpg",
+      "verifiedBadgeText": "عضو سازمان نظام پزشکی",
+      "licenseText": "شماره پروانه طبابت / نظام پزشکی: 0",
+      "floatingPill1Title": "مشاوره تخصصی و صادقانه",
+      "floatingPill1Subtitle": "حفظ حداکثری بافت طبیعی دندان",
+      "floatingPill1Icon": "shield_person",
+      "floatingPill2Title": "استریلیزاسیون سه‌مرحله‌ای",
+      "floatingPill2Subtitle": "پک‌های کاملاً استریل یکبارمصرف",
+      "floatingPill2Icon": "health_and_safety",
+      "metrics": [
+        {
+          "id": "m1",
+          "value": "+۱۰ سال",
+          "label": "سابقه طبابت بالینی"
+        },
+        {
+          "id": "m2",
+          "value": "+۵۰۰۰",
+          "label": "مراجع راضی و درمان موفق"
+        },
+        {
+          "id": "m3",
+          "value": "کلاس B",
+          "label": "استریل اتوکلاو اروپایی"
+        },
+        {
+          "id": "m4",
+          "value": "دیجیتال RVG",
+          "label": "کمترین دوز تابش اشعه"
+        }
+      ],
+      "primaryButtonText": "رزرو تلفنی نوبت:",
+      "primaryButtonPhone": "02136048581",
+      "secondaryButtonText": "مشاوره واتساپ",
+      "secondaryButtonLink": "https://wa.me/989120802253"
+    },
+    "pillars": {
+      "enabled": true,
+      "badge": "اصول بنیادین کلینیک پارمیس",
+      "badgeSubtitle": "۵ ستون استاندارد",
+      "items": [
+        {
+          "id": "p1",
+          "icon": "volunteer_activism",
+          "title": "اولویت آرامش بیمار",
+          "subtitle": "تزریق آرام و بدون درد با روان‌بخشی محیط"
+        },
+        {
+          "id": "p2",
+          "icon": "biotech",
+          "title": "فناوری دیجیتال مدرن",
+          "subtitle": "رادیوگرافی RVG و دوربین دقیق داخل‌دهانی"
+        },
+        {
+          "id": "p3",
+          "icon": "verified_user",
+          "title": "متریال اورجینال اروپایی",
+          "subtitle": "کامپوزیت‌ها و ایمپلنت‌های معتبر و استاندارد"
+        },
+        {
+          "id": "p4",
+          "icon": "payments",
+          "title": "شفافیت کامل در هزینه‌ها",
+          "subtitle": "توضیح کامل پلن درمان قبل از هرگونه اقدام"
+        },
+        {
+          "id": "p5",
+          "icon": "pin_drop",
+          "title": "دسترسی آسان در پاکدشت",
+          "subtitle": "مجتمع پزشکی راستین، قلب درمانی شهر"
+        }
+      ]
+    },
+    "philosophy": {
+      "enabled": true,
+      "badge": "فلسفه پزشکی و طبابت اخلاق‌مدار",
+      "title": "نگاه دکتر شمس پور به درمان دندان‌پزشکی: بازسازی طبیعی، نه فقط درمان مقطعی",
+      "subtitle": "در مطب دندان‌پزشکی پارمیس، درمان دندان یک فرآیند استرس‌زا نیست؛ بلکه بازگرداندن آسودگی، سلامت پایدار و حس اعتماد‌به‌نفس در لبخند شماست.",
+      "bioTitle": "زندگینامه و مسیر حرفه‌ای",
+      "bioText1": "دکتر انوشیروان شمس پور با سال‌ها تجربه بالینی درخشان و بهره‌گیری از پروتکل‌های درمانی مدرن، اصل کاری خود را بر پایه «صداقت در تشخیص و اولویت حفظ حداکثری دندان طبیعی بیمار» بنا نهاده است. کلیه مراحل درمانی در محیطی کاملاً استریل، آرام و مجهز به جدیدترین فناوری‌های تشخیصی روز انجام می‌شود.",
+      "bioText2": "باور عمیق دکتر شمس پور بر رویکرد «دندان‌پزشکی محافظه‌کارانه و بیومیمتیک (حداقل مداخله)» استوار است؛ به این معنا که اولویت اول و بنیادین در مطب پارمیس، حفظ سلامت و نگهداری دندان طبیعی خود بیمار است و تنها در شرایط اضطرار و پس از ارزیابی کامل دیجیتال، روش‌های جایگزین همچون جراحی و ایمپلنت پیشنهاد می‌گردند.",
+      "clinicLocationTag": "مطب پارمیس، مجتمع راستین، طبقه دوم",
+      "licenseLinkText": "شماره پروانه طبابت: 0",
+      "checklist": [
+        {
+          "id": "c1",
+          "text": "حفظ حداکثری مینا و بافت دندانی"
+        },
+        {
+          "id": "c2",
+          "text": "استفاده از پروتکل‌های بی‌حسی بدون درد"
+        },
+        {
+          "id": "c3",
+          "text": "آموزش گام‌به‌گام و تصویربرداری زنده حین درمان"
+        },
+        {
+          "id": "c4",
+          "text": "پیگیری و چک‌آپ‌های دوره‌ای رایگان"
+        }
+      ],
+      "cards": [
+        {
+          "id": "card1",
+          "icon": "sentiment_satisfied",
+          "title": "درمان بدون درد و تنش",
+          "description": "به‌کارگیری بی‌حسی‌های عمیق، تزریق دیجیتال با نیدل‌های بسیار ظریف و محیطی معطر و آرام جهت زدودن کامل فوبیای دندانپزشکی."
+        },
+        {
+          "id": "card2",
+          "icon": "format_image_left",
+          "title": "حفظ حداکثری دندان طبیعی (Biomimetic)",
+          "description": "هیچ جایگزینی معادل دندان طبیعی خود فرد نیست. تمام تلاش علمی دکتر شمس پور نجات ریشه و تاج با ترمیم‌های نوین است."
+        },
+        {
+          "id": "card3",
+          "icon": "request_quote",
+          "title": "شفافیت کامل در هزینه‌ها و معاینه دقیق",
+          "description": "تشریح کامل طرح درمان به همراه صدور برآورد مالی مکتوب پیش از شروع هر مرحله، بدون هیچ‌گونه هزینه پنهان."
+        }
+      ]
+    },
+    "sterilization": {
+      "enabled": true,
+      "badge": "استانداردهای بهداشتی و تجهیزات پیشرفته",
+      "title": "سلامت و ایمنی شما در کلینیک پارمیس، بالاترین اولویت ماست",
+      "description": "ما در مطب دندان‌پزشکی پارمیس واقع در مجتمع پزشکی راستین پاکدشت، سخت‌گیرانه‌ترین استانداردهای کنترل عفونت را به اجرا گذاشته‌ایم تا شما و خانواده محترمتان با خاطری کاملاً آسوده تحت درمان قرار گیرید.",
+      "mainImage": "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80",
+      "overlayBadgeTitle": "استریلیزاسیون ۱۰۰٪ تضمینی",
+      "overlayBadgeSubtitle": "تست‌های بیولوژیک و شیمیایی ماهانه",
+      "overlayBadgeIcon": "sanitizer",
+      "items": [
+        {
+          "id": "s1",
+          "icon": "cleaning_services",
+          "title": "اتوکلاو کلاس B اروپایی و بسته‌بندی پک وکیوم",
+          "description": "تمامی ابزارهای غیر یکبارمصرف در پاکت‌های استریل بسته‌بندی شده و دقیقاً مقابل چشمان بیمار باز می‌شوند."
+        },
+        {
+          "id": "s2",
+          "icon": "monitor_heart",
+          "title": "رادیوگرافی دیجیتال (RVG) با وضوح فوق‌العاده",
+          "description": "ثبت آنی تصاویر دندانی با کاهش ۹۰ درصدی دوز تابش اشعه ایکس نسبت به رادیوگرافی‌های سنتی و فیلمی قدیمی."
+        },
+        {
+          "id": "s3",
+          "icon": "camera_indoor",
+          "title": "دوربین داخل دهانی و نمایش زنده در مانیتور بیمار",
+          "description": "شما وضعیت دندان، پوسیدگی‌ها و مراحل درمان خود را به وضوح بر روی مانیتور یونیت مشاهده خواهید کرد."
+        },
+        {
+          "id": "s4",
+          "icon": "sanitizer",
+          "title": "پک‌های استریل یک‌بار مصرف اختصاصی",
+          "description": "بازگشایی بسته‌بندی استریل اینسترومنت‌ها منحصراً در حضور خود بیمار با نشانگر حرارتی معتبر."
+        }
+      ]
+    },
+    "gallery": {
+      "enabled": true,
+      "badge": "فضای مطب پارمیس",
+      "badgeSubtitle": "پاکدشت، مجتمع راستین، طبقه ۲",
+      "title": "محیطی پاکیزه، مدرن و صمیمی برای آرامش شما",
+      "description": "گوشه‌ای از فضای درمانی و پذیرش کلینیک دندان‌پزشکی پارمیس در مجتمع پزشکی راستین پاکدشت.",
+      "slides": [
+        {
+          "id": "g1",
+          "title": "سالن انتظار دلباز و آرام",
+          "subtitle": "محیطی صمیمی همراه با سیستم تهویه مطبوع هوا و موسیقی ملایم برای آرامش همراهان.",
+          "tag": "سالن انتظار",
+          "image": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
+          "id": "g2",
+          "title": "یونیت ارگونومیک هوشمند",
+          "subtitle": "طراحی فوم حافظه‌دار صندلی بیمار جهت رفع خستگی ستون فقرات حین درمان‌های طولانی.",
+          "tag": "یونیت درمان",
+          "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuA4eZSRbpCc4iM2eEyXnmCwHDyzkzPhf6Fcza35-sdb83oUdkmJMgN4NzlqVQ6e1qwz4Mdd3c4AsgTXLUJz2ET_L2fbW30BNHsMV0iyDeXqTVMt_4Q6DNfkdPl4_-GeQbwZXGbg5EeBVu1tQf5gkz2EUpxl73fBAJSeH2zz-QcLn2i6cSpkg4URN9JI3uh8QsXTcMqviHoPqXlMSXP12zfUBPevfAx3ye8krZ8r9hwI5yd9Dm7JNIxf"
+        },
+        {
+          "id": "g3",
+          "title": "واحد مکانیزه ضدعفونی",
+          "subtitle": "جداسازی کامل خط کثیف و خط تمیز مطابق استانداردهای سخت‌گیرانه وزارت بهداشت.",
+          "tag": "مرکز CSR",
+          "image": "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80"
+        }
+      ]
+    },
+    "services": {
+      "enabled": true,
+      "badge": "طیف خدمات بالینی",
+      "title": "خدمات درمانی و زیبایی زیر نظر دکتر شمس پور",
+      "description": "ارائه کلیه اقدامات تخصصی دندان‌پزشکی با پروتکل‌های محافظه‌کارانه و بهترین متریال استاندارد.",
+      "items": [
+        {
+          "id": "srv1",
+          "icon": "auto_awesome",
+          "title": "ونیر کامپوزیت و لمینت",
+          "description": "طراحی لبخند هالیوودی متناسب با فرم چهره، شفافیت طبیعی و ماندگاری بالا.",
+          "linkText": "جزئیات درمان"
+        },
+        {
+          "id": "srv2",
+          "icon": "dentistry",
+          "title": "ایمپلنت و کاشت دندان",
+          "description": "جایگزینی ریشه با فیکسچرهای استاندارد مادام‌العمر بدون تحلیل لثه.",
+          "linkText": "جزئیات درمان"
+        },
+        {
+          "id": "srv3",
+          "icon": "healing",
+          "title": "درمان ریشه (عصب‌کشی)",
+          "description": "درمان بدون درد ریشه دندان با فایل‌های چرخشی روتاری و اپکس‌لوکیتورهای دیجیتال.",
+          "linkText": "جزئیات درمان"
+        },
+        {
+          "id": "srv4",
+          "icon": "child_care",
+          "title": "دندان‌پزشکی ترمیمی و اطفال",
+          "description": "پرکردن همرنگ دندان، فلورایدتراپی و مراقبت دندان‌های شیری با صبوری و حوصله.",
+          "linkText": "جزئیات درمان"
+        }
+      ]
+    },
+    "testimonials": {
+      "enabled": true,
+      "badge": "تجربه بیماران",
+      "title": "روایت مراجعین از درمان در کلینیک پارمیس",
+      "description": "نظرات ثبت‌شده بیماران محترم درباره برخورد حرفه‌ای و درمان‌های دکتر انوشیروان شمس پور.",
+      "ratingValue": "۴.۹",
+      "items": [
+        {
+          "id": "t1",
+          "name": "مهدی رضایی",
+          "avatarInitials": "م.ر",
+          "tag": "ساکن پاکدشت (مامازند) • کامپوزیت زیبایی",
+          "quote": "من سال‌ها از دندان‌پزشکی وحشت داشتم، اما صبوری و اخلاق حرفه‌ای دکتر شمس پور واقعاً فوق‌العاده بود. برای درمان دندان عصب‌کشی و روکش حتی سرسوزنی درد حس نکردم. محیط کلینیک هم فوق‌العاده تمیز و باکلاسه.",
+          "stars": 5
+        },
+        {
+          "id": "t2",
+          "name": "سارا مشفق",
+          "avatarInitials": "س.م",
+          "tag": "ساکن شهرک دانشگاه • کاشت ایمپلنت",
+          "quote": "برای ایمپلنت دوتا دندونم خیلی تحقیق کرده بودم تا تهران نرم. خوشبختانه کلینیک پارمیس توی پاکدشت مجتمع راستین بهترین انتخاب بود؛ رادیوگرافی دقیق خودشون داشتن و همه‌چیز کاملا استریل و پک شده بود.",
+          "stars": 5
+        },
+        {
+          "id": "t3",
+          "name": "علی میرزایی",
+          "avatarInitials": "ع.م",
+          "tag": "جراحی و ایمپلنت دیجیتال",
+          "quote": "بهداشت فوق‌العاده مطب و خوش‌قولی در زمان نوبت‌دهی واقعاً ستودنی است. پک‌ها استریل جلوی خود بیمار باز می‌شود و آقای دکتر تمام مراحل را با دقت برای من توضیح دادند.",
+          "stars": 5
+        }
+      ]
+    },
+    "contact": {
+      "enabled": true,
+      "badge": "اطلاعات دسترسی و نوبت‌دهی",
+      "title": "مطب دندان‌پزشکی پارمیس • دکتر انوشیروان شمس پور",
+      "addressTitle": "آدرس کلینیک",
+      "addressText": "پاکدشت، بلوار شهدای قمی، میدان علی ابن ابیطالب، ابتدای بلوار علی ابن ابیطالب، مجتمع پزشکی راستین، طبقه دوم، کلینیک دندان‌پزشکی پارمیس",
+      "phoneTitle": "شماره تماس مستقیم",
+      "phone1": "02136048581",
+      "phone2": "02136048582",
+      "phone1Display": "۰۲۱۳۶۰۴۸۵۸۱",
+      "phone2Display": "۰۲۱۳۶۰۴۸۵۸۲",
+      "hoursTitle": "ساعات کاری و پذیرش",
+      "hoursText": "شنبه تا پنجشنبه: ۱۰ صبح الی ۲۱ (با تعیین وقت قبلی)",
+      "hoursEmergencyText": "جمعه‌ها و ایام تعطیل رسمی: پذیرش موارد اورژانسی با هماهنگی تلفنی",
+      "mapImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuB46eR0IQlF5wtRFa0UaCzRiEuaHPhc782AKsDtnuzImaR_GsyaZAy0aTmHdTnULJ9J2fvzlC3pG3IVi6BGONR__LzhfN42tLlEOlHxkU8mstUg-mAXCq9eBroGOmwC-rNglqS6MJde07opdTceAXWUHFLUlCnKiUeMCJO_kJdOmAzP0gkYjq1IbuAefJrq3OcHAp5lF1y-L4UgeFkDD70CydNfgxdRhcORg99CfCx6TD8xZFy_uuzU",
+      "mapPinLabel": "مجتمع پزشکی راستین • مطب پارمیس",
+      "amenitiesTitle": "مسیریابی آسان و امکانات رفاهی",
+      "amenitiesDesc": "فضای مناسب پارک خودرو، آسانسور فعال، داروخانه در مجتمع و امکانات رفاهی کلینیک",
+      "neshanUrl": "https://nshn.ir/fcsbQMQhQxn5EY",
+      "baladUrl": "https://balad.ir/location?latitude=35.483203&longitude=51.680118&zoom=16.500000",
+      "googleMapsUrl": "https://maps.app.goo.gl/mW3LBkEkswiF6HBZ8?g_st=ac"
+    },
+    "cta": {
+      "enabled": true,
+      "badge": "مشاوره و ارزیابی اولیه لبخند",
+      "badgeIcon": "favorite",
+      "title": "آماده‌اید لبخند خود را با اطمینان به ما بسپارید؟",
+      "description": "جهت رزرو نوبت معاینه، اطلاع از طرح‌های درمان یا دریافت مشاوره با کادر مطب دکتر شمس پور تماس بگیرید.",
+      "buttonText": "تماس:",
+      "phone": "02136048582",
+      "phoneDisplay": "۰۲۱۳۶۰۴۸۵۸۲"
+    }
+  },
+  "contactPageSettings": {
+    "hero": {
+      "enabled": true,
+      "badge": "مجتمع پزشکی راستین • مرکز تخصصی پاکدشت",
+      "title": "تماس با ما و دسترسی حضوری به",
+      "titleHighlight": "کلینیک دندان‌پزشکی پارمیس",
+      "description": "پذیرای مراجعین گرامی از پاکدشت، فرون‌آباد، قیام‌دشت، شریف‌آباد، مامازند، ورامین و ساکنین شرق استان تهران. تجربه درمانی آرام، مجهز به مدرن‌ترین دستگاه‌های تصویربرداری و ایمپلنت زیر نظر دکتر انوشیروان شمس پور.",
+      "amenities": [
+        {
+          "id": "am1",
+          "icon": "chair",
+          "text": "امکانات رفاهی کلینیک"
+        },
+        {
+          "id": "am2",
+          "icon": "elevator",
+          "text": "آسانسور فعال"
+        },
+        {
+          "id": "am3",
+          "icon": "local_parking",
+          "text": "فضای مناسب پارک خودرو"
+        }
+      ]
+    },
+    "quickCards": {
+      "enabled": true,
+      "addressCard": {
+        "enabled": true,
+        "title": "نشانی دقیق مطب",
+        "text": "پاکدشت، بلوار شهدای قمی، میدان علی ابن ابیطالب، ابتدای بلوار علی ابن ابیطالب، مجتمع پزشکی راستین، طبقه دوم، کلینیک دندان‌پزشکی پارمیس",
+        "footerText": "طبقه دوم با آسانسور فعال",
+        "footerIcon": "elevator"
+      },
+      "phoneCard": {
+        "enabled": true,
+        "title": "تلفن و پیام‌رسان",
+        "description": "خط ویژه پذیرش، هماهنگی نوبت و مشاوره رایگان درمان:",
+        "phone1": "02136048581",
+        "phone2": "02136048582",
+        "phone1Display": "۰۲۱۳۶۰۴۸۵۸۱",
+        "phone2Display": "۰۲۱۳۶۰۴۸۵۸۲",
+        "whatsappPhone": "989120802253",
+        "whatsappDisplay": "۰۹۱۲۰۸۰۲۲۵۳ (پشتیبانی واتساپ)",
+        "footerButtonText": "برقراری تماس فوری تلفنی"
+      },
+      "hoursCard": {
+        "enabled": true,
+        "title": "ساعات کاری و پذیرش",
+        "weekdayHours": "۹:۰۰ الی ۲۱:۰۰",
+        "thursdayHours": "۹:۰۰ الی ۱۶:۰۰",
+        "emergencyHours": "فقط اورژانس با هماهنگی",
+        "footerText": "پذیرش فعال در شیفت صبح و عصر"
+      },
+      "amenitiesCard": {
+        "enabled": true,
+        "title": "امکانات رفاهی و دسترسی",
+        "text": "دارای فضای مناسب جهت پارک خودرو، مجهز به آسانسور فعال، داروخانه مستقر در مجتمع پزشکی راستین و امکانات رفاهی کامل در داخل کلینیک پارمیس جهت آسایش مراجعین.",
+        "footerText": "داروخانه در مجتمع و فضای مناسب پارک"
+      }
+    },
+    "mapAndRouting": {
+      "enabled": true,
+      "badge": "موقعیت مکانی و ناوبری",
+      "title": "نقشه و دسترسی به کلینیک پارمیس",
+      "cityTag": "پاکدشت • مجتمع راستین",
+      "mapImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuC8R3q-m6biXlpO7DVycxHmqcNT_QFcBsrU1786ZHCW0VGFIct0xTksc6ThpNzl4UE1edGk6rNhHOH7WE238hsY2i07aeGlHxsu8Psnpqp36L5kXTdJMbITMta3l6la2zCfbtWFFAq5Rtzmopfb3YkLXviWvA1-wgcxITowC_Qlf1KXV2u7TiWNR1ilYLK5ePobi9LrNt70eeC5wsXdymV2_-wGXA65t86B8OlEsYkYyoh92a9E3NHP",
+      "mapPinTitle": "دندان‌پزشکی پارمیس (دکتر شمس پور)",
+      "mapBottomBadge": "مجتمع پزشکی راستین: دارای داروخانه و آسانسور فعال",
+      "mapBottomLocation": "طبقه دوم • کلینیک پارمیس",
+      "neshanUrl": "https://nshn.ir/fcsbQMQhQxn5EY",
+      "baladUrl": "https://balad.ir/location?latitude=35.483203&longitude=51.680118&zoom=16.500000",
+      "googleMapsUrl": "https://maps.app.goo.gl/mW3LBkEkswiF6HBZ8?g_st=ac",
+      "snappUrl": "https://snapp.ir",
+      "drivingGuideTitle": "راهنمای دسترسی از تهران و مناطق اطراف:",
+      "carGuideTitle": "مسیر خودرو شخصی از تهران (افسریه):",
+      "carGuideText": "بزرگراه امام رضا (ع)، عبور از سه‌راه خاورشهر و قیام‌دشت، ورود به پاکدشت، بلوار شهدای قمی، میدان علی ابن ابیطالب، ابتدای بلوار علی ابن ابیطالب، مجتمع پزشکی راستین.",
+      "transitGuideTitle": "مسیر با وسایل حمل‌ونقل عمومی:",
+      "transitGuideText": "پایانه تاکسی و اتوبوس مترو خاوران یا سه‌راه افسریه به مقصد پاکدشت، بلوار شهدای قمی، میدان علی ابن ابیطالب، ابتدای بلوار علی ابن ابیطالب.",
+      "doctorBadgeEnabled": true,
+      "doctorBadgeTitle": "دکتر انوشیروان شمس پور",
+      "doctorBadgeSubtitle": "عضو نظام پزشکی • ارائه‌دهنده پیشرفته‌ترین درمان‌های ایمپلنت و زیبایی در پاکدشت",
+      "doctorBadgeButtonText": "تماس جهت هماهنگی"
+    },
+    "triageAndBooking": {
+      "enabled": true,
+      "badge": "پذیرش و هماهنگی تلفنی مستقیم",
+      "title": "راهنمای دریافت نوبت معاینه و ویزیت",
+      "description": "در این مرکز برای حفظ احترام به زمان شما و پرهیز از تداخل ساعات و معطلی، نوبت‌دهی آنلاین وجود ندارد و تمامی نوبت‌ها صرفاً از طریق گفتگوی تلفنی مستقیم با کادر پذیرش هماهنگ می‌شود.",
+      "phoneBoxTitle": "شماره‌های تماس مستقیم پذیرش مطب:",
+      "statusBadgeText": "پاسخگویی فعال",
+      "phone1": "02136048581",
+      "phone2": "02136048582",
+      "phone1Display": "۰۲۱۳۶۰۴۸۵۸۱",
+      "phone2Display": "۰۲۱۳۶۰۴۸۵۸۲",
+      "hoursNotice": "شنبه تا چهارشنبه: ۹ الی ۲۱ | پنج‌شنبه‌ها: ۹ الی ۱۶",
+      "whatsappEnabled": true,
+      "whatsappTitle": "ارسال عکس دندان و مشاوره در واتساپ",
+      "whatsappDescription": "می‌توانید عکس لبخند یا رادیوگرافی (OPG) خود را به واتساپ کلینیک ارسال فرمایید تا برآورد اولیه هزینه و نیاز به تعداد جلسات به شما اعلام گردد.",
+      "whatsappPhone": "989120802253",
+      "whatsappButtonText": "ارسال پیام به واتساپ کلینیک: ۰۹۱۲۰۸۰۲۲۵۳",
+      "emergencyEnabled": true,
+      "emergencyTitle": "موارد اورژانسی و دندان‌درد حاد:",
+      "emergencyDescription": "بیماران دارای درد شدید بدون نوبت قبلی در اولویت پذیرش قرار می‌گیرند. لطفاً قبل از مراجعه سریعاً با ۰۲۱۳۶۰۴۸۵۸۱ یا ۰۲۱۳۶۰۴۸۵۸۲ تماس بگیرید.",
+      "trustBadgeText": "کلینیک تخصصی دندان‌پزشکی پارمیس • مجتمع پزشکی راستین پاکدشت"
+    },
+    "commuters": {
+      "enabled": false,
+      "badge": "تسهیلات بیماران محترم شهرستان‌های همجوار",
+      "title": "خدمات ویژه مراجعین شریف‌آباد، قیام‌دشت، فرون‌آباد و ورامین",
+      "description": "برای مراجعینی که از تهران و شهرهای اطراف تشریف می‌آورند تمهیدات ویژه‌ای در نظر گرفته شده است:",
+      "cards": [
+        {
+          "id": "c1",
+          "icon": "event_available",
+          "title": "ویزیت و درمان تک‌جلسه‌ای",
+          "description": "انجام چند درمان همزمان (جرم‌گیری، ترمیم و عصب‌کشی) در یک نوبت تجمیعی جهت جلوگیری از رفت‌وآمد مکرر بین‌شهری."
+        },
+        {
+          "id": "c2",
+          "icon": "chat_paste_go",
+          "title": "مشاوره با عکس قبل از حرکت",
+          "description": "امکان ارسال عکس رادیوگرافی (OPG) به واتساپ کلینیک و اعلام هزینه تقریبی و نیاز به تعداد جلسات پیش از مراجعه حضوری."
+        },
+        {
+          "id": "c3",
+          "icon": "local_parking",
+          "title": "فضای پارک مناسب و امکانات رفاهی",
+          "description": "فضای مناسب جهت پارک خودرو در مجاورت ساختمان، داروخانه مستقر در مجتمع راستین، آسانسور فعال و امکانات رفاهی کامل در داخل کلینیک برای همراهان محترم."
+        }
+      ]
+    },
+    "faqs": {
+      "enabled": true,
+      "badge": "پاسخ به ابهامات متداول",
+      "title": "پرسش‌های پرتکرار مراجعین مطب پاکدشت",
+      "items": [
+        {
+          "id": "faq-1",
+          "q": "نحوه هماهنگی نوبت ویزیت در کلینیک پارمیس به چه صورت است؟",
+          "a": "در کلینیک دندان‌پزشکی دکتر انوشیروان شمس پور، به منظور احترام به وقت مراجعین عزیز و جلوگیری از هرگونه معطلی در سالن انتظار، نوبت‌دهی آنلاین حذف شده و صرفاً از طریق تماس تلفنی مستقیم با خطوط ویژه ۰۲۱۳۶۰۴۸۵۸۱ و ۰۲۱۳۶۰۴۸۵۸۲ انجام می‌پذیرد تا منشی کلینیک دقیق‌ترین زمان خالی را متناسب با برنامه زمانی شما ثبت و فیکس نماید."
+        },
+        {
+          "id": "faq-2",
+          "q": "در صورت مواجهه با درد شدید و نیاز به خدمات اورژانسی چه باید کرد؟",
+          "a": "بیماران دارای درد حاد دندانی یا تورم، در اولویت تریاژ کلینیک قرار داشته و در همان روز بدون معطلی پذیرش می‌شوند. لطفاً قبل از حرکت با شماره‌های ۰۲۱۳۶۰۴۸۵۸۱ یا ۰۲۱۳۶۰۴۸۵۸۲ تماس حاصل فرمایید تا تمهیدات لازم جهت استقرار فوری بر روی یونیت فراهم گردد."
+        },
+        {
+          "id": "faq-3",
+          "q": "قرارداد بیمه‌های تکمیلی و ارائه فاکتور رسمی به چه شکل است؟",
+          "a": "کلیه فاکتورها، شرح خدمات و گواهی‌های دندان‌پزشکی با مهر رسمی دکتر انوشیروان شمس پور به همراه عکس رادیوگرافی قبل و بعد صادر می‌شود تا مراجعین محترم بتوانند ۱۰۰٪ سهم بیمه‌های تکمیلی معتبر (ایران، دانا، آسیا، البرز، آتیه‌سازان و...) را دریافت نمایند."
+        },
+        {
+          "id": "faq-4",
+          "q": "آیا جلسه اول معاینه و مشاوره زیبایی هزینه دارد؟",
+          "a": "خیر؛ جلسه اول معاینه بالینی، بررسی وضعیت دندان‌ها، ارزیابی عکس رادیوگرافی و برآورد طرح درمان کامپوزیت، لمینت یا ایمپلنت در کلینیک پارمیس پاکدشت کاملاً رایگان است."
+        },
+        {
+          "id": "faq-5",
+          "q": "آیا مجتمع پزشکی راستین دارای آسانسور برای تردد سالمندان و کالسکه است؟",
+          "a": "بله، ورودی مجتمع پزشکی راستین کاملاً هم‌سطح خیابان بوده و مجهز به آسانسور استاندارد با ظرفیت مناسب جهت تردد سالمندان، مراجعین با ویلچر یا کالسکه تا درب کلینیک پارمیس در طبقه دوم می‌باشد."
+        }
+      ]
+    },
+    "cta": {
+      "enabled": true,
+      "title": "نیاز به راهنمایی تلفنی فوری دارید؟",
+      "description": "کارشناس پذیرش کلینیک پارمیس در ساعات کاری آماده پاسخگویی و ثبت زمان ویزیت شماست.",
+      "phone": "02136048582",
+      "phoneDisplay": "۰۲۱۳۶۰۴۸۵۸۲",
+      "buttonText": "تماس مستقیم"
+    }
+  }
+}

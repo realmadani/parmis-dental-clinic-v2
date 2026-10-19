@@ -1,12 +1,15 @@
 import React from 'react';
-import { CLINIC_INFO } from '../data/clinicData.ts';
+import { CLINIC_INFO as STATIC_CLINIC_INFO } from '../data/clinicData.ts';
+import { useCMS } from '../context/CMSContext.tsx';
 
 interface FooterProps {
-  onSelectPage?: (page: 'home' | 'services' | 'about' | 'blog' | 'gallery' | 'contact') => void;
+  onSelectPage?: (page: 'home' | 'services' | 'about' | 'blog' | 'gallery' | 'contact' | 'admin') => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onSelectPage }) => {
-  const handleLink = (e: React.MouseEvent, page: 'home' | 'services' | 'about' | 'blog' | 'gallery' | 'contact', hash?: string) => {
+  const { clinicInfo } = useCMS();
+  const CLINIC_INFO = clinicInfo || STATIC_CLINIC_INFO;
+  const handleLink = (e: React.MouseEvent, page: 'home' | 'services' | 'about' | 'blog' | 'gallery' | 'contact' | 'admin', hash?: string) => {
     if (onSelectPage) {
       e.preventDefault();
       onSelectPage(page);
@@ -62,12 +65,34 @@ export const Footer: React.FC<FooterProps> = ({ onSelectPage }) => {
             <span className="material-symbols-outlined text-sm text-[#b4c5ff]">
               schedule
             </span>
-            <span>ساعات کاری: ۹ الی ۲۱</span>
+            <span>ساعات پذیرش: {CLINIC_INFO.workingHours}</span>
           </div>
         </div>
 
-        <p className="text-sm text-[#eff1f3]/60 border-t border-[#c3c6d7]/20 pt-4 w-full">
-          © کلیه حقوق مادی و معنوی متعلق به کلینیک دندان‌پزشکی دکتر انوشیروان شمس پور می‌باشد.
+        {/* Mobile Quick Nav Links */}
+        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs text-[#eff1f3]/80 pt-3 border-t border-[#737686]/20 w-full">
+          <a href="#services" onClick={(e) => handleLink(e, 'services')} className="hover:text-white transition-colors">خدمات دندان‌پزشکی</a>
+          <span className="text-[#eff1f3]/40">•</span>
+          <a href="#gallery" onClick={(e) => handleLink(e, 'gallery')} className="hover:text-white transition-colors">نمونه درمان‌ها</a>
+          <span className="text-[#eff1f3]/40">•</span>
+          <a href="#about" onClick={(e) => handleLink(e, 'about')} className="hover:text-white transition-colors">درباره ما</a>
+          <span className="text-[#eff1f3]/40">•</span>
+          <a href="#blog" onClick={(e) => handleLink(e, 'blog')} className="hover:text-white transition-colors">وبلاگ و مقالات</a>
+          <span className="text-[#eff1f3]/40">•</span>
+          <a href="#contact" onClick={(e) => handleLink(e, 'contact')} className="hover:text-white transition-colors">تماس و نوبت‌دهی</a>
+          <span className="text-[#eff1f3]/40">•</span>
+          <a
+            href="?page=admin"
+            onClick={(e) => handleLink(e, 'admin')}
+            className="inline-flex items-center gap-1 text-[#b4c5ff] hover:text-white transition-colors font-semibold"
+          >
+            <span className="material-symbols-outlined text-[14px]">lock</span>
+            <span>ورود به پنل مدیریت</span>
+          </a>
+        </div>
+
+        <p className="text-xs text-[#eff1f3]/60 border-t border-[#c3c6d7]/20 pt-4 w-full">
+          © کلیه حقوق مادی و معنوی متعلق به کلینیک دندان‌پزشکی {CLINIC_INFO.doctorName} می‌باشد.
         </p>
       </div>
 
@@ -83,7 +108,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectPage }) => {
               <span>{CLINIC_INFO.name}</span>
             </div>
             <p className="text-sm text-[#c3c6d7] leading-relaxed">
-              کلینیک تخصصی دندان‌پزشکی دکتر انوشیروان شمس پور؛ ارائه کلیه خدمات ایمپلنت، زیبایی،
+              کلینیک تخصصی {CLINIC_INFO.doctorTitleBrand}؛ ارائه کلیه خدمات ایمپلنت، زیبایی،
               ارتودنسی و درمان ریشه با بالاترین استانداردهای استریلیزاسیون در پاکدشت.
             </p>
           </div>
@@ -132,7 +157,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectPage }) => {
                   onClick={(e) => handleLink(e, 'about')}
                   className="text-[#c3c6d7] hover:text-[#eff1f3] transition-colors text-sm"
                 >
-                  درباره دکتر شمس پور
+                  درباره {CLINIC_INFO.doctorName}
                 </a>
               </li>
               <li>
@@ -201,7 +226,19 @@ export const Footer: React.FC<FooterProps> = ({ onSelectPage }) => {
             تمامی حقوق محفوظ است © کلینیک تخصصی دندان‌پزشکی پارمیس • دکتر انوشیروان شمس پور | پاکدشت،
             مجتمع پزشکی راستین
           </p>
-          <span className="text-xs text-[#b4c5ff] font-medium">سالم و درخشان بخندید</span>
+          <div className="flex items-center gap-4">
+            <span className="text-xs text-[#b4c5ff] font-medium">سالم و درخشان بخندید</span>
+            <span className="text-[#737686]">|</span>
+            <a
+              href="?page=admin"
+              onClick={(e) => handleLink(e, 'admin')}
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 hover:bg-white/10 text-xs text-[#b4c5ff] hover:text-white transition-colors border border-white/10"
+              title="ورود به پنل مدیریت کلینیک"
+            >
+              <span className="material-symbols-outlined text-[15px]">lock</span>
+              <span>ورود به پنل مدیریت</span>
+            </a>
+          </div>
         </div>
       </div>
     </footer>

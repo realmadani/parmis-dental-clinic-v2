@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SERVICES, CLINIC_INFO } from '../data/clinicData.ts';
+import { useCMS } from '../context/CMSContext.tsx';
 import {
   validateAppointmentRequest,
   generateAppointmentTrackingCode,
@@ -19,10 +19,13 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
   onClose,
   preselectedServiceId,
 }) => {
+  const { services, clinicInfo } = useCMS();
+  const CLINIC_INFO = clinicInfo;
+
   const [formData, setFormData] = useState<Partial<AppointmentBookingRequest>>({
     fullName: '',
     phone: '',
-    serviceId: preselectedServiceId || SERVICES[0].id,
+    serviceId: preselectedServiceId || (services[0]?.id ?? 'root-canal'),
     preferredDay: 'saturday',
     preferredShift: 'evening',
     patientNotes: '',
@@ -30,6 +33,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const [trackingCode, setTrackingCode] = useState<string>('');
   const [copied, setCopied] = useState<boolean>(false);
@@ -42,7 +46,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const validation = validateAppointmentRequest(formData);
 
@@ -52,8 +56,36 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
     }
 
     setErrors({});
+    setIsSubmitting(true);
     const code = generateAppointmentTrackingCode();
     setTrackingCode(code);
+
+    const selectedService = services.find((s) => s.id === formData.serviceId);
+    const serviceTitle = selectedService?.title || 'معاینه کلی و چکاپ دوره‌ای';
+
+    try {
+      await fetch('/api/appointments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          phone: validation.normalizedPhone || formData.phone,
+          serviceId: formData.serviceId,
+          serviceTitle,
+          preferredDate: formData.preferredDay ? PERSIAN_WEEKDAYS[formData.preferredDay] : '',
+          preferredTime: formData.preferredShift ? PERSIAN_SHIFTS[formData.preferredShift] : '',
+          description: [
+            formData.patientNotes,
+            formData.hasInsurance ? '(متقاضی فاکتور رسمی بیمه تکمیلی)' : '',
+            `کد رهگیری: ${code}`,
+          ]
+            .filter(Boolean)
+            .join(' - '),
+        }),
+      });
+    } catch (err) {
+      console.warn('Appointment API warning:', err);
+    }
 
     // Save to local storage for persistence
     try {
@@ -69,6 +101,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
       // Local storage fallback
     }
 
+    setIsSubmitting(false);
     setIsSubmitted(true);
   };
 
@@ -168,7 +201,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                   className="w-full px-4 py-3 rounded-2xl border border-[#c3c6d7]/50 text-sm text-[#191c1e] focus:border-[#004ac6] focus:outline-none focus:ring-2 focus:ring-[#004ac6]/20 bg-white"
                 >
                   <option value="">-- انتخاب خدمت دندان‌پزشکی --</option>
-                  {SERVICES.map((s) => (
+                  {services.map((s) => (
                     <option key={s.id} value={s.id}>
                       {s.title}
                     </option>

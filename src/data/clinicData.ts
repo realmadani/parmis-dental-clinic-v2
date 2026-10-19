@@ -17,18 +17,75 @@ export interface ServiceItem {
   };
 }
 
+export interface CaseGalleryImage {
+  url: string;
+  label?: string;
+  stage?: 'before' | 'during' | 'after' | 'xray';
+}
+
 export interface TransformationItem {
   id: string;
   title: string;
-  mobileTitle: string;
-  subtitle: string;
-  mobileSubtitle: string;
+  mobileTitle?: string;
+  subtitle?: string;
+  mobileSubtitle?: string;
   image: string;
-  mobileImage: string;
-  beforeLabel: string;
-  afterLabel: string;
-  description: string;
-  badge: string;
+  mobileImage?: string;
+  beforeImage?: string;
+  afterImage?: string;
+  beforeLabel?: string;
+  afterLabel?: string;
+  description?: string;
+  badge?: string;
+  iconName?: string;
+  accentColor?: string;
+  category?: string;
+  categoryLabel?: string;
+  duration?: string;
+  patientInfo?: string;
+  caseNumber?: string;
+  afterBadge?: string;
+  galleryImages?: CaseGalleryImage[];
+  tags?: string[];
+}
+
+export interface ExecutiveSummaryItem {
+  title: string;
+  desc: string;
+  icon?: string;
+}
+
+export interface ComparisonTableRow {
+  criterion: string;
+  col1: string;
+  col2: string;
+}
+
+export interface ComparisonTable {
+  title: string;
+  subtitle?: string;
+  badge?: string;
+  col1Header: string;
+  col2Header: string;
+  rows: ComparisonTableRow[];
+}
+
+export interface DoctorQuote {
+  quote: string;
+  doctorName?: string;
+  doctorRole?: string;
+  sectionTitle?: string;
+  medicalCouncilCode?: string;
+}
+
+export interface ArticleFaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface CandidacyGroup {
+  title: string;
+  items: string[];
 }
 
 export interface ArticleItem {
@@ -44,18 +101,37 @@ export interface ArticleItem {
   mobileImage: string;
   readTime: string;
   date?: string;
+  views?: number;
   author?: string;
   authorRole?: string;
   tags?: string[];
   isFeatured?: boolean;
   content: string[];
   tips: string[];
+  tipsTitle?: string;
+  slug?: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  // Structured customized content
+  introduction?: string;
+  executiveSummary?: ExecutiveSummaryItem[];
+  comparisonTable?: ComparisonTable;
+  doctorQuote?: DoctorQuote;
+  candidacy?: {
+    title?: string;
+    option1: CandidacyGroup;
+    option2: CandidacyGroup;
+  };
+  faqs?: ArticleFaqItem[];
+  showClinicalCases?: boolean;
+  showComments?: boolean;
 }
 
 export interface FaqItem {
   id: string;
   question: string;
   answer: string;
+  icon?: string;
 }
 
 export const CLINIC_INFO = {
@@ -64,6 +140,8 @@ export const CLINIC_INFO = {
   doctorTitleBrand: 'دندان‌پزشکی دکتر انوشیروان شمس پور',
   doctorName: 'دکتر انوشیروان شمس پور',
   doctorRole: 'مسئول فنی و سرپرست درمان کلینیک پارمیس',
+  medicalCouncilCode: '۱۴۵۲۸۹',
+  medicalLicenseLink: 'https://membersearch.irimc.org/',
   phone: '02136048581',
   phone2: '02136048582',
   phoneLine1: '۰۲۱۳۶۰۴۸۵۸۱',

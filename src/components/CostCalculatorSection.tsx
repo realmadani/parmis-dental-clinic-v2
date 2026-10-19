@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
+import { useCMS } from '../context/CMSContext.tsx';
 import {
   DENTAL_TREATMENTS,
-  calculateTreatmentEstimate,
   formatPersianTomans,
   formatPersianNumber,
 } from '../utils/costCalculator.ts';
@@ -18,24 +18,42 @@ export const CostCalculatorSection: React.FC<CostCalculatorModalProps> = ({
   onClose,
   onOpenBooking,
 }) => {
+  const { treatments, clinicInfo } = useCMS();
   const [selectedTreatmentId, setSelectedTreatmentId] = useState<string>('composite-veneer');
   const [quantity, setQuantity] = useState<number>(8);
   const [hasInsurance, setHasInsurance] = useState<boolean>(true);
   const [insurancePercent, setInsurancePercent] = useState<number>(30);
 
   const selectedTreatment = useMemo(
-    () => DENTAL_TREATMENTS.find((t) => t.id === selectedTreatmentId) || DENTAL_TREATMENTS[0],
-    [selectedTreatmentId]
+    () => treatments.find((t) => t.id === selectedTreatmentId) || treatments[0] || DENTAL_TREATMENTS[0],
+    [treatments, selectedTreatmentId]
   );
 
   const estimate = useMemo(() => {
-    return calculateTreatmentEstimate({
-      treatmentId: selectedTreatmentId,
-      quantity,
-      hasSupplementaryInsurance: hasInsurance,
-      supplementaryCoveragePercentage: insurancePercent,
-    });
-  }, [selectedTreatmentId, quantity, hasInsurance, insurancePercent]);
+    const treatment = selectedTreatment;
+    const qty = Math.max(treatment.minUnits, Math.min(quantity, treatment.maxUnits));
+    const rawTotal = treatment.basePricePerUnitTomans * qty;
+    let insuranceDiscount = 0;
+    if (hasInsurance) {
+      const coverage = Math.min(100, Math.max(0, insurancePercent ?? 30));
+      insuranceDiscount = Math.round(rawTotal * (coverage / 100));
+    }
+    const finalPayable = Math.max(0, rawTotal - insuranceDiscount);
+    const estimatedSessions = qty > 4 && treatment.sessionsEstimate === 1 ? 2 : treatment.sessionsEstimate;
+    const totalMinutes = treatment.durationMinutesPerSession * (qty > 1 && treatment.category === 'cosmetic' ? Math.ceil(qty / 4) : 1);
+
+    return {
+      treatmentName: treatment.name,
+      unit: treatment.unit,
+      quantity: qty,
+      unitPriceTomans: treatment.basePricePerUnitTomans,
+      rawTotalTomans: rawTotal,
+      insuranceDiscountTomans: insuranceDiscount,
+      finalPayableTomans: finalPayable,
+      estimatedSessions,
+      totalEstimatedMinutes: totalMinutes,
+    };
+  }, [selectedTreatment, quantity, hasInsurance, insurancePercent]);
 
   if (!isOpen) return null;
 
@@ -86,7 +104,7 @@ export const CostCalculatorSection: React.FC<CostCalculatorModalProps> = ({
                 انتخاب نوع درمان:
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {DENTAL_TREATMENTS.map((item) => (
+                {treatments.map((item) => (
                   <button
                     key={item.id}
                     type="button"

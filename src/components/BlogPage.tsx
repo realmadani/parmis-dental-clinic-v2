@@ -1,12 +1,13 @@
 import React, { useState, useMemo } from 'react';
+import { useCMS } from '../context/CMSContext.tsx';
 import {
-  ARTICLES,
   BLOG_CATEGORIES,
   TRENDING_TAGS,
   QUICK_HEALTH_TIPS,
   ArticleItem,
   CLINIC_INFO,
 } from '../data/clinicData.ts';
+import { MediaPreview } from '../utils/mediaUtils.tsx';
 
 interface BlogPageProps {
   onOpenBooking: (preselectedService?: string) => void;
@@ -19,13 +20,21 @@ export const BlogPage: React.FC<BlogPageProps> = ({
   onNavigateHome,
   onSelectArticle,
 }) => {
+  const { articles, clinicInfo, blogCategories, editorPick, siteImages, comments } = useCMS();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeSort, setActiveSort] = useState<'newest' | 'popular' | 'recommended'>('newest');
   const [activeArticle, setActiveArticle] = useState<ArticleItem | null>(null);
+
+  const getArticleCommentsCount = (art: ArticleItem) => {
+    return (comments || []).filter(
+      (c: any) =>
+        (c.articleId === art.id || c.articleId === art.slug) &&
+        c.status === 'approved'
+    ).length;
+  };
   const [newsletterPhone, setNewsletterPhone] = useState('');
   const [newsletterSuccess, setNewsletterSuccess] = useState(false);
-  const [bookmarkedIds, setBookmarkedIds] = useState<string[]>([]);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const showToast = (msg: string) => {
@@ -33,17 +42,6 @@ export const BlogPage: React.FC<BlogPageProps> = ({
     setTimeout(() => {
       setToastMessage(null);
     }, 3000);
-  };
-
-  const toggleBookmark = (id: string, e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
-    if (bookmarkedIds.includes(id)) {
-      setBookmarkedIds((prev) => prev.filter((item) => item !== id));
-      showToast('مقاله از لیست ذخیره‌ها حذف شد');
-    } else {
-      setBookmarkedIds((prev) => [...prev, id]);
-      showToast('مقاله به نشان‌شده‌ها افزوده شد');
-    }
   };
 
   const handleShare = (article: ArticleItem, e?: React.MouseEvent) => {
@@ -74,12 +72,12 @@ export const BlogPage: React.FC<BlogPageProps> = ({
 
   // Find featured article (usually the first one marked featured, or the first in list)
   const featuredArticle = useMemo(() => {
-    return ARTICLES.find((a) => a.isFeatured) || ARTICLES[0];
-  }, []);
+    return articles.find((a) => a.isFeatured) || articles[0];
+  }, [articles]);
 
   // Filtered and sorted non-featured articles (and include all matching when searching)
   const filteredArticles = useMemo(() => {
-    return ARTICLES.filter((article) => {
+    return articles.filter((article) => {
       // If no query and category is all, don't show the featured article in the bottom grid if it's already shown in hero
       const matchesCategory =
         selectedCategory === 'all' ||
@@ -100,13 +98,20 @@ export const BlogPage: React.FC<BlogPageProps> = ({
     });
   }, [selectedCategory, searchQuery]);
 
-  // Exclude featured article from standard grid if we are showing it at the top and no active search query
+  // Exclude featured article from standard grid if we are showing it at the top and no active search query, and sort by activeSort
   const gridArticles = useMemo(() => {
-    if (searchQuery.trim() || selectedCategory !== 'all') {
-      return filteredArticles;
+    let list = (searchQuery.trim() || selectedCategory !== 'all')
+      ? filteredArticles
+      : filteredArticles.filter((a) => a.id !== featuredArticle?.id);
+
+    if (activeSort === 'popular') {
+      return [...list].sort((a, b) => (Number(b.views) || 0) - (Number(a.views) || 0));
     }
-    return filteredArticles.filter((a) => a.id !== featuredArticle?.id);
-  }, [filteredArticles, searchQuery, selectedCategory, featuredArticle]);
+    if (activeSort === 'recommended') {
+      return [...list].sort((a, b) => (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0));
+    }
+    return list;
+  }, [filteredArticles, searchQuery, selectedCategory, featuredArticle, activeSort]);
 
   return (
     <div className="w-full bg-[#f7f9fb] text-[#191c1e]">
@@ -179,12 +184,13 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                   className="bg-[#f2f4f6] text-[#565e74] text-xs font-bold rounded-full border-0 focus:ring-0 py-2.5 px-3.5 cursor-pointer outline-none"
                 >
                   <option value="all">تمام دسته‌ها</option>
-                  <option value="cosmetic">زیبایی و لمینت</option>
-                  <option value="implant">ایمپلنت و جراحی</option>
-                  <option value="endodontics">عصب‌کشی و ترمیم</option>
-                  <option value="hygiene">بهداشت و پیشگیری</option>
-                  <option value="care">مراقبت‌های پس از درمان</option>
-                  <option value="pediatric">کودکان</option>
+                  {blogCategories
+                    .filter((c) => c.id !== 'all')
+                    .map((c) => (
+                      <option key={c.id} value={c.id}>
+                        {c.label}
+                      </option>
+                    ))}
                 </select>
 
                 <button
@@ -229,7 +235,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
       <section className="border-b border-[#c3c6d7]/30 bg-white/95 sticky top-[56px] sm:top-[64px] z-30 backdrop-blur-md shadow-2xs py-3.5 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto overflow-x-auto no-scrollbar">
           <div className="flex items-center gap-2 sm:gap-2.5 min-w-max">
-            {BLOG_CATEGORIES.map((cat) => {
+            {blogCategories.map((cat) => {
               const isActive = selectedCategory === cat.id;
               return (
                 <button
@@ -244,7 +250,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                       : 'bg-[#f2f4f6] text-[#565e74] hover:text-[#004ac6] hover:bg-[#dbe1ff]/40 font-medium'
                   }`}
                 >
-                  <span className="material-symbols-outlined text-base">{cat.icon}</span>
+                  <span className="material-symbols-outlined text-base">{cat.icon || 'article'}</span>
                   <span>{cat.label}</span>
                 </button>
               );
@@ -260,11 +266,11 @@ export const BlogPage: React.FC<BlogPageProps> = ({
             <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
               {/* Image Column */}
               <div className="lg:col-span-6 relative min-h-[260px] sm:min-h-[340px] lg:min-h-[440px] overflow-hidden group">
-                <img
+                <MediaPreview
                   src={featuredArticle.image}
                   alt={featuredArticle.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="eager"
+                  controls={false}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#191c1e]/60 via-transparent to-transparent lg:hidden" />
 
@@ -273,7 +279,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                   <span className="material-symbols-fill material-symbols-outlined text-sm text-amber-500">
                     star
                   </span>
-                  <span>مقاله منتخب سردبیر / توصیه دکتر شمس پور</span>
+                  <span>{editorPick?.badgeText || 'مقاله منتخب سردبیر / توصیه دکتر شمس پور'}</span>
                 </div>
 
                 <div className="absolute bottom-3 left-3 bg-[#191c1e]/80 backdrop-blur-md text-white text-[11px] font-medium px-3 py-1 rounded-full flex items-center gap-1 lg:hidden">
@@ -299,6 +305,20 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                       <span className="material-symbols-outlined text-base">calendar_month</span>
                       <span>{featuredArticle.date}</span>
                     </span>
+                    {(featuredArticle.views !== undefined && featuredArticle.views > 0) && (
+                      <>
+                        <span className="w-1 h-1 rounded-full bg-[#c3c6d7]" />
+                        <span className="flex items-center gap-1">
+                          <span className="material-symbols-outlined text-base">visibility</span>
+                          <span>{featuredArticle.views.toLocaleString('fa-IR')} بازدید</span>
+                        </span>
+                      </>
+                    )}
+                    <span className="w-1 h-1 rounded-full bg-[#c3c6d7]" />
+                    <span className="flex items-center gap-1 font-medium">
+                      <span className="material-symbols-outlined text-base">chat_bubble_outline</span>
+                      <span>{getArticleCommentsCount(featuredArticle).toLocaleString('fa-IR')} نظر</span>
+                    </span>
                   </div>
 
                   {/* Main Title */}
@@ -318,17 +338,23 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                   <div className="flex items-center gap-3 p-3 rounded-2xl bg-[#f2f4f6] border border-[#c3c6d7]/30 mb-6">
                     <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-[#004ac6] shrink-0 bg-[#e6e8ea]">
                       <img
-                        src={CLINIC_INFO.doctorImage}
-                        alt={featuredArticle.author || CLINIC_INFO.doctorName}
+                        src={
+                          editorPick?.avatarUrl ||
+                          siteImages?.editorPickDoctorAvatar?.url ||
+                          siteImages?.doctorProfileImage?.url ||
+                          clinicInfo.doctorImage ||
+                          CLINIC_INFO.doctorImage
+                        }
+                        alt={editorPick?.doctorName || featuredArticle.author || clinicInfo.doctorName}
                         className="w-full h-full object-cover object-top"
                       />
                     </div>
                     <div className="flex flex-col text-right">
                       <span className="text-sm font-bold text-[#191c1e]">
-                        {featuredArticle.author || CLINIC_INFO.doctorName}
+                        {editorPick?.doctorName || featuredArticle.author || clinicInfo.doctorName}
                       </span>
                       <span className="text-[11px] text-[#565e74]">
-                        {featuredArticle.authorRole}
+                        {editorPick?.doctorRole || featuredArticle.authorRole || 'جراح و دندانپزشک • سرپرست درمان کلینیک پارمیس'}
                       </span>
                     </div>
                   </div>
@@ -354,23 +380,6 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                   </button>
 
                   <div className="flex items-center gap-1.5 text-[#565e74]">
-                    <button
-                      type="button"
-                      onClick={(e) => toggleBookmark(featuredArticle.id, e)}
-                      className={`p-2 rounded-full hover:bg-[#eceef0] transition-colors ${
-                        bookmarkedIds.includes(featuredArticle.id) ? 'text-[#004ac6]' : ''
-                      }`}
-                      title="نشان‌کردن مطلب"
-                      aria-label="نشان‌کردن مطلب"
-                    >
-                      <span
-                        className={`material-symbols-outlined text-xl ${
-                          bookmarkedIds.includes(featuredArticle.id) ? 'material-symbols-fill' : ''
-                        }`}
-                      >
-                        bookmark
-                      </span>
-                    </button>
                     <button
                       type="button"
                       onClick={(e) => handleShare(featuredArticle, e)}
@@ -469,7 +478,6 @@ export const BlogPage: React.FC<BlogPageProps> = ({
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-right">
             {gridArticles.map((article) => {
-              const isBookmarked = bookmarkedIds.includes(article.id);
               return (
                 <article
                   key={article.id}
@@ -484,34 +492,19 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                 >
                   <div>
                     <div className="relative h-48 overflow-hidden bg-[#eceef0]">
-                      <img
+                      <MediaPreview
                         src={article.image}
                         alt={article.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
+                        controls={false}
                       />
                       <span className="absolute top-3 right-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#004ac6] text-[11px] font-bold shadow-xs">
                         {article.category}
                       </span>
-                      <button
-                        type="button"
-                        onClick={(e) => toggleBookmark(article.id, e)}
-                        className="absolute top-3 left-3 p-1.5 rounded-full bg-white/90 backdrop-blur-md text-[#565e74] hover:text-[#004ac6] shadow-xs transition-colors"
-                        title="نشان‌کردن"
-                        aria-label="نشان کردن"
-                      >
-                        <span
-                          className={`material-symbols-outlined text-base ${
-                            isBookmarked ? 'material-symbols-fill text-[#004ac6]' : ''
-                          }`}
-                        >
-                          bookmark
-                        </span>
-                      </button>
                     </div>
 
                     <div className="p-5">
-                      <div className="flex items-center gap-2 text-[#565e74] text-xs mb-2.5">
+                      <div className="flex items-center gap-2 text-[#565e74] text-xs mb-2.5 flex-wrap">
                         <span className="material-symbols-outlined text-sm">schedule</span>
                         <span>{article.readTime}</span>
                         {article.date && (
@@ -520,6 +513,20 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                             <span>{article.date}</span>
                           </>
                         )}
+                        {(article.views !== undefined && article.views > 0) && (
+                          <>
+                            <span>•</span>
+                            <span className="flex items-center gap-0.5 font-medium">
+                              <span className="material-symbols-outlined text-sm">visibility</span>
+                              <span>{article.views.toLocaleString('fa-IR')}</span>
+                            </span>
+                          </>
+                        )}
+                        <span>•</span>
+                        <span className="flex items-center gap-0.5 font-medium">
+                          <span className="material-symbols-outlined text-sm">chat_bubble_outline</span>
+                          <span>{getArticleCommentsCount(article).toLocaleString('fa-IR')} نظر</span>
+                        </span>
                       </div>
 
                       <h3 className="text-base sm:text-lg font-bold text-[#191c1e] mb-2 leading-snug group-hover:text-[#004ac6] transition-colors line-clamp-2">
@@ -756,17 +763,18 @@ export const BlogPage: React.FC<BlogPageProps> = ({
               </span>
             </div>
 
-            {/* Article Image */}
+            {/* Article Image / Video */}
             <div className="aspect-[16/9] rounded-2xl overflow-hidden mb-5 bg-[#eceef0]">
-              <img
+              <MediaPreview
                 src={activeArticle.image}
                 alt={activeArticle.title}
                 className="w-full h-full object-cover"
+                controls={true}
               />
             </div>
 
             {/* Metadata */}
-            <div className="flex items-center gap-3 text-xs text-[#565e74] mb-3">
+            <div className="flex items-center gap-3 text-xs text-[#565e74] mb-3 flex-wrap">
               <span className="flex items-center gap-1">
                 <span className="material-symbols-outlined text-sm">schedule</span>
                 <span>{activeArticle.readTime}</span>
@@ -777,6 +785,20 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                   <span>{activeArticle.date}</span>
                 </>
               )}
+              {(activeArticle.views !== undefined && activeArticle.views > 0) && (
+                <>
+                  <span>•</span>
+                  <span className="flex items-center gap-0.5 font-medium">
+                    <span className="material-symbols-outlined text-sm">visibility</span>
+                    <span>{activeArticle.views.toLocaleString('fa-IR')}</span>
+                  </span>
+                </>
+              )}
+              <span>•</span>
+              <span className="flex items-center gap-0.5 font-medium">
+                <span className="material-symbols-outlined text-sm">chat_bubble_outline</span>
+                <span>{getArticleCommentsCount(activeArticle).toLocaleString('fa-IR')} نظر</span>
+              </span>
             </div>
 
             {/* Title */}
@@ -788,14 +810,14 @@ export const BlogPage: React.FC<BlogPageProps> = ({
             <div className="flex items-center gap-3 p-3 rounded-2xl bg-[#f2f4f6] border border-[#c3c6d7]/30 mb-6">
               <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#004ac6] shrink-0 bg-[#e6e8ea]">
                 <img
-                  src={CLINIC_INFO.doctorImage}
-                  alt={activeArticle.author || CLINIC_INFO.doctorName}
+                  src={clinicInfo?.doctorImage || CLINIC_INFO.doctorImage}
+                  alt={activeArticle.author || clinicInfo?.doctorName || CLINIC_INFO.doctorName}
                   className="w-full h-full object-cover object-top"
                 />
               </div>
               <div className="flex flex-col text-right">
                 <span className="text-xs sm:text-sm font-bold text-[#191c1e]">
-                  {activeArticle.author || CLINIC_INFO.doctorName}
+                  {activeArticle.author || clinicInfo?.doctorName || CLINIC_INFO.doctorName}
                 </span>
                 <span className="text-[11px] text-[#565e74]">
                   {activeArticle.authorRole || 'جراح و دندان‌پزشک کلینیک پارمیس'}

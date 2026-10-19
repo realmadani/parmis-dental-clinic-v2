@@ -1,0 +1,1275 @@
+import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
+import path from 'path';
+import fs from 'fs';
+import crypto from 'crypto';
+import multer from 'multer';
+import { fileURLToPath } from 'url';
+import { readDb, writeDb, AppointmentRecord, MediaRecord } from './db';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
+const PORT = process.env.PORT || 3001;
+const AUTH_SECRET = process.env.AUTH_SECRET || 'parmis-dental-secret-key-2026';
+
+// Paths
+const rootDir = path.resolve(__dirname, '..');
+const uploadsDir = path.resolve(rootDir, 'public', 'uploads');
+
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
+
+// Middleware
+app.use(cors());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+
+// No-cache headers for all API requests to ensure instant real-time data sync
+app.use('/api', (_req: Request, res: Response, next: NextFunction) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  next();
+});
+
+// Static serving for uploads
+app.use('/uploads', express.static(uploadsDir));
+
+// --- Auth Token Helpers (HMAC SHA256) ---
+function createToken(payload: object): string {
+  const header = Buffer.from(JSON.stringify({ alg: 'HS256', typ: 'JWT' })).toString('base64url');
+  const body = Buffer.from(JSON.stringify({ ...payload, iat: Date.now() })).toString('base64url');
+  const signature = crypto.createHmac('sha256', AUTH_SECRET).update(`${header}.${body}`).digest('base64url');
+  return `${header}.${body}.${signature}`;
+}
+
+function verifyToken(token: string): any | null {
+  try {
+    const parts = token.split('.');
+    if (parts.length !== 3) return null;
+    const [header, body, signature] = parts;
+    const expectedSig = crypto.createHmac('sha256', AUTH_SECRET).update(`${header}.${body}`).digest('base64url');
+    if (signature !== expectedSig) return null;
+    return JSON.parse(Buffer.from(body, 'base64url').toString('utf-8'));
+  } catch {
+    return null;
+  }
+}
+
+// Optional Auth Middleware for protected mutating routes
+function requireAuth(req: Request, res: Response, next: NextFunction) {
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'احراز هویت الزامی است. لطفاً وارد شوید.' });
+  }
+  const token = authHeader.substring(7);
+  const payload = verifyToken(token);
+  if (!payload) {
+    return res.status(401).json({ error: 'توکن نامعتبر یا منقضی شده است.' });
+  }
+  (req as any).user = payload;
+  next();
+}
+
+// --- Multer Storage Configuration ---
+const storage = multer.diskStorage({
+  destination: (_req, _file, cb) => {
+    cb(null, uploadsDir);
+  },
+  filename: (_req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    const baseName = path.basename(file.originalname, ext).replace(/[^a-zA-Z0-9_-]/g, '_');
+    const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e6)}`;
+    cb(null, `${baseName}-${uniqueSuffix}${ext}`);
+  },
+});
+
+const upload = multer({
+  storage,
+  limits: { fileSize: 100 * 1024 * 1024 }, // 100MB max file size for videos and images
+  fileFilter: (_req, file, cb) => {
+    if (file.mimetype.startsWith('image/') || file.mimetype.startsWith('video/')) {
+      cb(null, true);
+    } else {
+      cb(new Error('تنها بارگذاری فایل‌های تصویری و ویدیویی مجاز است.'));
+    }
+  },
+});
+
+// Rate Limiter for Login Attempts (Brute Force Protection)
+interface LoginAttempt {
+  count: number;
+  resetTime: number;
+}
+const loginAttempts = new Map<string, LoginAttempt>();
+const MAX_LOGIN_ATTEMPTS = 5;
+const LOCKOUT_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+
+const loginRateLimiter = (req: Request, res: Response, next: NextFunction) => {
+  const clientIp = (req.headers['x-forwarded-for'] as string) || req.socket.remoteAddress || 'unknown';
+  const now = Date.now();
+  const attempt = loginAttempts.get(clientIp);
+
+  if (attempt) {
+    if (now < attempt.resetTime) {
+      if (attempt.count >= MAX_LOGIN_ATTEMPTS) {
+        const remainingMinutes = Math.ceil((attempt.resetTime - now) / 60000);
+        return res.status(429).json({
+          success: false,
+          error: `تعداد تلاش‌های ناموفق بیش از حد مجاز است. لطفاً ${remainingMinutes} دقیقه دیگر تلاش نمایید.`,
+        });
+      }
+    } else {
+      // Window expired, reset
+      loginAttempts.delete(clientIp);
+    }
+  }
+  next();
+};
+
+const recordFailedLogin = (ip: string) => {
+  const now = Date.now();
+  const attempt = loginAttempts.get(ip) || { count: 0, resetTime: now + LOCKOUT_WINDOW_MS };
+  attempt.count += 1;
+  loginAttempts.set(ip, attempt);
+};
+
+const resetLoginAttempts = (ip: string) => {
+  loginAttempts.delete(ip);
+};
+
+// ==========================================
+// 1. AUTHENTICATION ROUTES
+// ==========================================
+
+// POST /api/auth/login
+app.post('/api/auth/login', loginRateLimiter, (req: Request, res: Response) => {
+  const clientIp = (req.headers['x-forwarded-for'] as string) || req.socket.remoteAddress || 'unknown';
+  const { username, password } = req.body;
+  const db = readDb();
+
+  const validUsername = db.admin?.username || 'admindent';
+  const validPassword = db.admin?.password || 'admindent';
+
+  if (
+    username === validUsername &&
+    password === validPassword
+  ) {
+    resetLoginAttempts(clientIp);
+    const token = createToken({ username: validUsername, role: 'admin' });
+    return res.json({
+      success: true,
+      token,
+      user: {
+        username: validUsername,
+        role: 'admin',
+      },
+    });
+  }
+
+  recordFailedLogin(clientIp);
+  return res.status(401).json({
+    success: false,
+    error: 'نام کاربری یا کلمه عبور نادرست است.',
+  });
+});
+
+// GET /api/auth/me
+app.get('/api/auth/me', (req: Request, res: Response) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ authenticated: false });
+  }
+  const payload = verifyToken(authHeader.substring(7));
+  if (!payload) {
+    return res.status(401).json({ authenticated: false });
+  }
+  res.json({ authenticated: true, user: payload });
+});
+
+// PUT /api/auth/profile: Update admin username and/or password
+app.put('/api/auth/profile', (req: Request, res: Response) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ success: false, error: 'احراز هویت نامعتبر است.' });
+  }
+  const payload = verifyToken(authHeader.substring(7));
+  if (!payload) {
+    return res.status(401).json({ success: false, error: 'احراز هویت نامعتبر یا منقضی شده است.' });
+  }
+
+  const { currentPassword, newUsername, newPassword } = req.body;
+  const db = readDb();
+  const currentSavedPassword = db.admin?.password || 'admindent';
+  const currentSavedUsername = db.admin?.username || 'admindent';
+
+  // Check current password
+  if (currentPassword !== currentSavedPassword) {
+    return res.status(400).json({
+      success: false,
+      error: 'کلمه عبور فعلی نادرست است.',
+    });
+  }
+
+  const updatedUsername = (newUsername && newUsername.trim()) ? newUsername.trim() : currentSavedUsername;
+  const updatedPassword = (newPassword && newPassword.trim()) ? newPassword.trim() : currentSavedPassword;
+
+  db.admin = {
+    username: updatedUsername,
+    password: updatedPassword,
+  };
+  writeDb(db);
+
+  const newToken = createToken({ username: updatedUsername, role: 'admin' });
+  return res.json({
+    success: true,
+    message: 'مشخصات مدیر با موفقیت به‌روزرسانی شد.',
+    token: newToken,
+    user: {
+      username: updatedUsername,
+      role: 'admin',
+    },
+  });
+});
+
+// ==========================================
+// 2. CMS SITE DATA ROUTES
+// ==========================================
+
+// GET /api/cms-data: Get all site data for frontend
+app.get('/api/cms-data', (_req: Request, res: Response) => {
+  const db = readDb();
+  // Sanitize: do not send admin password to public
+  const { admin, ...safeData } = db;
+  res.json({
+    ...safeData,
+    adminUsername: admin?.username || 'admin',
+  });
+});
+
+// PUT /api/cms-data/:section: Update a specific section (Protected with requireAuth)
+app.put('/api/cms-data/:section', requireAuth, (req: Request, res: Response) => {
+  const { section } = req.params;
+  const payload = req.body;
+
+  if (section === 'admin') {
+    return res.status(400).json({ error: 'برای تغییر مشخصات ادمین از مسیر اختصاصی استفاده کنید.' });
+  }
+
+  const db = readDb();
+  db[section] = payload;
+  writeDb(db);
+
+  res.json({ success: true, section, data: db[section] });
+});
+
+// ==========================================
+// 3. ARTICLES MANAGEMENT ROUTES
+// ==========================================
+
+// GET /api/articles
+app.get('/api/articles', (_req: Request, res: Response) => {
+  const db = readDb();
+  res.json(db.articles || []);
+});
+
+// POST /api/articles (Protected with requireAuth)
+app.post('/api/articles', requireAuth, (req: Request, res: Response) => {
+  const db = readDb();
+  const newArticle = {
+    id: req.body.id || `article-${Date.now()}`,
+    slug: req.body.slug || req.body.id || `article-${Date.now()}`,
+    title: req.body.title || 'مقاله جدید',
+    mobileTitle: req.body.mobileTitle || req.body.title || 'مقاله جدید',
+    category: req.body.category || 'آموزش و مراقبت دهان',
+    categorySlug: req.body.categorySlug || 'general',
+    mobileCategory: req.body.mobileCategory || req.body.category || 'عمومی',
+    summary: req.body.summary || '',
+    mobileSummary: req.body.mobileSummary || req.body.summary || '',
+    metaTitle: req.body.metaTitle || `${req.body.title} | دندانپزشکی پارمیس`,
+    metaDescription: req.body.metaDescription || req.body.summary || '',
+    image: req.body.image || '/images/dr-shamspoor.jpg',
+    mobileImage: req.body.mobileImage || req.body.image || '/images/dr-shamspoor.jpg',
+    readTime: req.body.readTime || '۵ دقیقه',
+    date: req.body.date || new Date().toLocaleDateString('fa-IR'),
+    views: typeof req.body.views === 'number' ? req.body.views : 0,
+    author: req.body.author || 'دکتر انوشیروان شمس پور',
+    authorRole: req.body.authorRole || 'مسئول فنی کلینیک دندان‌پزشکی پارمیس',
+    tags: Array.isArray(req.body.tags) ? req.body.tags : ['دندانپزشکی', 'پاکدشت'],
+    isFeatured: Boolean(req.body.isFeatured),
+    content: Array.isArray(req.body.content) ? req.body.content : [req.body.content || ''],
+    introduction: req.body.introduction || '',
+    executiveSummary: Array.isArray(req.body.executiveSummary) ? req.body.executiveSummary : [],
+    comparisonTable: req.body.comparisonTable || null,
+    doctorQuote: req.body.doctorQuote || null,
+    candidacy: req.body.candidacy || null,
+    tips: Array.isArray(req.body.tips) ? req.body.tips : [],
+    faqs: Array.isArray(req.body.faqs) ? req.body.faqs : [],
+  };
+
+  db.articles = [newArticle, ...(db.articles || [])];
+  writeDb(db);
+  res.status(201).json(newArticle);
+});
+
+// PUT /api/articles/:id (Protected with requireAuth)
+app.put('/api/articles/:id', requireAuth, (req: Request, res: Response) => {
+  const { id } = req.params;
+  const db = readDb();
+  const index = (db.articles || []).findIndex((a: any) => a.id === id || a.slug === id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: 'مقاله مورد نظر یافت نشد.' });
+  }
+
+  const existing = db.articles[index];
+  const updated = {
+    ...existing,
+    ...req.body,
+    id: existing.id, // prevent changing primary ID accidentally
+    slug: req.body.slug || existing.slug || existing.id,
+    date: req.body.date !== undefined ? req.body.date : (existing.date || new Date().toLocaleDateString('fa-IR')),
+    views: req.body.views !== undefined ? Number(req.body.views) : (existing.views || 0),
+    metaTitle: req.body.metaTitle || `${req.body.title || existing.title} | دندانپزشکی پارمیس`,
+    metaDescription: req.body.metaDescription || req.body.summary || existing.summary,
+  };
+
+  db.articles[index] = updated;
+  writeDb(db);
+  res.json(updated);
+});
+
+// POST /api/articles/:id/view - Real View Counter Increment (Public)
+app.post('/api/articles/:id/view', (req: Request, res: Response) => {
+  const { id } = req.params;
+  const db = readDb();
+  const index = (db.articles || []).findIndex((a: any) => a.id === id || a.slug === id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: 'مقاله مورد نظر یافت نشد.' });
+  }
+
+  const currentViews = Number(db.articles[index].views) || 0;
+  const newViews = currentViews + 1;
+  db.articles[index].views = newViews;
+  writeDb(db);
+
+  res.json({ success: true, views: newViews });
+});
+
+// DELETE /api/articles/:id (Protected with requireAuth)
+app.delete('/api/articles/:id', requireAuth, (req: Request, res: Response) => {
+  const { id } = req.params;
+  const db = readDb();
+  const initialLength = (db.articles || []).length;
+  db.articles = (db.articles || []).filter((a: any) => a.id !== id && a.slug !== id);
+
+  if (db.articles.length === initialLength) {
+    return res.status(404).json({ error: 'مقاله مورد نظر یافت نشد.' });
+  }
+
+  writeDb(db);
+  res.json({ success: true, message: 'مقاله با موفقیت حذف شد.' });
+});
+
+// ==========================================
+// 3.5. BLOG CATEGORIES MANAGEMENT ROUTES
+// ==========================================
+
+// GET /api/categories
+app.get('/api/categories', (_req: Request, res: Response) => {
+  const db = readDb();
+  res.json(db.blogCategories || []);
+});
+
+// POST /api/categories
+app.post('/api/categories', (req: Request, res: Response) => {
+  const { id, label, icon } = req.body;
+  if (!label || !label.trim()) {
+    return res.status(400).json({ error: 'عنوان دسته‌بندی الزامی است.' });
+  }
+
+  const db = readDb();
+  const categoryId = (id || `cat-${Date.now()}`).trim().toLowerCase().replace(/\s+/g, '-');
+
+  const categories = db.blogCategories || [];
+  if (categories.some((c: any) => c.id === categoryId || c.label === label.trim())) {
+    return res.status(400).json({ error: 'دسته‌بندی با این عنوان یا شناسه از قبل وجود دارد.' });
+  }
+
+  const newCat = {
+    id: categoryId,
+    label: label.trim(),
+    icon: icon || 'article',
+  };
+
+  db.blogCategories = [...categories, newCat];
+  writeDb(db);
+  res.status(201).json(newCat);
+});
+
+// PUT /api/categories/:id
+app.put('/api/categories/:id', (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { label, icon } = req.body;
+  if (!label || !label.trim()) {
+    return res.status(400).json({ error: 'عنوان دسته‌بندی الزامی است.' });
+  }
+
+  const db = readDb();
+  const categories = db.blogCategories || [];
+  const index = categories.findIndex((c: any) => c.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: 'دسته‌بندی مورد نظر یافت نشد.' });
+  }
+
+  const oldLabel = categories[index].label;
+  const updatedCat = {
+    ...categories[index],
+    label: label.trim(),
+    icon: icon || categories[index].icon || 'article',
+  };
+  categories[index] = updatedCat;
+  db.blogCategories = categories;
+
+  // Also update articles using this category name so they stay linked!
+  if (oldLabel !== label.trim() && Array.isArray(db.articles)) {
+    db.articles = db.articles.map((art: any) => {
+      if (art.category === oldLabel || art.categorySlug === id) {
+        return {
+          ...art,
+          category: label.trim(),
+          categorySlug: id,
+          mobileCategory: label.trim(),
+        };
+      }
+      return art;
+    });
+  }
+
+  writeDb(db);
+  res.json({ success: true, category: updatedCat, articles: db.articles });
+});
+
+// DELETE /api/categories/:id
+app.delete('/api/categories/:id', (req: Request, res: Response) => {
+  const { id } = req.params;
+  if (id === 'all') {
+    return res.status(400).json({ error: 'دسته‌بندی پیش‌فرض «همه» قابل حذف نیست.' });
+  }
+
+  const db = readDb();
+  const categories = db.blogCategories || [];
+  const targetCat = categories.find((c: any) => c.id === id);
+
+  if (!targetCat) {
+    return res.status(404).json({ error: 'دسته‌بندی مورد نظر یافت نشد.' });
+  }
+
+  db.blogCategories = categories.filter((c: any) => c.id !== id);
+
+  // If any article had this category, reassign it to 'عمومی'
+  if (Array.isArray(db.articles)) {
+    db.articles = db.articles.map((art: any) => {
+      if (art.category === targetCat.label || art.categorySlug === id) {
+        return {
+          ...art,
+          category: 'عمومی',
+          categorySlug: 'general',
+          mobileCategory: 'عمومی',
+        };
+      }
+      return art;
+    });
+  }
+
+  writeDb(db);
+  res.json({ success: true, message: 'دسته‌بندی با موفقیت حذف شد.' });
+});
+
+// ==========================================
+// 4. SMILE GALLERY ROUTES
+// ==========================================
+
+// GET /api/gallery
+app.get('/api/gallery', (_req: Request, res: Response) => {
+  const db = readDb();
+  res.json(db.transformations || []);
+});
+
+// POST /api/gallery
+app.post('/api/gallery', (req: Request, res: Response) => {
+  const db = readDb();
+  const newItem = {
+    ...req.body,
+    id: req.body.id || `gallery-${Date.now()}`,
+    title: req.body.title || 'نمونه درمان جدید',
+    mobileTitle: req.body.mobileTitle || req.body.title || 'نمونه درمان جدید',
+    subtitle: req.body.subtitle || '',
+    mobileSubtitle: req.body.mobileSubtitle || req.body.subtitle || '',
+    image: req.body.image || req.body.beforeImage || '',
+    mobileImage: req.body.mobileImage || req.body.afterImage || req.body.image || '',
+    beforeImage: req.body.beforeImage || req.body.image || '',
+    afterImage: req.body.afterImage || req.body.mobileImage || req.body.image || '',
+    beforeLabel: req.body.beforeLabel || 'قبل از درمان',
+    afterLabel: req.body.afterLabel || 'بعد از درمان',
+    description: req.body.description || '',
+    badge: req.body.badge || 'اصلاح طرح لبخند',
+    iconName: req.body.iconName || 'auto_awesome',
+    galleryImages: Array.isArray(req.body.galleryImages) ? req.body.galleryImages : [],
+    tags: Array.isArray(req.body.tags) ? req.body.tags : [],
+  };
+
+  db.transformations = [...(db.transformations || []), newItem];
+  writeDb(db);
+  res.status(201).json(newItem);
+});
+
+// PUT /api/gallery/:id
+app.put('/api/gallery/:id', (req: Request, res: Response) => {
+  const { id } = req.params;
+  const db = readDb();
+  const index = (db.transformations || []).findIndex((t: any) => t.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: 'آیتم مورد نظر یافت نشد.' });
+  }
+
+  db.transformations[index] = {
+    ...db.transformations[index],
+    ...req.body,
+    id,
+  };
+
+  writeDb(db);
+  res.json(db.transformations[index]);
+});
+
+// DELETE /api/gallery/:id
+app.delete('/api/gallery/:id', (req: Request, res: Response) => {
+  const { id } = req.params;
+  const db = readDb();
+  const initialLength = (db.transformations || []).length;
+  db.transformations = (db.transformations || []).filter((t: any) => t.id !== id);
+
+  if (db.transformations.length === initialLength) {
+    return res.status(404).json({ error: 'آیتم مورد نظر یافت نشد.' });
+  }
+
+  writeDb(db);
+  res.json({ success: true, message: 'آیتم گالری با موفقیت حذف شد.' });
+});
+
+// ==========================================
+// 5. APPOINTMENTS ROUTES
+// ==========================================
+
+// GET /api/appointments
+app.get('/api/appointments', (req: Request, res: Response) => {
+  const { status } = req.query;
+  const db = readDb();
+  let list = db.appointments || [];
+
+  if (status && typeof status === 'string') {
+    list = list.filter((a) => a.status === status);
+  }
+
+  // Newest appointments first
+  list.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  res.json(list);
+});
+
+// POST /api/appointments: Patient booking from site
+app.post('/api/appointments', (req: Request, res: Response) => {
+  const { fullName, phone, serviceId, serviceTitle, preferredDate, preferredTime, description } = req.body;
+
+  if (!fullName || !phone) {
+    return res.status(400).json({ error: 'نام و نام خانوادگی و شماره تماس الزامی هستند.' });
+  }
+
+  const db = readDb();
+  const newAppointment: AppointmentRecord = {
+    id: `apt-${Date.now()}`,
+    fullName: fullName.trim(),
+    phone: phone.trim(),
+    serviceId: serviceId || 'general-visit',
+    serviceTitle: serviceTitle || 'ویزیت و مشاوره عمومی',
+    preferredDate: preferredDate || '',
+    preferredTime: preferredTime || '',
+    description: description ? description.trim() : '',
+    status: 'pending',
+    createdAt: new Date().toISOString(),
+  };
+
+  db.appointments = [newAppointment, ...(db.appointments || [])];
+  writeDb(db);
+
+  res.status(201).json({
+    success: true,
+    message: 'درخواست نوبت شما با موفقیت ثبت شد. کارشناسان کلینیک به زودی با شما تماس خواهند گرفت.',
+    appointment: newAppointment,
+  });
+});
+
+// PATCH /api/appointments/:id: Update status or notes by admin (Protected with requireAuth)
+app.patch('/api/appointments/:id', requireAuth, (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { status, notes } = req.body;
+  const db = readDb();
+
+  const index = (db.appointments || []).findIndex((a) => a.id === id);
+  if (index === -1) {
+    return res.status(404).json({ error: 'نوبت مورد نظر یافت نشد.' });
+  }
+
+  if (status) {
+    db.appointments[index].status = status;
+  }
+  if (notes !== undefined) {
+    db.appointments[index].notes = notes;
+  }
+
+  writeDb(db);
+  res.json({ success: true, appointment: db.appointments[index] });
+});
+
+// DELETE /api/appointments/:id: Remove appointment (Protected with requireAuth)
+app.delete('/api/appointments/:id', requireAuth, (req: Request, res: Response) => {
+  const { id } = req.params;
+  const db = readDb();
+
+  const initialLength = (db.appointments || []).length;
+  db.appointments = (db.appointments || []).filter((a) => a.id !== id);
+
+  if (db.appointments.length === initialLength) {
+    return res.status(404).json({ error: 'نوبت مورد نظر یافت نشد.' });
+  }
+
+  writeDb(db);
+  res.json({ success: true, message: 'نوبت با موفقیت حذف شد.' });
+});
+
+// ==========================================
+// 5.5. PATIENT COMMENTS & QUESTIONS ROUTES
+// ==========================================
+
+// GET /api/comments: List comments (optional filter by articleId or status)
+app.get('/api/comments', (req: Request, res: Response) => {
+  const { articleId, status } = req.query;
+  const db = readDb();
+  let list = db.comments || [];
+
+  if (articleId && typeof articleId === 'string') {
+    list = list.filter((c: any) => c.articleId === articleId);
+  }
+  if (status && typeof status === 'string') {
+    list = list.filter((c: any) => c.status === status);
+  }
+
+  // Sort newest first
+  list.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  res.json(list);
+});
+
+// POST /api/comments: Submit new question/comment from article page
+app.post('/api/comments', (req: Request, res: Response) => {
+  const { articleId, articleTitle, authorName, authorPhone, content } = req.body;
+
+  if (!authorName || !content) {
+    return res.status(400).json({ error: 'نام و متن دیدگاه الزامی است.' });
+  }
+
+  const db = readDb();
+  const newComment = {
+    id: `comm-${Date.now()}`,
+    articleId: articleId || '',
+    articleTitle: articleTitle || '',
+    authorName: authorName.trim(),
+    authorPhone: authorPhone ? authorPhone.trim() : '',
+    content: content.trim(),
+    status: 'pending' as const, // pending admin review or approval
+    createdAt: new Date().toISOString(),
+    doctorReply: '',
+    repliedAt: '',
+    repliedBy: '',
+  };
+
+  db.comments = [newComment, ...(db.comments || [])];
+  writeDb(db);
+
+  res.status(201).json({
+    success: true,
+    message: 'دیدگاه و پرسش شما با موفقیت ثبت شد و پس از بررسی و پاسخ توسط پزشک در سایت نمایش داده خواهد شد.',
+    comment: newComment,
+  });
+});
+
+// PATCH /api/comments/:id/reply: Doctor/Admin replies to a comment (Protected with requireAuth)
+app.patch('/api/comments/:id/reply', requireAuth, (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { doctorReply, status, repliedBy } = req.body;
+  const db = readDb();
+
+  const comments = db.comments || [];
+  const index = comments.findIndex((c: any) => c.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: 'دیدگاه مورد نظر یافت نشد.' });
+  }
+
+  const existing = comments[index];
+  comments[index] = {
+    ...existing,
+    doctorReply: doctorReply !== undefined ? doctorReply.trim() : existing.doctorReply,
+    status: status || (doctorReply ? 'approved' : existing.status),
+    repliedAt: doctorReply ? new Date().toISOString() : existing.repliedAt,
+    repliedBy: repliedBy || 'دکتر انوشیروان شمس پور',
+  };
+
+  db.comments = comments;
+  writeDb(db);
+
+  res.json({ success: true, message: 'پاسخ با موفقیت ثبت و وضعیت دیدگاه به‌روزرسانی شد.', comment: comments[index] });
+});
+
+// PATCH /api/comments/:id/status: Change status (Protected with requireAuth)
+app.patch('/api/comments/:id/status', requireAuth, (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { status } = req.body;
+  const db = readDb();
+
+  const comments = db.comments || [];
+  const index = comments.findIndex((c: any) => c.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: 'دیدگاه مورد نظر یافت نشد.' });
+  }
+
+  comments[index].status = status;
+  db.comments = comments;
+  writeDb(db);
+
+  res.json({ success: true, message: 'وضعیت دیدگاه تغییر یافت.', comment: comments[index] });
+});
+
+// DELETE /api/comments/:id: Delete a comment (Protected with requireAuth)
+app.delete('/api/comments/:id', requireAuth, (req: Request, res: Response) => {
+  const { id } = req.params;
+  const db = readDb();
+
+  const initialLength = (db.comments || []).length;
+  db.comments = (db.comments || []).filter((c: any) => c.id !== id);
+
+  if (db.comments.length === initialLength) {
+    return res.status(404).json({ error: 'دیدگاه مورد نظر یافت نشد.' });
+  }
+
+  writeDb(db);
+  res.json({ success: true, message: 'دیدگاه با موفقیت حذف شد.' });
+});
+
+// ==========================================
+// 6. MEDIA LIBRARY ROUTES
+// ==========================================
+
+// GET /api/media: Get all uploaded images
+app.get('/api/media', (_req: Request, res: Response) => {
+  const db = readDb();
+  res.json(db.media || []);
+});
+
+// POST /api/media: Upload image/video with multer (Protected with requireAuth)
+app.post('/api/media', requireAuth, upload.single('file'), (req: Request, res: Response) => {
+  if (!req.file) {
+    return res.status(400).json({ error: 'هیچ فایلی برای بارگذاری ارسال نشده است.' });
+  }
+
+  const { alt, title, category, targetId, targetField } = req.body;
+  const db = readDb();
+
+  const newMedia: MediaRecord = {
+    id: `med-${Date.now()}`,
+    filename: req.file.filename,
+    originalName: req.file.originalname,
+    url: `/uploads/${req.file.filename}`,
+    alt: alt || req.file.originalname,
+    title: title || req.file.originalname,
+    mimeType: req.file.mimetype,
+    size: req.file.size,
+    createdAt: new Date().toISOString(),
+    category: (category as any) || 'upload',
+    targetId,
+    targetField,
+  };
+
+  db.media = [newMedia, ...(db.media || [])];
+  writeDb(db);
+
+  res.status(201).json({
+    success: true,
+    message: 'فایل با موفقیت بارگذاری شد.',
+    media: newMedia,
+  });
+});
+
+// PUT /api/media/:id: Update alt and title for any media record
+app.put('/api/media/:id', (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { alt, title } = req.body;
+  const db = readDb();
+
+  const item = (db.media || []).find((m) => m.id === id);
+  if (!item) {
+    return res.status(404).json({ error: 'رسانه مورد نظر یافت نشد.' });
+  }
+
+  if (alt !== undefined) item.alt = alt;
+  if (title !== undefined) item.title = title;
+
+  // If linked to siteImages, synchronize
+  if (item.category === 'site' && item.targetKey && db.siteImages?.[item.targetKey]) {
+    if (alt !== undefined) db.siteImages[item.targetKey].alt = alt;
+    if (title !== undefined) db.siteImages[item.targetKey].title = title;
+  }
+
+  writeDb(db);
+  res.json({ success: true, media: item, siteImages: db.siteImages });
+});
+
+// POST /api/media/replace: Replace any image in-place across the website (Protected with requireAuth)
+app.post('/api/media/replace', requireAuth, upload.single('file'), (req: Request, res: Response) => {
+  if (!req.file) {
+    return res.status(400).json({ error: 'هیچ فایلی برای جایگزینی ارسال نشده است.' });
+  }
+
+  const { targetType, targetKey, targetId, targetField, alt, title } = req.body;
+  const db = readDb();
+  const newUrl = `/uploads/${req.file.filename}`;
+
+  let updatedMediaRecord: MediaRecord | null = null;
+
+  // 1. Target: siteImage
+  if (targetType === 'siteImage' && targetKey) {
+    if (!db.siteImages) db.siteImages = {};
+    const existing = db.siteImages[targetKey] || { url: '', alt: '', title: '' };
+    db.siteImages[targetKey] = {
+      url: newUrl,
+      alt: alt || existing.alt || req.file.originalname,
+      title: title || existing.title || req.file.originalname,
+    };
+
+    // Synchronize clinicInfo and specific sections
+    if (targetKey === 'heroMainImage') {
+      if (db.clinicInfo) db.clinicInfo.heroImage = newUrl;
+      if (db.hero) db.hero.image = newUrl;
+    } else if (targetKey === 'doctorProfileImage') {
+      if (db.clinicInfo) db.clinicInfo.doctorImage = newUrl;
+      if (db.doctor) db.doctor.image = newUrl;
+    } else if (targetKey === 'clinicEquipmentImage') {
+      if (db.clinicInfo) db.clinicInfo.operatoryImage = newUrl;
+    } else if (targetKey === 'mapPreviewImage') {
+      if (db.clinicInfo) db.clinicInfo.mapImage = newUrl;
+    } else if (targetKey === 'editorPickDoctorAvatar') {
+      if (!db.editorPick) db.editorPick = {};
+      db.editorPick.avatarUrl = newUrl;
+    }
+
+    // Update or insert in db.media
+    let mediaItem = (db.media || []).find(
+      (m) => m.id === `site-${targetKey}` || (m.category === 'site' && m.targetKey === targetKey)
+    );
+    if (mediaItem) {
+      mediaItem.filename = req.file.filename;
+      mediaItem.url = newUrl;
+      mediaItem.size = req.file.size;
+      mediaItem.mimeType = req.file.mimetype;
+      if (alt) mediaItem.alt = alt;
+      if (title) mediaItem.title = title;
+      updatedMediaRecord = mediaItem;
+    } else {
+      const newRec: MediaRecord = {
+        id: `site-${targetKey}`,
+        filename: req.file.filename,
+        originalName: req.file.originalname,
+        url: newUrl,
+        alt: alt || db.siteImages[targetKey].alt,
+        title: title || db.siteImages[targetKey].title,
+        mimeType: req.file.mimetype,
+        size: req.file.size,
+        createdAt: new Date().toISOString(),
+        category: 'site',
+        targetKey,
+      };
+      db.media = [newRec, ...(db.media || [])];
+      updatedMediaRecord = newRec;
+    }
+  }
+
+  // 2. Target: gallery transformation
+  else if (targetType === 'gallery' && targetId) {
+    const tItem = (db.transformations || []).find((t: any) => String(t.id) === String(targetId));
+    const field = targetField === 'mobileImage' ? 'mobileImage' : 'image';
+    if (tItem) {
+      tItem[field] = newUrl;
+      if (field === 'image') tItem.beforeImage = newUrl;
+      if (field === 'mobileImage') tItem.afterImage = newUrl;
+    }
+
+    const mediaId = `gal-${targetId}-${field}`;
+    let mediaItem = (db.media || []).find(
+      (m) =>
+        m.id === mediaId ||
+        (m.category === 'gallery' && String(m.targetId) === String(targetId) && m.targetField === field)
+    );
+    if (mediaItem) {
+      mediaItem.filename = req.file.filename;
+      mediaItem.url = newUrl;
+      mediaItem.size = req.file.size;
+      mediaItem.mimeType = req.file.mimetype;
+      if (alt) mediaItem.alt = alt;
+      if (title) mediaItem.title = title;
+      updatedMediaRecord = mediaItem;
+    } else {
+      const newRec: MediaRecord = {
+        id: mediaId,
+        filename: req.file.filename,
+        originalName: req.file.originalname,
+        url: newUrl,
+        alt: alt || tItem?.title || req.file.originalname,
+        title: title || tItem?.title || req.file.originalname,
+        mimeType: req.file.mimetype,
+        size: req.file.size,
+        createdAt: new Date().toISOString(),
+        category: 'gallery',
+        targetId: String(targetId),
+        targetField: field,
+      };
+      db.media = [newRec, ...(db.media || [])];
+      updatedMediaRecord = newRec;
+    }
+  }
+
+  // 3. Target: article
+  else if (targetType === 'article' && targetId) {
+    const art = (db.articles || []).find((a: any) => a.id === targetId || a.slug === targetId);
+    if (art) {
+      art.image = newUrl;
+      art.mobileImage = newUrl;
+    }
+
+    const mediaId = `art-${targetId}`;
+    let mediaItem = (db.media || []).find(
+      (m) => m.id === mediaId || (m.category === 'article' && m.targetId === targetId)
+    );
+    if (mediaItem) {
+      mediaItem.filename = req.file.filename;
+      mediaItem.url = newUrl;
+      mediaItem.size = req.file.size;
+      mediaItem.mimeType = req.file.mimetype;
+      if (alt) mediaItem.alt = alt;
+      if (title) mediaItem.title = title;
+      updatedMediaRecord = mediaItem;
+    } else {
+      const newRec: MediaRecord = {
+        id: mediaId,
+        filename: req.file.filename,
+        originalName: req.file.originalname,
+        url: newUrl,
+        alt: alt || art?.title || req.file.originalname,
+        title: title || art?.title || req.file.originalname,
+        mimeType: req.file.mimetype,
+        size: req.file.size,
+        createdAt: new Date().toISOString(),
+        category: 'article',
+        targetId: String(targetId),
+        targetField: 'image',
+      };
+      db.media = [newRec, ...(db.media || [])];
+      updatedMediaRecord = newRec;
+    }
+  }
+
+  // 4. Target: generic media item
+  else {
+    const mId = targetId || targetKey;
+    let mediaItem = (db.media || []).find((m) => m.id === mId);
+    if (mediaItem) {
+      mediaItem.filename = req.file.filename;
+      mediaItem.url = newUrl;
+      mediaItem.size = req.file.size;
+      mediaItem.mimeType = req.file.mimetype;
+      if (alt) mediaItem.alt = alt;
+      if (title) mediaItem.title = title;
+      updatedMediaRecord = mediaItem;
+    } else {
+      const newRec: MediaRecord = {
+        id: `med-${Date.now()}`,
+        filename: req.file.filename,
+        originalName: req.file.originalname,
+        url: newUrl,
+        alt: alt || req.file.originalname,
+        title: title || req.file.originalname,
+        mimeType: req.file.mimetype,
+        size: req.file.size,
+        createdAt: new Date().toISOString(),
+        category: 'upload',
+      };
+      db.media = [newRec, ...(db.media || [])];
+      updatedMediaRecord = newRec;
+    }
+  }
+
+  writeDb(db);
+
+  res.json({
+    success: true,
+    message: 'تصویر با موفقیت در محل مورد نظر تعویض شد.',
+    url: newUrl,
+    media: updatedMediaRecord,
+    siteImages: db.siteImages,
+  });
+});
+
+// DELETE /api/media/:id: Delete image from media library & disk (Protected with requireAuth)
+app.delete('/api/media/:id', requireAuth, (req: Request, res: Response) => {
+  const { id } = req.params;
+  const db = readDb();
+
+  const mediaIndex = (db.media || []).findIndex((m) => m.id === id);
+  if (mediaIndex === -1) {
+    return res.status(404).json({ error: 'رسانه مورد نظر یافت نشد.' });
+  }
+
+  const item = db.media[mediaIndex];
+
+  // If the file is inside uploadsDir, delete it from disk
+  if (item.url && item.url.startsWith('/uploads/')) {
+    const filePath = path.resolve(uploadsDir, item.filename);
+    if (fs.existsSync(filePath)) {
+      try {
+        fs.unlinkSync(filePath);
+      } catch (err) {
+        console.warn('Could not delete physical file:', filePath, err);
+      }
+    }
+  }
+
+  db.media.splice(mediaIndex, 1);
+  writeDb(db);
+
+  res.json({ success: true, message: 'رسانه با موفقیت حذف شد.' });
+});
+
+// ==========================================
+// 7. TECHNICAL SEO & SITEMAP ROUTES
+// ==========================================
+
+function escapeXml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
+// GET /sitemap.xml
+app.get('/sitemap.xml', (req: Request, res: Response) => {
+  const db = readDb();
+  const host = req.get('host') || 'localhost:3000';
+  const protocol = req.protocol === 'https' || req.get('x-forwarded-proto') === 'https' ? 'https' : 'http';
+  const baseUrl = `${protocol}://${host}`;
+
+  const staticRoutes = [
+    { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'daily' },
+    { loc: `${baseUrl}/?page=services`, priority: '0.9', changefreq: 'weekly' },
+    { loc: `${baseUrl}/?page=about`, priority: '0.8', changefreq: 'monthly' },
+    { loc: `${baseUrl}/?page=gallery`, priority: '0.8', changefreq: 'weekly' },
+    { loc: `${baseUrl}/?page=blog`, priority: '0.9', changefreq: 'daily' },
+    { loc: `${baseUrl}/?page=contact`, priority: '0.8', changefreq: 'monthly' },
+  ];
+
+  const articleRoutes = (db.articles || []).map((art: any) => ({
+    loc: `${baseUrl}/?page=article&id=${encodeURIComponent(art.slug || art.id)}`,
+    priority: '0.7',
+    changefreq: 'weekly',
+  }));
+
+  const allUrls = [...staticRoutes, ...articleRoutes];
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${allUrls
+  .map(
+    (u) => `  <url>
+    <loc>${escapeXml(u.loc)}</loc>
+    <changefreq>${u.changefreq}</changefreq>
+    <priority>${u.priority}</priority>
+  </url>`
+  )
+  .join('\n')}
+</urlset>`;
+
+  res.header('Content-Type', 'application/xml; charset=utf-8');
+  res.send(xml);
+});
+
+// GET /robots.txt
+app.get('/robots.txt', (req: Request, res: Response) => {
+  const host = req.get('host') || 'localhost:3000';
+  const protocol = req.protocol === 'https' || req.get('x-forwarded-proto') === 'https' ? 'https' : 'http';
+  const sitemapUrl = `${protocol}://${host}/sitemap.xml`;
+
+  const robots = `User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin
+Disallow: /?page=admin
+
+Sitemap: ${sitemapUrl}
+`;
+
+  res.header('Content-Type', 'text/plain; charset=utf-8');
+  res.send(robots);
+});
+
+// Health check
+app.get('/api/health', (_req: Request, res: Response) => {
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    service: 'Parmis Dental Clinic CMS API',
+  });
+});
+
+// Production Static Serving with Dynamic SEO Meta & Schema.org JSON-LD
+const distDir = path.resolve(rootDir, 'dist');
+if (fs.existsSync(distDir)) {
+  app.use(express.static(distDir, { index: false }));
+
+  app.get('*', (req: Request, res: Response) => {
+    // If request has /api or /uploads and wasn't handled, return 404 JSON
+    if (req.path.startsWith('/api') || req.path.startsWith('/uploads')) {
+      return res.status(404).json({ error: 'یافت نشد' });
+    }
+
+    const indexPath = path.resolve(distDir, 'index.html');
+    if (!fs.existsSync(indexPath)) {
+      return res.status(404).send('Not Found');
+    }
+
+    let html = fs.readFileSync(indexPath, 'utf-8');
+    const db = readDb();
+    const page = req.query.page as string;
+    const articleId = req.query.id as string;
+
+    let title = db.siteSettings?.title || 'کلینیک دندان‌پزشکی پارمیس | دکتر انوشیروان شمس پور';
+    let description =
+      db.siteSettings?.metaDescription ||
+      'کلینیک دندان‌پزشکی پارمیس در پاکدشت با مدیریت دکتر انوشیروان شمس پور؛ ارائه دهنده خدمات تخصصی ایمپلنت، کامپوزیت و لمینت.';
+
+    if (page === 'services') {
+      title = `خدمات تخصصی دندان‌پزشکی | ${db.clinicInfo?.name || 'کلینیک پارمیس'}`;
+      description = 'ارائه کلیه خدمات تخصصی ایمپلنت دیجیتال، کامپوزیت ونیر، لمینت سرامیکی و عصب‌کشی در پاکدشت.';
+    } else if (page === 'about') {
+      title = `درباره کلینیک و ${db.clinicInfo?.doctorName || 'دکتر شمس پور'} | ${db.clinicInfo?.name || 'کلینیک پارمیس'}`;
+      description = 'آشنایی با دکتر انوشیروان شمس پور، سوابق بالینی درخشان و تجهیزات استریلیزاسیون پیشرفته کلینیک پارمیس.';
+    } else if (page === 'gallery') {
+      title = `گالری لبخند و نمونه درمان‌های قبل و بعد | ${db.clinicInfo?.name || 'کلینیک پارمیس'}`;
+      description = 'مشاهده تصاویر قبل و بعد درمان‌های زیبایی، اصلاح طرح لبخند و کامپوزیت در کلینیک پارمیس.';
+    } else if (page === 'blog') {
+      title = `مجله سلامت و مقالات دندان‌پزشکی | ${db.clinicInfo?.name || 'کلینیک پارمیس'}`;
+      description = 'آرشیو مقالات علمی، آموزش بهداشت دهان و دندان و راهنمای جامع مراقبت‌های دندانپزشکی.';
+    } else if (page === 'article') {
+      const art = (db.articles || []).find((a: any) => a.id === articleId || a.slug === articleId);
+      if (art) {
+        title = art.metaTitle || `${art.title} | ${db.clinicInfo?.name || 'کلینیک پارمیس'}`;
+        description = art.metaDescription || art.summary || description;
+      }
+    } else if (page === 'contact') {
+      title = `تماس با ما، نشانی و ساعات کاری | ${db.clinicInfo?.name || 'کلینیک پارمیس'}`;
+      description = 'آدرس کلینیک در مجتمع راستین پاکدشت، ساعات کاری روزانه و شماره تماس جهت مشاوره و نوبت‌دهی.';
+    }
+
+    const schemaOrg = {
+      '@context': 'https://schema.org',
+      '@type': 'Dentist',
+      name: 'کلینیک دندان‌پزشکی پارمیس',
+      founder: {
+        '@type': 'Person',
+        name: 'دکتر انوشیروان شمس پور',
+        jobTitle: 'جراح - دندان‌پزشک',
+      },
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'بلوار شهدای قمی، میدان علی ابن ابیطالب، ابتدای بلوار علی ابن ابیطالب، مجتمع پزشکی راستین، طبقه دوم',
+        addressLocality: 'پاکدشت',
+        addressRegion: 'تهران',
+        addressCountry: 'IR',
+      },
+      telephone: '02136048581',
+      priceRange: '$$',
+      openingHours: 'Sa-Th 09:00-21:00',
+    };
+
+    html = html.replace(/<title>.*?<\/title>/, `<title>${title}</title>`);
+    if (html.includes('<meta name="description"')) {
+      html = html.replace(
+        /<meta name="description" content=".*?"\s*\/?>/,
+        `<meta name="description" content="${description}" />`
+      );
+    } else {
+      html = html.replace(
+        '</head>',
+        `  <meta name="description" content="${description}" />\n</head>`
+      );
+    }
+
+    const schemaScript = `\n    <script type="application/ld+json">\n${JSON.stringify(schemaOrg, null, 2)}\n    </script>\n  `;
+    html = html.replace('</head>', `${schemaScript}</head>`);
+
+    res.send(html);
+  });
+} else {
+  // Development fallback: inform user
+  app.get('/', (_req: Request, res: Response) => {
+    res.send(`
+      <!DOCTYPE html>
+      <html lang="fa" dir="rtl">
+      <head>
+        <meta charset="utf-8"/>
+        <title>سرور بک‌اند کلینیک دندان‌پزشکی پارمیس</title>
+        <style>
+          body { font-family: system-ui, -apple-system, sans-serif; background: #f7f9fb; color: #191c1e; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; }
+          .card { background: white; padding: 2.5rem; border-radius: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); max-width: 480px; border: 1px solid #e2e8f0; }
+          h1 { font-size: 1.5rem; color: #004ac6; margin-bottom: 0.5rem; }
+          p { color: #565e74; line-height: 1.6; margin-bottom: 1.5rem; font-size: 0.95rem; }
+          .btn { display: inline-block; background: #004ac6; color: white; padding: 0.75rem 1.75rem; border-radius: 9999px; text-decoration: none; font-weight: bold; font-size: 0.9rem; transition: background 0.2s; }
+          .btn:hover { background: #003ea8; }
+          .badge { display: inline-block; background: #dbe1ff; color: #004ac6; font-size: 0.8rem; padding: 0.3rem 0.8rem; border-radius: 9999px; margin-bottom: 1rem; font-weight: 600; }
+        </style>
+      </head>
+      <body>
+        <div class="card">
+          <div class="badge">پورت ۳۰۰۱: سرور بک‌اند و API</div>
+          <h1>سرور با موفقیت در حال اجراست</h1>
+          <p>این آدرس مربوط به <strong>APIهای بک‌اند</strong> است. برای مشاهده وب‌سایت اصلی کلینیک پارمیس، روی دکمه زیر کلیک کنید:</p>
+          <a class="btn" href="http://localhost:3000/">ورود به سایت اصلی (پورت ۳۰۰۰)</a>
+        </div>
+      </body>
+      </html>
+    `);
+  });
+}
+
+// Start Server
+app.listen(PORT, () => {
+  console.log(`✅ CMS Backend Server running at http://localhost:${PORT}`);
+  console.log(`📁 Uploads served from ${uploadsDir} at http://localhost:${PORT}/uploads`);
+});
+
+export default app;

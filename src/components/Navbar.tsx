@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { CLINIC_INFO } from '../data/clinicData.ts';
+import { useCMS } from '../context/CMSContext.tsx';
 
 interface NavbarProps {
   activePage: 'home' | 'services' | 'about' | 'blog' | 'article' | 'gallery' | 'contact';
@@ -13,6 +14,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onSelectPage,
   onOpenCostCalculator,
 }) => {
+  const { siteImages, clinicInfo } = useCMS();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   // Coordinates of the hamburger button / touch point relative to the right-aligned drawer
   const [dropOrigin, setDropOrigin] = useState<{ x: string; y: string }>({
@@ -97,8 +99,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-[#004ac6] shrink-0 shadow-xs bg-[#eceef0]">
                 <img
-                  src={CLINIC_INFO.doctorImage}
-                  alt={CLINIC_INFO.doctorName}
+                  src={siteImages.headerLogo?.url || clinicInfo.doctorImage || CLINIC_INFO.doctorImage}
+                  alt={siteImages.headerLogo?.alt || clinicInfo.doctorName || CLINIC_INFO.doctorName}
                   className="w-full h-full object-cover object-top"
                 />
               </div>
@@ -107,7 +109,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   کلینیک دندانپزشکی پارمیس
                 </span>
                 <span className="text-[10px] text-[#565e74] font-semibold truncate">
-                  دکتر انوشیروان شمس پور
+                  {clinicInfo.doctorTitleBrand || CLINIC_INFO.doctorTitleBrand}
                 </span>
               </div>
             </div>
@@ -123,17 +125,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => handleNavClick('home')}
             className="text-right flex items-center gap-3 group cursor-pointer"
           >
-            <span className="w-11 h-11 rounded-full bg-[#dbe1ff] flex items-center justify-center text-[#004ac6] group-hover:scale-105 transition-transform shrink-0">
-              <span className="material-symbols-fill material-symbols-outlined text-[24px]">
-                dentistry
-              </span>
-            </span>
+            <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-[#004ac6] group-hover:scale-105 transition-transform shrink-0 shadow-xs bg-[#eceef0]">
+              <img
+                src={siteImages.headerLogo?.url || clinicInfo.doctorImage || CLINIC_INFO.doctorImage}
+                alt={siteImages.headerLogo?.alt || clinicInfo.doctorName || CLINIC_INFO.doctorName}
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
             <div className="flex flex-col text-right">
               <span className="text-base font-extrabold text-[#004ac6] tracking-tight">
                 کلینیک دندانپزشکی پارمیس
               </span>
               <span className="text-xs text-[#565e74] font-semibold">
-                دکتر انوشیروان شمس پور
+                {clinicInfo.doctorTitleBrand || CLINIC_INFO.doctorTitleBrand}
               </span>
             </div>
           </button>
@@ -185,7 +189,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : 'text-[#565e74] hover:text-[#004ac6] font-semibold'
               }`}
             >
-              درباره دکتر شمس پور
+              درباره {clinicInfo.doctorTitleBrand || CLINIC_INFO.doctorTitleBrand}
             </button>
 
             <button
@@ -289,8 +293,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               <div className="flex items-center gap-2.5 text-right min-w-0 flex-1">
                 <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#004ac6] shrink-0 shadow-xs bg-[#eceef0]">
                   <img
-                    src={CLINIC_INFO.doctorImage}
-                    alt={CLINIC_INFO.doctorName}
+                    src={siteImages.headerLogo?.url || clinicInfo.doctorImage || CLINIC_INFO.doctorImage}
+                    alt={siteImages.headerLogo?.alt || clinicInfo.doctorName || CLINIC_INFO.doctorName}
                     className="w-full h-full object-cover object-top"
                   />
                 </div>
@@ -299,7 +303,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     کلینیک دندانپزشکی پارمیس
                   </h3>
                   <p className="text-xs text-[#565e74] font-semibold truncate">
-                    دکتر انوشیروان شمس پور
+                    {clinicInfo.doctorTitleBrand || CLINIC_INFO.doctorTitleBrand}
                   </p>
                 </div>
               </div>
@@ -389,7 +393,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 >
                   badge
                 </span>
-                <span className="text-xs truncate">درباره دکتر شمس پور</span>
+                <span className="text-xs truncate">درباره {clinicInfo.doctorTitleBrand || CLINIC_INFO.doctorTitleBrand}</span>
               </button>
 
               <button

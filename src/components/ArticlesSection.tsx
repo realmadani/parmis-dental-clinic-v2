@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
-import { ARTICLES, ArticleItem, CLINIC_INFO } from '../data/clinicData.ts';
+import { useCMS } from '../context/CMSContext.tsx';
+import { ArticleItem, CLINIC_INFO } from '../data/clinicData.ts';
+import { MediaPreview } from '../utils/mediaUtils.tsx';
 
 interface ArticlesSectionProps {
   onNavigateBlog: () => void;
@@ -12,10 +14,20 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({
   onSelectArticle,
   onOpenBooking,
 }) => {
+  const { articles, clinicInfo, comments, homeSettings } = useCMS();
+  const artSettings = homeSettings?.articles;
   const [activeArticle, setActiveArticle] = useState<ArticleItem | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(true);
   const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const getArticleCommentsCount = (art: ArticleItem) => {
+    return (comments || []).filter(
+      (c: any) =>
+        (c.articleId === art.id || c.articleId === art.slug) &&
+        c.status === 'approved'
+    ).length;
+  };
 
   const checkScroll = () => {
     if (!carouselRef.current) return;
@@ -35,6 +47,8 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({
     carouselRef.current.scrollBy({ left: delta, behavior: 'smooth' });
   };
 
+  const displayArticles = articles.slice(0, artSettings?.count ?? 6);
+
   return (
     <section id="articles" className="py-12 sm:py-20 bg-[#f7f9fb] border-b border-[#c3c6d7]/30">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
@@ -42,15 +56,19 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-6 text-right">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#dbe1ff] text-[#004ac6] text-xs font-semibold mb-3">
-              <span className="material-symbols-outlined text-base">menu_book</span>
-              <span>آموزش و آگاهی • پایگاه مقالات تخصصی</span>
+              <span className="material-symbols-outlined text-base">{artSettings?.badgeIcon || 'menu_book'}</span>
+              <span>{artSettings?.badge || 'آموزش و آگاهی • پایگاه مقالات تخصصی'}</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-[#191c1e] mb-2 leading-tight">
-              مجله سلامت دهان و زیبایی لبخند پارمیس
+              {artSettings?.title || 'مجله سلامت دهان و زیبایی لبخند پارمیس'}
             </h2>
             <p className="text-sm sm:text-base text-[#565e74] max-w-2xl">
-              جدیدترین مقالات علمی و نکات مراقبتی تالیف و بازبینی‌شده توسط{' '}
-              <strong className="text-[#004ac6] font-bold">دکتر انوشیروان شمس پور</strong>
+              {artSettings?.description || (
+                <>
+                  جدیدترین مقالات علمی و نکات مراقبتی تالیف و بازبینی‌شده توسط{' '}
+                  <strong className="text-[#004ac6] font-bold">دکتر انوشیروان شمس پور</strong>
+                </>
+              )}
             </p>
           </div>
 
@@ -61,7 +79,7 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({
               onClick={onNavigateBlog}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#004ac6] text-white text-xs sm:text-sm font-bold hover:bg-[#2563eb] transition-all shadow-sm active:scale-95 cursor-pointer"
             >
-              <span>مشاهده همه مقالات وبلاگ</span>
+              <span>{artSettings?.buttonText || 'مشاهده همه مقالات وبلاگ'}</span>
               <span className="material-symbols-outlined text-base rotate-180">arrow_back</span>
             </button>
 
@@ -94,7 +112,7 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({
             onScroll={checkScroll}
             className="flex gap-5 sm:gap-6 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory no-scrollbar scroll-smooth"
           >
-            {ARTICLES.map((article) => (
+            {displayArticles.map((article) => (
               <article
                 key={article.id}
                 onClick={() => {
@@ -109,11 +127,11 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({
                 <div>
                   {/* Article Thumbnail */}
                   <div className="relative aspect-[16/10] overflow-hidden bg-[#eceef0]">
-                    <img
+                    <MediaPreview
                       src={article.image}
                       alt={article.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
+                      controls={false}
                     />
                     <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#004ac6] text-[11px] font-bold shadow-xs">
                       {article.category}
@@ -130,13 +148,31 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({
 
                   {/* Body Content */}
                   <div className="p-5 sm:p-6 flex flex-col flex-grow">
-                    <div className="flex items-center gap-2 text-[#565e74] text-xs mb-2.5">
+                    <div className="flex items-center gap-2 text-[#565e74] text-xs mb-2.5 flex-wrap">
                       <span className="material-symbols-outlined text-sm">schedule</span>
                       <span>{article.readTime}</span>
                       {article.date && (
                         <>
                           <span>•</span>
                           <span>{article.date}</span>
+                        </>
+                      )}
+                      {(artSettings?.showViews ?? true) && (article.views !== undefined && article.views > 0) && (
+                        <>
+                          <span>•</span>
+                          <span className="flex items-center gap-0.5 font-medium">
+                            <span className="material-symbols-outlined text-sm">visibility</span>
+                            <span>{article.views.toLocaleString('fa-IR')}</span>
+                          </span>
+                        </>
+                      )}
+                      {(artSettings?.showCommentsCount ?? true) && (
+                        <>
+                          <span>•</span>
+                          <span className="flex items-center gap-0.5 font-medium">
+                            <span className="material-symbols-outlined text-sm">chat_bubble_outline</span>
+                            <span>{getArticleCommentsCount(article).toLocaleString('fa-IR')} نظر</span>
+                          </span>
                         </>
                       )}
                     </div>
@@ -194,7 +230,7 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({
             onClick={onNavigateBlog}
             className="text-[#004ac6] font-bold underline underline-offset-4"
           >
-            مشاهده همه ({ARTICLES.length})
+            مشاهده همه ({articles.length})
           </button>
         </div>
       </div>
@@ -222,14 +258,15 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({
             </div>
 
             <div className="aspect-[16/9] rounded-2xl overflow-hidden mb-5 bg-[#eceef0]">
-              <img
+              <MediaPreview
                 src={activeArticle.image}
                 alt={activeArticle.title}
                 className="w-full h-full object-cover"
+                controls={true}
               />
             </div>
 
-            <div className="flex items-center gap-3 text-xs text-[#565e74] mb-3">
+            <div className="flex items-center gap-3 text-xs text-[#565e74] mb-3 flex-wrap">
               <span className="flex items-center gap-1">
                 <span className="material-symbols-outlined text-sm">schedule</span>
                 <span>{activeArticle.readTime}</span>
@@ -240,6 +277,20 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({
                   <span>{activeArticle.date}</span>
                 </>
               )}
+              {(activeArticle.views !== undefined && activeArticle.views > 0) && (
+                <>
+                  <span>•</span>
+                  <span className="flex items-center gap-0.5 font-medium">
+                    <span className="material-symbols-outlined text-sm">visibility</span>
+                    <span>{activeArticle.views.toLocaleString('fa-IR')}</span>
+                  </span>
+                </>
+              )}
+              <span>•</span>
+              <span className="flex items-center gap-0.5 font-medium">
+                <span className="material-symbols-outlined text-sm">chat_bubble_outline</span>
+                <span>{getArticleCommentsCount(activeArticle).toLocaleString('fa-IR')} نظر</span>
+              </span>
             </div>
 
             <h3 className="text-xl sm:text-2xl font-extrabold text-[#191c1e] mb-4 leading-snug">
@@ -249,14 +300,14 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({
             <div className="flex items-center gap-3 p-3 rounded-2xl bg-[#f2f4f6] border border-[#c3c6d7]/30 mb-6">
               <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#004ac6] shrink-0 bg-[#e6e8ea]">
                 <img
-                  src={CLINIC_INFO.doctorImage}
-                  alt={activeArticle.author || CLINIC_INFO.doctorName}
+                  src={clinicInfo?.doctorImage || CLINIC_INFO.doctorImage}
+                  alt={activeArticle.author || clinicInfo?.doctorName || CLINIC_INFO.doctorName}
                   className="w-full h-full object-cover object-top"
                 />
               </div>
               <div className="flex flex-col text-right">
                 <span className="text-xs sm:text-sm font-bold text-[#191c1e]">
-                  {activeArticle.author || CLINIC_INFO.doctorName}
+                  {activeArticle.author || clinicInfo?.doctorName || CLINIC_INFO.doctorName}
                 </span>
                 <span className="text-[11px] text-[#565e74]">
                   {activeArticle.authorRole || 'جراح و دندان‌پزشک کلینیک پارمیس'}
