@@ -106,7 +106,7 @@ export const ContactPage: React.FC<ContactPageProps> = () => {
                   </div>
                 )}
 
-                {/* Card 2: Direct Phone & WhatsApp */}
+                {/* Card 2: Direct Phone & Messengers */}
                 {quickCardsSec.phoneCard?.enabled !== false && (
                   <div className="bg-white p-5 sm:p-6 rounded-3xl shadow-xs hover:shadow-md border border-[#c3c6d7]/30 transition-all flex flex-col justify-between group">
                     <div>
@@ -116,44 +116,63 @@ export const ContactPage: React.FC<ContactPageProps> = () => {
                       <h3 className="text-base sm:text-lg font-bold text-[#191c1e] mb-2">
                         {quickCardsSec.phoneCard.title || 'تلفن و پیام‌رسان'}
                       </h3>
-                      <p className="text-xs text-[#565e74] mb-3 leading-relaxed">
-                        {quickCardsSec.phoneCard.description || 'خط ویژه پذیرش، هماهنگی نوبت و مشاوره رایگان درمان:'}
-                      </p>
+                      {quickCardsSec.phoneCard.description && (
+                        <p className="text-xs text-[#565e74] mb-3 leading-relaxed">
+                          {quickCardsSec.phoneCard.description}
+                        </p>
+                      )}
                       <div className="space-y-1.5 font-bold dir-ltr text-right">
-                        <a
-                          className="text-[#004ac6] hover:text-[#003896] text-base sm:text-lg block transition-colors tracking-wide"
-                          href={`tel:${quickCardsSec.phoneCard.phone1 || clinicInfo?.phone || CLINIC_INFO.phone}`}
-                        >
-                          {quickCardsSec.phoneCard.phone1Display || clinicInfo?.phoneDisplay || CLINIC_INFO.phoneDisplay}
-                        </a>
-                        <a
-                          className="text-[#004ac6] hover:text-[#003896] text-base sm:text-lg block transition-colors tracking-wide"
-                          href={`tel:${quickCardsSec.phoneCard.phone2 || clinicInfo?.phone2 || CLINIC_INFO.phone2}`}
-                        >
-                          {quickCardsSec.phoneCard.phone2Display || clinicInfo?.phoneDisplay2 || CLINIC_INFO.phoneDisplay2}
-                        </a>
-                        {quickCardsSec.phoneCard.whatsappPhone && (
+                        {(quickCardsSec.phoneCard.phone1 || quickCardsSec.phoneCard.phone1Display) && (
                           <a
-                            className="text-emerald-600 hover:text-emerald-700 text-xs sm:text-sm flex items-center justify-end gap-1.5"
-                            href={`https://wa.me/${quickCardsSec.phoneCard.whatsappPhone}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            className="text-[#004ac6] hover:text-[#003896] text-base sm:text-lg block transition-colors tracking-wide"
+                            href={`tel:${quickCardsSec.phoneCard.phone1 || clinicInfo?.phone || CLINIC_INFO.phone}`}
                           >
-                            <span>{quickCardsSec.phoneCard.whatsappDisplay || 'پشتیبانی واتساپ'}</span>
-                            <span className="material-symbols-outlined text-base">chat</span>
+                            {quickCardsSec.phoneCard.phone1Display ||
+                              quickCardsSec.phoneCard.phone1 ||
+                              clinicInfo?.phoneDisplay ||
+                              CLINIC_INFO.phoneDisplay}
                           </a>
                         )}
+                        {(quickCardsSec.phoneCard.phone2 || quickCardsSec.phoneCard.phone2Display) && (
+                          <a
+                            className="text-[#004ac6] hover:text-[#003896] text-base sm:text-lg block transition-colors tracking-wide"
+                            href={`tel:${quickCardsSec.phoneCard.phone2 || clinicInfo?.phone2 || CLINIC_INFO.phone2}`}
+                          >
+                            {quickCardsSec.phoneCard.phone2Display ||
+                              quickCardsSec.phoneCard.phone2 ||
+                              clinicInfo?.phoneDisplay2 ||
+                              CLINIC_INFO.phoneDisplay2}
+                          </a>
+                        )}
+                        {quickCardsSec.phoneCard.whatsappEnabled !== false &&
+                          quickCardsSec.phoneCard.whatsappPhone && (
+                            <a
+                              className="text-emerald-600 hover:text-emerald-700 text-xs sm:text-sm flex items-center justify-end gap-1.5"
+                              href={
+                                quickCardsSec.phoneCard.whatsappPhone.startsWith('http')
+                                  ? quickCardsSec.phoneCard.whatsappPhone
+                                  : `https://wa.me/${quickCardsSec.phoneCard.whatsappPhone.replace(/[^0-9]/g, '')}`
+                              }
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <span>{quickCardsSec.phoneCard.whatsappDisplay || 'پشتیبانی واتساپ'}</span>
+                              <span className="material-symbols-outlined text-base">chat</span>
+                            </a>
+                          )}
                       </div>
                     </div>
-                    <div className="mt-4 pt-3 border-t border-[#f2f4f6]">
-                      <a
-                        className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 bg-[#004ac6]/10 text-[#004ac6] hover:bg-[#004ac6] hover:text-white rounded-full text-xs font-bold transition-all active:scale-95"
-                        href={`tel:${quickCardsSec.phoneCard.phone1 || clinicInfo?.phone || CLINIC_INFO.phone}`}
-                      >
-                        <span className="material-symbols-outlined text-sm">call</span>
-                        <span>{quickCardsSec.phoneCard.footerButtonText || 'برقراری تماس فوری تلفنی'}</span>
-                      </a>
-                    </div>
+                    {quickCardsSec.phoneCard.footerButtonText && (
+                      <div className="mt-4 pt-3 border-t border-[#f2f4f6]">
+                        <a
+                          className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 bg-[#004ac6]/10 text-[#004ac6] hover:bg-[#004ac6] hover:text-white rounded-full text-xs font-bold transition-all active:scale-95"
+                          href={`tel:${quickCardsSec.phoneCard.phone1 || clinicInfo?.phone || CLINIC_INFO.phone}`}
+                        >
+                          <span className="material-symbols-outlined text-sm">call</span>
+                          <span>{quickCardsSec.phoneCard.footerButtonText}</span>
+                        </a>
+                      </div>
+                    )}
                   </div>
                 )}
 

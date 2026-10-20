@@ -16665,39 +16665,101 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onNavigateHome }) => {
                     {/* ================= SUBTAB 3: QUICK CARDS ================= */}
                     {contactSubTab === 'quickCards' && (() => {
                       const qc = contactSettings.quickCards || defaultContactPageSettings.quickCards;
+                      const addrCard = {
+                        ...defaultContactPageSettings.quickCards.addressCard,
+                        ...(qc.addressCard || {}),
+                      };
+                      const phCard = {
+                        ...defaultContactPageSettings.quickCards.phoneCard,
+                        ...(qc.phoneCard || {}),
+                      };
+                      const hrCard = {
+                        ...defaultContactPageSettings.quickCards.hoursCard,
+                        ...(qc.hoursCard || {}),
+                      };
+                      const amCard = {
+                        ...defaultContactPageSettings.quickCards.amenitiesCard,
+                        ...(qc.amenitiesCard || {}),
+                      };
 
                       return (
                         <div className="space-y-6">
                           <div className="bg-white rounded-3xl p-6 lg:p-8 border border-slate-200 shadow-xs space-y-6">
-                            <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+                            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
                               <div>
                                 <h3 className="text-base font-bold text-slate-800">کارت‌های ۴ گانه دسترسی سریع بالای صفحه</h3>
-                                <p className="text-xs text-slate-500 mt-0.5">آدرس، تلفن و پیام‌رسان، ساعات کاری و امکانات رفاهی</p>
+                                <p className="text-xs text-slate-500 mt-0.5">شخصی‌سازی کامل آدرس، تلفن و پیام‌رسان، ساعات کاری و امکانات رفاهی</p>
                               </div>
-                              <button
-                                type="button"
-                                onClick={() => handleSaveContactSection('کارت‌های دسترسی سریع')}
-                                disabled={isSavingContactSettings}
-                                className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#004ac6] text-white text-xs font-bold hover:bg-[#003896] cursor-pointer"
-                              >
-                                <Save className="w-3.5 h-3.5" />
-                                <span>ذخیره</span>
-                              </button>
+                              <div className="flex items-center gap-3">
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    updateContactSection('quickCards', (prev) => ({
+                                      ...prev,
+                                      enabled: prev.enabled === false ? true : false,
+                                    }))
+                                  }
+                                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold cursor-pointer ${
+                                    qc.enabled !== false
+                                      ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                                      : 'bg-rose-50 text-rose-700 border border-rose-200'
+                                  }`}
+                                >
+                                  {qc.enabled !== false ? (
+                                    <Eye className="w-3.5 h-3.5" />
+                                  ) : (
+                                    <EyeOff className="w-3.5 h-3.5" />
+                                  )}
+                                  <span>{qc.enabled !== false ? 'بخش فعال است' : 'بخش پنهان است'}</span>
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => handleSaveContactSection('کارت‌های دسترسی سریع')}
+                                  disabled={isSavingContactSettings}
+                                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#004ac6] text-white text-xs font-bold hover:bg-[#003896] cursor-pointer"
+                                >
+                                  <Save className="w-3.5 h-3.5" />
+                                  <span>ذخیره</span>
+                                </button>
+                              </div>
                             </div>
 
                             {/* Card 1: Address */}
-                            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-                              <h4 className="text-xs font-bold text-slate-800">کارت ۱: نشانی دقیق مطب</h4>
-                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3.5">
+                              <div className="flex items-center justify-between">
+                                <h4 className="text-xs sm:text-sm font-extrabold text-slate-800">کارت ۱: نشانی دقیق مطب</h4>
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    updateContactSection('quickCards', (prev) => ({
+                                      ...prev,
+                                      addressCard: {
+                                        ...addrCard,
+                                        enabled: addrCard.enabled === false ? true : false,
+                                      },
+                                    }))
+                                  }
+                                  className={`px-2.5 py-1 rounded-lg text-[11px] font-bold cursor-pointer ${
+                                    addrCard.enabled !== false
+                                      ? 'bg-emerald-100 text-emerald-800'
+                                      : 'bg-rose-100 text-rose-800'
+                                  }`}
+                                >
+                                  {addrCard.enabled !== false ? 'فعال' : 'پنهان'}
+                                </button>
+                              </div>
+                              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                                 <div>
                                   <label className="block text-[11px] font-bold text-slate-700 mb-1">تیتر کارت</label>
                                   <input
                                     type="text"
-                                    value={qc.addressCard?.title || ''}
-                                    onChange={(e) => updateContactSection('quickCards', (prev) => ({
-                                      ...prev,
-                                      addressCard: { ...prev.addressCard, title: e.target.value }
-                                    }))}
+                                    value={addrCard.title || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        addressCard: { ...addrCard, title: e.target.value },
+                                      }))
+                                    }
                                     className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs font-bold"
                                   />
                                 </div>
@@ -16705,42 +16767,315 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onNavigateHome }) => {
                                   <label className="block text-[11px] font-bold text-slate-700 mb-1">متن فوتر کارت</label>
                                   <input
                                     type="text"
-                                    value={qc.addressCard?.footerText || ''}
-                                    onChange={(e) => updateContactSection('quickCards', (prev) => ({
-                                      ...prev,
-                                      addressCard: { ...prev.addressCard, footerText: e.target.value }
-                                    }))}
+                                    value={addrCard.footerText || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        addressCard: { ...addrCard, footerText: e.target.value },
+                                      }))
+                                    }
                                     className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs"
                                   />
                                 </div>
-                                <div className="sm:col-span-2">
+                                <div>
+                                  <label className="block text-[11px] font-bold text-slate-700 mb-1">آیکون فوتر (Material Icon)</label>
+                                  <input
+                                    type="text"
+                                    value={addrCard.footerIcon || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        addressCard: { ...addrCard, footerIcon: e.target.value },
+                                      }))
+                                    }
+                                    placeholder="elevator"
+                                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs dir-ltr text-left"
+                                  />
+                                </div>
+                                <div className="sm:col-span-3">
                                   <label className="block text-[11px] font-bold text-slate-700 mb-1">متن کامل آدرس</label>
                                   <textarea
                                     rows={2}
-                                    value={qc.addressCard?.text || ''}
-                                    onChange={(e) => updateContactSection('quickCards', (prev) => ({
-                                      ...prev,
-                                      addressCard: { ...prev.addressCard, text: e.target.value }
-                                    }))}
+                                    value={addrCard.text || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        addressCard: { ...addrCard, text: e.target.value },
+                                      }))
+                                    }
                                     className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs leading-relaxed"
                                   />
                                 </div>
                               </div>
                             </div>
 
-                            {/* Card 2: Hours */}
-                            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-                              <h4 className="text-xs font-bold text-slate-800">کارت ۲: ساعات کاری و پذیرش</h4>
+                            {/* Card 2: Phone & Messengers */}
+                            <div className="p-4 sm:p-5 rounded-2xl bg-blue-50/40 border border-blue-200/80 space-y-4">
+                              <div className="flex items-center justify-between">
+                                <div>
+                                  <h4 className="text-xs sm:text-sm font-extrabold text-[#004ac6]">کارت ۲: تلفن و پیام‌رسان</h4>
+                                  <p className="text-[11px] text-slate-500 mt-0.5">شخصی‌سازی شماره‌های تماس، واتساپ/پیام‌رسان و دکمه تماس فوری</p>
+                                </div>
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    updateContactSection('quickCards', (prev) => ({
+                                      ...prev,
+                                      phoneCard: {
+                                        ...phCard,
+                                        enabled: phCard.enabled === false ? true : false,
+                                      },
+                                    }))
+                                  }
+                                  className={`px-2.5 py-1 rounded-lg text-[11px] font-bold cursor-pointer ${
+                                    phCard.enabled !== false
+                                      ? 'bg-emerald-100 text-emerald-800'
+                                      : 'bg-rose-100 text-rose-800'
+                                  }`}
+                                >
+                                  {phCard.enabled !== false ? 'فعال' : 'پنهان'}
+                                </button>
+                              </div>
+
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                  <label className="block text-[11px] font-bold text-slate-700 mb-1">تیتر کارت</label>
+                                  <input
+                                    type="text"
+                                    value={phCard.title || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        phoneCard: { ...phCard, title: e.target.value },
+                                      }))
+                                    }
+                                    placeholder="تلفن و پیام‌رسان"
+                                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs font-bold"
+                                  />
+                                </div>
+                                <div>
+                                  <label className="block text-[11px] font-bold text-slate-700 mb-1">متن دکمه پایین کارت</label>
+                                  <input
+                                    type="text"
+                                    value={phCard.footerButtonText || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        phoneCard: { ...phCard, footerButtonText: e.target.value },
+                                      }))
+                                    }
+                                    placeholder="برقراری تماس فوری تلفنی"
+                                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs font-bold"
+                                  />
+                                </div>
+                                <div className="sm:col-span-2">
+                                  <label className="block text-[11px] font-bold text-slate-700 mb-1">متن توضیحات بالای شماره‌ها</label>
+                                  <input
+                                    type="text"
+                                    value={phCard.description || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        phoneCard: { ...phCard, description: e.target.value },
+                                      }))
+                                    }
+                                    placeholder="خط ویژه پذیرش، هماهنگی نوبت و مشاوره رایگان درمان:"
+                                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs"
+                                  />
+                                </div>
+
+                                <div>
+                                  <label className="block text-[11px] font-bold text-slate-700 mb-1">شماره تماس اول (جهت شماره‌گیری انگلیسی)</label>
+                                  <input
+                                    type="text"
+                                    value={phCard.phone1 || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        phoneCard: { ...phCard, phone1: e.target.value },
+                                      }))
+                                    }
+                                    placeholder="02136048581"
+                                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs font-mono dir-ltr text-left"
+                                  />
+                                </div>
+                                <div>
+                                  <label className="block text-[11px] font-bold text-slate-700 mb-1">متن نمایشی شماره تماس اول (فارسی)</label>
+                                  <input
+                                    type="text"
+                                    value={phCard.phone1Display || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        phoneCard: { ...phCard, phone1Display: e.target.value },
+                                      }))
+                                    }
+                                    placeholder="۰۲۱۳۶۰۴۸۵۸۱"
+                                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs font-bold dir-ltr text-right"
+                                  />
+                                </div>
+
+                                <div>
+                                  <label className="block text-[11px] font-bold text-slate-700 mb-1">شماره تماس دوم (جهت شماره‌گیری انگلیسی)</label>
+                                  <input
+                                    type="text"
+                                    value={phCard.phone2 || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        phoneCard: { ...phCard, phone2: e.target.value },
+                                      }))
+                                    }
+                                    placeholder="02136048582"
+                                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs font-mono dir-ltr text-left"
+                                  />
+                                </div>
+                                <div>
+                                  <label className="block text-[11px] font-bold text-slate-700 mb-1">متن نمایشی شماره تماس دوم (فارسی)</label>
+                                  <input
+                                    type="text"
+                                    value={phCard.phone2Display || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        phoneCard: { ...phCard, phone2Display: e.target.value },
+                                      }))
+                                    }
+                                    placeholder="۰۲۱۳۶۰۴۸۵۸۲"
+                                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs font-bold dir-ltr text-right"
+                                  />
+                                </div>
+                              </div>
+
+                              {/* Messenger / WhatsApp Settings inside Card 2 */}
+                              <div className="pt-3 border-t border-blue-200/60 space-y-3">
+                                <div className="flex items-center justify-between">
+                                  <span className="text-xs font-bold text-slate-700">تنظیمات لینک پیام‌رسان (واتساپ / تلگرام / ایتا)</span>
+                                  <button
+                                    type="button"
+                                    onClick={() =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        phoneCard: {
+                                          ...phCard,
+                                          whatsappEnabled: phCard.whatsappEnabled === false ? true : false,
+                                        },
+                                      }))
+                                    }
+                                    className={`px-2.5 py-1 rounded-lg text-[11px] font-bold cursor-pointer ${
+                                      phCard.whatsappEnabled !== false
+                                        ? 'bg-emerald-100 text-emerald-800'
+                                        : 'bg-slate-200 text-slate-600'
+                                    }`}
+                                  >
+                                    {phCard.whatsappEnabled !== false ? 'پیام‌رسان فعال' : 'پیام‌رسان غیرفعال'}
+                                  </button>
+                                </div>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                  <div>
+                                    <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                                      شماره واتساپ (با کد 98) یا لینک مستقیم پیام‌رسان
+                                    </label>
+                                    <input
+                                      type="text"
+                                      value={phCard.whatsappPhone || ''}
+                                      onChange={(e) =>
+                                        updateContactSection('quickCards', (prev) => ({
+                                          ...prev,
+                                          phoneCard: { ...phCard, whatsappPhone: e.target.value },
+                                        }))
+                                      }
+                                      placeholder="989120802253 یا https://t.me/..."
+                                      className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs font-mono dir-ltr text-left"
+                                    />
+                                  </div>
+                                  <div>
+                                    <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                                      متن نمایشی پیام‌رسان روی کارت
+                                    </label>
+                                    <input
+                                      type="text"
+                                      value={phCard.whatsappDisplay || ''}
+                                      onChange={(e) =>
+                                        updateContactSection('quickCards', (prev) => ({
+                                          ...prev,
+                                          phoneCard: { ...phCard, whatsappDisplay: e.target.value },
+                                        }))
+                                      }
+                                      placeholder="۰۹۱۲۰۸۰۲۲۵۳ (پشتیبانی واتساپ)"
+                                      className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs font-bold"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Card 3: Hours */}
+                            <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3.5">
+                              <div className="flex items-center justify-between">
+                                <h4 className="text-xs sm:text-sm font-extrabold text-slate-800">کارت ۳: ساعات کاری و پذیرش</h4>
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    updateContactSection('quickCards', (prev) => ({
+                                      ...prev,
+                                      hoursCard: {
+                                        ...hrCard,
+                                        enabled: hrCard.enabled === false ? true : false,
+                                      },
+                                    }))
+                                  }
+                                  className={`px-2.5 py-1 rounded-lg text-[11px] font-bold cursor-pointer ${
+                                    hrCard.enabled !== false
+                                      ? 'bg-emerald-100 text-emerald-800'
+                                      : 'bg-rose-100 text-rose-800'
+                                  }`}
+                                >
+                                  {hrCard.enabled !== false ? 'فعال' : 'پنهان'}
+                                </button>
+                              </div>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                  <label className="block text-[11px] font-bold text-slate-700 mb-1">تیتر کارت</label>
+                                  <input
+                                    type="text"
+                                    value={hrCard.title || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        hoursCard: { ...hrCard, title: e.target.value },
+                                      }))
+                                    }
+                                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs font-bold"
+                                  />
+                                </div>
+                                <div>
+                                  <label className="block text-[11px] font-bold text-slate-700 mb-1">متن فوتر کارت</label>
+                                  <input
+                                    type="text"
+                                    value={hrCard.footerText || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        hoursCard: { ...hrCard, footerText: e.target.value },
+                                      }))
+                                    }
+                                    className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs"
+                                  />
+                                </div>
+                              </div>
                               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                                 <div>
                                   <label className="block text-[11px] font-bold text-slate-700 mb-1">شنبه تا چهارشنبه</label>
                                   <input
                                     type="text"
-                                    value={qc.hoursCard?.weekdayHours || ''}
-                                    onChange={(e) => updateContactSection('quickCards', (prev) => ({
-                                      ...prev,
-                                      hoursCard: { ...prev.hoursCard, weekdayHours: e.target.value }
-                                    }))}
+                                    value={hrCard.weekdayHours || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        hoursCard: { ...hrCard, weekdayHours: e.target.value },
+                                      }))
+                                    }
                                     className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs font-bold dir-ltr text-right"
                                   />
                                 </div>
@@ -16748,11 +17083,13 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onNavigateHome }) => {
                                   <label className="block text-[11px] font-bold text-slate-700 mb-1">پنج‌شنبه‌ها</label>
                                   <input
                                     type="text"
-                                    value={qc.hoursCard?.thursdayHours || ''}
-                                    onChange={(e) => updateContactSection('quickCards', (prev) => ({
-                                      ...prev,
-                                      hoursCard: { ...prev.hoursCard, thursdayHours: e.target.value }
-                                    }))}
+                                    value={hrCard.thursdayHours || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        hoursCard: { ...hrCard, thursdayHours: e.target.value },
+                                      }))
+                                    }
                                     className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs font-bold dir-ltr text-right"
                                   />
                                 </div>
@@ -16760,30 +17097,55 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onNavigateHome }) => {
                                   <label className="block text-[11px] font-bold text-slate-700 mb-1">جمعه‌ها و تعطیلات</label>
                                   <input
                                     type="text"
-                                    value={qc.hoursCard?.emergencyHours || ''}
-                                    onChange={(e) => updateContactSection('quickCards', (prev) => ({
-                                      ...prev,
-                                      hoursCard: { ...prev.hoursCard, emergencyHours: e.target.value }
-                                    }))}
+                                    value={hrCard.emergencyHours || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        hoursCard: { ...hrCard, emergencyHours: e.target.value },
+                                      }))
+                                    }
                                     className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs"
                                   />
                                 </div>
                               </div>
                             </div>
 
-                            {/* Card 3: Facilities */}
-                            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-                              <h4 className="text-xs font-bold text-slate-800">کارت ۳: امکانات رفاهی و دسترسی</h4>
+                            {/* Card 4: Facilities */}
+                            <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3.5">
+                              <div className="flex items-center justify-between">
+                                <h4 className="text-xs sm:text-sm font-extrabold text-slate-800">کارت ۴: امکانات رفاهی و دسترسی</h4>
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    updateContactSection('quickCards', (prev) => ({
+                                      ...prev,
+                                      amenitiesCard: {
+                                        ...amCard,
+                                        enabled: amCard.enabled === false ? true : false,
+                                      },
+                                    }))
+                                  }
+                                  className={`px-2.5 py-1 rounded-lg text-[11px] font-bold cursor-pointer ${
+                                    amCard.enabled !== false
+                                      ? 'bg-emerald-100 text-emerald-800'
+                                      : 'bg-rose-100 text-rose-800'
+                                  }`}
+                                >
+                                  {amCard.enabled !== false ? 'فعال' : 'پنهان'}
+                                </button>
+                              </div>
                               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 <div>
                                   <label className="block text-[11px] font-bold text-slate-700 mb-1">تیتر کارت</label>
                                   <input
                                     type="text"
-                                    value={qc.amenitiesCard?.title || ''}
-                                    onChange={(e) => updateContactSection('quickCards', (prev) => ({
-                                      ...prev,
-                                      amenitiesCard: { ...prev.amenitiesCard, title: e.target.value }
-                                    }))}
+                                    value={amCard.title || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        amenitiesCard: { ...amCard, title: e.target.value },
+                                      }))
+                                    }
                                     className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs font-bold"
                                   />
                                 </div>
@@ -16791,11 +17153,13 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onNavigateHome }) => {
                                   <label className="block text-[11px] font-bold text-slate-700 mb-1">متن فوتر کارت</label>
                                   <input
                                     type="text"
-                                    value={qc.amenitiesCard?.footerText || ''}
-                                    onChange={(e) => updateContactSection('quickCards', (prev) => ({
-                                      ...prev,
-                                      amenitiesCard: { ...prev.amenitiesCard, footerText: e.target.value }
-                                    }))}
+                                    value={amCard.footerText || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        amenitiesCard: { ...amCard, footerText: e.target.value },
+                                      }))
+                                    }
                                     className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs"
                                   />
                                 </div>
@@ -16803,11 +17167,13 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onNavigateHome }) => {
                                   <label className="block text-[11px] font-bold text-slate-700 mb-1">متن توضیحات امکانات</label>
                                   <textarea
                                     rows={2}
-                                    value={qc.amenitiesCard?.text || ''}
-                                    onChange={(e) => updateContactSection('quickCards', (prev) => ({
-                                      ...prev,
-                                      amenitiesCard: { ...prev.amenitiesCard, text: e.target.value }
-                                    }))}
+                                    value={amCard.text || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('quickCards', (prev) => ({
+                                        ...prev,
+                                        amenitiesCard: { ...amCard, text: e.target.value },
+                                      }))
+                                    }
                                     className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs leading-relaxed"
                                   />
                                 </div>

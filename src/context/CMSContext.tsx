@@ -875,6 +875,7 @@ export interface ContactPageSettingsType {
       phone2: string;
       phone1Display: string;
       phone2Display: string;
+      whatsappEnabled?: boolean;
       whatsappPhone: string;
       whatsappDisplay: string;
       footerButtonText: string;
@@ -992,6 +993,7 @@ export const defaultContactPageSettings: ContactPageSettingsType = {
       phone2: '02136048582',
       phone1Display: '۰۲۱۳۶۰۴۸۵۸۱',
       phone2Display: '۰۲۱۳۶۰۴۸۵۸۲',
+      whatsappEnabled: true,
       whatsappPhone: '989120802253',
       whatsappDisplay: '۰۹۱۲۰۸۰۲۲۵۳ (پشتیبانی واتساپ)',
       footerButtonText: 'برقراری تماس فوری تلفنی',
