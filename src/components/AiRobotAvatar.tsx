@@ -1,395 +1,392 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-export type RobotState = 'entering' | 'greeting' | 'idle' | 'thinking' | 'speaking' | 'farewell';
+export type RobotState =
+  | 'entering'
+  | 'greeting'
+  | 'idle'
+  | 'listening'
+  | 'thinking'
+  | 'speaking'
+  | 'farewell';
 
-interface AiRobotAvatarProps {
-  state: RobotState;
-  farewellStep?: 'turn_and_wave' | 'glide_out' | null;
-  compact?: boolean;
+export type RobotMood = 'normal' | 'happy' | 'wink' | 'curious' | 'excited';
+
+export interface ProactiveReaction {
+  text: string;
+  actionLabel?: string;
+  actionPrompt?: string;
 }
 
+interface AiRobotAvatarProps {
+  state?: RobotState;
+  farewellStep?: 'turn_and_wave' | 'glide_out' | null;
+  compact?: boolean;
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'soft' | 'white';
+  isUserTyping?: boolean;
+  contextMode?: 'patient' | 'admin';
+  onInteractPrompt?: (prompt: string) => void;
+  showBubble?: boolean;
+}
+
+const PATIENT_REACTIONS: ProactiveReaction[] = [
+  {
+    text: 'سلام! حواسم بهت هست، هر سؤالی داری بپرس',
+    actionLabel: 'مشاهده نمونه‌کارها',
+    actionPrompt: 'دیدن نمونه‌کارها',
+  },
+  {
+    text: 'می‌خوای هزینه درمانت رو سریع حساب کنیم؟',
+    actionLabel: 'محاسبه هزینه و تعرفه‌ها',
+    actionPrompt: 'هزینه خدمات و روش‌های درمان',
+  },
+  {
+    text: 'می‌تونم برات نوبت معاینه دکتر شمس‌پور رو رزرو کنم!',
+    actionLabel: 'معرفی دکتر شمس‌پور',
+    actionPrompt: 'معرفی دکتر شمس‌پور',
+  },
+  {
+    text: 'درباره ایمپلنت، کامپوزیت یا لمینت سؤال داری؟',
+    actionLabel: 'تفاوت کامپوزیت و لمینت',
+    actionPrompt: 'تفاوت کامپوزیت و لمینت چیست؟',
+  },
+];
+
+const ADMIN_REACTIONS: ProactiveReaction[] = [
+  {
+    text: 'آماده‌ام! می‌خوای سئو سایت رو تحلیل و بهینه کنم؟',
+    actionLabel: 'تحلیل و بهینه‌سازی سئو',
+    actionPrompt: 'سئو سایت و تمام صفحات و مقالات رو کامل بررسی کن و هر جا نیاز به بهبود داره بگو و بهینه کن.',
+  },
+  {
+    text: 'می‌تونم همین الان بک‌لینک زنده در وبلاگ‌های عمومی بسازم!',
+    actionLabel: 'ساخت بک‌لینک خودکار',
+    actionPrompt: 'یک لینک هدف بساز، تحقیق کن و توی وبلاگ‌های عمومی مقاله بنویس و بک‌لینک بده به صفحه خدمات سایت.',
+  },
+  {
+    text: 'هر تغییری در طراحی UI/UX یا مقالات بخوای برات انجام میدم.',
+    actionLabel: 'تولید اتوماتیک مقاله',
+    actionPrompt: 'همین الان ۱ مقاله جدید علمی و سئو شده درباره ایمپلنت یا زیبایی دندان تولید کن و اتوماتیک در سایت لود کن.',
+  },
+  {
+    text: 'بک‌اند و دیتابیس تحت کنترل منه؛ چه دستوری داری؟',
+    actionLabel: 'بررسی سلامت سایت',
+    actionPrompt: 'کل سایت و بک‌اند رو از نظر فنی، محتوایی و تجربه کاربری تحلیل کن.',
+  },
+];
+
+/**
+ * Intelligent, Interactive Minimalist Square Robot with Two Blinking & Gaze-Tracking Eyes
+ * Inherits the Parmis Dental Clinic design system (#004ac6, #2563eb, #dbe1ff, #ffffff)
+ */
 export const AiRobotAvatar: React.FC<AiRobotAvatarProps> = ({
-  state,
+  state = 'idle',
   farewellStep = null,
   compact = false,
+  size,
+  variant = 'primary',
+  isUserTyping = false,
+  contextMode = 'patient',
+  onInteractPrompt,
+  showBubble = true,
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [gaze, setGaze] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [mood, setMood] = useState<RobotMood>('normal');
+  const [isJumping, setIsJumping] = useState(false);
+  const [reactionIndex, setReactionIndex] = useState(0);
+  const [activeBubble, setActiveBubble] = useState<ProactiveReaction | null>(null);
+  const lastMouseMoveRef = useRef<number>(Date.now());
+  const bubbleTimeoutRef = useRef<number | null>(null);
+
   const isThinking = state === 'thinking';
   const isSpeaking = state === 'speaking';
-  const isGreeting = state === 'greeting' || state === 'entering';
   const isFarewell = state === 'farewell';
+  const isGreeting = state === 'greeting' || state === 'entering';
 
-  // Status badge label based on robot emotional/functional state
-  const stateLabel = isFarewell
-    ? 'خداحافظی...'
-    : isThinking
-    ? 'در حال بررسی...'
-    : isSpeaking
-    ? 'در حال پاسخ‌گویی'
-    : isGreeting
-    ? 'خوش آمدید!'
-    : 'آماده پاسخ‌گویی';
+  const resolvedSize = size || (compact ? 'md' : 'lg');
+
+  const sizeClasses =
+    resolvedSize === 'xs'
+      ? 'w-6 h-6 rounded-lg'
+      : resolvedSize === 'sm'
+      ? 'w-9 h-9 rounded-xl'
+      : resolvedSize === 'md'
+      ? 'w-12 h-12 rounded-2xl'
+      : 'w-16 h-16 sm:w-20 sm:h-20 rounded-2xl';
+
+  const surfaceClasses =
+    variant === 'white'
+      ? 'bg-white text-[#004ac6] border border-[#c3c6d7]/50 shadow-xs'
+      : variant === 'soft'
+      ? 'bg-[#dbe1ff]/80 text-[#004ac6] border border-[#004ac6]/20'
+      : 'bg-[#004ac6] text-white shadow-[0_10px_25px_-5px_rgba(0,74,198,0.35)]';
+
+  const eyeColor = variant === 'primary' ? '#ffffff' : '#004ac6';
+  const reactionsList = contextMode === 'admin' ? ADMIN_REACTIONS : PATIENT_REACTIONS;
+
+  // Track mouse/touch across viewport so the robot's eyes follow the user
+  useEffect(() => {
+    const handlePointerMove = (clientX: number, clientY: number) => {
+      lastMouseMoveRef.current = Date.now();
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      const dx = clientX - centerX;
+      const dy = clientY - centerY;
+      const dist = Math.hypot(dx, dy) || 1;
+      const maxOffset = 3.2;
+      const factor = Math.min(dist / 220, 1);
+
+      setGaze({
+        x: Number(((dx / dist) * maxOffset * factor).toFixed(2)),
+        y: Number(((dy / dist) * maxOffset * factor).toFixed(2)),
+      });
+    };
+
+    const onMouseMove = (e: MouseEvent) => handlePointerMove(e.clientX, e.clientY);
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches[0]) {
+        handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    };
+
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('touchmove', onTouchMove);
+    };
+  }, []);
+
+  // When user is typing, look down attentively at the input box
+  useEffect(() => {
+    if (isUserTyping) {
+      setGaze({ x: 0, y: 2.8 });
+      setMood('curious');
+    } else if (mood === 'curious') {
+      setMood('normal');
+      setGaze({ x: 0, y: 0 });
+    }
+  }, [isUserTyping, mood]);
+
+  // Autonomous idle curiosity & proactive user engagement
+  useEffect(() => {
+    if (isThinking || isSpeaking || isFarewell) return;
+
+    const interval = window.setInterval(() => {
+      const idleMs = Date.now() - lastMouseMoveRef.current;
+
+      // If user hasn't moved mouse recently, look around autonomously
+      if (idleMs > 3000 && !isUserTyping) {
+        const randomAngles = [
+          { x: -2.4, y: -1.2 },
+          { x: 2.4, y: -1.0 },
+          { x: 0, y: 0 },
+          { x: -1.8, y: 1.5 },
+          { x: 1.8, y: 1.2 },
+        ];
+        const pick = randomAngles[Math.floor(Math.random() * randomAngles.length)];
+        setGaze(pick);
+
+        // Occasional friendly wink or happy expression
+        if (Math.random() > 0.65) {
+          setMood(Math.random() > 0.5 ? 'wink' : 'happy');
+          window.setTimeout(() => setMood('normal'), 900);
+        }
+      }
+
+      // Proactive interaction bubble if user is idle for > 8s and no bubble is shown
+      if (showBubble && idleMs > 8000 && !activeBubble && !isUserTyping && Math.random() > 0.45) {
+        const nextIdx = (reactionIndex + 1) % reactionsList.length;
+        setReactionIndex(nextIdx);
+        setActiveBubble(reactionsList[nextIdx]);
+        setMood('happy');
+        window.setTimeout(() => setMood('normal'), 1200);
+
+        if (bubbleTimeoutRef.current) window.clearTimeout(bubbleTimeoutRef.current);
+        bubbleTimeoutRef.current = window.setTimeout(() => {
+          setActiveBubble(null);
+        }, 6500);
+      }
+    }, 3500);
+
+    return () => window.clearInterval(interval);
+  }, [
+    isThinking,
+    isSpeaking,
+    isFarewell,
+    isUserTyping,
+    showBubble,
+    activeBubble,
+    reactionIndex,
+    reactionsList,
+  ]);
+
+  // Clean up bubble timer on unmount
+  useEffect(() => {
+    return () => {
+      if (bubbleTimeoutRef.current) window.clearTimeout(bubbleTimeoutRef.current);
+    };
+  }, []);
+
+  // Direct click interaction on the robot
+  const handleRobotClick = () => {
+    setIsJumping(true);
+    const moods: RobotMood[] = ['wink', 'happy', 'excited'];
+    const chosenMood = moods[Math.floor(Math.random() * moods.length)];
+    setMood(chosenMood);
+
+    const nextIdx = (reactionIndex + 1) % reactionsList.length;
+    setReactionIndex(nextIdx);
+    if (showBubble) {
+      setActiveBubble(reactionsList[nextIdx]);
+      if (bubbleTimeoutRef.current) window.clearTimeout(bubbleTimeoutRef.current);
+      bubbleTimeoutRef.current = window.setTimeout(() => {
+        setActiveBubble(null);
+      }, 7000);
+    }
+
+    window.setTimeout(() => setIsJumping(false), 450);
+    window.setTimeout(() => setMood('normal'), 1400);
+  };
+
+  // Compute eye offset based on state + mouse gaze
+  const eyeOffsetX = isThinking ? 1.8 : isUserTyping ? 0 : gaze.x;
+  const eyeOffsetY = isThinking ? -2.2 : isUserTyping ? 2.6 : gaze.y;
 
   return (
-    <div
-      className={`relative select-none flex flex-col items-center justify-center transition-all duration-500 ${
-        compact ? 'w-14 h-14 sm:w-16 sm:h-16' : 'w-20 h-20 sm:w-24 sm:h-24'
-      } ${
-        isFarewell && farewellStep === 'glide_out'
-          ? '-translate-x-16 translate-y-2 scale-75 opacity-0 duration-500 ease-in'
-          : isFarewell
-          ? 'scale-110 z-20 duration-300'
-          : state === 'entering'
-          ? 'scale-95 opacity-90'
-          : 'scale-100 opacity-100'
-      }`}
-      style={{ perspective: '600px' }}
-      aria-hidden="true"
-    >
-      {/* Ambient 3D Halo Glow */}
-      <div
-        className={`absolute inset-1 rounded-full blur-md transition-all duration-500 pointer-events-none ${
-          isThinking
-            ? 'bg-amber-400/35 scale-110 animate-pulse'
-            : isFarewell
-            ? 'bg-[#004ac6]/40 scale-125'
-            : isSpeaking
-            ? 'bg-emerald-400/30 scale-110'
-            : 'bg-[#2563eb]/20 scale-100'
-        }`}
-      />
-
-      {/* 3D Robot Character Container */}
-      <div
-        className={`relative w-full h-full flex items-center justify-center transition-transform duration-500 transform-gpu ${
-          isFarewell
-            ? 'ai-robot-farewell-turn'
+    <div ref={containerRef} className="relative inline-flex flex-col items-center select-none">
+      {/* Interactive Square Robot Body */}
+      <button
+        type="button"
+        onClick={handleRobotClick}
+        onMouseEnter={() => {
+          if (mood === 'normal') setMood('happy');
+        }}
+        onMouseLeave={() => {
+          if (mood === 'happy') setMood('normal');
+        }}
+        title="برای تعامل با من کلیک کنید"
+        aria-label="کاراکتر هوشمند"
+        className={`relative inline-flex items-center justify-center shrink-0 cursor-pointer focus:outline-none transition-all duration-300 ${sizeClasses} ${surfaceClasses} ${
+          isFarewell && farewellStep === 'glide_out'
+            ? 'scale-75 opacity-0 duration-300'
+            : isJumping
+            ? '-translate-y-2 scale-105 rotate-2'
+            : isGreeting
+            ? 'scale-105'
             : isThinking
-            ? 'ai-robot-thinking'
-            : isSpeaking
-            ? 'ai-robot-speaking'
-            : 'ai-robot-float'
+            ? 'scale-[1.04]'
+            : 'hover:scale-105 active:scale-95'
         }`}
       >
         <svg
-          viewBox="0 0 120 120"
-          className="w-full h-full overflow-visible drop-shadow-[0_8px_16px_rgba(0,74,198,0.22)]"
+          viewBox="0 0 40 40"
+          className="w-full h-full overflow-visible"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <defs>
-            {/* 3D Metallic Pearl Head Gradient */}
-            <radialGradient id="robotHeadGrad" cx="35%" cy="25%" r="70%">
-              <stop offset="0%" stopColor="#ffffff" />
-              <stop offset="55%" stopColor="#eef4ff" />
-              <stop offset="100%" stopColor="#c7d7fe" />
-            </radialGradient>
-
-            {/* 3D Body Gradient */}
-            <radialGradient id="robotBodyGrad" cx="40%" cy="30%" r="70%">
-              <stop offset="0%" stopColor="#ffffff" />
-              <stop offset="60%" stopColor="#e0eaff" />
-              <stop offset="100%" stopColor="#93b4fa" />
-            </radialGradient>
-
-            {/* Glass Visor Screen Gradient */}
-            <linearGradient id="robotVisorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#081c45" />
-              <stop offset="50%" stopColor="#0c2d6b" />
-              <stop offset="100%" stopColor="#041230" />
-            </linearGradient>
-
-            {/* Blue Accent Gradient */}
-            <linearGradient id="robotBlueAccent" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#3b82f6" />
-              <stop offset="100%" stopColor="#004ac6" />
-            </linearGradient>
-
-            {/* Glowing Eye Filter */}
-            <filter id="eyeGlow" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="2" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-          </defs>
-
-          {/* Ground Shadow */}
-          <ellipse
-            cx="60"
-            cy="112"
-            rx={isThinking ? '18' : '22'}
-            ry="4"
-            fill="rgba(0, 74, 198, 0.16)"
-            className="transition-all duration-500"
+          {/* Subtle inner square frame */}
+          <rect
+            x="3"
+            y="3"
+            width="34"
+            height="34"
+            rx="9"
+            stroke={variant === 'primary' ? 'rgba(255,255,255,0.2)' : 'rgba(0,74,198,0.16)'}
+            strokeWidth="1.2"
           />
 
-          {/* ================= LEFT HAND (Floating 3D Capsule) ================= */}
+          {/* Two Blinking & Gaze-Tracking Eyes */}
           <g
-            className={`transition-transform duration-500 origin-[22px_74px] ${
-              isThinking
-                ? '-translate-y-2 translate-x-1 rotate-12'
-                : isSpeaking
-                ? '-translate-y-1.5 -rotate-12'
-                : 'translate-y-0'
-            }`}
+            className="ai-robot-eyes-blink transition-transform duration-150 ease-out"
+            style={{
+              transform: `translate(${eyeOffsetX}px, ${eyeOffsetY}px) ${
+                isSpeaking ? 'scaleY(1.12)' : ''
+              }`,
+              transformOrigin: '20px 20px',
+            }}
           >
-            <rect
-              x="12"
-              y="64"
-              width="12"
-              height="20"
-              rx="6"
-              fill="url(#robotHeadGrad)"
-              stroke="#93b4fa"
-              strokeWidth="1.2"
-            />
-            <circle cx="18" cy="69" r="2.2" fill="#2563eb" opacity="0.6" />
-          </g>
-
-          {/* ================= TORSO / BODY (3D Rounded Pod) ================= */}
-          <g className="transition-transform duration-500">
-            <path
-              d="M38 66 C38 60, 82 60, 82 66 L77 94 C76 102, 69 106, 60 106 C51 106, 44 102, 43 94 Z"
-              fill="url(#robotBodyGrad)"
-              stroke="#93b4fa"
-              strokeWidth="1.5"
-            />
-            {/* Chest Dental Shield Emblem */}
-            <rect
-              x="49"
-              y="73"
-              width="22"
-              height="15"
-              rx="7.5"
-              fill="url(#robotBlueAccent)"
-              opacity="0.9"
-            />
-            {/* Tiny Tooth/Heart Pulse Icon on Chest */}
-            <path
-              d="M57 78 C57 76.5, 59 76.5, 60 77.8 C61 76.5, 63 76.5, 63 78 C63 80, 61.5 82.5, 61 84 C60.7 84.5, 60.2 83, 60 83 C59.8 83, 59.3 84.5, 59 84 C58.5 82.5, 57 80, 57 78 Z"
-              fill="#ffffff"
-              className={isThinking || isSpeaking ? 'animate-pulse' : ''}
-            />
-          </g>
-
-          {/* ================= HEAD GROUP (Tilts & Turns in 3D) ================= */}
-          <g
-            className={`transition-transform duration-500 origin-[60px_42px] ${
-              isThinking
-                ? 'rotate-[-5deg] -translate-y-0.5'
-                : isFarewell
-                ? 'scale-105'
-                : isSpeaking
-                ? 'rotate-[2deg]'
-                : ''
-            }`}
-          >
-            {/* Antenna Stem */}
-            <line
-              x1="60"
-              y1="10"
-              x2="60"
-              y2="20"
-              stroke="#2563eb"
-              strokeWidth="3"
-              strokeLinecap="round"
-            />
-            {/* Antenna Glowing Orb */}
-            <circle
-              cx="60"
-              cy="8"
-              r="5"
-              fill={isThinking ? '#f59e0b' : isFarewell ? '#10b981' : '#38bdf8'}
-              filter="url(#eyeGlow)"
-              className={isThinking || isGreeting || isFarewell ? 'animate-ping' : ''}
-              style={{ animationDuration: '2s' }}
-            />
-            <circle
-              cx="60"
-              cy="8"
-              r="4.5"
-              fill={isThinking ? '#fbbf24' : isFarewell ? '#34d399' : '#004ac6'}
-            />
-            <circle cx="58.5" cy="6.5" r="1.5" fill="#ffffff" />
-
-            {/* Side Ear Pods (3D Depth) */}
-            <rect x="20" y="34" width="7" height="18" rx="3.5" fill="url(#robotBlueAccent)" />
-            <rect x="93" y="34" width="7" height="18" rx="3.5" fill="url(#robotBlueAccent)" />
-
-            {/* Main 3D Head Shell */}
-            <rect
-              x="24"
-              y="18"
-              width="72"
-              height="48"
-              rx="22"
-              fill="url(#robotHeadGrad)"
-              stroke="#93b4fa"
-              strokeWidth="1.6"
-            />
-
-            {/* Specular 3D Top Highlight on Head */}
-            <path
-              d="M38 23 Q60 19 82 23"
-              stroke="#ffffff"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              opacity="0.85"
-            />
-
-            {/* Dark Glass Visor Faceplate */}
-            <rect
-              x="31"
-              y="26"
-              width="58"
-              height="32"
-              rx="14"
-              fill="url(#robotVisorGrad)"
-              stroke="#1e40af"
-              strokeWidth="1.2"
-            />
-
-            {/* Visor Glass Reflection */}
-            <path
-              d="M37 30 Q52 27 66 30"
-              stroke="rgba(255,255,255,0.22)"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-            />
-
-            {/* ================= EXPRESSIVE LED EYES & MOUTH ================= */}
-            {isThinking ? (
-              /* Thinking Expression: Animated Scanning Eyes & Thought Wave */
-              <g filter="url(#eyeGlow)">
-                <circle cx="46" cy="40" r="5" fill="#38bdf8" className="animate-pulse" />
-                <circle cx="47.5" cy="38.5" r="1.6" fill="#ffffff" />
-                <ellipse cx="74" cy="40" rx="5.5" ry="3.2" fill="#38bdf8" />
-                <circle cx="75.5" cy="39" r="1.4" fill="#ffffff" />
-                {/* Thinking mouth dots */}
-                <circle cx="55" cy="50" r="1.5" fill="#38bdf8" className="animate-bounce" />
-                <circle
-                  cx="60"
-                  cy="50"
-                  r="1.5"
-                  fill="#38bdf8"
-                  className="animate-bounce"
-                  style={{ animationDelay: '150ms' }}
-                />
-                <circle
-                  cx="65"
-                  cy="50"
-                  r="1.5"
-                  fill="#38bdf8"
-                  className="animate-bounce"
-                  style={{ animationDelay: '300ms' }}
-                />
-              </g>
-            ) : isFarewell || isGreeting ? (
-              /* Happy / Waving Arc Eyes (Looking warmly at the user) */
-              <g filter="url(#eyeGlow)">
+            {mood === 'happy' || (isFarewell && farewellStep === 'turn_and_wave') ? (
+              /* Cheerful Curved Happy Eyes (^ ^) */
+              <>
                 <path
-                  d="M40 42 Q46 34 52 42"
-                  stroke="#38bdf8"
+                  d="M10.5 21C11.5 17 15.5 17 16.5 21"
+                  stroke={eyeColor}
                   strokeWidth="3.2"
                   strokeLinecap="round"
-                  fill="none"
                 />
                 <path
-                  d="M68 42 Q74 34 80 42"
-                  stroke="#38bdf8"
+                  d="M23.5 21C24.5 17 28.5 17 29.5 21"
+                  stroke={eyeColor}
                   strokeWidth="3.2"
                   strokeLinecap="round"
-                  fill="none"
                 />
-                {/* Big Warm Smile */}
-                <path
-                  d="M51 48 Q60 55 69 48"
-                  stroke="#34d399"
-                  strokeWidth="2.6"
-                  strokeLinecap="round"
-                  fill="none"
-                />
-                {/* Rosy digital cheeks */}
-                <ellipse cx="38" cy="46" rx="3" ry="1.8" fill="#60a5fa" opacity="0.55" />
-                <ellipse cx="82" cy="46" rx="3" ry="1.8" fill="#60a5fa" opacity="0.55" />
-              </g>
-            ) : isSpeaking ? (
-              /* Speaking Expression: Attentive Glowing Eyes + Animated Voice Smile */
-              <g filter="url(#eyeGlow)">
-                <circle cx="46" cy="40" r="5.5" fill="#38bdf8" />
-                <circle cx="44.5" cy="38" r="1.8" fill="#ffffff" />
-                <circle cx="74" cy="40" r="5.5" fill="#38bdf8" />
-                <circle cx="72.5" cy="38" r="1.8" fill="#ffffff" />
-                {/* Animated speaking mouth */}
-                <rect
-                  x="53"
-                  y="47"
-                  width="14"
-                  height="5"
-                  rx="2.5"
-                  fill="#34d399"
-                  className="animate-pulse"
-                />
-              </g>
+              </>
+            ) : mood === 'wink' ? (
+              /* Playful Winking Eyes (-  0) */
+              <>
+                <rect x="10.5" y="18.5" width="6" height="3" rx="1.5" fill={eyeColor} />
+                <rect x="23.5" y="13.5" width="5" height="12.5" rx="2.5" fill={eyeColor} />
+              </>
             ) : (
-              /* Idle Expression: Friendly Blinking LED Eyes + Gentle Smile */
-              <g filter="url(#eyeGlow)" className="ai-robot-eyes-blink">
-                <circle cx="46" cy="40" r="5.2" fill="#38bdf8" />
-                <circle cx="44.5" cy="38.2" r="1.8" fill="#ffffff" />
-                <circle cx="74" cy="40" r="5.2" fill="#38bdf8" />
-                <circle cx="72.5" cy="38.2" r="1.8" fill="#ffffff" />
-                <path
-                  d="M53 49 Q60 53.5 67 49"
-                  stroke="#38bdf8"
-                  strokeWidth="2.4"
-                  strokeLinecap="round"
-                  fill="none"
+              /* Standard Expressive Vertical Pill Eyes */
+              <>
+                {/* Left Eye */}
+                <rect
+                  x="11.5"
+                  y={mood === 'excited' ? '12.5' : '14'}
+                  width="5"
+                  height={mood === 'excited' ? '14.5' : isUserTyping ? '10.5' : '12'}
+                  rx="2.5"
+                  fill={eyeColor}
+                  className={isThinking ? 'animate-pulse' : ''}
                 />
-              </g>
+
+                {/* Right Eye */}
+                <rect
+                  x="23.5"
+                  y={mood === 'excited' ? '12.5' : '14'}
+                  width="5"
+                  height={mood === 'excited' ? '14.5' : isUserTyping ? '10.5' : '12'}
+                  rx="2.5"
+                  fill={eyeColor}
+                  className={isThinking ? 'animate-pulse' : ''}
+                />
+              </>
             )}
           </g>
-
-          {/* ================= RIGHT HAND (Waving Hand on Greeting & Farewell) ================= */}
-          <g
-            className={
-              isFarewell || isGreeting
-                ? 'ai-robot-hand-wave origin-[98px_68px]'
-                : isThinking
-                ? 'translate-y-[-6px] transition-transform duration-500'
-                : 'transition-transform duration-500'
-            }
-          >
-            <rect
-              x="96"
-              y={isFarewell || isGreeting ? '44' : '64'}
-              width="12"
-              height="20"
-              rx="6"
-              fill="url(#robotHeadGrad)"
-              stroke="#2563eb"
-              strokeWidth="1.4"
-            />
-            <circle
-              cx="102"
-              cy={isFarewell || isGreeting ? '49' : '69'}
-              r="2.4"
-              fill="#004ac6"
-            />
-          </g>
         </svg>
-      </div>
 
-      {/* Tiny Status Pill under Robot (when not compact) */}
-      {!compact && (
-        <span
-          className={`mt-0.5 px-2 py-0.5 rounded-full text-[9px] font-bold tracking-tight whitespace-nowrap shadow-2xs transition-colors ${
-            isFarewell
-              ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-              : isThinking
-              ? 'bg-amber-50 text-amber-700 border border-amber-200'
-              : 'bg-[#dbe1ff]/80 text-[#004ac6]'
-          }`}
-        >
-          {stateLabel}
-        </span>
+        {/* Active Status Pulse Dot when Thinking or Speaking */}
+        {(isThinking || isSpeaking) && (
+          <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-emerald-400 border-2 border-white animate-ping" />
+        )}
+      </button>
+
+      {/* Interactive Proactive Bubble when Robot Interacts with User */}
+      {showBubble && activeBubble && (
+        <div className="mt-2.5 px-3.5 py-2 rounded-2xl bg-white border border-[#c3c6d7]/60 shadow-sm text-center max-w-xs animate-fadeIn flex flex-col items-center gap-1.5">
+          <p className="text-[11px] font-bold text-[#191c1e] leading-relaxed">
+            {activeBubble.text}
+          </p>
+          {activeBubble.actionLabel && activeBubble.actionPrompt && onInteractPrompt && (
+            <button
+              type="button"
+              onClick={() => {
+                const promptToRun = activeBubble.actionPrompt!;
+                setActiveBubble(null);
+                onInteractPrompt(promptToRun);
+              }}
+              className="px-2.5 py-1 rounded-lg bg-[#dbe1ff]/60 hover:bg-[#004ac6] text-[#004ac6] hover:text-white text-[10px] font-extrabold transition-colors cursor-pointer"
+            >
+              {activeBubble.actionLabel} ←
+            </button>
+          )}
+        </div>
       )}
     </div>
   );

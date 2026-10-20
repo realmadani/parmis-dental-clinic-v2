@@ -100,8 +100,8 @@ export const DentalMotionGuide: React.FC<DentalMotionGuideProps> = ({ activePage
         />
       </div>
 
-      {/* 2. Floating Dental Eye-Guide Pill (Desktop Left Side - Guides User's Eye During Scroll) */}
-      <div className="hidden xl:flex fixed left-5 bottom-6 z-40 pointer-events-none items-center gap-2.5 bg-white/90 backdrop-blur-md border border-[#004ac6]/20 shadow-lg rounded-full px-3.5 py-2 transition-all duration-300">
+      {/* 2. Floating Dental Eye-Guide Pill (Desktop Right Side - Guides User's Eye During Scroll) */}
+      <div className="hidden xl:flex fixed right-5 bottom-6 z-30 pointer-events-none items-center gap-2.5 bg-white/90 backdrop-blur-md border border-[#004ac6]/20 shadow-lg rounded-full px-3.5 py-2 transition-all duration-300">
         {/* Animated Tooth & Sparkle SVG */}
         <div className="relative w-8 h-8 rounded-full bg-[#dbe1ff]/60 flex items-center justify-center text-[#004ac6]">
           <svg

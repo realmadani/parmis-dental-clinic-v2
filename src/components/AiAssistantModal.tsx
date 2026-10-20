@@ -599,149 +599,108 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
           aria-hidden="true"
         />
 
-        {/* Chat Window Panel: Full-screen safe sheet on mobile, Floating panel on desktop */}
+        {/* Chat Window Panel: Minimalist clinical sheet inheriting site design system */}
         <section
-          className={`relative z-10 w-full h-[100dvh] md:h-[min(680px,88vh)] md:w-[430px] lg:w-[450px] bg-[#f7f9fb] md:rounded-3xl shadow-2xl border border-[#c3c6d7]/50 flex flex-col overflow-hidden transition-all duration-300 ${
+          className={`relative z-10 w-full h-[100dvh] md:h-[min(660px,86vh)] md:w-[420px] lg:w-[440px] bg-[#f7f9fb] md:rounded-3xl shadow-[0_24px_60px_-15px_rgba(25,28,30,0.16)] border border-[#c3c6d7]/50 flex flex-col overflow-hidden transition-all duration-300 origin-bottom-left ${
             isExiting && farewellStep === 'glide_out'
               ? 'opacity-0 translate-y-4 scale-95'
               : 'opacity-100 translate-y-0 scale-100'
           }`}
         >
-          {/* ================= A) TOP HEADER ================= */}
-          <div className="bg-gradient-to-l from-[#004ac6] via-[#1d56d4] to-[#2563eb] text-white px-4 py-3.5 shrink-0 shadow-sm relative overflow-hidden">
-            {/* Subtle decorative mesh */}
-            <div className="pointer-events-none absolute -top-10 -left-10 w-32 h-32 rounded-full bg-white/10 blur-xl" />
-
-            <div className="relative z-10 flex items-start justify-between gap-3">
-              <div className="flex items-center gap-3 min-w-0 flex-1">
-                {/* Small Robot / AI Badge in Header */}
-                <div className="w-10 h-10 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 flex items-center justify-center shrink-0 shadow-inner">
-                  <span className="text-xs font-black tracking-wider text-white">AI</span>
+          {/* ================= MINIMALIST UNIFIED HEADER (NO DUPLICATE AI ICON) ================= */}
+          <header className="bg-white/95 backdrop-blur-md border-b border-[#c3c6d7]/40 px-4 py-3 shrink-0 flex items-center justify-between gap-3">
+            <div className="min-w-0 flex-1">
+              {isExiting ? (
+                <div className="text-xs font-extrabold text-[#004ac6]">
+                  خوشحال شدم کمکتون کنم! 👋
                 </div>
-
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2 flex-wrap">
+              ) : (
+                <>
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`w-2 h-2 rounded-full shrink-0 ${
+                        isLoading ? 'bg-amber-500 animate-ping' : 'bg-emerald-500'
+                      }`}
+                      title={isLoading ? 'در حال پاسخگویی' : 'آنلاین'}
+                    />
                     <h2
                       id="ai-assistant-dialog-title"
-                      className="text-sm sm:text-base font-extrabold text-white truncate"
+                      className="text-sm font-extrabold text-[#191c1e] truncate"
                     >
                       دستیار هوشمند دکتر شمس‌پور
                     </h2>
-                    {/* Live Status Indicator */}
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/15 text-emerald-100 border border-white/20">
-                      <span
-                        className={`w-1.5 h-1.5 rounded-full ${
-                          isLoading
-                            ? 'bg-amber-300 animate-ping'
-                            : 'bg-emerald-400 animate-pulse'
-                        }`}
-                      />
-                      <span>{isLoading ? 'در حال پاسخ...' : 'آنلاین'}</span>
-                    </span>
                   </div>
-                  <p className="text-[11px] text-blue-100 font-medium mt-0.5 leading-snug">
-                    درباره خدمات، نمونه‌کارها و مراقبت‌های دندانپزشکی از من بپرسید.
+                  <p className="text-[11px] text-[#565e74] truncate mt-0.5">
+                    {isLoading
+                      ? `در حال بررسی اطلاعات کلینیک (${new Intl.NumberFormat('fa-IR').format(processingSeconds)} ثانیه)...`
+                      : 'راهنمای خدمات، نمونه‌کارها و نوبت‌دهی آنلاین'}
                   </p>
-                </div>
-              </div>
+                </>
+              )}
+            </div>
 
-              {/* Dedicated Close Button (×) with Farewell Sequence */}
+            <div className="flex items-center gap-1.5 shrink-0">
+              {!isExiting && messages.length > 1 && (
+                <button
+                  type="button"
+                  onClick={resetSessionState}
+                  disabled={isLoading}
+                  aria-label="گفتگوی تازه"
+                  title="شروع گفتگوی تازه"
+                  className="w-8 h-8 rounded-xl bg-[#f2f4f6] hover:bg-[#dbe1ff]/60 text-[#565e74] hover:text-[#004ac6] flex items-center justify-center transition-colors cursor-pointer"
+                >
+                  <span className="material-symbols-outlined text-[16px]">refresh</span>
+                </button>
+              )}
+
               <button
                 type="button"
                 onClick={handleCloseButtonFarewell}
                 disabled={isExiting}
                 aria-label="بستن پنجره دستیار هوشمند"
                 title="بستن گفتگو"
-                className="w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 active:scale-90 text-white flex items-center justify-center text-xl font-bold leading-none transition-all cursor-pointer shrink-0"
+                className="w-8 h-8 rounded-xl bg-[#f2f4f6] hover:bg-[#eceef0] text-[#565e74] hover:text-[#191c1e] flex items-center justify-center text-lg font-bold leading-none transition-colors cursor-pointer"
               >
                 ×
               </button>
             </div>
-          </div>
+          </header>
 
-          {/* ================= B) INTERACTIVE 3D ROBOT STAGE BAR ================= */}
-          <div className="bg-white border-b border-[#c3c6d7]/40 px-4 py-2 shrink-0 flex items-center justify-between gap-3 relative overflow-hidden">
-            <div className="flex items-center gap-3 min-w-0 flex-1">
-              <AiRobotAvatar state={robotState} farewellStep={farewellStep} compact />
-
-              <div className="min-w-0 flex-1">
-                {isExiting ? (
-                  <div className="bg-[#dbe1ff]/60 border border-[#004ac6]/25 rounded-2xl px-3 py-2 text-xs font-extrabold text-[#004ac6] animate-bounce">
-                    خوشحال شدم کمکتون کنم! 👋
-                  </div>
-                ) : isLoading ? (
-                  <div className="flex flex-col">
-                    <span className="text-xs font-bold text-[#004ac6] flex items-center gap-1.5">
-                      <span>در حال تحلیل و جستجو در اطلاعات کلینیک...</span>
-                    </span>
-                    <span className="text-[10px] text-[#565e74] mt-0.5">
-                      زمان سپری‌شده: {new Intl.NumberFormat('fa-IR').format(processingSeconds)} ثانیه
-                    </span>
-                  </div>
-                ) : (
-                  <div className="flex flex-col">
-                    <span className="text-xs font-bold text-[#191c1e]">
-                      راهنمای دیجیتال کلینیک دندان‌پزشکی پارمیس
-                    </span>
-                    <span className="text-[10px] text-[#565e74] truncate">
-                      پاسخگویی بر اساس اطلاعات تأییدشده مطب و نمونه‌کارهای واقعی
-                    </span>
-                  </div>
-                )}
+          {/* ================= CONVERSATION MESSAGES AREA ================= */}
+          <div className="flex-1 overflow-y-auto px-4 py-4 scroll-smooth overscroll-contain flex flex-col">
+            <div
+              className={`w-full space-y-3.5 ${
+                messages.length === 1 && !isLoading ? 'my-auto py-2' : ''
+              }`}
+            >
+              {/* SINGLE INTERACTIVE AI ROBOT: Centered on open, and right before the first chat bubble when chatting */}
+              <div className="flex flex-col items-center justify-center text-center pb-1">
+                <AiRobotAvatar
+                  state={robotState}
+                  farewellStep={farewellStep}
+                  size={messages.length === 1 && !isLoading ? 'lg' : 'md'}
+                  variant="primary"
+                  isUserTyping={inputText.trim().length > 0}
+                  contextMode="patient"
+                  onInteractPrompt={(prompt) => sendMessage(prompt)}
+                />
               </div>
-            </div>
 
-            {/* Quick Portfolio Filter Trigger */}
-            {!isExiting && (
-              <button
-                type="button"
-                onClick={() => sendMessage('دیدن نمونه‌کارها')}
-                disabled={isLoading}
-                className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-[#dbe1ff]/60 hover:bg-[#dbe1ff] text-[#004ac6] text-[10px] font-bold transition-colors cursor-pointer shrink-0"
-              >
-                <span className="material-symbols-outlined text-[14px]">photo_library</span>
-                <span>نمونه‌کارها</span>
-              </button>
-            )}
-          </div>
-
-          {/* ================= C) CONVERSATION MESSAGES AREA ================= */}
-          <div className="flex-1 overflow-y-auto px-3.5 sm:px-4 py-4 space-y-4 scroll-smooth overscroll-contain">
-            {messages.map((msg, idx) => {
-              const isUser = msg.role === 'user';
-              return (
-                <div
-                  key={msg.id}
-                  className={`flex flex-col ${isUser ? 'items-start' : 'items-end'} w-full`}
-                >
+              {messages.map((msg, idx) => {
+                const isUser = msg.role === 'user';
+                return (
                   <div
-                    className={`flex items-end gap-2 max-w-[92%] sm:max-w-[88%] ${
-                      isUser ? 'flex-row' : 'flex-row-reverse'
-                    }`}
+                    key={msg.id}
+                    className={`flex flex-col ${isUser ? 'items-start' : 'items-end'} w-full`}
                   >
-                    {/* Avatar Icon */}
+                    {/* Message Bubble (No repeated AI icon next to messages) */}
                     <div
-                      className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 text-xs font-bold shadow-2xs ${
+                      className={`max-w-[92%] sm:max-w-[88%] rounded-2xl px-3.5 py-2.5 text-xs sm:text-[13px] leading-relaxed ${
                         isUser
-                          ? 'bg-[#004ac6] text-white'
-                          : 'bg-[#dbe1ff] text-[#004ac6] border border-[#004ac6]/20'
-                      }`}
-                    >
-                      {isUser ? (
-                        <span className="material-symbols-outlined text-[15px]">person</span>
-                      ) : (
-                        <span className="text-[10px] font-black">AI</span>
-                      )}
-                    </div>
-
-                    {/* Message Bubble */}
-                    <div
-                      className={`rounded-2xl px-3.5 py-2.5 text-xs sm:text-[13px] leading-relaxed shadow-2xs ${
-                        isUser
-                          ? 'bg-[#004ac6] text-white rounded-br-xs font-medium'
+                          ? 'bg-[#004ac6] text-white rounded-br-xs font-medium shadow-2xs'
                           : msg.isError
                           ? 'bg-red-50 text-red-800 border border-red-200 rounded-bl-xs'
-                          : 'bg-white text-[#191c1e] border border-[#c3c6d7]/40 rounded-bl-xs'
+                          : 'bg-white text-[#191c1e] border border-[#c3c6d7]/40 rounded-bl-xs shadow-2xs'
                       }`}
                     >
                       <div className="whitespace-pre-line break-words">{msg.content}</div>
@@ -752,7 +711,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
                           <button
                             type="button"
                             onClick={() => sendMessage(msg.retryPrompt!)}
-                            className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold transition-colors cursor-pointer"
+                            className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold transition-colors cursor-pointer"
                           >
                             <span className="material-symbols-outlined text-[14px]">refresh</span>
                             <span>تلاش مجدد</span>
@@ -760,200 +719,187 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
                         </div>
                       )}
 
-                      {/* Timestamp & Source Mode */}
+                      {/* Timestamp */}
                       <div
                         className={`mt-1.5 flex items-center justify-between gap-2 text-[9px] ${
-                          isUser ? 'text-blue-100' : 'text-slate-400'
+                          isUser ? 'text-blue-100' : 'text-[#565e74]/70'
                         }`}
                       >
                         <span>{msg.timestamp}</span>
-                        {!isUser && msg.mode && (
-                          <span className="text-[9px] font-semibold">
-                            {msg.mode === 'gemini' ? 'پاسخ هوش مصنوعی' : 'پایگاه دانش تأییدشده کلینیک'}
-                          </span>
-                        )}
                       </div>
                     </div>
-                  </div>
 
-                  {/* Starter Suggestions directly under the first Welcome Message */}
-                  {idx === 0 && messages.length === 1 && !isLoading && (
-                    <div className="w-full mt-3 pr-1">
-                      <p className="text-[11px] font-bold text-[#565e74] mb-2">
-                        پیشنهادهای آماده برای شروع گفتگو:
-                      </p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {STARTER_SUGGESTIONS.map((item) => (
-                          <button
-                            key={item.id}
-                            type="button"
-                            onClick={() => sendMessage(item.label)}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white hover:bg-[#dbe1ff]/60 border border-[#c3c6d7]/60 hover:border-[#004ac6]/40 text-[#191c1e] hover:text-[#004ac6] text-[11px] font-bold shadow-2xs transition-all active:scale-95 cursor-pointer"
-                          >
-                            <span className="material-symbols-outlined text-[15px] text-[#004ac6]">
-                              {item.icon}
-                            </span>
-                            <span>{item.label}</span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Read-only Doctor Profile Card when user asks for Doctor's photo or bio */}
-                  {!isUser && msg.doctorCard && (
-                    <div className="w-full mt-3 bg-white rounded-2xl border border-[#c3c6d7]/60 overflow-hidden shadow-xs flex flex-col sm:flex-row items-center gap-3.5 p-3.5 text-right">
-                      <img
-                        src={msg.doctorCard.image}
-                        alt={msg.doctorCard.name}
-                        className="w-24 h-28 sm:w-24 sm:h-28 rounded-xl object-cover border border-[#dbe1ff] shrink-0 shadow-xs"
-                      />
-                      <div className="flex-1 min-w-0 space-y-1">
-                        <div className="flex items-center justify-between gap-2 flex-wrap">
-                          <h4 className="text-xs font-extrabold text-[#191c1e]">{msg.doctorCard.name}</h4>
-                          <span className="px-2 py-0.5 rounded-full bg-[#dbe1ff]/60 text-[#004ac6] text-[10px] font-bold">
-                            نظام پزشکی: {msg.doctorCard.medicalCouncilCode}
-                          </span>
+                    {/* Starter Suggestions directly under the first Welcome Message */}
+                    {idx === 0 && messages.length === 1 && !isLoading && (
+                      <div className="w-full mt-3">
+                        <p className="text-[11px] font-bold text-[#565e74] mb-2">
+                          چطور می‌توانم کمکتان کنم؟
+                        </p>
+                        <div className="grid grid-cols-2 gap-1.5">
+                          {STARTER_SUGGESTIONS.map((item) => (
+                            <button
+                              key={item.id}
+                              type="button"
+                              onClick={() => sendMessage(item.label)}
+                              className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white hover:bg-[#dbe1ff]/40 border border-[#c3c6d7]/50 hover:border-[#004ac6]/40 text-[#191c1e] hover:text-[#004ac6] text-[11px] font-bold text-right transition-all cursor-pointer"
+                            >
+                              <span className="material-symbols-outlined text-[15px] text-[#004ac6] shrink-0">
+                                {item.icon}
+                              </span>
+                              <span className="truncate">{item.label}</span>
+                            </button>
+                          ))}
                         </div>
-                        <p className="text-[11px] font-bold text-[#004ac6]">{msg.doctorCard.role}</p>
-                        <p className="text-[10px] font-semibold text-emerald-700">{msg.doctorCard.experience}</p>
-                        <p className="text-[11px] text-[#565e74] leading-relaxed line-clamp-3">{msg.doctorCard.bio}</p>
                       </div>
-                    </div>
-                  )}
+                    )}
 
-                  {/* Real Portfolio Cases Gallery attached to Assistant Message */}
-                  {!isUser && msg.cases && msg.cases.length > 0 && (
-                    <div className="w-full mt-3 space-y-2.5">
-                      {/* Quick Category Pills for Portfolio */}
-                      <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
-                        {PORTFOLIO_QUICK_FILTERS.map((filterLabel) => (
-                          <button
-                            key={filterLabel}
-                            type="button"
-                            onClick={() => sendMessage(filterLabel)}
-                            disabled={isLoading}
-                            className="px-2.5 py-1 rounded-full bg-white hover:bg-[#dbe1ff]/60 border border-[#c3c6d7]/60 text-[#004ac6] text-[10px] font-bold whitespace-nowrap transition-colors cursor-pointer shrink-0"
-                          >
-                            {filterLabel}
-                          </button>
-                        ))}
+                    {/* Read-only Doctor Profile Card when user asks for Doctor's photo or bio */}
+                    {!isUser && msg.doctorCard && (
+                      <div className="w-full mt-3 bg-white rounded-2xl border border-[#c3c6d7]/50 overflow-hidden shadow-2xs flex flex-col sm:flex-row items-center gap-3.5 p-3.5 text-right">
+                        <img
+                          src={msg.doctorCard.image}
+                          alt={msg.doctorCard.name}
+                          className="w-20 h-24 sm:w-20 sm:h-24 rounded-xl object-cover border border-[#dbe1ff] shrink-0"
+                        />
+                        <div className="flex-1 min-w-0 space-y-1">
+                          <div className="flex items-center justify-between gap-2 flex-wrap">
+                            <h4 className="text-xs font-extrabold text-[#191c1e]">{msg.doctorCard.name}</h4>
+                            <span className="px-2 py-0.5 rounded-md bg-[#dbe1ff]/60 text-[#004ac6] text-[10px] font-bold">
+                              نظام پزشکی: {msg.doctorCard.medicalCouncilCode}
+                            </span>
+                          </div>
+                          <p className="text-[11px] font-bold text-[#004ac6]">{msg.doctorCard.role}</p>
+                          <p className="text-[10px] font-semibold text-emerald-700">{msg.doctorCard.experience}</p>
+                          <p className="text-[11px] text-[#565e74] leading-relaxed line-clamp-3">{msg.doctorCard.bio}</p>
+                        </div>
                       </div>
+                    )}
 
-                      <div className="grid grid-cols-1 gap-3">
-                        {msg.cases.map((caseItem) => (
-                          <ChatPortfolioCard
-                            key={caseItem.id}
-                            item={caseItem}
-                            onInspect={(item, stage) => setLightboxData({ item, stage })}
-                          />
-                        ))}
+                    {/* Real Portfolio Cases Gallery attached to Assistant Message */}
+                    {!isUser && msg.cases && msg.cases.length > 0 && (
+                      <div className="w-full mt-3 space-y-2.5">
+                        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
+                          {PORTFOLIO_QUICK_FILTERS.map((filterLabel) => (
+                            <button
+                              key={filterLabel}
+                              type="button"
+                              onClick={() => sendMessage(filterLabel)}
+                              disabled={isLoading}
+                              className="px-2.5 py-1 rounded-lg bg-white hover:bg-[#dbe1ff]/50 border border-[#c3c6d7]/50 text-[#004ac6] text-[10px] font-bold whitespace-nowrap transition-colors cursor-pointer shrink-0"
+                            >
+                              {filterLabel}
+                            </button>
+                          ))}
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-3">
+                          {msg.cases.map((caseItem) => (
+                            <ChatPortfolioCard
+                              key={caseItem.id}
+                              item={caseItem}
+                              onInspect={(item, stage) => setLightboxData({ item, stage })}
+                            />
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
 
-                  {/* Interactive Contact / Booking / Routing Action Buttons */}
-                  {!isUser && msg.actions && msg.actions.length > 0 && (
-                    <div className="w-full mt-2.5 flex flex-wrap gap-1.5">
-                      {msg.actions.map((act) => (
-                        <button
-                          key={act.id}
-                          type="button"
-                          onClick={() => handleActionClick(act)}
-                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all active:scale-95 cursor-pointer shadow-2xs ${
-                            act.type === 'call_clinic' || act.type === 'open_booking'
-                              ? 'bg-[#004ac6] hover:bg-[#2563eb] text-white'
-                              : 'bg-white hover:bg-[#dbe1ff]/50 text-[#004ac6] border border-[#004ac6]/30'
-                          }`}
-                        >
-                          <span className="material-symbols-outlined text-[15px]">{act.icon}</span>
-                          <span>{act.label}</span>
-                        </button>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Follow-up Suggestions */}
-                  {!isUser &&
-                    idx === messages.length - 1 &&
-                    msg.followUpSuggestions &&
-                    msg.followUpSuggestions.length > 0 &&
-                    !isLoading && (
+                    {/* Interactive Contact / Booking / Routing Action Buttons */}
+                    {!isUser && msg.actions && msg.actions.length > 0 && (
                       <div className="w-full mt-2.5 flex flex-wrap gap-1.5">
-                        {msg.followUpSuggestions.map((sug) => (
+                        {msg.actions.map((act) => (
                           <button
-                            key={sug}
+                            key={act.id}
                             type="button"
-                            onClick={() => sendMessage(sug)}
-                            className="px-2.5 py-1 rounded-full bg-[#eceef0] hover:bg-[#dbe1ff] text-[#565e74] hover:text-[#004ac6] text-[10px] font-bold transition-colors cursor-pointer"
+                            onClick={() => handleActionClick(act)}
+                            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all active:scale-95 cursor-pointer ${
+                              act.type === 'call_clinic' || act.type === 'open_booking'
+                                ? 'bg-[#004ac6] hover:bg-[#2563eb] text-white'
+                                : 'bg-white hover:bg-[#dbe1ff]/50 text-[#004ac6] border border-[#c3c6d7]/60'
+                            }`}
                           >
-                            {sug}
+                            <span className="material-symbols-outlined text-[15px]">{act.icon}</span>
+                            <span>{act.label}</span>
                           </button>
                         ))}
                       </div>
                     )}
-                </div>
-              );
-            })}
 
-            {/* Thinking / Processing Bubble */}
-            {isLoading && (
-              <div className="flex items-end gap-2 flex-row-reverse">
-                <div className="w-7 h-7 rounded-full bg-[#dbe1ff] text-[#004ac6] flex items-center justify-center shrink-0 text-[10px] font-black">
-                  AI
-                </div>
-                <div className="bg-white border border-[#c3c6d7]/40 rounded-2xl rounded-bl-xs px-4 py-3 shadow-2xs flex items-center gap-2.5">
-                  <div className="flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-full bg-[#004ac6] animate-bounce" />
-                    <span
-                      className="w-2 h-2 rounded-full bg-[#004ac6] animate-bounce"
-                      style={{ animationDelay: '150ms' }}
-                    />
-                    <span
-                      className="w-2 h-2 rounded-full bg-[#004ac6] animate-bounce"
-                      style={{ animationDelay: '300ms' }}
-                    />
+                    {/* Follow-up Suggestions */}
+                    {!isUser &&
+                      idx === messages.length - 1 &&
+                      msg.followUpSuggestions &&
+                      msg.followUpSuggestions.length > 0 &&
+                      !isLoading && (
+                        <div className="w-full mt-2.5 flex flex-wrap gap-1.5">
+                          {msg.followUpSuggestions.map((sug) => (
+                            <button
+                              key={sug}
+                              type="button"
+                              onClick={() => sendMessage(sug)}
+                              className="px-2.5 py-1 rounded-lg bg-white hover:bg-[#dbe1ff]/50 border border-[#c3c6d7]/40 text-[#565e74] hover:text-[#004ac6] text-[10px] font-bold transition-colors cursor-pointer"
+                            >
+                              {sug}
+                            </button>
+                          ))}
+                        </div>
+                      )}
                   </div>
-                  <span className="text-[11px] font-semibold text-[#565e74]">
-                    دستیار هوشمند در حال فکر کردن...
-                  </span>
-                </div>
-              </div>
-            )}
+                );
+              })}
 
-            <div ref={messagesEndRef} />
+              {/* Thinking / Processing Bubble (No duplicate AI icon) */}
+              {isLoading && (
+                <div className="flex justify-end">
+                  <div className="bg-white border border-[#c3c6d7]/40 rounded-2xl rounded-bl-xs px-3.5 py-2.5 shadow-2xs flex items-center gap-2">
+                    <div className="flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#004ac6] animate-bounce" />
+                      <span
+                        className="w-1.5 h-1.5 rounded-full bg-[#004ac6] animate-bounce"
+                        style={{ animationDelay: '150ms' }}
+                      />
+                      <span
+                        className="w-1.5 h-1.5 rounded-full bg-[#004ac6] animate-bounce"
+                        style={{ animationDelay: '300ms' }}
+                      />
+                    </div>
+                    <span className="text-[11px] font-semibold text-[#565e74]">
+                      در حال نوشتن پاسخ...
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              <div ref={messagesEndRef} />
+            </div>
           </div>
 
-          {/* ================= D) INPUT COMPOSER AREA ================= */}
+          {/* ================= MINIMALIST INPUT COMPOSER AREA ================= */}
           <form
             onSubmit={handleFormSubmit}
             className="bg-white border-t border-[#c3c6d7]/40 p-2.5 sm:p-3 shrink-0 pb-[max(0.65rem,env(safe-area-inset-bottom))]"
           >
-            <div className="flex items-end gap-2 bg-[#f2f4f6] border border-[#c3c6d7]/60 focus-within:border-[#004ac6] focus-within:bg-white rounded-2xl px-3 py-1.5 transition-colors">
+            <div className="flex items-end gap-2 bg-[#f7f9fb] border border-[#c3c6d7]/60 focus-within:border-[#004ac6] focus-within:bg-white rounded-2xl px-3 py-1.5 transition-colors">
               <textarea
                 ref={textareaRef}
                 rows={1}
-                 dir="rtl"
+                dir="rtl"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyDown={handleKeyDownInput}
                 disabled={isLoading || isExiting}
-                placeholder="سؤال خود را درباره خدمات، نمونه‌کارها یا نوبت بنویسید..."
+                placeholder="سؤال خود را بنویسید..."
                 aria-label="متن پیام به دستیار هوشمند"
-                className="flex-1 bg-transparent text-xs sm:text-sm text-[#191c1e] placeholder:text-slate-400 focus:outline-none resize-none max-h-24 py-1 leading-relaxed"
+                className="flex-1 bg-transparent text-xs sm:text-sm text-[#191c1e] placeholder:text-[#565e74]/60 focus:outline-none resize-none max-h-24 py-1 leading-relaxed"
               />
               <button
                 type="submit"
                 disabled={!inputText.trim() || isLoading || isExiting}
                 aria-label="ارسال پیام"
-                className="w-9 h-9 rounded-xl bg-[#004ac6] hover:bg-[#2563eb] disabled:bg-slate-300 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shrink-0 shadow-xs"
+                className="w-8 h-8 rounded-xl bg-[#004ac6] hover:bg-[#2563eb] disabled:bg-[#eceef0] disabled:text-[#565e74]/40 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shrink-0"
               >
-                <span className="material-symbols-outlined text-[18px] rotate-180">send</span>
+                <span className="material-symbols-outlined text-[17px] rotate-180">send</span>
               </button>
-            </div>
-            <div className="mt-1.5 flex items-center justify-between px-1 text-[9px] text-slate-400">
-              <span>پاسخ‌ها جنبه راهنمایی داشته و جایگزین معاینه پزشک نیستند.</span>
-              <span className="hidden sm:inline">ارسال با Enter • خط جدید با Shift+Enter</span>
             </div>
           </form>
         </section>

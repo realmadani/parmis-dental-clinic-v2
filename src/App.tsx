@@ -98,7 +98,7 @@ const buildPageUrl = (page: ActivePage, articleId?: string): string => {
 };
 
 export default function App() {
-  const { articles, clinicInfo, siteSettings, refreshCMS, homeSettings } = useCMS();
+  const { data, articles, clinicInfo, siteSettings, refreshCMS, homeSettings } = useCMS();
   const [activePage, setActivePage] = useState<ActivePage>(() => getPageFromUrl().page);
   const [selectedArticleId, setSelectedArticleId] = useState<string>(
     () => getPageFromUrl().articleId || 'featured-composite-vs-laminate'
@@ -107,6 +107,76 @@ export default function App() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [bookingServiceId, setBookingServiceId] = useState<string | undefined>();
   const [isAiAssistantOpen, setIsAiAssistantOpen] = useState(false);
+
+  // Live UI/UX Theme Engine controlled by Backend AI (db.uiTheme)
+  useEffect(() => {
+    const uiTheme = data?.uiTheme;
+    let styleEl = document.getElementById('parmis-ai-ui-theme') as HTMLStyleElement | null;
+    if (!uiTheme || Object.keys(uiTheme).length === 0) {
+      if (styleEl) styleEl.textContent = '';
+      return;
+    }
+    if (!styleEl) {
+      styleEl = document.createElement('style');
+      styleEl.id = 'parmis-ai-ui-theme';
+      document.head.appendChild(styleEl);
+    }
+
+    const rules: string[] = [];
+    if (uiTheme.primaryColor) {
+      const p = uiTheme.primaryColor;
+      const a = uiTheme.accentColor || p;
+      const soft = uiTheme.softBgColor || `${p}1a`;
+      rules.push(`
+        :root {
+          --ai-primary: ${p};
+          --ai-accent: ${a};
+          --ai-soft-bg: ${soft};
+        }
+        .bg-\\[\\#004ac6\\] { background-color: ${p} !important; }
+        .text-\\[\\#004ac6\\] { color: ${p} !important; }
+        .border-\\[\\#004ac6\\] { border-color: ${p} !important; }
+        .hover\\:bg-\\[\\#2563eb\\]:hover, .hover\\:bg-\\[\\#003ea8\\]:hover { background-color: ${a} !important; }
+        .hover\\:text-\\[\\#004ac6\\]:hover { color: ${p} !important; }
+        .bg-\\[\\#dbe1ff\\], .bg-\\[\\#dae2fd\\] { background-color: ${soft} !important; }
+      `);
+    }
+    if (uiTheme.backgroundColor) {
+      rules.push(`
+        body, .bg-\\[\\#f7f9fb\\] { background-color: ${uiTheme.backgroundColor} !important; }
+      `);
+    }
+    if (uiTheme.fontScale === 'large') {
+      rules.push(`html { font-size: 106% !important; }`);
+    } else if (uiTheme.fontScale === 'compact') {
+      rules.push(`html { font-size: 95% !important; }`);
+    }
+    if (uiTheme.buttonRadius === 'pill') {
+      rules.push(`button, a.rounded-xl, a.rounded-2xl { border-radius: 9999px !important; }`);
+    } else if (uiTheme.buttonRadius === 'sharp') {
+      rules.push(`button, a.rounded-full, a.rounded-2xl { border-radius: 0.5rem !important; }`);
+    }
+    if (uiTheme.cardStyle === 'glass') {
+      rules.push(`
+        section .bg-white.rounded-2xl, section .bg-white.rounded-3xl {
+          background-color: rgba(255, 255, 255, 0.82) !important;
+          backdrop-filter: blur(16px) !important;
+          box-shadow: 0 12px 32px -8px rgba(0, 74, 198, 0.08) !important;
+        }
+      `);
+    } else if (uiTheme.cardStyle === 'elevated') {
+      rules.push(`
+        section .bg-white.rounded-2xl, section .bg-white.rounded-3xl {
+          box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.12) !important;
+        }
+      `);
+    }
+    if (uiTheme.customCss) {
+      rules.push(String(uiTheme.customCss));
+    }
+
+    styleEl.textContent = rules.join('\n');
+  }, [data?.uiTheme]);
 
   // Centralized Navigation with Browser History (PushState)
   const navigateTo = (page: ActivePage, articleId?: string, isReplace = false) => {
@@ -162,8 +232,14 @@ export default function App() {
 
   // Dynamic Client-Side Technical SEO
   useEffect(() => {
-    let pageTitle = siteSettings?.title || 'کلینیک دندان‌پزشکی پارمیس | دکتر انوشیروان شمس پور';
-    let metaDesc = siteSettings?.metaDescription || 'کلینیک دندان‌پزشکی پارمیس در پاکدشت با مدیریت دکتر انوشیروان شمس پور؛ ارائه دهنده خدمات تخصصی ایمپلنت، کامپوزیت و لمینت.';
+    const configuredTitle =
+      siteSettings?.siteTitle ||
+      siteSettings?.title ||
+      'کلینیک دندان‌پزشکی پارمیس | دکتر انوشیروان شمس پور';
+    let pageTitle = configuredTitle;
+    let metaDesc =
+      siteSettings?.metaDescription ||
+      'کلینیک دندان‌پزشکی پارمیس در پاکدشت با مدیریت دکتر انوشیروان شمس پور؛ ارائه دهنده خدمات تخصصی ایمپلنت، کامپوزیت و لمینت.';
 
     if (activePage === 'services') {
       pageTitle = `خدمات تخصصی دندان‌پزشکی | ${clinicInfo.name}`;
@@ -198,6 +274,16 @@ export default function App() {
       document.head.appendChild(metaTag);
     }
     metaTag.setAttribute('content', metaDesc);
+
+    if (siteSettings?.metaKeywords) {
+      let kwTag = document.querySelector('meta[name="keywords"]');
+      if (!kwTag) {
+        kwTag = document.createElement('meta');
+        kwTag.setAttribute('name', 'keywords');
+        document.head.appendChild(kwTag);
+      }
+      kwTag.setAttribute('content', siteSettings.metaKeywords);
+    }
   }, [activePage, selectedArticleId, articles, clinicInfo, siteSettings]);
 
   const handleOpenBooking = (serviceId?: string) => {

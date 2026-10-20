@@ -178,9 +178,14 @@ export const ArticleDetailPage: React.FC<ArticleDetailPageProps> = ({
   // Scroll spy for table of contents
   useEffect(() => {
     const handleScroll = () => {
+      const contentArr = Array.isArray(currentArticle.content)
+        ? currentArticle.content
+        : typeof currentArticle.content === 'string'
+        ? currentArticle.content.split('\n\n')
+        : [];
       const sections = [
         currentArticle.introduction ? 'introduction' : '',
-        currentArticle.content && currentArticle.content.filter(Boolean).length > 0 ? 'main-content' : '',
+        contentArr.filter(Boolean).length > 0 ? 'main-content' : '',
         currentArticle.comparisonTable && currentArticle.comparisonTable.rows?.length ? 'comparison-table' : '',
         currentArticle.candidacy ? 'candidacy' : '',
         currentArticle.tips && currentArticle.tips.length > 0 ? 'article-tips' : '',
@@ -579,24 +584,32 @@ export const ArticleDetailPage: React.FC<ArticleDetailPageProps> = ({
             )}
 
             {/* MAIN CONTENT BODY */}
-            {currentArticle.content && currentArticle.content.filter(Boolean).length > 0 && (
-              <section
-                id="main-content"
-                className="bg-white p-5 sm:p-8 rounded-3xl shadow-xs border border-[#c3c6d7]/30"
-              >
-                <h2 className="text-lg sm:text-2xl font-bold text-[#191c1e] mb-4 flex items-center gap-2">
-                  <span className="w-2.5 h-6 bg-[#004ac6] rounded-full inline-block" />
-                  <span>شرح جامع و جزئیات درمان</span>
-                </h2>
-                <div className="text-sm sm:text-base text-[#565e74] space-y-4 text-justify leading-relaxed">
-                  {currentArticle.content.filter(Boolean).map((p, idx) => (
-                    <p key={idx} className="leading-relaxed">
-                      {p}
-                    </p>
-                  ))}
-                </div>
-              </section>
-            )}
+            {(() => {
+              const contentArr = Array.isArray(currentArticle.content)
+                ? currentArticle.content
+                : typeof currentArticle.content === 'string'
+                ? currentArticle.content.split(/\n{2,}/).filter(Boolean)
+                : [];
+              if (contentArr.filter(Boolean).length === 0) return null;
+              return (
+                <section
+                  id="main-content"
+                  className="bg-white p-5 sm:p-8 rounded-3xl shadow-xs border border-[#c3c6d7]/30"
+                >
+                  <h2 className="text-lg sm:text-2xl font-bold text-[#191c1e] mb-4 flex items-center gap-2">
+                    <span className="w-2.5 h-6 bg-[#004ac6] rounded-full inline-block" />
+                    <span>شرح جامع و جزئیات درمان</span>
+                  </h2>
+                  <div className="text-sm sm:text-base text-[#565e74] space-y-4 text-justify leading-relaxed">
+                    {contentArr.filter(Boolean).map((p, idx) => (
+                      <p key={idx} className="leading-relaxed">
+                        {p}
+                      </p>
+                    ))}
+                  </div>
+                </section>
+              );
+            })()}
 
             {/* 7. DETAILED COMPARISON TABLE (جدول مقایسه‌ای یا فنی جامع) */}
             {currentArticle.comparisonTable && currentArticle.comparisonTable.rows && currentArticle.comparisonTable.rows.length > 0 && (
@@ -629,26 +642,35 @@ export const ArticleDetailPage: React.FC<ArticleDetailPageProps> = ({
                       <tr className="bg-[#f2f4f6] text-[#191c1e] border-b border-[#c3c6d7]/30">
                         <th className="p-3.5 font-bold">معیار بالینی / پارامتر</th>
                         <th className="p-3.5 font-bold text-[#004ac6]">
-                          {currentArticle.comparisonTable.col1Header}
+                          {currentArticle.comparisonTable.col1Header ||
+                            (currentArticle.comparisonTable as any).headers?.[1] ||
+                            'روش نوین / استاندارد'}
                         </th>
                         <th className="p-3.5 font-bold text-[#00569c]">
-                          {currentArticle.comparisonTable.col2Header}
+                          {currentArticle.comparisonTable.col2Header ||
+                            (currentArticle.comparisonTable as any).headers?.[2] ||
+                            'روش سنتی'}
                         </th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-[#c3c6d7]/20 text-[#434655]">
-                      {currentArticle.comparisonTable.rows.map((row, rIdx) => (
-                        <tr
-                          key={rIdx}
-                          className={`hover:bg-[#f7f9fb] transition-colors ${
-                            rIdx % 2 === 1 ? 'bg-[#fdfdfe]' : ''
-                          }`}
-                        >
-                          <td className="p-3.5 font-bold text-[#191c1e]">{row.criterion}</td>
-                          <td className="p-3.5 font-semibold text-[#004ac6]">{row.col1}</td>
-                          <td className="p-3.5">{row.col2}</td>
-                        </tr>
-                      ))}
+                      {currentArticle.comparisonTable.rows.map((row: any, rIdx: number) => {
+                        const criterion = Array.isArray(row) ? row[0] : row.criterion;
+                        const col1 = Array.isArray(row) ? row[1] : row.col1;
+                        const col2 = Array.isArray(row) ? row[2] : row.col2;
+                        return (
+                          <tr
+                            key={rIdx}
+                            className={`hover:bg-[#f7f9fb] transition-colors ${
+                              rIdx % 2 === 1 ? 'bg-[#fdfdfe]' : ''
+                            }`}
+                          >
+                            <td className="p-3.5 font-bold text-[#191c1e]">{criterion}</td>
+                            <td className="p-3.5 font-semibold text-[#004ac6]">{col1}</td>
+                            <td className="p-3.5">{col2}</td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>

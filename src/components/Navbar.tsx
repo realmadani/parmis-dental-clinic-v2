@@ -119,31 +119,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
 
-          {/* Left (Mobile): Animated AI Assistant Button */}
-          {onOpenAiAssistant && (
-            <button
-              type="button"
-              onClick={onOpenAiAssistant}
-              aria-label="دستیار هوشمند دکتر شمس‌پور - از من بپرس"
-              aria-expanded={isAiAssistantOpen}
-              className="relative group flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-tr from-[#004ac6] via-[#1e5ce6] to-[#38bdf8] text-white shadow-xs active:scale-90 transition-all duration-200 cursor-pointer shrink-0 overflow-hidden ai-header-btn-glow"
-            >
-              {/* Light Shimmer Sweep */}
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent ai-shimmer-bar"
-              />
-              {/* Sparkle Particle Dot */}
-              <span
-                aria-hidden="true"
-                className="absolute top-1 right-1.5 w-1.5 h-1.5 rounded-full bg-sky-200 animate-ping"
-                style={{ animationDuration: '2.4s' }}
-              />
-              <span className="relative z-10 text-[11px] font-black tracking-wider font-display leading-none">
-                AI
-              </span>
-            </button>
-          )}
+          {/* Left (Mobile): Quick Call Button */}
+          <button
+            type="button"
+            onClick={() => handleNavClick('contact')}
+            title="تماس و مسیریابی"
+            aria-label="تماس با ما و مسیریابی"
+            className="w-9 h-9 rounded-full bg-[#004ac6] hover:bg-[#2563eb] text-white flex items-center justify-center shadow-xs active:scale-95 transition-all cursor-pointer shrink-0"
+          >
+            <span className="material-symbols-fill material-symbols-outlined text-[18px]">
+              call
+            </span>
+          </button>
         </div>
 
         {/* ================= DESKTOP HEADER (>= md) - Exact Home Page Header ================= */}
@@ -246,50 +233,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           </nav>
 
-          {/* Trailing Actions: Animated AI Assistant Icon + Call Icon Button */}
+          {/* Trailing Actions: Call Icon Button */}
           <div className="flex items-center gap-2.5">
-            {onOpenAiAssistant && (
-              <div className="relative group">
-                <button
-                  type="button"
-                  onClick={onOpenAiAssistant}
-                  aria-label="دستیار هوشمند دکتر شمس‌پور - از من بپرس"
-                  aria-expanded={isAiAssistantOpen}
-                  className="relative flex items-center gap-1.5 h-10 px-3.5 rounded-full bg-gradient-to-tr from-[#004ac6] via-[#2563eb] to-[#38bdf8] hover:from-[#003ea8] hover:to-[#2563eb] text-white shadow-xs hover:shadow-md transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer overflow-hidden ai-header-btn-glow"
-                >
-                  {/* Animated Shimmer Sweep */}
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/35 to-transparent ai-shimmer-bar"
-                  />
-                  {/* Subtle Smart Sparkle Star */}
-                  <svg
-                    aria-hidden="true"
-                    viewBox="0 0 16 16"
-                    className="w-3.5 h-3.5 text-sky-200 animate-dental-sparkle shrink-0"
-                    fill="currentColor"
-                  >
-                    <path d="M8 0C8.3 4.2 11.8 7.7 16 8C11.8 8.3 8.3 11.8 8 16C7.7 11.8 4.2 8.3 0 8C4.2 7.7 7.7 4.2 8 0Z" />
-                  </svg>
-                  <span className="relative z-10 text-xs font-black tracking-wider font-display leading-none">
-                    AI
-                  </span>
-                  <span className="relative z-10 max-w-0 overflow-hidden group-hover:max-w-[90px] transition-all duration-300 ease-out text-[11px] font-bold whitespace-nowrap">
-                    دستیار هوشمند
-                  </span>
-                </button>
-
-                {/* Hover Tooltip Pill */}
-                <div
-                  role="tooltip"
-                  className="pointer-events-none absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#191c1e] text-white text-[11px] font-bold whitespace-nowrap opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 shadow-lg z-50"
-                >
-                  دستیار هوشمند • از من بپرس
-                  <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#191c1e] rotate-45" />
-                </div>
-              </div>
-            )}
-
             <button
               type="button"
               onClick={() => handleNavClick('contact')}
@@ -520,6 +465,33 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </aside>
       </div>
+
+      {/* ================= STICKY MINIMALIST AI BUTTON AT BOTTOM-LEFT ================= */}
+      {onOpenAiAssistant && !isAiAssistantOpen && (
+        <div className="fixed bottom-5 left-5 z-40 group">
+          <button
+            type="button"
+            onClick={onOpenAiAssistant}
+            aria-label="دستیار هوشمند دکتر شمس‌پور - از من بپرس"
+            aria-expanded={isAiAssistantOpen}
+            className="relative flex items-center gap-2 h-10 px-3 rounded-2xl bg-[#004ac6] hover:bg-[#2563eb] text-white shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 cursor-pointer border border-white/15"
+          >
+            {/* Minimal Square with Two Blinking Eyes */}
+            <span className="w-6 h-6 rounded-lg bg-white/15 flex items-center justify-center shrink-0">
+              <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none">
+                <g className="ai-robot-eyes-blink" style={{ transformOrigin: '12px 12px' }}>
+                  <rect x="6.5" y="7.5" width="3.2" height="9" rx="1.6" fill="#ffffff" />
+                  <rect x="14.3" y="7.5" width="3.2" height="9" rx="1.6" fill="#ffffff" />
+                </g>
+              </svg>
+            </span>
+            <span className="text-xs font-extrabold tracking-wide leading-none">AI</span>
+            <span className="max-w-0 overflow-hidden group-hover:max-w-[85px] transition-all duration-300 ease-out text-[11px] font-bold whitespace-nowrap">
+              دستیار هوشمند
+            </span>
+          </button>
+        </div>
+      )}
     </>
   );
 };

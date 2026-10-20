@@ -277,11 +277,11 @@ body {
 }
 
 @keyframes aiRobotBlink {
-  0%, 92%, 100% {
+  0%, 44%, 50%, 90%, 100% {
     transform: scaleY(1);
   }
-  96% {
-    transform: scaleY(0.1);
+  47%, 93% {
+    transform: scaleY(0.08);
   }
 }
 

@@ -12,11 +12,14 @@ import {
   getAdminAiDashboardData,
   runSiteAndSeoAudit,
   executeAdminProposal,
+  executeAllPendingProposals,
   rejectAdminProposal,
   updateSchedulerConfig,
   triggerScheduledOrImmediateArticle,
   handleAdminAiCopilotChat,
   initAdminAiSchedulerDaemon,
+  createAndPublishBacklinkCampaign,
+  DEFAULT_PUBLIC_SITE_URL,
 } from './adminAiManager';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -1226,6 +1229,16 @@ app.post('/api/admin/ai/audit', requireAuth, (_req: Request, res: Response) => {
   }
 });
 
+app.post('/api/admin/ai/proposals/approve-all', requireAuth, async (_req: Request, res: Response) => {
+  try {
+    const result = await executeAllPendingProposals();
+    const dashboard = getAdminAiDashboardData();
+    res.json({ ...result, ...dashboard });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error?.message || 'خطا در اجرای یکجای پیشنهادها' });
+  }
+});
+
 app.post('/api/admin/ai/proposals/:id/approve', requireAuth, async (req: Request, res: Response) => {
   try {
     const result = await executeAdminProposal(req.params.id);
@@ -1265,6 +1278,130 @@ app.post('/api/admin/ai/generate-article', requireAuth, async (req: Request, res
   }
 });
 
+app.get('/api/admin/ai/backlinks', requireAuth, (_req: Request, res: Response) => {
+  try {
+    const dashboard = getAdminAiDashboardData();
+    res.json({ success: true, backlinks: dashboard.backlinks || [] });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error?.message || 'خطا در دریافت لیست بک‌لینک‌ها' });
+  }
+});
+
+app.post('/api/admin/ai/backlinks/create', requireAuth, async (req: Request, res: Response) => {
+  try {
+    const db = readDb();
+    const { targetPage, targetUrl, topic, anchorText } = req.body || {};
+    const campaign = await createAndPublishBacklinkCampaign(db, {
+      targetPage,
+      targetUrl,
+      topic,
+      anchorText,
+    });
+    writeDb(db);
+    const dashboard = getAdminAiDashboardData();
+    res.json({
+      success: true,
+      campaign,
+      backlinks: dashboard.backlinks,
+      activityLogs: dashboard.activityLogs,
+    });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error?.message || 'خطا در ساخت و انتشار بک‌لینک' });
+  }
+});
+
+// Dynamic RSS 2.0 Syndication Feed (Used by Google WebSub & Public Blog Aggregators)
+app.get('/rss.xml', (_req: Request, res: Response) => {
+  try {
+    const db = readDb();
+    const baseUrl = String(db.siteSettings?.siteUrl || DEFAULT_PUBLIC_SITE_URL).replace(/\/+$/, '');
+    const articles = Array.isArray(db.articles) ? db.articles : [];
+    const itemsXml = articles
+      .slice(0, 25)
+      .map((art: any) => {
+        const link = `${baseUrl}/?page=article&id=${encodeURIComponent(art.id)}`;
+        const title = String(art.title || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+        const desc = String(art.summary || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+        return `    <item>
+      <title>${title}</title>
+      <link>${link}</link>
+      <guid isPermaLink="true">${link}</guid>
+      <description>${desc}</description>
+    </item>`;
+      })
+      .join('\n');
+
+    const rss = `<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>کلینیک دندان‌پزشکی پارمیس | دکتر انوشیروان شمس‌پور</title>
+    <link>${baseUrl}/</link>
+    <description>مجله علمی سلامت دهان و دندان، ایمپلنت دیجیتال، کامپوزیت ونیر و لمینت در پاکدشت</description>
+    <language>fa-ir</language>
+    <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub" />
+    <atom:link href="${baseUrl}/rss.xml" rel="self" type="application/rss+xml" />
+${itemsXml}
+  </channel>
+</rss>`;
+
+    res.setHeader('Content-Type', 'application/rss+xml; charset=utf-8');
+    res.send(rss);
+  } catch {
+    res.status(500).send('Error generating RSS feed');
+  }
+});
+
+// Dynamic XML Sitemap including all live articles & pages
+app.get('/sitemap.xml', (_req: Request, res: Response) => {
+  try {
+    const db = readDb();
+    const baseUrl = String(db.siteSettings?.siteUrl || DEFAULT_PUBLIC_SITE_URL).replace(/\/+$/, '');
+    const today = new Date().toISOString().slice(0, 10);
+    const articles = Array.isArray(db.articles) ? db.articles : [];
+
+    const corePages = [
+      { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'daily' },
+      { loc: `${baseUrl}/?page=services`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/?page=gallery`, priority: '0.9', changefreq: 'weekly' },
+      { loc: `${baseUrl}/?page=about`, priority: '0.8', changefreq: 'monthly' },
+      { loc: `${baseUrl}/?page=blog`, priority: '0.9', changefreq: 'daily' },
+      { loc: `${baseUrl}/?page=contact`, priority: '0.8', changefreq: 'monthly' },
+    ];
+
+    const articleUrls = articles.map((art: any) => ({
+      loc: `${baseUrl}/?page=article&id=${encodeURIComponent(art.id)}`,
+      priority: '0.8',
+      changefreq: 'weekly',
+    }));
+
+    const allUrls = [...corePages, ...articleUrls];
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${allUrls
+  .map(
+    (u) => `  <url>
+    <loc>${u.loc.replace(/&/g, '&amp;')}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${u.changefreq}</changefreq>
+    <priority>${u.priority}</priority>
+  </url>`
+  )
+  .join('\n')}
+</urlset>`;
+
+    res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+    res.send(xml);
+  } catch {
+    res.status(500).send('Error generating sitemap');
+  }
+});
+
 app.post('/api/admin/ai/chat', requireAuth, async (req: Request, res: Response) => {
   try {
     const { message, history, attachments } = req.body || {};
@@ -1279,6 +1416,7 @@ app.post('/api/admin/ai/chat', requireAuth, async (req: Request, res: Response) 
       ...result,
       proposals: dashboard.proposals,
       activityLogs: dashboard.activityLogs,
+      backlinks: dashboard.backlinks,
     });
   } catch (error: any) {
     res.status(500).json({ success: false, error: error?.message || 'خطا در ارتباط با هوش مصنوعی مدیر' });

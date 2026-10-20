@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  Sparkles,
   CheckCircle2,
   XCircle,
   RefreshCw,
@@ -11,16 +10,53 @@ import {
   Square,
   Check,
   X,
-  Paperclip,
   Volume2,
   Wand2,
-  ShieldCheck,
   TrendingUp,
   Bug,
   FileText,
-  Clock,
+  Link2,
+  ExternalLink,
+  Copy,
+  Globe,
 } from 'lucide-react';
 import { AiRobotAvatar, RobotState } from './AiRobotAvatar.tsx';
+import { useCMS } from '../context/CMSContext.tsx';
+
+export interface AiBacklinkPlacement {
+  platformName: string;
+  platformDomain: string;
+  liveUrl: string;
+  articleTitle: string;
+  anchorUsed: string;
+  targetUrl: string;
+  linkType: 'dofollow-contextual' | 'rss-syndication' | 'search-ping';
+  status: 'published_live' | 'indexed';
+}
+
+export interface AiBacklinkCampaign {
+  id: string;
+  createdAt: string;
+  targetPageKey: string;
+  targetPageName: string;
+  targetUrl: string;
+  trackedTargetUrl: string;
+  primaryAnchorText: string;
+  secondaryAnchors: string[];
+  researchedKeywords: string[];
+  competitorInsight: string;
+  articleTitle: string;
+  articleSummary: string;
+  articleHtml: string;
+  articleMarkdown: string;
+  livePlacements: AiBacklinkPlacement[];
+  syndicationPlatforms: Array<{
+    name: string;
+    domain: string;
+    submitUrl: string;
+    guide: string;
+  }>;
+}
 
 export interface AiAdminProposal {
   id: string;
@@ -54,6 +90,7 @@ interface AdminChatMsg {
   attachments?: ChatAttachmentItem[];
   proposals?: AiAdminProposal[];
   executedActions?: string[];
+  backlinks?: AiBacklinkCampaign[];
 }
 
 interface AdminAiCopilotProps {
@@ -66,24 +103,28 @@ interface AdminAiCopilotProps {
 
 const STARTER_PROMPTS = [
   {
-    icon: TrendingUp,
-    label: 'تحلیل کامل سئو و ارائه ایده‌های خلاقانه و فنی برای رتبه ۱ گوگل',
-    prompt: 'سایت رو از نظر سئو کامل تحلیل کن و ایده‌های خلاقانه و فنی برای رسیدن به رتبه یک گوگل بده تا بعد از تاییدم پیاده‌سازی کنی.',
+    icon: Globe,
+    label: 'سئو اتوماتیک و ثبت مقاله بک‌لینک در وبلاگ‌های عمومی',
+    prompt:
+      'سئو اتوماتیک انجام بده؛ یک لینک هدف بساز، روی کلمات کلیدی تحقیق کن و توی سایت‌های مرتبط و وبلاگ‌های عمومی مقاله بنویس و بک‌لینک بده به صفحه خدمات و صفحه اصلی سایت.',
   },
   {
-    icon: Bug,
-    label: 'بررسی فنی کل سایت، شناسایی باگ‌ها و رفع خودکار پس از تأیید',
-    prompt: 'کل سایت رو از هر نظری تحلیل و بررسی کن، باگ‌ها یا ناهماهنگی‌ها (مثل عکس دکتر شمس‌پور، اسلاگ‌ها و تگ‌های Alt) رو پیدا کن و پیشنهاد رفعشون رو بده تا تایید کنم.',
+    icon: Wand2,
+    label: 'شخصی‌سازی طراحی UI/UX و تغییر پالت رنگ سایت',
+    prompt:
+      'به عنوان طراح UI/UX، ظاهر سایت رو بررسی کن و تم رنگی و استایل کارت‌ها رو شخصی‌سازی کن (یا پیشنهادهای طراحی مدرن بده).',
   },
   {
     icon: FileText,
-    label: 'نگارش و انتشار مقاله علمی سئو شده جدید در وبلاگ',
-    prompt: 'یک مقاله علمی، جامع و سئو شده درباره ایمپلنت دیجیتال و طراحی لبخند آماده کن تا با تایید من در سایت منتشر بشه.',
+    label: 'تولید و بارگذاری خودکار مقالات سئو شده در وبلاگ',
+    prompt:
+      'اتوماتیک ۲ مقاله علمی، جامع و سئو شده درباره ایمپلنت دیجیتال و طراحی لبخند تولید کن و مستقیم در وبلاگ سایت لود کن.',
   },
   {
-    icon: Clock,
-    label: 'تنظیم انتشار خودکار روزانه پست و مقاله سر ساعت مشخص',
-    prompt: 'می‌خوام هر روز سر ساعت ۱۰:۰۰ صبح به صورت خودکار یک مقاله و پست سئو شده در سایت منتشر کنی.',
+    icon: Bug,
+    label: 'بررسی کامل بک‌اند، ویرایش، حذف یا رفع باگ‌های سایت',
+    prompt:
+      'بک‌اند و دیتابیس کل سایت رو کامل بررسی کن، باگ‌ها یا ناهماهنگی‌ها رو پیدا کن و گزارش بده تا اصلاح یا حذف و اضافه کنیم.',
   },
 ];
 
@@ -94,6 +135,7 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
   onCmsUpdated,
   addToast,
 }) => {
+  const { refreshCMS } = useCMS();
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimatingIn, setIsAnimatingIn] = useState(false);
   const [robotState, setRobotState] = useState<RobotState>('entering');
@@ -101,6 +143,8 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
   const [chatInput, setChatInput] = useState('');
   const [isChatLoading, setIsChatLoading] = useState(false);
   const [approvingId, setApprovingId] = useState<string | null>(null);
+  const [isApprovingAll, setIsApprovingAll] = useState(false);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
   const [chatMessages, setChatMessages] = useState<AdminChatMsg[]>([]);
 
   // Multimodal attachments state (Image, Audio, Video)
@@ -120,7 +164,6 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
   const chatEndRef = useRef<HTMLDivElement>(null);
   const inputTextareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Smooth open/close animation from under the AI header icon
   useEffect(() => {
     if (isOpen) {
       setIsVisible(true);
@@ -128,9 +171,9 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
       const raf = requestAnimationFrame(() => {
         setIsAnimatingIn(true);
       });
-      const t1 = window.setTimeout(() => setRobotState('greeting'), 200);
-      const t2 = window.setTimeout(() => setRobotState('idle'), 2200);
-      const t3 = window.setTimeout(() => inputTextareaRef.current?.focus(), 320);
+      const t1 = window.setTimeout(() => setRobotState('greeting'), 180);
+      const t2 = window.setTimeout(() => setRobotState('idle'), 1800);
+      const t3 = window.setTimeout(() => inputTextareaRef.current?.focus(), 280);
       return () => {
         cancelAnimationFrame(raf);
         window.clearTimeout(t1);
@@ -139,12 +182,11 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
       };
     } else {
       setIsAnimatingIn(false);
-      const t = window.setTimeout(() => setIsVisible(false), 280);
+      const t = window.setTimeout(() => setIsVisible(false), 240);
       return () => window.clearTimeout(t);
     }
   }, [isOpen]);
 
-  // Escape key to close popup
   useEffect(() => {
     if (!isOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -161,6 +203,17 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
       chatEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
   }, [chatMessages, isChatLoading, isOpen]);
+
+  const copyToClipboard = async (text: string, key: string, label: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedId(key);
+      addToast('success', `${label} با موفقیت کپی شد.`);
+      window.setTimeout(() => setCopiedId((prev) => (prev === key ? null : prev)), 2200);
+    } catch {
+      addToast('error', 'خطا در کپی متن');
+    }
+  };
 
   const fileToBase64 = (file: File | Blob): Promise<string> =>
     new Promise((resolve, reject) => {
@@ -179,7 +232,6 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
         base64Data = await fileToBase64(file);
       }
 
-      // Also upload to /api/media so it gets a permanent server URL if the admin wants to use it on the site
       let uploadedServerUrl: string | undefined;
       const formData = new FormData();
       formData.append('file', file);
@@ -208,7 +260,7 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
       };
 
       setPendingAttachments((prev) => [...prev, item]);
-      addToast('success', `${categoryLabel} آماده ارسال به هوش مصنوعی شد.`);
+      addToast('success', `${categoryLabel} آماده ارسال شد.`);
     } catch (err: any) {
       addToast('error', err.message || 'خطا در پیوست فایل');
     } finally {
@@ -216,7 +268,6 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
     }
   };
 
-  // Live Microphone Voice Recorder
   const startAudioRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -254,7 +305,7 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
         setRecordingSeconds((s) => s + 1);
       }, 1000);
     } catch {
-      addToast('error', 'دسترسی به میکروفون امکان‌پذیر نیست یا توسط مرورگر مسدود شده است. می‌توانید فایل صوتی آپلود کنید.');
+      addToast('error', 'دسترسی به میکروفون امکان‌پذیر نیست. می‌توانید فایل صوتی آپلود کنید.');
     }
   };
 
@@ -317,6 +368,8 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
 
       if (Array.isArray(data.executedActions) && data.executedActions.length > 0) {
         onCmsUpdated();
+        await refreshCMS();
+        addToast('success', 'عملیات هوش مصنوعی با موفقیت اجرا و اعمال شد!');
       }
 
       const assistantMsg: AdminChatMsg = {
@@ -332,11 +385,15 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
           Array.isArray(data.executedActions) && data.executedActions.length > 0
             ? data.executedActions
             : undefined,
+        backlinks:
+          Array.isArray(data.newBacklinks) && data.newBacklinks.length > 0
+            ? data.newBacklinks
+            : undefined,
       };
 
       setChatMessages((prev) => [...prev, assistantMsg]);
       setRobotState('speaking');
-      window.setTimeout(() => setRobotState('idle'), 2400);
+      window.setTimeout(() => setRobotState('idle'), 2000);
     } catch (err: any) {
       setRobotState('idle');
       addToast('error', err.message || 'خطا در ارتباط با هوش مصنوعی');
@@ -367,26 +424,83 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
         }))
       );
 
-      // Append a confirmation message in the chat
       setChatMessages((prev) => [
         ...prev,
         {
           id: `exec-${Date.now()}`,
           role: 'assistant',
-          content: `✅ **با موفقیت انجام شد!**\n${data.message}`,
+          content: `✅ **با موفقیت در سایت اعمال شد!**\n${data.message}`,
           timestamp: new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' }),
+          executedActions: [data.message],
+          backlinks:
+            Array.isArray(data.newBacklinks) && data.newBacklinks.length > 0
+              ? data.newBacklinks
+              : undefined,
         },
       ]);
 
       setRobotState('speaking');
-      window.setTimeout(() => setRobotState('idle'), 2000);
+      window.setTimeout(() => setRobotState('idle'), 1800);
       onCmsUpdated();
+      await refreshCMS();
       addToast('success', data.message || 'تغییرات با موفقیت در سایت اعمال شد!');
     } catch (err: any) {
       setRobotState('idle');
       addToast('error', err.message || 'خطا در پیاده‌سازی پیشنهاد');
     } finally {
       setApprovingId(null);
+    }
+  };
+
+  const handleApproveAllProposals = async () => {
+    setIsApprovingAll(true);
+    setRobotState('thinking');
+    try {
+      const res = await fetch('/api/admin/ai/proposals/approve-all', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error || 'خطا در اجرای یکجای پیشنهادها');
+
+      const nowStr = new Date().toLocaleString('fa-IR');
+      setChatMessages((prev) =>
+        prev.map((m) => ({
+          ...m,
+          proposals: m.proposals?.map((p) =>
+            p.status === 'pending' ? { ...p, status: 'approved', executedAt: nowStr } : p
+          ),
+        }))
+      );
+
+      const msgs: string[] = Array.isArray(data.messages)
+        ? data.messages
+        : ['تمامی پیشنهادها با موفقیت در سایت اعمال شدند.'];
+      setChatMessages((prev) => [
+        ...prev,
+        {
+          id: `exec-all-${Date.now()}`,
+          role: 'assistant',
+          content: `✅ **تمامی پیشنهادها با موفقیت در سایت پیاده‌سازی شدند!**\n\n${msgs.join('\n\n')}`,
+          timestamp: new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' }),
+          executedActions: msgs,
+          backlinks:
+            Array.isArray(data.newBacklinks) && data.newBacklinks.length > 0
+              ? data.newBacklinks
+              : undefined,
+        },
+      ]);
+
+      setRobotState('speaking');
+      window.setTimeout(() => setRobotState('idle'), 1800);
+      onCmsUpdated();
+      await refreshCMS();
+      addToast('success', 'تمامی پیشنهادها با موفقیت در سایت اعمال شدند!');
+    } catch (err: any) {
+      setRobotState('idle');
+      addToast('error', err.message || 'خطا در اجرای یکجای پیشنهادها');
+    } finally {
+      setIsApprovingAll(false);
     }
   };
 
@@ -414,17 +528,17 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col bg-[#0b1120]/95 backdrop-blur-xl text-white font-sans transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] origin-top-left ${
+      className={`fixed inset-0 z-[100] flex flex-col bg-[#f7f9fb] text-[#191c1e] font-sans transition-all duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] origin-bottom-left ${
         isAnimatingIn
           ? 'opacity-100 scale-100 translate-y-0'
-          : 'opacity-0 scale-90 -translate-y-6 pointer-events-none'
+          : 'opacity-0 scale-95 translate-y-4 pointer-events-none'
       }`}
       dir="rtl"
       role="dialog"
       aria-modal="true"
       aria-label="دستیار هوش مصنوعی مدیر سایت"
     >
-      {/* Hidden File Inputs for Image, Audio, Video */}
+      {/* Hidden File Inputs */}
       <input
         ref={imageInputRef}
         type="file"
@@ -459,71 +573,80 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
         }}
       />
 
-      {/* Ambient Subtle Glows */}
-      <div className="pointer-events-none absolute top-0 left-1/4 w-96 h-96 bg-[#004ac6]/25 rounded-full blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 right-1/4 w-96 h-96 bg-sky-500/15 rounded-full blur-3xl" />
-
-      {/* Top Bar with Close Button */}
-      <header className="relative z-10 flex items-center justify-between px-4 sm:px-8 h-16 border-b border-white/10 bg-slate-900/50 backdrop-blur-md shrink-0">
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5 h-9 px-3 rounded-full bg-gradient-to-tr from-[#004ac6] via-[#2563eb] to-[#38bdf8] text-white shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-sky-200 animate-pulse" />
-            <span className="text-xs font-black tracking-wider">AI</span>
-          </div>
-          <div>
-            <h2 className="text-sm font-extrabold text-white flex items-center gap-2">
-              <span>هوش مصنوعی مدیر سایت و سئو</span>
-              <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                دسترسی کامل به بک‌اند
-              </span>
-            </h2>
-            <p className="text-[11px] text-slate-400 hidden sm:block">
-              تحلیل و بهینه‌سازی سئو • رفع باگ‌ها پس از تأیید • ایده‌پردازی رتبه ۱ گوگل • پشتیبانی تصویر، صدا و ویدیو
-            </p>
-          </div>
+      {/* Minimalist Top Header Inheriting Site Design System (No Duplicate AI Icon) */}
+      <header className="flex items-center justify-between px-4 sm:px-6 h-14 bg-white border-b border-[#c3c6d7]/40 shrink-0">
+        <div className="flex items-center gap-2">
+          <span
+            className={`w-2 h-2 rounded-full shrink-0 ${
+              isChatLoading ? 'bg-amber-500 animate-ping' : 'bg-emerald-500'
+            }`}
+          />
+          <h2 className="text-sm font-extrabold text-[#191c1e]">دستیار هوشمند مدیر سایت</h2>
+          <span className="text-xs text-[#565e74] hidden sm:inline">
+            · کنترل کامل سایت، UI/UX و سئو اتوماتیک
+          </span>
         </div>
 
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() =>
+              handleSendChat(
+                'یک لینک هدف بساز، تحقیق کن و توی وبلاگ‌های عمومی مقاله بنویس و بک‌لینک بده به صفحه خدمات سایت.'
+              )
+            }
+            disabled={isChatLoading}
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#dbe1ff]/50 hover:bg-[#dbe1ff] text-[#004ac6] text-xs font-bold transition-colors cursor-pointer"
+          >
+            <Link2 className="w-3.5 h-3.5" />
+            <span>ساخت بک‌لینک خودکار</span>
+          </button>
+
           {chatMessages.length > 0 && (
             <button
               type="button"
               onClick={() => setChatMessages([])}
-              className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/15 text-slate-300 text-xs font-bold transition-colors cursor-pointer"
+              className="px-3 py-1.5 rounded-xl bg-[#f2f4f6] hover:bg-[#eceef0] text-[#434655] text-xs font-bold transition-colors cursor-pointer"
             >
               گفتگوی جدید
             </button>
           )}
+
           <button
             type="button"
             onClick={onClose}
             aria-label="بستن پنجره هوش مصنوعی"
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-rose-500/90 text-white text-xs font-extrabold border border-white/15 transition-all cursor-pointer active:scale-95"
+            className="w-8 h-8 rounded-xl bg-[#f2f4f6] hover:bg-[#eceef0] text-[#191c1e] flex items-center justify-center transition-colors cursor-pointer active:scale-95"
           >
-            <span>بستن</span>
             <X className="w-4 h-4" />
           </button>
         </div>
       </header>
 
       {/* Main Content Area */}
-      <div className="relative z-10 flex-1 overflow-y-auto flex flex-col">
+      <div className="flex-1 overflow-y-auto flex flex-col">
         {chatMessages.length === 0 ? (
-          /* Centered Welcome State: «خوش اومدی، چه کاری برات انجام بدم؟» */
-          <div className="flex-1 flex flex-col items-center justify-center px-4 py-8 max-w-4xl mx-auto w-full text-center">
-            <div className="w-32 h-32 sm:w-36 sm:h-36 mb-4 flex items-center justify-center">
-              <AiRobotAvatar state={robotState} />
+          /* Minimalist Centered Welcome State with Single Interactive Robot */
+          <div className="flex-1 flex flex-col items-center justify-center px-4 py-8 max-w-2xl mx-auto w-full text-center">
+            <div className="mb-5">
+              <AiRobotAvatar
+                state={robotState}
+                size="lg"
+                isUserTyping={chatInput.trim().length > 0}
+                contextMode="admin"
+                onInteractPrompt={(prompt) => handleSendChat(prompt)}
+              />
             </div>
 
-            <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight mb-3">
+            <h1 className="text-xl sm:text-3xl font-extrabold text-[#191c1e] tracking-tight mb-2">
               خوش اومدی، چه کاری برات انجام بدم؟
             </h1>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed mb-8">
-              من دستیار هوش مصنوعی مدیریت سایت دکتر انوشیروان شمس‌پور هستم. می‌توانی با من چت کنی، عکس، صدا یا ویدیو بفرستی، یا از من بخواهی سئو و باگ‌های سایت را تحلیل کنم و پس از تأییدت خودکار پیاده‌سازی کنم.
+            <p className="text-xs sm:text-sm text-[#565e74] max-w-lg leading-relaxed mb-7">
+              مدیریت کامل محتوا و بک‌اند، شخصی‌سازی طراحی UI/UX، بارگذاری خودکار مقاله و لینک‌سازی زنده سئو در وبلاگ‌های عمومی.
             </p>
 
-            {/* Quick Capability Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-3xl text-right">
+            {/* Minimalist Starter Prompts Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full text-right">
               {STARTER_PROMPTS.map((item, idx) => {
                 const IconComp = item.icon;
                 return (
@@ -531,27 +654,32 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
                     key={idx}
                     type="button"
                     onClick={() => handleSendChat(item.prompt)}
-                    className="group p-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-sky-400/50 transition-all flex items-start gap-3.5 text-right cursor-pointer shadow-sm"
+                    className="group p-3.5 rounded-2xl bg-white hover:bg-[#dbe1ff]/25 border border-[#c3c6d7]/50 hover:border-[#004ac6]/40 transition-all flex items-center gap-3 text-right cursor-pointer shadow-2xs"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#004ac6] to-[#38bdf8] text-white flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                      <IconComp className="w-5 h-5" />
+                    <div className="w-9 h-9 rounded-xl bg-[#dbe1ff]/60 text-[#004ac6] flex items-center justify-center shrink-0 group-hover:bg-[#004ac6] group-hover:text-white transition-colors">
+                      <IconComp className="w-4 h-4" />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <span className="text-xs sm:text-sm font-bold text-white group-hover:text-sky-300 transition-colors block leading-snug">
-                        {item.label}
-                      </span>
-                      <span className="text-[11px] text-slate-400 mt-1 block">
-                        کلیک کنید تا تحلیل و پیشنهادهای اجرایی آماده شود
-                      </span>
-                    </div>
+                    <span className="text-xs font-bold text-[#191c1e] group-hover:text-[#004ac6] transition-colors leading-snug">
+                      {item.label}
+                    </span>
                   </button>
                 );
               })}
             </div>
           </div>
         ) : (
-          /* Active Conversation Stream */
-          <div className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-6 space-y-5">
+          /* Minimalist Conversation Stream: Single Interactive AI Icon ONLY before the first chat bubble */
+          <div className="flex-1 max-w-3xl w-full mx-auto px-4 sm:px-6 py-6 space-y-4">
+            <div className="flex flex-col items-center justify-center pb-2">
+              <AiRobotAvatar
+                state={robotState}
+                size="md"
+                isUserTyping={chatInput.trim().length > 0}
+                contextMode="admin"
+                onInteractPrompt={(prompt) => handleSendChat(prompt)}
+              />
+            </div>
+
             {chatMessages.map((msg) => {
               const isUser = msg.role === 'user';
               return (
@@ -559,47 +687,37 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
                   key={msg.id}
                   className={`flex flex-col ${isUser ? 'items-start' : 'items-end'}`}
                 >
-                  <div className="flex items-start gap-3 max-w-[94%] sm:max-w-[85%]">
-                    {!isUser && (
-                      <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-[#004ac6] to-[#38bdf8] flex items-center justify-center shrink-0 mt-1 shadow-md">
-                        <Sparkles className="w-4 h-4 text-white" />
-                      </div>
-                    )}
-
+                  <div className="flex items-start gap-2.5 max-w-[92%] sm:max-w-[85%]">
                     <div
-                      className={`rounded-3xl px-5 py-4 text-xs sm:text-sm leading-relaxed shadow-md ${
+                      className={`rounded-2xl px-4 py-3 text-xs sm:text-sm leading-relaxed ${
                         isUser
-                          ? 'bg-[#004ac6] text-white rounded-tr-xs'
-                          : 'bg-slate-800/90 text-slate-100 border border-white/10 rounded-tl-xs'
+                          ? 'bg-[#004ac6] text-white rounded-tr-xs shadow-2xs'
+                          : 'bg-white text-[#191c1e] border border-[#c3c6d7]/50 rounded-tl-xs shadow-2xs'
                       }`}
                     >
                       {/* Render Attached Images / Audio / Video */}
                       {msg.attachments && msg.attachments.length > 0 && (
-                        <div className="mb-3 flex flex-wrap gap-2.5">
+                        <div className="mb-2.5 flex flex-wrap gap-2">
                           {msg.attachments.map((att) => (
                             <div
                               key={att.id}
-                              className="rounded-2xl overflow-hidden border border-white/20 bg-black/30 max-w-xs"
+                              className="rounded-xl overflow-hidden border border-[#c3c6d7]/50 bg-[#f2f4f6] max-w-xs"
                             >
                               {att.mimeType.startsWith('image/') ? (
                                 <img
                                   src={att.previewUrl}
                                   alt={att.name}
-                                  className="max-h-48 w-auto object-cover"
+                                  className="max-h-44 w-auto object-cover"
                                 />
                               ) : att.mimeType.startsWith('video/') ? (
-                                <video
-                                  src={att.previewUrl}
-                                  controls
-                                  className="max-h-48 w-auto"
-                                />
+                                <video src={att.previewUrl} controls className="max-h-44 w-auto" />
                               ) : att.mimeType.startsWith('audio/') ? (
-                                <div className="p-2.5 flex flex-col gap-1.5">
-                                  <span className="text-[11px] text-sky-200 font-bold flex items-center gap-1">
+                                <div className="p-2 flex flex-col gap-1">
+                                  <span className="text-[11px] text-[#004ac6] font-bold flex items-center gap-1">
                                     <Volume2 className="w-3.5 h-3.5" />
                                     {att.name}
                                   </span>
-                                  <audio src={att.previewUrl} controls className="h-8 w-56" />
+                                  <audio src={att.previewUrl} controls className="h-8 w-52" />
                                 </div>
                               ) : null}
                             </div>
@@ -608,70 +726,215 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
                       )}
 
                       <div className="whitespace-pre-line">{msg.content}</div>
-                      <div className="text-[10px] opacity-60 mt-2">{msg.timestamp}</div>
+                      <div
+                        className={`text-[10px] mt-1.5 ${
+                          isUser ? 'text-blue-100' : 'text-[#565e74]'
+                        }`}
+                      >
+                        {msg.timestamp}
+                      </div>
                     </div>
                   </div>
 
-                  {/* Interactive Approval Cards for Site Changes / SEO / Bug Fixes */}
+                  {/* Direct Execution Confirmation Box */}
+                  {!isUser && msg.executedActions && msg.executedActions.length > 0 && (
+                    <div className="w-full max-w-[92%] sm:max-w-[85%] mt-2 p-3 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs space-y-1 text-right">
+                      <div className="flex items-center gap-1.5 font-bold text-emerald-700">
+                        <CheckCircle2 className="w-4 h-4 shrink-0" />
+                        <span>اعمال‌شده در سایت:</span>
+                      </div>
+                      {msg.executedActions.map((act, idx) => (
+                        <div key={idx} className="pr-5 text-[11px] text-emerald-800 leading-relaxed">
+                          • {act}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Minimalist Live Backlink Campaign Cards */}
+                  {!isUser && msg.backlinks && msg.backlinks.length > 0 && (
+                    <div className="w-full max-w-[94%] sm:max-w-[85%] mt-2.5 space-y-3">
+                      {msg.backlinks.map((bl) => (
+                        <div
+                          key={bl.id}
+                          className="p-4 rounded-2xl bg-white border border-[#c3c6d7]/60 shadow-xs space-y-3 text-right"
+                        >
+                          <div className="flex items-center justify-between gap-2 flex-wrap border-b border-slate-100 pb-2.5">
+                            <span className="text-xs font-extrabold text-[#004ac6] flex items-center gap-1.5">
+                              <Globe className="w-4 h-4" />
+                              <span>کمپین بک‌لینک و رپورتاژ زنده ({bl.targetPageName})</span>
+                            </span>
+                            <span className="text-[11px] text-[#565e74]">{bl.createdAt}</span>
+                          </div>
+
+                          {/* Target URL & Anchor */}
+                          <div className="p-3 rounded-xl bg-[#f7f9fb] border border-[#c3c6d7]/40 space-y-1.5">
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="text-[11px] font-bold text-[#434655]">
+                                انکرتکست: <strong className="text-[#004ac6]">«{bl.primaryAnchorText}»</strong>
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => copyToClipboard(bl.targetUrl, `url-${bl.id}`, 'لینک هدف')}
+                                className="text-[11px] font-bold text-[#004ac6] hover:underline flex items-center gap-1 cursor-pointer"
+                              >
+                                <Copy className="w-3 h-3" />
+                                <span>{copiedId === `url-${bl.id}` ? 'کپی شد' : 'کپی لینک هدف'}</span>
+                              </button>
+                            </div>
+                            <div
+                              dir="ltr"
+                              className="text-[11px] font-mono text-[#565e74] truncate"
+                            >
+                              {bl.targetUrl}
+                            </div>
+                          </div>
+
+                          {/* Live Published Articles */}
+                          <div className="space-y-2">
+                            {bl.livePlacements.map((pl, idx) => (
+                              <div
+                                key={idx}
+                                className="p-3 rounded-xl bg-[#f2f4f6]/70 border border-[#c3c6d7]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5"
+                              >
+                                <div className="min-w-0 flex-1">
+                                  <div className="text-xs font-bold text-[#191c1e] truncate">
+                                    {pl.articleTitle}
+                                  </div>
+                                  <div className="text-[11px] text-[#565e74] mt-0.5">
+                                    {pl.platformName} · انکرتکست: «{pl.anchorUsed}»
+                                  </div>
+                                </div>
+                                <a
+                                  href={pl.liveUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="px-3 py-1.5 rounded-xl bg-[#004ac6] hover:bg-[#2563eb] text-white text-[11px] font-bold flex items-center gap-1.5 shrink-0 transition-colors"
+                                >
+                                  <span>مشاهده بک‌لینک زنده</span>
+                                  <ExternalLink className="w-3 h-3" />
+                                </a>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Copy HTML / Markdown & Syndicate */}
+                          <div className="pt-2 border-t border-slate-100 flex items-center justify-between gap-2 flex-wrap">
+                            <div className="flex items-center gap-1.5">
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  copyToClipboard(bl.articleHtml, `html-${bl.id}`, 'کد HTML رپورتاژ')
+                                }
+                                className="px-2.5 py-1.5 rounded-lg bg-[#dbe1ff]/60 hover:bg-[#dbe1ff] text-[#004ac6] text-[11px] font-bold flex items-center gap-1 cursor-pointer"
+                              >
+                                <Copy className="w-3 h-3" />
+                                <span>{copiedId === `html-${bl.id}` ? 'کپی شد' : 'کپی HTML رپورتاژ'}</span>
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  copyToClipboard(bl.articleMarkdown, `md-${bl.id}`, 'متن Markdown')
+                                }
+                                className="px-2.5 py-1.5 rounded-lg bg-[#f2f4f6] hover:bg-[#eceef0] text-[#434655] text-[11px] font-bold flex items-center gap-1 cursor-pointer"
+                              >
+                                <Copy className="w-3 h-3" />
+                                <span>{copiedId === `md-${bl.id}` ? 'کپی شد' : 'کپی Markdown'}</span>
+                              </button>
+                            </div>
+
+                            <div className="flex items-center gap-2 text-[11px] text-[#565e74]">
+                              {bl.syndicationPlatforms.slice(0, 3).map((sp, i) => (
+                                <a
+                                  key={i}
+                                  href={sp.submitUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="hover:text-[#004ac6] hover:underline flex items-center gap-0.5 font-semibold"
+                                >
+                                  <span>{sp.domain}</span>
+                                  <ExternalLink className="w-2.5 h-2.5" />
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Minimalist Proposal Approval Cards */}
                   {!isUser && msg.proposals && msg.proposals.length > 0 && (
-                    <div className="w-full max-w-[94%] sm:max-w-[82%] mt-3 space-y-3">
+                    <div className="w-full max-w-[92%] sm:max-w-[85%] mt-2.5 space-y-2.5">
+                      {msg.proposals.filter((p) => p.status === 'pending').length > 1 && (
+                        <div className="flex items-center justify-between gap-2 p-3 rounded-2xl bg-[#dbe1ff]/40 border border-[#004ac6]/20">
+                          <span className="text-xs font-bold text-[#191c1e]">
+                            اعمال یکجای تمام پیشنهادهای زیر در سایت
+                          </span>
+                          <button
+                            type="button"
+                            onClick={handleApproveAllProposals}
+                            disabled={isApprovingAll}
+                            className="px-3.5 py-1.5 rounded-xl bg-[#004ac6] hover:bg-[#2563eb] text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer transition-colors disabled:opacity-50"
+                          >
+                            {isApprovingAll ? (
+                              <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                            ) : (
+                              <Check className="w-3.5 h-3.5" />
+                            )}
+                            <span>تأیید همه</span>
+                          </button>
+                        </div>
+                      )}
+
                       {msg.proposals.map((prop) => (
                         <div
                           key={prop.id}
-                          className="p-4 sm:p-5 rounded-3xl bg-slate-900/95 border-2 border-sky-400/40 shadow-xl space-y-3 text-right"
+                          className="p-4 rounded-2xl bg-white border border-[#c3c6d7]/60 shadow-2xs space-y-2.5 text-right"
                         >
-                          <div className="flex items-center justify-between gap-2 flex-wrap">
-                            <span className="px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30 text-[11px] font-extrabold">
-                              ⚡ پیشنهاد آماده پیاده‌سازی • {prop.categoryLabel}
-                            </span>
-                            <span className="text-[11px] font-bold text-emerald-400">
-                              🎯 {prop.expectedImpact}
-                            </span>
+                          <div className="flex items-center justify-between gap-2 text-[11px] text-[#565e74]">
+                            <span className="font-bold text-[#004ac6]">{prop.categoryLabel}</span>
+                            <span>{prop.expectedImpact}</span>
                           </div>
 
-                          <h4 className="text-sm sm:text-base font-extrabold text-white">
+                          <h4 className="text-xs sm:text-sm font-extrabold text-[#191c1e]">
                             {prop.title}
                           </h4>
-                          <p className="text-xs text-slate-300 leading-relaxed">
+                          <p className="text-xs text-[#565e74] leading-relaxed">
                             {prop.description}
                           </p>
 
                           {prop.status === 'approved' ? (
-                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-extrabold">
+                            <div className="inline-flex items-center gap-1.5 text-emerald-700 text-xs font-bold">
                               <CheckCircle2 className="w-4 h-4" />
-                              <span>تأیید شد و در سایت پیاده‌سازی گردید ({prop.executedAt})</span>
+                              <span>در سایت اعمال شد ({prop.executedAt})</span>
                             </div>
                           ) : prop.status === 'rejected' ? (
-                            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 text-slate-400 text-xs font-bold">
+                            <div className="inline-flex items-center gap-1 text-[#565e74] text-xs">
                               <XCircle className="w-4 h-4" />
-                              <span>لغو شده</span>
+                              <span>لغو شد</span>
                             </div>
                           ) : (
-                            <div className="flex items-center gap-2.5 pt-1">
+                            <div className="flex items-center gap-2 pt-1">
                               <button
                                 type="button"
                                 onClick={() => handleApproveProposal(prop.id)}
                                 disabled={approvingId === prop.id}
-                                className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-extrabold shadow-md flex items-center gap-2 cursor-pointer transition-all active:scale-95 disabled:opacity-50"
+                                className="px-4 py-2 rounded-xl bg-[#004ac6] hover:bg-[#2563eb] text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer transition-colors disabled:opacity-50"
                               >
                                 {approvingId === prop.id ? (
-                                  <>
-                                    <RefreshCw className="w-4 h-4 animate-spin" />
-                                    <span>در حال اعمال در سایت...</span>
-                                  </>
+                                  <RefreshCw className="w-3.5 h-3.5 animate-spin" />
                                 ) : (
-                                  <>
-                                    <Check className="w-4 h-4" />
-                                    <span>تأیید و پیاده‌سازی خودکار در سایت</span>
-                                  </>
+                                  <Check className="w-3.5 h-3.5" />
                                 )}
+                                <span>تأیید و اعمال در سایت</span>
                               </button>
                               <button
                                 type="button"
                                 onClick={() => handleRejectProposal(prop.id)}
-                                className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-rose-500/20 text-slate-300 hover:text-rose-300 text-xs font-bold cursor-pointer transition-colors"
+                                className="px-3 py-2 rounded-xl bg-[#f2f4f6] hover:bg-[#eceef0] text-[#565e74] text-xs font-bold cursor-pointer transition-colors"
                               >
-                                رد پیشنهاد
+                                لغو
                               </button>
                             </div>
                           )}
@@ -684,10 +947,10 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
             })}
 
             {isChatLoading && (
-              <div className="flex justify-end">
-                <div className="bg-slate-800/90 border border-white/10 rounded-2xl px-4 py-3 text-xs text-sky-200 flex items-center gap-2.5">
-                  <RefreshCw className="w-4 h-4 animate-spin text-sky-400" />
-                  <span>در حال تحلیل سایت و آماده‌سازی پاسخ...</span>
+              <div className="flex justify-end items-center gap-2">
+                <div className="bg-white border border-[#c3c6d7]/50 rounded-2xl px-3.5 py-2.5 text-xs text-[#565e74] flex items-center gap-2 shadow-2xs">
+                  <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#004ac6]" />
+                  <span>در حال انجام...</span>
                 </div>
               </div>
             )}
@@ -697,36 +960,35 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
         )}
       </div>
 
-      {/* Bottom Multimodal Chat Composer (Image + Audio/Voice + Video + Text) */}
-      <div className="relative z-10 border-t border-white/10 bg-slate-900/80 backdrop-blur-xl px-4 sm:px-6 py-3.5">
-        <div className="max-w-4xl mx-auto space-y-2.5">
-          {/* Pending Attachments Preview Strip */}
+      {/* Minimalist Bottom Composer Inheriting Site Design System */}
+      <div className="bg-white border-t border-[#c3c6d7]/40 px-4 sm:px-6 py-3 shrink-0">
+        <div className="max-w-3xl mx-auto space-y-2">
+          {/* Pending Attachments Preview */}
           {pendingAttachments.length > 0 && (
-            <div className="flex items-center gap-2.5 overflow-x-auto pb-1">
+            <div className="flex items-center gap-2 overflow-x-auto pb-1">
               {pendingAttachments.map((att) => (
                 <div
                   key={att.id}
-                  className="relative group flex items-center gap-2 bg-slate-800 border border-sky-400/40 rounded-xl p-2 pr-3 text-xs text-white shrink-0"
+                  className="flex items-center gap-2 bg-[#f2f4f6] border border-[#c3c6d7]/50 rounded-xl p-1.5 pr-2.5 text-xs text-[#191c1e] shrink-0"
                 >
                   {att.mimeType.startsWith('image/') ? (
                     <img
                       src={att.previewUrl}
                       alt={att.name}
-                      className="w-10 h-10 rounded-lg object-cover"
+                      className="w-8 h-8 rounded-lg object-cover"
                     />
                   ) : att.mimeType.startsWith('video/') ? (
-                    <Video className="w-5 h-5 text-sky-400" />
+                    <Video className="w-4 h-4 text-[#004ac6]" />
                   ) : (
-                    <Volume2 className="w-5 h-5 text-emerald-400" />
+                    <Volume2 className="w-4 h-4 text-[#004ac6]" />
                   )}
-                  <span className="max-w-[140px] truncate text-[11px] font-bold">{att.name}</span>
+                  <span className="max-w-[120px] truncate text-[11px] font-bold">{att.name}</span>
                   <button
                     type="button"
                     onClick={() =>
                       setPendingAttachments((prev) => prev.filter((item) => item.id !== att.id))
                     }
-                    className="p-1 rounded-full bg-rose-500/80 hover:bg-rose-600 text-white cursor-pointer"
-                    title="حذف پیوست"
+                    className="p-1 rounded-full hover:bg-slate-200 text-[#565e74] cursor-pointer"
                   >
                     <X className="w-3 h-3" />
                   </button>
@@ -735,74 +997,68 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
             </div>
           )}
 
-          {/* Composer Box */}
           <form
             onSubmit={(e) => {
               e.preventDefault();
               handleSendChat();
             }}
-            className="flex flex-col sm:flex-row items-stretch sm:items-end gap-2 bg-slate-800/90 border border-white/15 focus-within:border-sky-400 rounded-2xl p-2 shadow-lg transition-colors"
+            className="flex items-end gap-1.5 bg-[#f2f4f6] focus-within:bg-white border border-[#c3c6d7]/60 focus-within:border-[#004ac6] rounded-2xl px-2.5 py-1.5 transition-colors"
           >
-            {/* Media Upload Buttons: Image, Video, Audio File, Live Voice Record */}
-            <div className="flex items-center gap-1 shrink-0 px-1">
+            {/* Minimalist Icon Actions for Media & Voice */}
+            <div className="flex items-center gap-0.5 shrink-0">
               <button
                 type="button"
                 onClick={() => imageInputRef.current?.click()}
                 disabled={isUploadingAttachment || isChatLoading}
-                className="flex items-center gap-1 px-2.5 py-2 rounded-xl bg-white/5 hover:bg-white/15 text-slate-200 hover:text-sky-300 text-[11px] font-bold transition-colors cursor-pointer"
+                className="p-2 rounded-xl hover:bg-[#dbe1ff]/50 text-[#565e74] hover:text-[#004ac6] transition-colors cursor-pointer"
                 title="آپلود تصویر"
               >
-                <ImageIcon className="w-4 h-4 text-sky-400" />
-                <span className="hidden md:inline">تصویر</span>
+                <ImageIcon className="w-4 h-4" />
               </button>
 
               <button
                 type="button"
                 onClick={() => videoInputRef.current?.click()}
                 disabled={isUploadingAttachment || isChatLoading}
-                className="flex items-center gap-1 px-2.5 py-2 rounded-xl bg-white/5 hover:bg-white/15 text-slate-200 hover:text-indigo-300 text-[11px] font-bold transition-colors cursor-pointer"
+                className="p-2 rounded-xl hover:bg-[#dbe1ff]/50 text-[#565e74] hover:text-[#004ac6] transition-colors cursor-pointer"
                 title="آپلود ویدیو"
               >
-                <Video className="w-4 h-4 text-indigo-400" />
-                <span className="hidden md:inline">ویدیو</span>
+                <Video className="w-4 h-4" />
               </button>
 
               <button
                 type="button"
                 onClick={() => audioInputRef.current?.click()}
                 disabled={isUploadingAttachment || isChatLoading}
-                className="flex items-center gap-1 px-2.5 py-2 rounded-xl bg-white/5 hover:bg-white/15 text-slate-200 hover:text-emerald-300 text-[11px] font-bold transition-colors cursor-pointer"
+                className="p-2 rounded-xl hover:bg-[#dbe1ff]/50 text-[#565e74] hover:text-[#004ac6] transition-colors cursor-pointer"
                 title="آپلود فایل صوتی"
               >
-                <Volume2 className="w-4 h-4 text-emerald-400" />
-                <span className="hidden md:inline">فایل صوتی</span>
+                <Volume2 className="w-4 h-4" />
               </button>
 
               {isRecordingAudio ? (
                 <button
                   type="button"
                   onClick={stopAudioRecording}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-[11px] font-extrabold animate-pulse cursor-pointer"
-                  title="توقف ضبط و پیوست صدا"
+                  className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-rose-600 text-white text-[11px] font-bold animate-pulse cursor-pointer"
+                  title="توقف ضبط"
                 >
-                  <Square className="w-3.5 h-3.5 fill-current" />
-                  <span>توقف ({recordingSeconds}s)</span>
+                  <Square className="w-3 h-3 fill-current" />
+                  <span>{recordingSeconds}s</span>
                 </button>
               ) : (
                 <button
                   type="button"
                   onClick={startAudioRecording}
                   disabled={isUploadingAttachment || isChatLoading}
-                  className="flex items-center gap-1 px-2.5 py-2 rounded-xl bg-white/5 hover:bg-white/15 text-slate-200 hover:text-rose-300 text-[11px] font-bold transition-colors cursor-pointer"
-                  title="ضبط مستقیم صدا با میکروفون"
+                  className="p-2 rounded-xl hover:bg-[#dbe1ff]/50 text-[#565e74] hover:text-[#004ac6] transition-colors cursor-pointer"
+                  title="ضبط صدا"
                 >
-                  <Mic className="w-4 h-4 text-rose-400" />
-                  <span className="hidden md:inline">ضبط صدا</span>
+                  <Mic className="w-4 h-4" />
                 </button>
               )}
             </div>
 
-            {/* Text Input */}
             <textarea
               ref={inputTextareaRef}
               rows={1}
@@ -814,26 +1070,24 @@ export const AdminAiCopilot: React.FC<AdminAiCopilotProps> = ({
                   handleSendChat();
                 }
               }}
-              placeholder="هر کاری می‌خواهید بنویسید (تحلیل سئو، رفع باگ، ایده رتبه ۱ گوگل، انتشار مقاله، تغییر عکس یا متن...) یا فایل بفرستید"
-              className="flex-1 bg-transparent px-3 py-2 text-xs sm:text-sm text-white placeholder:text-slate-400 focus:outline-none resize-none max-h-32"
+              placeholder="هر دستوری دارید بنویسید (ساخت بک‌لینک، سئو اتوماتیک، تغییر رنگ و UI/UX، افزودن یا حذف مقاله...)"
+              className="flex-1 bg-transparent px-2 py-1.5 text-xs sm:text-sm text-[#191c1e] placeholder:text-[#565e74]/70 focus:outline-none resize-none max-h-28"
             />
 
-            {/* Send Button */}
             <button
               type="submit"
-              disabled={(!chatInput.trim() && pendingAttachments.length === 0) || isChatLoading || isUploadingAttachment}
-              className="px-5 py-2.5 rounded-xl bg-gradient-to-tr from-[#004ac6] via-[#2563eb] to-[#38bdf8] hover:opacity-95 disabled:opacity-40 text-white text-xs font-extrabold flex items-center justify-center gap-1.5 cursor-pointer shadow-md transition-all shrink-0"
+              disabled={
+                (!chatInput.trim() && pendingAttachments.length === 0) ||
+                isChatLoading ||
+                isUploadingAttachment
+              }
+              className="w-9 h-9 rounded-xl bg-[#004ac6] hover:bg-[#2563eb] disabled:bg-slate-300 text-white flex items-center justify-center cursor-pointer transition-colors shrink-0"
+              aria-label="ارسال"
             >
               {isUploadingAttachment ? (
-                <>
-                  <RefreshCw className="w-4 h-4 animate-spin" />
-                  <span>آپلود...</span>
-                </>
+                <RefreshCw className="w-4 h-4 animate-spin" />
               ) : (
-                <>
-                  <span>ارسال</span>
-                  <Send className="w-4 h-4" />
-                </>
+                <Send className="w-4 h-4" />
               )}
             </button>
           </form>

@@ -82,21 +82,26 @@ export const BlogPage: React.FC<BlogPageProps> = ({
       const matchesCategory =
         selectedCategory === 'all' ||
         article.categorySlug === selectedCategory ||
-        article.category.includes(selectedCategory);
+        (article.category && article.category.includes(selectedCategory));
 
       if (!matchesCategory) return false;
 
       if (!searchQuery.trim()) return true;
 
       const q = searchQuery.toLowerCase().trim().replace(/^#/, '');
-      const inTitle = article.title.toLowerCase().includes(q);
-      const inSummary = article.summary.toLowerCase().includes(q);
-      const inContent = article.content.some((p) => p.toLowerCase().includes(q));
-      const inTags = article.tags?.some((t) => t.toLowerCase().includes(q));
+      const inTitle = (article.title || '').toLowerCase().includes(q);
+      const inSummary = (article.summary || '').toLowerCase().includes(q);
+      const contentArr = Array.isArray(article.content)
+        ? article.content
+        : typeof article.content === 'string'
+        ? [article.content]
+        : [];
+      const inContent = contentArr.some((p) => String(p || '').toLowerCase().includes(q));
+      const inTags = Array.isArray(article.tags) && article.tags.some((t) => String(t || '').toLowerCase().includes(q));
 
       return inTitle || inSummary || inContent || inTags;
     });
-  }, [selectedCategory, searchQuery]);
+  }, [articles, selectedCategory, searchQuery]);
 
   // Exclude featured article from standard grid if we are showing it at the top and no active search query, and sort by activeSort
   const gridArticles = useMemo(() => {
