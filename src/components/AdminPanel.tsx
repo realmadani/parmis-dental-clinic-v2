@@ -16401,7 +16401,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onNavigateHome }) => {
                                   {triageSec.whatsappEnabled !== false ? 'فعال' : 'غیرفعال'}
                                 </button>
                               </div>
-                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                                 <div>
                                   <label className="block text-[11px] font-bold text-emerald-800 mb-1">تیتر واتساپ</label>
                                   <input
@@ -16416,11 +16416,49 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onNavigateHome }) => {
                                   <input
                                     type="text"
                                     value={triageSec.whatsappPhone || ''}
-                                    onChange={(e) => updateContactSection('triageAndBooking', (prev) => ({ ...prev, whatsappPhone: e.target.value }))}
+                                    onChange={(e) => {
+                                      const val = e.target.value;
+                                      const digits = val.replace(/\D/g, '');
+                                      const localNum =
+                                        digits.startsWith('98') && digits.length >= 11
+                                          ? '0' + digits.slice(2)
+                                          : digits;
+                                      const persianNum = localNum.replace(/[0-9]/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[Number(d)]);
+                                      updateContactSection('triageAndBooking', (prev) => {
+                                        const currentBtn =
+                                          prev.whatsappButtonText || 'ارسال پیام به واتساپ کلینیک: ۰۹۱۲۰۸۰۲۲۵۳';
+                                        const updatedBtn = persianNum
+                                          ? currentBtn.replace(
+                                              /(۰۹[۰-۹]*|09[0-9]*|۰۹۱۲۰۸۰۲۲۵۳|09120802253)/,
+                                              persianNum
+                                            )
+                                          : currentBtn;
+                                        return {
+                                          ...prev,
+                                          whatsappPhone: val,
+                                          whatsappButtonText: updatedBtn,
+                                        };
+                                      });
+                                    }}
                                     className="w-full px-3 py-2 rounded-xl border border-emerald-200 bg-white text-xs dir-ltr text-left"
                                   />
                                 </div>
-                                <div className="sm:col-span-2">
+                                <div>
+                                  <label className="block text-[11px] font-bold text-emerald-800 mb-1">متن روی دکمه واتساپ</label>
+                                  <input
+                                    type="text"
+                                    value={triageSec.whatsappButtonText || ''}
+                                    onChange={(e) =>
+                                      updateContactSection('triageAndBooking', (prev) => ({
+                                        ...prev,
+                                        whatsappButtonText: e.target.value,
+                                      }))
+                                    }
+                                    placeholder="ارسال پیام به واتساپ کلینیک: ۰۹۱۲..."
+                                    className="w-full px-3 py-2 rounded-xl border border-emerald-200 bg-white text-xs font-bold"
+                                  />
+                                </div>
+                                <div className="sm:col-span-3">
                                   <label className="block text-[11px] font-bold text-emerald-800 mb-1">متن توضیحات واتساپ (ارسال عکس OPG و لبخند)</label>
                                   <textarea
                                     rows={2}

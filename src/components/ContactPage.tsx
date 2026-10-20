@@ -451,28 +451,49 @@ export const ContactPage: React.FC<ContactPageProps> = () => {
                     </div>
 
                     {/* WhatsApp Consult Action */}
-                    {triageSec.whatsappEnabled !== false && (
-                      <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-3">
-                        <div className="flex items-center gap-2 text-emerald-800">
-                          <span className="material-symbols-outlined text-xl">chat</span>
-                          <h4 className="text-xs sm:text-sm font-bold">{triageSec.whatsappTitle || 'ارسال عکس دندان و مشاوره در واتساپ'}</h4>
+                    {triageSec.whatsappEnabled !== false && (() => {
+                      const rawWa = (triageSec.whatsappPhone || '989120802253').trim();
+                      const cleanDigits = rawWa.replace(/\D/g, '');
+                      const localNumber =
+                        cleanDigits.startsWith('98') && cleanDigits.length >= 11
+                          ? '0' + cleanDigits.slice(2)
+                          : cleanDigits || rawWa;
+                      const persianWaPhone = localNumber.replace(/[0-9]/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[Number(d)]);
+                      const rawBtnText =
+                        triageSec.whatsappButtonText || `ارسال پیام به واتساپ کلینیک: ${persianWaPhone}`;
+                      const resolvedWhatsappButtonText = rawBtnText.replace(
+                        /(۰۹[۰-۹]{9}|09[0-9]{9}|۰۹۱۲۰۸۰۲۲۵۳|09120802253)/g,
+                        persianWaPhone
+                      );
+                      const waHref = rawWa.startsWith('http')
+                        ? rawWa
+                        : `https://wa.me/${cleanDigits || '989120802253'}`;
+
+                      return (
+                        <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-3">
+                          <div className="flex items-center gap-2 text-emerald-800">
+                            <span className="material-symbols-outlined text-xl">chat</span>
+                            <h4 className="text-xs sm:text-sm font-bold">
+                              {triageSec.whatsappTitle || 'ارسال عکس دندان و مشاوره در واتساپ'}
+                            </h4>
+                          </div>
+
+                          <p className="text-xs text-emerald-700 leading-relaxed text-justify">
+                            {triageSec.whatsappDescription}
+                          </p>
+
+                          <a
+                            href={waHref}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-sm active:scale-95"
+                          >
+                            <span className="material-symbols-outlined text-base">send</span>
+                            <span>{resolvedWhatsappButtonText}</span>
+                          </a>
                         </div>
-
-                        <p className="text-xs text-emerald-700 leading-relaxed text-justify">
-                          {triageSec.whatsappDescription}
-                        </p>
-
-                        <a
-                          href={`https://wa.me/${triageSec.whatsappPhone || '989120802253'}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-sm active:scale-95"
-                        >
-                          <span className="material-symbols-outlined text-base">send</span>
-                          <span>{triageSec.whatsappButtonText || 'ارسال پیام به واتساپ کلینیک'}</span>
-                        </a>
-                      </div>
-                    )}
+                      );
+                    })()}
 
                     {/* Emergency Triage Notice */}
                     {triageSec.emergencyEnabled !== false && (
